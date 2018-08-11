@@ -1,0 +1,12 @@
+#ifndef QUASARAAPP_GLOBAL_H
+#define QUASARAAPP_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(QUASARAAPP_LIBRARY)
+#  define QUASARAAPPSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define QUASARAAPPSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // QUASARAAPP_GLOBAL_H
