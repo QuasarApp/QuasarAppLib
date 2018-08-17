@@ -31,7 +31,7 @@ All methods of the Quasar AppUtils is static
 *  translator - translator core of qt
 *  return return true if locale funded
 
-# QuasaraAppLib
+# QuasarAppLib
 Глобальная функция для приложений quasar.
 Эта библиотека включает базовые функции для всех приложений группы QuasarApp.
 Все методы Quasar AppUtils являются статическими
