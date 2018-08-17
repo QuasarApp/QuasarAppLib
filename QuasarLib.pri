@@ -15,6 +15,6 @@ CONFIG(debug, debug|release): {
     OUTPUT_DIR_QUASARAPP = "$$PWD/build/release/bin"
 }
 
-LIBS += -L"$$OUTPUT_DIR_QUASARAPP/" -lQuasaraApp
+LIBS += -L"$$OUTPUT_DIR_QUASARAPP/" -lQuasarApp
 
 INCLUDEPATH += "$$PWD/"

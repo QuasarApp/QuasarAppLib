@@ -5,7 +5,7 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "quasaraapp.h"
+#include "quasarapp.h"
 #include <QVariantMap>
 #include <QDebug>
 #include <QCoreApplication>
@@ -13,7 +13,7 @@
 
 static QVariantMap params = QVariantMap();
 
-bool QuasaraAppUtils::parseParams(int argc, char *argv[]) {
+bool QuasarAppUtils::parseParams(int argc, char *argv[]) {
     params.clear();
     params ["appPath"] =  argv[0];
 
@@ -33,15 +33,15 @@ bool QuasaraAppUtils::parseParams(int argc, char *argv[]) {
     return true;
 }
 
-QString QuasaraAppUtils::getStr(const QString& key) {
+QString QuasarAppUtils::getStrArg(const QString& key) {
     return  params.value(key, "").toString();
 }
 
-QVariant QuasaraAppUtils::get(const QString& key) {
+QVariant QuasarAppUtils::getArg(const QString& key) {
     return  params.value(key, "");
 }
 
-bool QuasaraAppUtils::isEndable(const QString& key) {
+bool QuasarAppUtils::isEndable(const QString& key) {
     return  params.contains(key);
 }
 

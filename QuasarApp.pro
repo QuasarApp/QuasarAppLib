@@ -6,7 +6,7 @@
 
 QT       -= gui
 
-TARGET = QuasaraApp
+TARGET = QuasarApp
 TEMPLATE = lib
 
 DEFINES += QUASARAAPP_LIBRARY
@@ -30,11 +30,11 @@ CONFIG(debug, debug|release): {
 }
 
 SOURCES += \
-        quasaraapp.cpp
+        quasarapp.cpp
 
 HEADERS += \
-        quasaraapp.h \
-        quasaraapp_global.h 
+        quasarapp.h \
+        quasarapp_global.h 
 
 unix {
     target.path = /usr/lib

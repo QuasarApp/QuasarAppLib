@@ -8,7 +8,7 @@
 #ifndef QUASARAAPP_H
 #define QUASARAAPP_H
 
-#include "quasaraapp_global.h"
+#include "quasarapp_global.h"
 #include <QVariant>
 
 
@@ -20,11 +20,11 @@ class QTranslator;
  * this lib include base functions for the all applications of QuasarApp group.
  * all methods of the Quasar AppUtils is static
  */
-class QUASARAAPPSHARED_EXPORT QuasaraAppUtils
+class QUASARAPPSHARED_EXPORT QuasarAppUtils
 {
 
 public:
-    QuasaraAppUtils() = delete;
+    QuasarAppUtils() = delete;
 
     /**
      * @brief parseParams - parase input data of started application
