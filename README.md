@@ -1,4 +1,4 @@
-# QuasaraAppLib
+# QuasarAppLib
 Global function for quasar app.
 This lib include base functions for the all applications of QuasarApp group.
 All methods of the Quasar AppUtils is static
