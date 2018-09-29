@@ -22,19 +22,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
-CONFIG(debug, debug|release): {
-    DESTDIR = "$$PWD/build/debug"
-} else: {
-    DESTDIR = "$$PWD/build/release"
-}
+include(targetdir.pri)
 
 SOURCES += \
-        quasarapp.cpp
+        quasarapp.cpp \
+    params.cpp \
+    locales.cpp \
+    settings.cpp
 
 HEADERS += \
         quasarapp.h \
-        quasarapp_global.h 
+        quasarapp_global.h \ 
+    params.h \
+    locales.h \
+    settings.h
 
 unix {
     target.path = /usr/lib
