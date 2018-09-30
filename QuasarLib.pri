@@ -8,7 +8,25 @@
 !isEmpty(QUASARAPP_LIB):error("QuasarLib.pri already included")
 QUASARAPP_LIB = 1
 
+TMP_DESTDIR=$$DESTDIR
+
+include(deploy.pri)
 #DEPENDS
-LIBS += -L"$$DESTDIR/" -lQuasarApp
+LIBS += -L"$$DESTDIR" -lQuasarApp
+
+CONFIG(release, debug|release) {
+
+    copydata.commands += $(QMAKE_DEL_FILE) $$DESTDIR/* & $(COPY_DIR) $$DESTDIR/* $$TMP_DESTDIR
+    first.depends = $(first) copydata
+    export(first.depends)
+    export(copydata.commands)
+    QMAKE_EXTRA_TARGETS += first copydata
+
+}
+
+DESTDIR=$$TMP_DESTDIR
 
 INCLUDEPATH += "$$PWD/"
+
+
+
