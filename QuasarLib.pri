@@ -14,12 +14,15 @@ include(deploy.pri)
 #DEPENDS
 LIBS += -L"$$DESTDIR" -lQuasarApp
 
-copydata.commands += $(COPY_DIR) $$DESTDIR/* $$TMP_DESTDIR
-first.depends = $(first) copydata
-export(first.depends)
-export(copydata.commands)
-QMAKE_EXTRA_TARGETS += first copydata
+CONFIG(release, debug|release) {
 
+    copydata.commands += $(QMAKE_DEL_FILE) $$DESTDIR/* & $(COPY_DIR) $$DESTDIR/* $$TMP_DESTDIR
+    first.depends = $(first) copydata
+    export(first.depends)
+    export(copydata.commands)
+    QMAKE_EXTRA_TARGETS += first copydata
+
+}
 
 DESTDIR=$$TMP_DESTDIR
 
