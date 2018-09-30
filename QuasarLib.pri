@@ -8,7 +8,10 @@
 !isEmpty(QUASARAPP_LIB):error("QuasarLib.pri already included")
 QUASARAPP_LIB = 1
 
+TMP_DESTDIR=$$DESTDIR
+include(deploy.pri)
 #DEPENDS
-LIBS += -L"$$DESTDIR/" -lQuasarApp
+LIBS += -L"$$DESTDIR" -lQuasarApp
+DESTDIR=$$TMP_DESTDIR
 
 INCLUDEPATH += "$$PWD/"
