@@ -10,12 +10,12 @@ QUASARAPP_LIB = 1
 
 #DEPENDS
 CONFIG(release, debug|release): {
-    LIBS += -L"$$PWD/build/release" -lQuasarApp
-
+    QUASARAPP_LIB_OUTPUT_DIR="$$PWD/build/release"
 } else {
-    LIBS += -L"$$PWD/build/debug" -lQuasarApp
+    QUASARAPP_LIB_OUTPUT_DIR="$$PWD/build/debug"
 }
 
+LIBS += -L$$QUASARAPP_LIB_OUTPUT_DIR -lQuasarApp
 
 INCLUDEPATH += "$$PWD/"
 

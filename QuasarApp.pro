@@ -42,11 +42,6 @@ HEADERS += \
     locales.h \
     settings.h
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
 DISTFILES += \
     QuasarLib.pri
 
