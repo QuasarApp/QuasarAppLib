@@ -14,16 +14,17 @@
 
 using namespace QuasarAppUtils;
 
-bool Locales::initLocale(const QString &locale, QCoreApplication *app, QTranslator *translator){
+
+bool Locales::initLocale(const QString& prefix, const QString &locale, QCoreApplication *app, QTranslator *translator){
 
     QString defaultLocale = QLocale::system().name();
     defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
 
-    if(!locale.isEmpty() && translator->load(QString(":/languages/%0").arg(locale))){
+    if(!locale.isEmpty() && translator->load(QString("%0/%1").arg(prefix, locale))) {
         return app->installTranslator(translator);
     }
 
-    if(!translator->load(QString(":/languages/%0").arg(defaultLocale))){
+    if(!translator->load(QString("%0/%1").arg(prefix, defaultLocale))) {
         return false;
     }
 
