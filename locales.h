@@ -26,12 +26,13 @@ public:
 
     /**
      * @brief initLocale init translation of applictaion
+     * @param prefix - path to folder with qm files. example (/home)
      * @param locale - string value of locale. example (en)
      * @param app - app core of qt
      * @param translator - translator core of qt
      * @return return true if locale funded
      */
-    static bool initLocale(const QString &locale, QCoreApplication* app, QTranslator *translator);
+    static bool initLocale(const QString& prefix ,const QString &locale, QCoreApplication* app, QTranslator *translator);
 
 };
 }

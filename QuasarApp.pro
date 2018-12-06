@@ -1,8 +1,10 @@
-#-------------------------------------------------
+
 #
-# Project created by QtCreator 2018-07-24T20:32:41
+# Copyright (C) 2018 QuasarApp.
+# Distributed under the lgplv3 software license, see the accompanying
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
 #
-#-------------------------------------------------
 
 QT       -= gui
 
@@ -42,13 +44,9 @@ HEADERS += \
     locales.h \
     settings.h
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
 DISTFILES += \
-    QuasarLib.pri
+    QuasarLib.pri \
+    qmakeEtalons/locales.pri
 
 RESOURCES += \
     res.qrc
