@@ -12,9 +12,9 @@ isEmpty(PREFIX) {
 } else {
     message(install target  (use target_dir): $$PREFIX)
 
-    target_dir.path = $$PREFIX
+    install_data.path = $$PREFIX
 #    target_dir.CONFIG += no_check_exist
-    INSTALLS += target_dir
+    INSTALLS += install_data
 }
 
 
