@@ -18,6 +18,12 @@ bool Params::isEndable(const QString& key) {
     return params.contains(key);
 }
 
+void Params::verboseLog(const QString &log) {
+    if (isEndable("verbose")) {
+        qDebug() << "verbose log: " + log ;
+    }
+}
+
 bool Params::parseParams(int argc, char *argv[]) {
     params.clear();
     params ["appPath"] =  argv[0];
