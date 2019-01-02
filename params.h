@@ -51,6 +51,12 @@ public:
      * @return true if argument enabled
      */
     static bool isEndable(const QString& key);
+
+    /**
+     * @brief verboseLog - print text on console if the flag "vergose" is enabled
+     * @param log - printed text
+     */
+    static void verboseLog(const QString& log);
 };
 }
 
