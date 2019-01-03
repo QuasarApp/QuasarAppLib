@@ -10,10 +10,10 @@ win32:runfiletype=*.exe
 isEmpty(PREFIX) {
     message(install target not complited if you want added install rules use PREFIX)
 } else {
-    message(install target  (use target_dir): $$PREFIX)
+    message(install target  (use install_data): $$PREFIX)
 
     install_data.path = $$PREFIX
-#    target_dir.CONFIG += no_check_exist
+#    install_data.CONFIG += no_check_exist
     INSTALLS += install_data
 }
 
