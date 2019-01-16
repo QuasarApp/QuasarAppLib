@@ -8,6 +8,7 @@
 #include "params.h"
 #include <QVariantMap>
 #include <QDebug>
+#include <QFileInfo>
 
 using namespace QuasarAppUtils;
 
@@ -26,7 +27,7 @@ void Params::verboseLog(const QString &log) {
 
 bool Params::parseParams(int argc, char *argv[]) {
     params.clear();
-    params ["appPath"] =  argv[0];
+    params ["appPath"] =  QFileInfo(argv[0]).absolutePath();
 
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-' && i ) {
