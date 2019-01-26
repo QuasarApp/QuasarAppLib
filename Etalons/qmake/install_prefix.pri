@@ -1,3 +1,10 @@
+#
+# Copyright (C) 2018-2019 QuasarApp.
+# Distributed under the lgplv3 software license, see the accompanying
+# Everyone is permitted to copy and distribute verbatim copies
+# of this license document, but changing it is not allowed.
+#
+
 !isEmpty(INSTALL_REFIX_PRI_INCLUDED):error("install_prefix.pri already included")
 INSTALL_REFIX_PRI_INCLUDED = 1
 
