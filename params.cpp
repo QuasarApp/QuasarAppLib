@@ -9,6 +9,11 @@
 #include <QVariantMap>
 #include <QDebug>
 #include <QFileInfo>
+#ifdef Q_OS_WIN
+#include "windows.h"
+#else
+#include <unistd.h>
+#endif
 
 using namespace QuasarAppUtils;
 
@@ -27,7 +32,18 @@ void Params::verboseLog(const QString &log) {
 
 bool Params::parseParams(int argc, char *argv[]) {
     params.clear();
+
+#ifdef Q_OS_WIN
+    char buffer[MAX_PATH];
+    GetModuleFileNameA(nullptr, buffer, MAX_PATH);
+    params ["appPath"] = QFileInfo(buffer).absolutePath();
+#else
     params ["appPath"] =  QFileInfo(argv[0]).absolutePath();
+#endif
+
+    if (!getStrArg("appPath").size()) {
+        return false;
+    }
 
     for (int i = 1; i < argc; i++) {
         if (argv[i][0] == '-' && i ) {
