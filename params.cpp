@@ -13,6 +13,7 @@
 #include "windows.h"
 #else
 #include <unistd.h>
+#include <limits.h>
 #endif
 
 using namespace QuasarAppUtils;
@@ -38,7 +39,9 @@ bool Params::parseParams(int argc, char *argv[]) {
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
     params ["appPath"] = QFileInfo(buffer).absolutePath();
 #else
-    params ["appPath"] =  QFileInfo(argv[0]).absolutePath();
+    char path[2048];
+    readlink("/proc/self/exe", path, 2048);
+    params ["appPath"] =  QFileInfo(path).absolutePath();
 #endif
 
     if (!getStrArg("appPath").size()) {
