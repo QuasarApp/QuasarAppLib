@@ -25,13 +25,40 @@ bool Params::isEndable(const QString& key) {
     return params.contains(key);
 }
 
-void Params::verboseLog(const QString &log) {
+void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
     if (isEndable("verbose")) {
-        qDebug() << "verbose log: " + log ;
+
+        auto lvl = static_cast<VerboseLvl>(getArg("verbose").toInt());
+
+        if (vLvl <= lvl) {
+
+            switch (vLvl) {
+
+            case VerboseLvl::Error: {
+                qCritical() << "Error: " + log;
+                break;
+            }
+
+            case VerboseLvl::Warning: {
+                qWarning() << "Warning: " + log;
+                break;
+            }
+
+            case VerboseLvl::Info: {
+                qInfo() << "Info: " + log;
+                break;
+            }
+
+            default: {
+                qDebug() << "Verbose log: " + log ;
+                break;
+            }
+            }
+        }
     }
 }
 
-bool Params::parseParams(int argc, char *argv[]) {
+bool Params::parseParams(int argc,const char *argv[]) {
     params.clear();
 
 #ifdef Q_OS_WIN
