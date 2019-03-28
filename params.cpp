@@ -98,3 +98,15 @@ QString Params::getStrArg(const QString& key) {
 QVariant Params::getArg(const QString& key) {
     return params.value(key, "");
 }
+
+void Params::setArg(const QString &key, const QVariant &val) {
+    params.insert(key, val);
+}
+
+void Params::setEnable(const QString &key, bool enable) {
+    if (enable) {
+        params.insert(key, "");
+    } else {
+        params.remove(key);
+    }
+}

@@ -53,6 +53,19 @@ public:
     static QVariant getArg(const QString& key);
 
     /**
+     * @brief setArg - set value of key
+     * @param key
+     */
+    static void setArg(const QString& key, const QVariant& val);
+
+    /**
+     * @brief setArg - set boolean value of key
+     * @param key
+     * @param enable - new value of key
+     */
+    static void setEnable(const QString& key, bool enable);
+
+    /**
      * @brief isEndable - check if enable argument of key
      * @param key
      * @return true if argument enabled
