@@ -51,5 +51,5 @@ DISTFILES += \
 RESOURCES += \
     res.qrc
 
-VERSION = 1.1.3
+VERSION = 1.1.4
 

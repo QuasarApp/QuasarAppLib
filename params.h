@@ -18,6 +18,13 @@ namespace QuasarAppUtils {
  * @brief The Params class for parese app params
  */
 
+enum VerboseLvl {
+    Debug = 0x0,
+    Error = 0x1,
+    Warning = 0x2,
+    Info = 0x3,
+};
+
 class QUASARAPPSHARED_EXPORT Params
 {
 public:
@@ -29,7 +36,7 @@ public:
      * @param argv - arrat of arguments
      * @return true if all arguments read else false
      */
-    static bool parseParams(int argc, char *argv[]);
+    static bool parseParams(int argc, const char *argv[]);
 
     /**
      * @brief getStrArg - get string value of key
@@ -56,7 +63,7 @@ public:
      * @brief verboseLog - print text on console if the flag "vergose" is enabled
      * @param log - printed text
      */
-    static void verboseLog(const QString& log);
+    static void verboseLog(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 };
 }
 
