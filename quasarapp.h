@@ -11,6 +11,7 @@
 #include "params.h"
 #include "locales.h"
 #include "settings.h"
+#include "global.h"
 
 /**
  * @brief The QuasaraAppUtils class

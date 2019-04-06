@@ -14,9 +14,11 @@ CONFIG(release, debug|release): {
 } else {
     QUASARAPP_LIB_OUTPUT_DIR="$$PWD/build/debug"
 }
-
-unix:LIBS += -L$$QUASARAPP_LIB_OUTPUT_DIR -lQuasarApp
-win32:LIBS += -L$$QUASARAPP_LIB_OUTPUT_DIR -lQuasarApp1
+contains(QMAKE_HOST.os, Linux):{
+    LIBS += -L$$QUASARAPP_LIB_OUTPUT_DIR -lQuasarApp
+} else {
+    LIBS += -L$$QUASARAPP_LIB_OUTPUT_DIR -lQuasarApp1
+}
 
 INCLUDEPATH += "$$PWD/"
 

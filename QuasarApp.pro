@@ -7,6 +7,7 @@
 #
 
 QT       -= gui
+CONFIG += c++17
 
 TARGET = QuasarApp
 TEMPLATE = lib
@@ -35,14 +36,16 @@ SOURCES += \
         quasarapp.cpp \
     params.cpp \
     locales.cpp \
-    settings.cpp
+    settings.cpp \
+    global.cpp
 
 HEADERS += \
         quasarapp.h \
         quasarapp_global.h \ 
     params.h \
     locales.h \
-    settings.h
+    settings.h \
+    global.h
 
 DISTFILES += \
     QuasarLib.pri \
@@ -51,5 +54,5 @@ DISTFILES += \
 RESOURCES += \
     res.qrc
 
-VERSION = 1.1.4
+VERSION = 1.1.5
 
