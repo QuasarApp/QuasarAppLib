@@ -7,6 +7,7 @@
 #
 
 QT       -= gui
+CONFIG += c++17
 
 TARGET = QuasarApp
 TEMPLATE = lib
@@ -53,5 +54,5 @@ DISTFILES += \
 RESOURCES += \
     res.qrc
 
-VERSION = 1.1.4
+VERSION = 1.1.5
 
