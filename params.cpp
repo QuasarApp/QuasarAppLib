@@ -67,7 +67,10 @@ bool Params::parseParams(int argc,const char *argv[]) {
     params ["appPath"] = QFileInfo(buffer).absolutePath();
 #else
     char path[2048];
-    readlink("/proc/self/exe", path, 2048);
+    if (readlink("/proc/self/exe", path, 2048) < 0) {
+        qWarning() << "parseParams can't get self path!" ;
+        return false;
+    }
     params ["appPath"] =  QFileInfo(path).absolutePath();
 #endif
 
