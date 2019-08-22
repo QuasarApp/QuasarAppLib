@@ -115,7 +115,7 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
 
         QFile logFile(path);
 
-        if (logFile.open(QIODevice::WriteOnly | QIODevice::Append)) {
+        if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
             QTextStream stream(&logFile);
             stream << lvlToString(vLvl) + ": " + log;

@@ -54,5 +54,8 @@ DISTFILES += \
 RESOURCES += \
     res.qrc
 
+
+include(Etalons/qmake/ccache.pri)
+
 VERSION = 1.1.6
 

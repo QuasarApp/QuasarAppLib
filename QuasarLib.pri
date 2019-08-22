@@ -22,5 +22,6 @@ win32:LIBS += -L$$QUASARAPP_LIB_OUTPUT_DIR -lQuasarApp1
 
 INCLUDEPATH += "$$PWD/"
 
+include(Etalons/qmake/ccache.pri);
 
 
