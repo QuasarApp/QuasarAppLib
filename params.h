@@ -27,6 +27,9 @@ enum VerboseLvl {
 
 class QUASARAPPSHARED_EXPORT Params
 {
+private:
+    static QString lvlToString(VerboseLvl vLvl);
+    static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 public:
     Params() = delete;
 
@@ -77,6 +80,18 @@ public:
      * @param log - printed text
      */
     static void verboseLog(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
+
+    /**
+     * @brief getparamsHelp
+     * @return help string of default params
+     */
+    static QStringList getparamsHelp();
+
+    /**
+     * @brief showHelp - show all strings of help
+     * @param help
+     */
+    static void showHelp(const QStringList& help);
 };
 }
 

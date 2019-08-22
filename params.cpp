@@ -9,6 +9,7 @@
 #include <QVariantMap>
 #include <QDebug>
 #include <QFileInfo>
+#include <iostream>
 #ifdef Q_OS_WIN
 #include "windows.h"
 #else
@@ -20,12 +21,16 @@ using namespace QuasarAppUtils;
 
 static QVariantMap params = QVariantMap();
 
-
 bool Params::isEndable(const QString& key) {
     return params.contains(key);
 }
 
 void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
+
+    if (!writeLoginFile(log, vLvl)) {
+        qWarning() << "Warning: Write log in file fail!";
+    }
+
     if (isEndable("verbose")) {
 
         auto lvl = static_cast<VerboseLvl>(getArg("verbose").toInt());
@@ -35,27 +40,92 @@ void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
             switch (vLvl) {
 
             case VerboseLvl::Error: {
-                qCritical() << "Error: " + log;
+                qCritical() << lvlToString(vLvl) + ": " + log;
                 break;
             }
 
             case VerboseLvl::Warning: {
-                qWarning() << "Warning: " + log;
+                qWarning() << lvlToString(vLvl) + ": " + log;
                 break;
             }
 
             case VerboseLvl::Info: {
-                qInfo() << "Info: " + log;
+                qInfo() << lvlToString(vLvl) + ": " + log;
                 break;
             }
 
             default: {
-                qDebug() << "Verbose log: " + log ;
+                qDebug() << lvlToString(vLvl) + ": " + log;
                 break;
             }
             }
         }
     }
+}
+
+QStringList Params::getparamsHelp() {
+    return
+    {
+        {""},
+        { "  -verbose (level 1 - 3)   : Shows debug log"},
+        { "  -fileLog (path to file)  : Sets path of log file"},
+        { "                           : Default it is path to executable file"},
+        { "                           : with suffix '.log' "},
+        { "  noWriteInFileLog         : Disables loging into file"},
+        { ""}
+    };
+}
+
+void Params::showHelp(const QStringList &help) {
+    for (const QString& line : help) {
+        std::cout << line.toStdString() << std::endl;
+    }
+}
+
+QString Params::lvlToString(VerboseLvl vLvl) {
+    switch (vLvl) {
+
+    case VerboseLvl::Error: {
+        return "Error";
+    }
+
+    case VerboseLvl::Warning: {
+        return "Warning";
+    }
+
+    case VerboseLvl::Info: {
+        return "Info";
+    }
+
+    case VerboseLvl::Debug: {
+        return "Verbose log";
+    }
+    }
+
+    return "";
+}
+
+bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
+    if (!isEndable("noWriteInFileLog")) {
+
+        QString path = getStrArg("appPath") + "/" + getStrArg("appName") + ".log";
+        if (isEndable("fileLog")) {
+            QString path = getStrArg("fileLog");
+        }
+
+        QFile logFile(path);
+
+        if (logFile.open(QIODevice::WriteOnly | QIODevice::Append)) {
+
+            QTextStream stream(&logFile);
+            stream << lvlToString(vLvl) + ": " + log;
+            logFile.close();
+        } else {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool Params::parseParams(int argc,const char *argv[]) {
@@ -65,6 +135,8 @@ bool Params::parseParams(int argc,const char *argv[]) {
     char buffer[MAX_PATH];
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
     params ["appPath"] = QFileInfo(buffer).absolutePath();
+    params ["appName"] = QFileInfo(buffer).fileName();
+
 #else
     char path[2048];
     if (readlink("/proc/self/exe", path, 2048) < 0) {
@@ -72,6 +144,8 @@ bool Params::parseParams(int argc,const char *argv[]) {
         return false;
     }
     params ["appPath"] =  QFileInfo(path).absolutePath();
+    params ["appName"] =  QFileInfo(path).fileName();
+
 #endif
 
     if (!getStrArg("appPath").size()) {
