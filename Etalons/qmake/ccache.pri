@@ -8,7 +8,7 @@
 !isEmpty(CCACHE_INCLUDE):error("ccache.pri already included")
 CCACHE_INCLUDE = 1
 
-unix: {
+contains(QMAKE_HOST.os, Linux):{
     BIN = $$system(which ccache)
 
     !isEmpty(BIN) {
@@ -16,7 +16,6 @@ unix: {
         QMAKE_CXX='$$BIN $$QMAKE_CXX'
     }
 }
-
 
 
 
