@@ -123,7 +123,7 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
         if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
             QTextStream stream(&logFile);
-            stream << timeString() << lvlToString(vLvl) + ": " + log << endl;
+            stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << endl;
             logFile.close();
         } else {
             return false;
