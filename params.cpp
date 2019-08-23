@@ -29,9 +29,7 @@ bool Params::isEndable(const QString& key) {
 
 void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
 
-    if (!writeLoginFile(log, vLvl)) {
-        qWarning() << "Warning: Write log in file fail!";
-    }
+    writeLoginFile(log, vLvl);
 
     if (isEndable("verbose")) {
 
