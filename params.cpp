@@ -15,6 +15,7 @@
 #else
 #include <unistd.h>
 #include <limits.h>
+#include <QDateTime>
 #endif
 
 using namespace QuasarAppUtils;
@@ -82,6 +83,10 @@ void Params::showHelp(const QStringList &help) {
     }
 }
 
+QString Params::timeString() {
+    return QDateTime::currentDateTime().toString();
+}
+
 QString Params::lvlToString(VerboseLvl vLvl) {
     switch (vLvl) {
 
@@ -118,7 +123,7 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
         if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
             QTextStream stream(&logFile);
-            stream << lvlToString(vLvl) + ": " + log;
+            stream << timeString() << lvlToString(vLvl) + ": " + log << endl;
             logFile.close();
         } else {
             return false;
