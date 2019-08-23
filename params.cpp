@@ -10,12 +10,13 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <iostream>
+#include <QDateTime>
+
 #ifdef Q_OS_WIN
 #include "windows.h"
 #else
 #include <unistd.h>
 #include <limits.h>
-#include <QDateTime>
 #endif
 
 using namespace QuasarAppUtils;
