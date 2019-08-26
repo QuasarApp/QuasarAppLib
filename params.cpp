@@ -172,8 +172,8 @@ bool Params::parseParams(int argc,const char *argv[]) {
     return true;
 }
 
-QString Params::getStrArg(const QString& key) {
-    return params.value(key, "").toString();
+QString Params::getStrArg(const QString& key, const QString &def) {
+    return params.value(key, def).toString();
 }
 
 QVariant Params::getArg(const QString& key) {

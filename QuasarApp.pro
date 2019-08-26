@@ -57,5 +57,5 @@ RESOURCES += \
 
 include(Etalons/qmake/ccache.pri)
 
-VERSION = 1.1.8
+VERSION = 1.1.9
 

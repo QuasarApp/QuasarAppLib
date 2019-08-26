@@ -45,16 +45,18 @@ public:
     /**
      * @brief getStrArg - get string value of key
      * @param key
+     * @param def - default value
      * @return string value of argument
      */
-    static QString getStrArg(const QString& key);
+    static QString getStrArg(const QString& key, const QString& def = "");
 
     /**
      * @brief getArg - get string value of key
      * @param key
+     * @param def - default value
      * @return string value of argument
      */
-    static QVariant getArg(const QString& key);
+    static QVariant getArg(const QString& key, const QVariant &def = {});
 
     /**
      * @brief setArg - set value of key
