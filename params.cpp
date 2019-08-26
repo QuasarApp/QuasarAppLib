@@ -176,8 +176,8 @@ QString Params::getStrArg(const QString& key, const QString &def) {
     return params.value(key, def).toString();
 }
 
-QVariant Params::getArg(const QString& key) {
-    return params.value(key, "");
+QVariant Params::getArg(const QString& key,const QVariant& def) {
+    return params.value(key, def);
 }
 
 void Params::setArg(const QString &key, const QVariant &val) {
