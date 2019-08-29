@@ -8,6 +8,7 @@
 cmake_minimum_required(VERSION 3.1)
 
 include(cmake/QuasarAppOut.cmake)
+include(cmake/ccache.cmake)
 
 project(${QUASARAPP_LIB_NAME} LANGUAGES CXX)
 

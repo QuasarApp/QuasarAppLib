@@ -5,24 +5,9 @@
 # of this license document, but changing it is not allowed.
 #
 
-IF(NOT CCACHE_INCLUDE)
-    SET(CCACHE_INCLUDE True)
-    IF(CMAKE_HOST_SYSTEM_NAME EQUAL Linux)
-
-        execute_process(COMMAND "which" "ccache"
-                        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-                        RESULT_VARIABLE which_result
-                        OUTPUT_VARIABLE BIN)
-        
-        IF (${BIN} STREQUAL "")
-            message("ccache disabled for ${PROJECT_NAME}")
-        ELSE()
-            SET(CMAKE_CXX_COMPILER "${BIN} ${CMAKE_CXX_COMPILER}")
-            message("ccache enabled for ${CMAKE_CXX_COMPILER}")
-
-        ENDIF (${BIN} STREQUAL "")
-
-    ENDIF(CMAKE_HOST_SYSTEM_NAME EQUAL Linux)
-
-ENDIF(NOT CCACHE_INCLUDE)
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    message("using ccache in ${CCACHE_PROGRAM}")
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
+endif()
 
