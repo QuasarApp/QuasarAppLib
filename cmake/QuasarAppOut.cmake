@@ -19,4 +19,4 @@ ENDIF(CMAKE_BUILD_TYPE EQUAL Release)
 
 message(QUASARAPP_LIB_OUTPUT_DIR = ${QUASARAPP_LIB_OUTPUT_DIR})
 
-
+include(cmake/ccache.cmake)
