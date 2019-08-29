@@ -9,17 +9,10 @@ cmake_minimum_required(VERSION 3.1)
 
 IF(NOT QUASARAPP_LIB)
     SET(QUASARAPP_LIB True)
-    include(QuasarAppOut.cmake)
-
-    message(STATUS "buid type    " ${CMAKE_BUILD_TYPE})
-    message(STATUS "Project      " ${PROJECT_NAME})
-    message(STATUS "c compiler   " ${CMAKE_C_COMPILER})
-    message(STATUS "cxx compiler " ${CMAKE_CXX_COMPILER})
-    message(STATUS "build shared " ${BUILD_SHARED_LIBS})
- 
+    include(QuasarAppOut.cmake) 
 
     target_link_libraries(${PROJECT_NAME}  ${QUASARAPP_LIB_NAME})
-    target_include_directories(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/../)
+    target_include_directories(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR})
 
 ENDIF(NOT QUASARAPP_LIB)
 

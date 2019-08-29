@@ -30,3 +30,10 @@ file(GLOB SOURCE_CPP
 add_library(${PROJECT_NAME} SHARED ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 
+
+message(STATUS "buid type    " ${CMAKE_BUILD_TYPE})
+message(STATUS "Project      " ${PROJECT_NAME})
+message(STATUS "c compiler   " ${CMAKE_C_COMPILER})
+message(STATUS "cxx compiler " ${CMAKE_CXX_COMPILER})
+message(STATUS "build shared " ${BUILD_SHARED_LIBS})
+message(STATUS "qmake exec   " ${QT_QMAKE_EXECUTABLE})
