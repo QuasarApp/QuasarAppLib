@@ -7,20 +7,18 @@
 
 cmake_minimum_required(VERSION 3.1)
 
-include(cmake/QuasarAppOut.cmake)
-include(cmake/ccache.cmake)
+project(QuasarApp LANGUAGES CXX)
 
-project(${QUASARAPP_LIB_NAME} LANGUAGES CXX)
+include(CMake/ProjectOut.cmake)
+include(CMake/ccache.cmake)
+include(CMake/Version.cmake)
+
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${QUASARAPP_LIB_OUTPUT_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${QUASARAPP_LIB_OUTPUT_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${QUASARAPP_LIB_OUTPUT_DIR}/bin)
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
@@ -30,11 +28,6 @@ file(GLOB SOURCE_CPP
 
 add_library(${PROJECT_NAME} SHARED ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-
-message(STATUS "buid type    " ${CMAKE_BUILD_TYPE})
-message(STATUS "Project      " ${PROJECT_NAME})
-message(STATUS "c compiler   " ${CMAKE_C_COMPILER})
-message(STATUS "cxx compiler " ${CMAKE_CXX_COMPILER})
-message(STATUS "build shared " ${BUILD_SHARED_LIBS})
-message(STATUS "qmake exec   " ${QT_QMAKE_EXECUTABLE})
+setVersion(1 2 0)
