@@ -41,6 +41,12 @@ public:
      * @return true if all arguments read else false
      */
     static bool parseParams(int argc, const char *argv[]);
+    /**
+     * @brief parseParams - parase input data of started application
+     * @param params -  arguments
+     * @return true if all arguments read else false
+     */
+    static bool parseParams(const QStringList& paramsArray);
 
     /**
      * @brief getStrArg - get string value of key
