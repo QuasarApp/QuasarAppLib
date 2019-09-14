@@ -34,18 +34,18 @@ CONFIG(release, debug|release): {
 
 SOURCES += \
         quasarapp.cpp \
-    params.cpp \
-    locales.cpp \
-    settings.cpp \
-    global.cpp
+        params.cpp \
+        locales.cpp \
+        settings.cpp \
+        global.cpp
 
 HEADERS += \
         quasarapp.h \
         quasarapp_global.h \ 
-    params.h \
-    locales.h \
-    settings.h \
-    global.h
+        params.h \
+        locales.h \
+        settings.h \
+        global.h
 
 DISTFILES += \
     QuasarLib.pri \
