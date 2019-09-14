@@ -133,6 +133,16 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
 }
 
 bool Params::parseParams(int argc,const char *argv[]) {
+
+    QStringList params;
+    for (int i = 1; i < argc; i++) {
+        params.push_back(argv[i]);
+    }
+
+    return parseParams(params);
+}
+
+bool Params::parseParams(const QStringList &paramsArray) {
     params.clear();
 
 #ifdef Q_OS_WIN
@@ -156,16 +166,16 @@ bool Params::parseParams(int argc,const char *argv[]) {
         return false;
     }
 
-    for (int i = 1; i < argc; i++) {
-        if (argv[i][0] == '-' && i ) {
-            if (i < (argc - 1) && argv[i + 1][0] != '-') {
-                params[&(argv[i][1])] = argv[i + 1];
+    for (int i = 0 ; i < paramsArray.size(); ++i) {
+        if (paramsArray[i][0] == '-') {
+            if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
+                params[paramsArray[i].mid(1)] = paramsArray[i + 1];
                 i++;
             } else {
-                qWarning() << "Missing argument for " + QString(argv[i]) ;
+                qWarning() << "Missing argument for " + paramsArray[i] ;
             }
         } else {
-            params[argv[i]] = "";
+            params[paramsArray[i]] = "";
         }
     }
 
