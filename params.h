@@ -101,6 +101,18 @@ public:
      * @param help
      */
     static void showHelp(const QStringList& help);
+
+    /**
+     * @brief size
+     * @return size of all params array
+     */
+    static int size();
+
+    /**
+     * @brief customParamasSize
+     * @return size of params entered in conosole
+     */
+    static int customParamasSize();
 };
 }
 

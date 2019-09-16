@@ -82,6 +82,14 @@ void Params::showHelp(const QStringList &help) {
     }
 }
 
+int Params::size() {
+    return params.size();
+}
+
+int Params::customParamasSize() {
+    return size() - 2;
+}
+
 QString Params::timeString() {
     return QDateTime::currentDateTime().toString();
 }
