@@ -7,21 +7,30 @@
 
 #include "settings.h"
 #include <QSettings>
+#include <QCoreApplication>
 
 using namespace QuasarAppUtils;
 
 Settings::Settings() {
-    _settings = new QSettings();
+    auto name = QCoreApplication::applicationName();
+    if (name.isEmpty()) {
+        name = "QuasarAppUtils";
+    }
+
+    _settings = new QSettings(name, QSettings::IniFormat);
+}
+
+Settings *Settings::initSettings() {
+    static Settings* res = new Settings();
+    return res;
 }
 
 Settings *Settings::get() {
-    static Settings* res = new Settings();
-    return res;
+    return initSettings();
 }
 
 const Settings *Settings::getConst() {
-    static Settings* res = new Settings();
-    return res;
+    return initSettings();
 }
 
 QVariant Settings::getValue(const QString &key, const QVariant &def) {

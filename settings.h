@@ -26,6 +26,8 @@ private:
     explicit Settings();
     QSettings *_settings;
 
+    static Settings* initSettings();
+
 public:
 
     /**
