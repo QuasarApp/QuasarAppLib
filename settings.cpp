@@ -13,11 +13,17 @@ using namespace QuasarAppUtils;
 
 Settings::Settings() {
     auto name = QCoreApplication::applicationName();
+    auto company = QCoreApplication::organizationName();
     if (name.isEmpty()) {
         name = "QuasarAppUtils";
     }
 
-    _settings = new QSettings(name, QSettings::IniFormat);
+    if (company.isEmpty()) {
+        company = "QuasarApp";
+    }
+
+    _settings = new QSettings(QSettings::IniFormat, QSettings::Scope::UserScope, company, name);
+
 }
 
 Settings *Settings::initSettings() {
