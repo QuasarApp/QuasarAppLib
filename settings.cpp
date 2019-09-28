@@ -11,7 +11,7 @@
 
 using namespace QuasarAppUtils;
 
-Settings::Settings() {
+Settings::Settings(SettingsSaveMode mode) {
     auto name = QCoreApplication::applicationName();
     auto company = QCoreApplication::organizationName();
     if (name.isEmpty()) {
@@ -23,11 +23,21 @@ Settings::Settings() {
     }
 
     _settings = new QSettings(QSettings::IniFormat, QSettings::Scope::UserScope, company, name);
-
+    _mode = mode;
 }
 
-Settings *Settings::initSettings() {
-    static Settings* res = new Settings();
+SettingsSaveMode Settings::getMode() const
+{
+    return _mode;
+}
+
+void Settings::setMode(const SettingsSaveMode &mode)
+{
+    _mode = mode;
+}
+
+Settings *Settings::initSettings(SettingsSaveMode mode) {
+    static Settings* res = new Settings(mode);
     return res;
 }
 
@@ -47,11 +57,19 @@ QString Settings::getStrValue(const QString &key, const QString &def) {
     return getValue(key, QVariant(def)).toString();
 }
 
+void Settings::sync() {
+    _settings->sync();
+}
+
 void Settings::setValue(const QString key, const QVariant &value) {
     _settings->setValue(key, value);
 
     emit valueChanged(key, value);
     emit valueStrChanged(key, value.toString());
+
+    if (_mode == SettingsSaveMode::Auto) {
+        sync();
+    }
 
 }
 

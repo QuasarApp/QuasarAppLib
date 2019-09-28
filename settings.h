@@ -17,17 +17,27 @@ class QSettings;
 namespace QuasarAppUtils {
 
 /**
+ * @brief The SettingsSaveMode enum
+ * Auto - value save on hard disk when calling method "value"
+ * manual - save all data on hard disk when calling method Settings::sync
+ */
+enum class SettingsSaveMode: quint64 {
+    Auto,
+    Manual
+};
+
+/**
  * @brief The Settings class - singleton for QSettings
  */
 class QUASARAPPSHARED_EXPORT Settings : public QObject
 {
     Q_OBJECT
 private:
-    explicit Settings();
-    QSettings *_settings;
+    explicit Settings(SettingsSaveMode mode = SettingsSaveMode::Auto);
+    QSettings *_settings = nullptr;
+    SettingsSaveMode _mode = SettingsSaveMode::Auto;
 
-    static Settings* initSettings();
-
+    static Settings* initSettings(SettingsSaveMode mode = SettingsSaveMode::Auto);
 public:
 
     /**
@@ -54,6 +64,23 @@ public:
      * @brief getStrValue some as getValue but work with QString
      */
     QString getStrValue(const QString &key, const QString& def);
+
+    /**
+     * @brief sync - save all data on hard disk;
+     */
+    void sync();
+
+    /**
+     * @brief getMode
+     * @return
+     */
+    SettingsSaveMode getMode() const;
+
+    /**
+     * @brief setMode
+     * @param mode
+     */
+    void setMode(const SettingsSaveMode &mode);
 
 public slots:
     /**
