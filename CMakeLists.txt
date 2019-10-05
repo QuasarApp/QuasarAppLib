@@ -6,6 +6,7 @@
 #
 
 cmake_minimum_required(VERSION 3.1)
+include(CMake/crossplatform/crossplatform.cmake)
 
 project(QuasarApp LANGUAGES CXX)
 
