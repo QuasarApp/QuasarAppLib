@@ -58,12 +58,12 @@ public:
      * @param def - default value if is value not finded
      * @return value of key
      */
-    QVariant getValue(const QString &key, const QVariant& def);
+    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& def);
 
     /**
      * @brief getStrValue some as getValue but work with QString
      */
-    QString getStrValue(const QString &key, const QString& def);
+    Q_INVOKABLE QString getStrValue(const QString &key, const QString& def);
 
     /**
      * @brief sync - save all data on hard disk;
