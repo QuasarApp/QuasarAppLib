@@ -121,6 +121,7 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     if (!isEndable("noWriteInFileLog")) {
 
         QString path = getStrArg("appPath") + "/" + getStrArg("appName") + ".log";
+
         if (isEndable("fileLog")) {
             QString path = getStrArg("fileLog");
         }
@@ -135,6 +136,7 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
         } else {
             return false;
         }
+
     }
 
     return true;
@@ -155,12 +157,16 @@ bool Params::parseParams(const QStringList &paramsArray) {
 
 #ifdef Q_OS_WIN
     char buffer[MAX_PATH];
+    memset(path, 0, sizeof path);
+
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
     params ["appPath"] = QFileInfo(buffer).absolutePath();
     params ["appName"] = QFileInfo(buffer).fileName();
 
 #else
     char path[2048];
+    memset(path, 0, sizeof path);
+
     if (readlink("/proc/self/exe", path, 2048) < 0) {
         qWarning() << "parseParams can't get self path!" ;
         return false;
