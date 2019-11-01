@@ -157,7 +157,7 @@ bool Params::parseParams(const QStringList &paramsArray) {
 
 #ifdef Q_OS_WIN
     char buffer[MAX_PATH];
-    memset(path, 0, sizeof path);
+    memset(buffer, 0, sizeof buffer);
 
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
     params ["appPath"] = QFileInfo(buffer).absolutePath();
