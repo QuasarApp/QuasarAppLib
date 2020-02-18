@@ -63,16 +63,15 @@ void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
     }
 }
 
-QStringList Params::getparamsHelp() {
-    return
-    {
-        {""},
-        { "  -verbose (level 1 - 3)   : Shows debug log"},
-        { "  -fileLog (path to file)  : Sets path of log file"},
-        { "                           : Default it is path to executable file"},
-        { "                           : with suffix '.log' "},
-        { "  noWriteInFileLog         : Disables loging into file"},
-        { ""}
+Help::Charters Params::getparamsHelp() {
+    return {
+        {
+            "Base Options", {
+                {"-verbose (level 1 - 3)",  "Shows debug log"},
+                {"-fileLog (path to file)", "Sets path of log file. Default it is path to executable file with suffix '.log'"},
+                {"noWriteInFileLog",        "Disables loging into file"}
+            }
+        }
     };
 }
 
@@ -80,6 +79,14 @@ void Params::showHelp(const QStringList &help) {
     for (const QString& line : help) {
         std::cout << line.toStdString() << std::endl;
     }
+}
+
+void Params::showHelp(const Help::Charters &help) {
+    Help::print(help);
+}
+
+void Params::showHelp() {
+    Help::print(getparamsHelp());
 }
 
 int Params::size() {

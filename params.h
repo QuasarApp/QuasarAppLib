@@ -10,7 +10,7 @@
 
 #include <QVariant>
 #include "quasarapp_global.h"
-
+#include "helpdata.h"
 
 namespace QuasarAppUtils {
 
@@ -96,13 +96,19 @@ public:
      * @brief getparamsHelp
      * @return help string of default params
      */
-    static QStringList getparamsHelp();
+    static Help::Charters getparamsHelp();
 
     /**
      * @brief showHelp - show all strings of help
      * @param help
      */
     static void showHelp(const QStringList& help);
+
+    /**
+     * @brief showHelp - show structe of help value
+     * @param help
+     */
+    static void showHelp(const Help::Charters& help);
 
     /**
      * @brief size
@@ -115,6 +121,11 @@ public:
      * @return size of params entered in conosole
      */
     static int customParamasSize();
+
+    /**
+     * @brief showHelp - show base help section of QuasarAppLib
+     */
+    static void showHelp();
 };
 }
 
