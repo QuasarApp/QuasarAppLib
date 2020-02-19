@@ -1,39 +1,52 @@
 #include "helpdata.h"
 #include <iostream>
 
-int MAX_LENGTH = 80;
+static int MAX_LENGTH = 80;
+static int SectionMargin = 3;
+
+#define EXPANDER(COUNT, ITEM) QString(COUNT, ITEM).toStdString()
+#define SPACES(X) EXPANDER(X, ' ')
+#define SECTION_MARGIN SPACES(SectionMargin)
+
 void QuasarAppUtils::Help::print(const QuasarAppUtils::Help::Options &charter) {
+    int maxLength = 0;
     for (auto line = charter.begin(); line != charter.end(); ++line) {
-        print(line.key(), line.value());
+        if (line.key().size() > maxLength)
+            maxLength = line.key().size();
+    }
+
+    for (auto line = charter.begin(); line != charter.end(); ++line) {
+        print(line.key(), line.value(), maxLength + SectionMargin);
+        std::cout << std::endl;
     }
 }
 
 void QuasarAppUtils::Help::print(const QuasarAppUtils::Help::Charters &help) {
     for (auto line = help.begin(); line != help.end(); ++line) {
-        std::string expander('-', MAX_LENGTH);
+        QString expander(MAX_LENGTH, '-');
 
         std::cout << line.key().toStdString()<< std::endl;
-        std::cout << expander << std::endl;
+        std::cout << expander.toStdString() << std::endl;
         print(line.value());
-        std::cout << expander << std::endl;
+        std::cout << std::endl << expander.toStdString() << std::endl;
     }
 }
 
-void QuasarAppUtils::Help::print(const QString &key, const QString &value) {
+void QuasarAppUtils::Help::print(const QString &key, const QString &value, int keyLength) {
 
-    int keyLength = key.size() + 2;
-    std::cout << key.toStdString() << ": ";
+    auto diffExpander = QString(keyLength - key.size(), ' ');
+    std::cout << SECTION_MARGIN << key.toStdString() << diffExpander.toStdString() << ":";
 
-    std::string expander(' ', keyLength);
+    QString expander(keyLength + SectionMargin, ' ');
     auto words = value.split(" ");
 
     int currentLength = keyLength;
     for (const auto& word : words) {
-        if (currentLength < MAX_LENGTH) {
+        if (currentLength + 2 + word.size() < MAX_LENGTH) {
             std::cout << word.toStdString();
             currentLength += 2 + word.size();
         } else {
-            std::cout << std::endl << expander << ": ";
+            std::cout << std::endl << expander.toStdString() << ":";
             currentLength = keyLength;
         }
     }

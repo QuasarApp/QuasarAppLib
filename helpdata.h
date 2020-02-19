@@ -13,7 +13,7 @@ typedef QHash<QString, Options> Charters;
  * @param key - option name
  * @param value - description of option
  */
-void print(const QString& key, const QString& value);
+void print(const QString& key, const QString& value, int keyLength);
 
 /**
  * @brief print = help Charter
