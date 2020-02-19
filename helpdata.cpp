@@ -43,7 +43,7 @@ void QuasarAppUtils::Help::print(const QString &key, const QString &value, int k
     int currentLength = keyLength;
     for (const auto& word : words) {
         if (currentLength + 2 + word.size() < MAX_LENGTH) {
-            std::cout << word.toStdString();
+            std::cout << " " << word.toStdString();
             currentLength += 2 + word.size();
         } else {
             std::cout << std::endl << expander.toStdString() << ":";
