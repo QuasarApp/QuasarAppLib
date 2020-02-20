@@ -1,12 +1,14 @@
 #ifndef HELPDATA_H
 #define HELPDATA_H
 
-#include <QHash>
+#include <QMap>
 namespace QuasarAppUtils{
 
 namespace Help {
-typedef QHash<QString, QString> Options;
-typedef QHash<QString, Options> Charters;
+typedef QMap<QString, QString> Options;
+typedef QMap<QString, Options> Charters;
+
+int width();
 
 /**
  * @brief print - line of help
