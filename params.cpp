@@ -153,14 +153,14 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     return true;
 }
 
-bool Params::parseParams(int argc, const char *argv[]) {
+bool Params::parseParams(const int argc, const char *argv[]) {
 
     QStringList params;
     for (int i = 1; i < argc; i++) {
         params.push_back(argv[i]);
     }
 
-    argc = _argc;
+    _argc = argc;
     return parseParams(params);
 }
 

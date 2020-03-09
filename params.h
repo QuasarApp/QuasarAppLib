@@ -41,7 +41,7 @@ public:
      * @param argv - arrat of arguments
      * @return true if all arguments read else false
      */
-    static bool parseParams(int argc, const char *argv[]);
+    static bool parseParams(const int argc, const char *argv[]);
     static bool parseParams(int argc, char *argv[]);
 
     /**
