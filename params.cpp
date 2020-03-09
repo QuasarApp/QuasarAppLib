@@ -22,6 +22,7 @@
 using namespace QuasarAppUtils;
 
 static QVariantMap params = QVariantMap();
+static int _argc = 0;
 
 bool Params::isEndable(const QString& key) {
     return params.contains(key);
@@ -94,6 +95,9 @@ int Params::size() {
 }
 
 int Params::customParamasSize() {
+    if (_argc)
+        return _argc - 1;
+
     return size() - 2;
 }
 
@@ -160,6 +164,7 @@ bool Params::parseParams(int argc, const char *argv[]) {
 }
 
 bool Params::parseParams(int argc, char *argv[]) {
+    argc = _argc;
     return parseParams(argc, const_cast<const char**>(argv));
 }
 

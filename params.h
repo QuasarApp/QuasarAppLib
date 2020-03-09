@@ -31,6 +31,7 @@ private:
     static QString timeString();
     static QString lvlToString(VerboseLvl vLvl);
     static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
+
 public:
     Params() = delete;
 
