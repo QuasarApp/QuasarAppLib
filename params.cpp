@@ -160,11 +160,11 @@ bool Params::parseParams(int argc, const char *argv[]) {
         params.push_back(argv[i]);
     }
 
+    argc = _argc;
     return parseParams(params);
 }
 
 bool Params::parseParams(int argc, char *argv[]) {
-    argc = _argc;
     return parseParams(argc, const_cast<const char**>(argv));
 }
 
