@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 QuasarApp.
+ * Copyright (C) 2018-2020 QuasarApp.
  * Distributed under the lgplv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -10,7 +10,7 @@
 
 #include <QVariant>
 #include "quasarapp_global.h"
-
+#include "helpdata.h"
 
 namespace QuasarAppUtils {
 
@@ -31,6 +31,7 @@ private:
     static QString timeString();
     static QString lvlToString(VerboseLvl vLvl);
     static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
+
 public:
     Params() = delete;
 
@@ -40,7 +41,9 @@ public:
      * @param argv - arrat of arguments
      * @return true if all arguments read else false
      */
-    static bool parseParams(int argc, const char *argv[]);
+    static bool parseParams(const int argc, const char *argv[]);
+    static bool parseParams(int argc, char *argv[]);
+
     /**
      * @brief parseParams - parase input data of started application
      * @param params -  arguments
@@ -94,13 +97,19 @@ public:
      * @brief getparamsHelp
      * @return help string of default params
      */
-    static QStringList getparamsHelp();
+    static Help::Charters getparamsHelp();
 
     /**
      * @brief showHelp - show all strings of help
      * @param help
      */
     static void showHelp(const QStringList& help);
+
+    /**
+     * @brief showHelp - show structe of help value
+     * @param help
+     */
+    static void showHelp(const Help::Charters& help);
 
     /**
      * @brief size
@@ -113,6 +122,11 @@ public:
      * @return size of params entered in conosole
      */
     static int customParamasSize();
+
+    /**
+     * @brief showHelp - show base help section of QuasarAppLib
+     */
+    static void showHelp();
 };
 }
 

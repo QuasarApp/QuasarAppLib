@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2019 QuasarApp.
+ * Copyright (C) 2018-2020 QuasarApp.
  * Distributed under the lgplv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -22,6 +22,7 @@
 using namespace QuasarAppUtils;
 
 static QVariantMap params = QVariantMap();
+static int _argc = 0;
 
 bool Params::isEndable(const QString& key) {
     return params.contains(key);
@@ -63,16 +64,15 @@ void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
     }
 }
 
-QStringList Params::getparamsHelp() {
-    return
-    {
-        {""},
-        { "  -verbose (level 1 - 3)   : Shows debug log"},
-        { "  -fileLog (path to file)  : Sets path of log file"},
-        { "                           : Default it is path to executable file"},
-        { "                           : with suffix '.log' "},
-        { "  noWriteInFileLog         : Disables loging into file"},
-        { ""}
+Help::Charters Params::getparamsHelp() {
+    return {
+        {
+            "Base Options", {
+                {"-verbose (level 1 - 3)",  "Shows debug log"},
+                {"-fileLog (path to file)", "Sets path of log file. Default it is path to executable file with suffix '.log'"},
+                {"noWriteInFileLog",        "Disables loging into file"}
+            }
+        }
     };
 }
 
@@ -82,11 +82,22 @@ void Params::showHelp(const QStringList &help) {
     }
 }
 
+void Params::showHelp(const Help::Charters &help) {
+    Help::print(help);
+}
+
+void Params::showHelp() {
+    Help::print(getparamsHelp());
+}
+
 int Params::size() {
     return params.size();
 }
 
 int Params::customParamasSize() {
+    if (_argc)
+        return _argc - 1;
+
     return size() - 2;
 }
 
@@ -142,14 +153,19 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     return true;
 }
 
-bool Params::parseParams(int argc,const char *argv[]) {
+bool Params::parseParams(const int argc, const char *argv[]) {
 
     QStringList params;
     for (int i = 1; i < argc; i++) {
         params.push_back(argv[i]);
     }
 
+    _argc = argc;
     return parseParams(params);
+}
+
+bool Params::parseParams(int argc, char *argv[]) {
+    return parseParams(argc, const_cast<const char**>(argv));
 }
 
 bool Params::parseParams(const QStringList &paramsArray) {

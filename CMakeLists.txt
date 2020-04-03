@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018-2019 QuasarApp.
+# Copyright (C) 2018-2020 QuasarApp.
 # Distributed under the lgplv3 software license, see the accompanying
 # Everyone is permitted to copy and distribute verbatim copies
 # of this license document, but changing it is not allowed.
@@ -31,4 +31,4 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-setVersion(1 2 0)
+setVersion(1 3 1)
