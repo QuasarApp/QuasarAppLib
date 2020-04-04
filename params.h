@@ -91,7 +91,7 @@ public:
     static bool isEndable(const QString& key);
 
     /**
-     * @brief verboseLog - print text on console if the flag "vergose" is enabled
+     * @brief log - print text on console if the flag "vergose" is enabled
      * @param log - printed text
      */
     static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);

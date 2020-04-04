@@ -175,7 +175,7 @@ bool Params::parseParams(const QStringList &paramsArray) {
 
     if (readlink("/proc/self/exe", path, 2048) < 0) {
         QuasarAppUtils::Params::log("parseParams can't get self path!",
-                                           QuasarAppUtils::Warning);
+                                           QuasarAppUtils::Error);
         return false;
     }
     params ["appPath"] =  QFileInfo(path).absolutePath();
@@ -194,7 +194,8 @@ bool Params::parseParams(const QStringList &paramsArray) {
                 i++;
             } else {
                 QuasarAppUtils::Params::log("Missing argument for " + paramsArray[i],
-                                                   QuasarAppUtils::Warning);
+                                                   QuasarAppUtils::Error);
+                return false;
             }
         } else {
             params[paramsArray[i]] = "";
