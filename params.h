@@ -19,17 +19,20 @@ namespace QuasarAppUtils {
  */
 
 enum VerboseLvl {
-    Debug = 0x0,
+    Info = 0x0,
     Error = 0x1,
     Warning = 0x2,
-    Info = 0x3,
+    Debug = 0x3,
+
 };
+
+#define DEFAULT_VERBOSE_LVL "1"
 
 class QUASARAPPSHARED_EXPORT Params
 {
 private:
     static QString timeString();
-    static QString lvlToString(VerboseLvl vLvl);
+    static std::string lvlToString(VerboseLvl vLvl);
     static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
 public:
@@ -91,7 +94,7 @@ public:
      * @brief verboseLog - print text on console if the flag "vergose" is enabled
      * @param log - printed text
      */
-    static void verboseLog(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
+    static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**
      * @brief getparamsHelp

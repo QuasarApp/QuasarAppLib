@@ -11,6 +11,7 @@
 #include <QFileInfo>
 #include <iostream>
 #include <QDateTime>
+#include <QCoreApplication>
 
 #ifdef Q_OS_WIN
 #include "windows.h"
@@ -28,39 +29,28 @@ bool Params::isEndable(const QString& key) {
     return params.contains(key);
 }
 
-void Params::verboseLog(const QString &log, VerboseLvl vLvl) {
+void Params::log(const QString &log, VerboseLvl vLvl) {
 
     writeLoginFile(log, vLvl);
 
-    if (isEndable("verbose")) {
+    auto lvl = static_cast<VerboseLvl>(getArg("verbose", DEFAULT_VERBOSE_LVL).toInt());
 
-        auto lvl = static_cast<VerboseLvl>(getArg("verbose").toInt());
+    if (vLvl <= lvl) {
 
-        if (vLvl <= lvl) {
+        switch (vLvl) {
 
-            switch (vLvl) {
-
-            case VerboseLvl::Error: {
-                qCritical() << lvlToString(vLvl) + ": " + log;
-                break;
-            }
-
-            case VerboseLvl::Warning: {
-                qWarning() << lvlToString(vLvl) + ": " + log;
-                break;
-            }
-
-            case VerboseLvl::Info: {
-                qInfo() << lvlToString(vLvl) + ": " + log;
-                break;
-            }
-
-            default: {
-                qDebug() << lvlToString(vLvl) + ": " + log;
-                break;
-            }
-            }
+        case VerboseLvl::Error:
+        case VerboseLvl::Warning: {
+            std::cerr << lvlToString(vLvl) + ": " + log.toStdString() << std::endl;
+            break;
         }
+
+        default: {
+            std::cout << lvlToString(vLvl) + ": " + log.toStdString() << std::endl;
+            break;
+        }
+        }
+
     }
 }
 
@@ -70,7 +60,6 @@ Help::Charters Params::getparamsHelp() {
             "Base Options", {
                 {"-verbose (level 1 - 3)",  "Shows debug log"},
                 {"-fileLog (path to file)", "Sets path of log file. Default it is path to executable file with suffix '.log'"},
-                {"noWriteInFileLog",        "Disables loging into file"}
             }
         }
     };
@@ -105,7 +94,7 @@ QString Params::timeString() {
     return QDateTime::currentDateTime().toString();
 }
 
-QString Params::lvlToString(VerboseLvl vLvl) {
+std::string Params::lvlToString(VerboseLvl vLvl) {
     switch (vLvl) {
 
     case VerboseLvl::Error: {
@@ -123,18 +112,19 @@ QString Params::lvlToString(VerboseLvl vLvl) {
     case VerboseLvl::Debug: {
         return "Verbose log";
     }
+    default: return "";
     }
 
     return "";
 }
 
 bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
-    if (!isEndable("noWriteInFileLog")) {
+    if (isEndable("fileLog")) {
 
         QString path = getStrArg("appPath") + "/" + getStrArg("appName") + ".log";
-
-        if (isEndable("fileLog")) {
-            QString path = getStrArg("fileLog");
+        auto file =  getStrArg("fileLog");
+        if (file.size()) {
+            QString path = file;
         }
 
         QFile logFile(path);
@@ -142,7 +132,7 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
         if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
             QTextStream stream(&logFile);
-            stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << endl;
+            stream << timeString() <<"| " << QString::fromStdString(lvlToString(vLvl)) + ": " + log << endl;
             logFile.close();
         } else {
             return false;
@@ -184,7 +174,8 @@ bool Params::parseParams(const QStringList &paramsArray) {
     memset(path, 0, sizeof path);
 
     if (readlink("/proc/self/exe", path, 2048) < 0) {
-        qWarning() << "parseParams can't get self path!" ;
+        QuasarAppUtils::Params::log("parseParams can't get self path!",
+                                           QuasarAppUtils::Warning);
         return false;
     }
     params ["appPath"] =  QFileInfo(path).absolutePath();
@@ -202,7 +193,8 @@ bool Params::parseParams(const QStringList &paramsArray) {
                 params[paramsArray[i].mid(1)] = paramsArray[i + 1];
                 i++;
             } else {
-                qWarning() << "Missing argument for " + paramsArray[i] ;
+                QuasarAppUtils::Params::log("Missing argument for " + paramsArray[i],
+                                                   QuasarAppUtils::Warning);
             }
         } else {
             params[paramsArray[i]] = "";
