@@ -33,7 +33,7 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 
     writeLoginFile(log, vLvl);
 
-    auto lvl = static_cast<VerboseLvl>(getArg("verbose", DEFAULT_VERBOSE_LVL).toInt());
+    auto lvl = getVerboseLvl();
 
     if (vLvl <= lvl) {
 
@@ -73,6 +73,14 @@ void Params::showHelp(const QStringList &help) {
 
 void Params::showHelp(const Help::Charters &help) {
     Help::print(help);
+}
+
+VerboseLvl Params::getVerboseLvl() {
+    return static_cast<VerboseLvl>(getArg("verbose", DEFAULT_VERBOSE_LVL).toInt());
+}
+
+bool Params::isDebug() {
+    return getVerboseLvl() >= VerboseLvl::Debug;
 }
 
 void Params::showHelp() {
