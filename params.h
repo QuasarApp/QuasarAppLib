@@ -142,6 +142,12 @@ public:
      * @brief showHelp - show base help section of QuasarAppLib
      */
     static void showHelp();
+
+    /**
+     * @brief getUserParamsMap
+     * @return QVariantMap with user params
+     */
+    static QVariantMap getUserParamsMap();
 };
 }
 
