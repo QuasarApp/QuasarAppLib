@@ -8,7 +8,7 @@
 if(DEFINED QUASARAPP_LIBRARY)
   return()
 else()
-  set(QUASARAPP_LIBRARY 1)
+  set(QUASARAPP_LIBRARY ON CACHE BOOL "QUASARAPP_LIBRARY is includet" FORCE)
   add_definitions(-DQUASARAPP_LIBRARY)
 endif()
 
