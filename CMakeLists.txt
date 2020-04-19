@@ -8,15 +8,19 @@
 if(DEFINED QUASARAPP_LIBRARY)
   return()
 else()
-  set(QUASARAPP_LIBRARY ON CACHE BOOL "QUASARAPP_LIBRARY is includet" FORCE)
+  set(QUASARAPP_LIBRARY 1)
   add_definitions(-DQUASARAPP_LIBRARY)
 endif()
 
+project(QuasarApp LANGUAGES CXX)
+
+if(TARGET ${PROJECT_NAME})
+  return()
+endif()
 
 cmake_minimum_required(VERSION 3.1)
 include(CMake/crossplatform/crossplatform.cmake)
 
-project(QuasarApp LANGUAGES CXX)
 
 include(CMake/ProjectOut.cmake)
 include(CMake/ccache.cmake)
