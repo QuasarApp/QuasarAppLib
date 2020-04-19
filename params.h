@@ -19,10 +19,10 @@ namespace QuasarAppUtils {
  */
 
 enum VerboseLvl {
-    Info = 0x0,
-    Error = 0x1,
+    Info    = 0x0,
+    Error   = 0x1,
     Warning = 0x2,
-    Debug = 0x3,
+    Debug   = 0x3,
 
 };
 
@@ -115,6 +115,18 @@ public:
     static void showHelp(const Help::Charters& help);
 
     /**
+     * @brief getVerboseLvl
+     * @return verbose lvl
+     */
+    static VerboseLvl getVerboseLvl();
+
+    /**
+     * @brief isDebug
+     * @return true if verbose lvl >= 3
+     */
+    static bool isDebug();
+
+    /**
      * @brief size
      * @return size of all params array
      */
@@ -130,6 +142,12 @@ public:
      * @brief showHelp - show base help section of QuasarAppLib
      */
     static void showHelp();
+
+    /**
+     * @brief getUserParamsMap
+     * @return QVariantMap with user params
+     */
+    static QVariantMap getUserParamsMap();
 };
 }
 
