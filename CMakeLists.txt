@@ -5,6 +5,14 @@
 # of this license document, but changing it is not allowed.
 #
 
+if(DEFINED QUASARAPP_LIBRARY)
+  return()
+else()
+  set(QUASARAPP_LIBRARY 1)
+  add_definitions(-DQUASARAPP_LIBRARY)
+endif()
+
+
 cmake_minimum_required(VERSION 3.1)
 include(CMake/crossplatform/crossplatform.cmake)
 
