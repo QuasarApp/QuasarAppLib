@@ -15,6 +15,7 @@ endif()
 project(QuasarApp LANGUAGES CXX)
 
 if(TARGET ${PROJECT_NAME})
+  message("The ${PROJECT_NAME} arledy included in main Project")
   return()
 endif()
 
