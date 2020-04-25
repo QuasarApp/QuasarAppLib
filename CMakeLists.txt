@@ -5,10 +5,23 @@
 # of this license document, but changing it is not allowed.
 #
 
+if(DEFINED QUASARAPP_LIBRARY)
+  return()
+else()
+  set(QUASARAPP_LIBRARY 1)
+  add_definitions(-DQUASARAPP_LIBRARY)
+endif()
+
+project(QuasarApp LANGUAGES CXX)
+
+if(TARGET ${PROJECT_NAME})
+  message("The ${PROJECT_NAME} arledy included in main Project")
+  return()
+endif()
+
 cmake_minimum_required(VERSION 3.1)
 include(CMake/crossplatform/crossplatform.cmake)
 
-project(QuasarApp LANGUAGES CXX)
 
 include(CMake/ProjectOut.cmake)
 include(CMake/ccache.cmake)

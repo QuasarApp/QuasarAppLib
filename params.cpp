@@ -20,10 +20,14 @@
 #include <limits.h>
 #endif
 
+#define APP_PATH "appPath"
+#define APP_NAME "appName"
+
 using namespace QuasarAppUtils;
 
 static QVariantMap params = QVariantMap();
 static int _argc = 0;
+
 
 bool Params::isEndable(const QString& key) {
     return params.contains(key);
@@ -87,6 +91,14 @@ void Params::showHelp() {
     Help::print(getparamsHelp());
 }
 
+QVariantMap Params::getUserParamsMap() {
+    auto result = params;
+    result.remove(APP_PATH);
+    result.remove(APP_NAME);
+
+    return result;
+}
+
 int Params::size() {
     return params.size();
 }
@@ -129,7 +141,7 @@ std::string Params::lvlToString(VerboseLvl vLvl) {
 bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     if (isEndable("fileLog")) {
 
-        QString path = getStrArg("appPath") + "/" + getStrArg("appName") + ".log";
+        QString path = getStrArg(APP_PATH) + "/" + getStrArg(APP_NAME) + ".log";
         auto file =  getStrArg("fileLog");
         if (file.size()) {
             QString path = file;
@@ -174,8 +186,8 @@ bool Params::parseParams(const QStringList &paramsArray) {
     memset(buffer, 0, sizeof buffer);
 
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
-    params ["appPath"] = QFileInfo(buffer).absolutePath();
-    params ["appName"] = QFileInfo(buffer).fileName();
+    params [APP_PATH] = QFileInfo(buffer).absolutePath();
+    params [APP_NAME] = QFileInfo(buffer).fileName();
 
 #else
     char path[2048];
@@ -186,12 +198,12 @@ bool Params::parseParams(const QStringList &paramsArray) {
                                            QuasarAppUtils::Error);
         return false;
     }
-    params ["appPath"] =  QFileInfo(path).absolutePath();
-    params ["appName"] =  QFileInfo(path).fileName();
+    params [APP_PATH] =  QFileInfo(path).absolutePath();
+    params [APP_NAME] =  QFileInfo(path).fileName();
 
 #endif
 
-    if (!getStrArg("appPath").size()) {
+    if (!getStrArg(APP_PATH).size()) {
         return false;
     }
 
