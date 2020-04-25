@@ -36,7 +36,7 @@ void QuasarAppUtils::Help::print(const QuasarAppUtils::Help::Charters &help) {
     for (auto line = help.begin(); line != help.end(); ++line) {
         QString expander(WIDTH, '-');
 
-        std::cout << line.key().toStdString()<< std::endl;
+        std::cout << line.key().toStdString() << std::endl;
         std::cout << expander.toStdString() << std::endl;
         print(line.value());
         std::cout << std::endl << expander.toStdString() << std::endl;
@@ -56,9 +56,13 @@ void QuasarAppUtils::Help::print(const QString &key, const QString &value, int k
         if (currentLength + 2 + word.size() < WIDTH) {
             std::cout << " " << word.toStdString();
             currentLength += 2 + word.size();
+
         } else {
             std::cout << std::endl << expander.toStdString() << ":";
             currentLength = keyLength;
+
+            std::cout << " " << word.toStdString();
+            currentLength += 2 + word.size();
         }
     }
 }
@@ -67,8 +71,7 @@ void QuasarAppUtils::Help::setLineLength(int newLength) {
     MAX_LENGTH = newLength;
 }
 
-int QuasarAppUtils::Help::width()
-{
+int QuasarAppUtils::Help::width() {
 
 #ifdef Q_OS_WIN32
     CONSOLE_SCREEN_BUFFER_INFO csbi;
