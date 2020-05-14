@@ -11,6 +11,8 @@
 
 #include "quasarapp_global.h"
 
+#include <QString>
+
 class QCoreApplication;
 class QTranslator;
 
@@ -27,12 +29,23 @@ public:
     /**
      * @brief initLocale init translation of applictaion
      * @param prefix - path to folder with qm files. example (/home)
-     * @param locale - string value of locale. example (en)
-     * @param app - app core of qt
-     * @param translator - translator core of qt
-     * @return return true if locale funded
+     * @param locale - string value of locale. example (en) by default empty. @note If use by default this function set sstem language.
+     * @return return true if locale set for application
      */
-    static bool initLocale(const QString& prefix ,const QString &locale, QCoreApplication* app, QTranslator *translator);
+    static bool setLocale(const QString& prefix , const QString &locale = {});
+
+private:
+    /**
+     * @brief initLocale
+     * @return true if function finished seccusseful
+     */
+    static bool initLocale(QTranslator*);
+
+    /**
+     * @brief getTranslator
+     * @return instance of Translation
+     */
+    static QTranslator* getTranslator();
 
 };
 }

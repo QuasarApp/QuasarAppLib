@@ -11,22 +11,39 @@
 #include <QCoreApplication>
 #include <QTranslator>
 #include <QLocale>
+#include "params.h"
 
 using namespace QuasarAppUtils;
 
 
-bool Locales::initLocale(const QString& prefix, const QString &locale, QCoreApplication *app, QTranslator *translator){
+bool Locales::initLocale(QTranslator* translator) {
+    return QCoreApplication::installTranslator(translator);
+}
+
+bool Locales::setLocale(const QString &prefix, const QString &locale) {
+    auto translator = getTranslator();
+
+    if (translator->isEmpty() && !initLocale(translator)) {
+        Params::log("init translations fail! ", VerboseLvl::Error);
+    }
 
     QString defaultLocale = QLocale::system().name();
     defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
 
-    if(!locale.isEmpty() && translator->load(QString("%0/%1").arg(prefix, locale))) {
-        return app->installTranslator(translator);
+    if(translator->load(QString("%0/%1").arg(prefix, locale))) {
+        return true;
     }
 
-    if(!translator->load(QString("%0/%1").arg(prefix, defaultLocale))) {
-        return false;
+    if(translator->load(QString("%0/%1").arg(prefix, defaultLocale))) {
+        return true;
     }
 
-    return app->installTranslator(translator);
+    Params::log("set translations fail!", VerboseLvl::Warning);
+
+    return false;
+}
+
+QTranslator *Locales::getTranslator() {
+    static QTranslator *translator = new QTranslator();
+    return translator;
 }
