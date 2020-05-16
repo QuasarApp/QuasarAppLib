@@ -11,6 +11,7 @@
 
 #include "quasarapp_global.h"
 
+#include <QLocale>
 #include <QString>
 
 class QCoreApplication;
@@ -21,25 +22,46 @@ namespace QuasarAppUtils {
 /**
  * @brief The Locales class for parese local files
  */
-class QUASARAPPSHARED_EXPORT Locales
+class QUASARAPPSHARED_EXPORT Locales : public QObject
 {
+    Q_OBJECT
 public:
-    Locales() = delete;
 
     /**
-     * @brief initLocale init translation of applictaion
-     * @param prefix - path to folder with qm files. example (/home)
-     * @param locale - string value of locale. example (en) by default empty. @note If use by default this function set sstem language.
+     * @brief setLocale set translation of applictaion
+     * @param locale - see info about QLocale
+     * @param location - path to folder with qm files. example (:/tr)
+     * @param file - prefix for translations.
      * @return return true if locale set for application
      */
-    static bool setLocale(const QString& prefix , const QString &locale = {});
+    static bool setLocale(const QLocale &locale = {}, const QString& file = {}, const QString& delimiter = "_", const QString& location = "");
+
+    /**
+     * @brief translate init translation of applictaion
+     * @param locale - see info about QLocale
+     * @param location - path to folder with qm files. example (:/tr)
+     * @param file - prefix for translations.
+     * @return return true if locale set for application
+     */
+    bool translate(const QLocale &locale = {},
+                   const QString& file = {},
+                   const QString& delimiter = "_",
+                   const QString& location = "");
+
+    /**
+     * @brief instance
+     * @return return static object
+     */
+    static Locales *instance();
+
+signals:
+    /**
+     * @brief sigTranslationChanged - emited when set new locale for application.
+     */
+    void sigTranslationChanged();
 
 private:
-    /**
-     * @brief initLocale
-     * @return true if function finished seccusseful
-     */
-    static bool initLocale(QTranslator*);
+    Locales() = default;
 
     /**
      * @brief getTranslator

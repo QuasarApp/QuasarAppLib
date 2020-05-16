@@ -15,32 +15,33 @@
 
 using namespace QuasarAppUtils;
 
-
-bool Locales::initLocale(QTranslator* translator) {
-    return QCoreApplication::installTranslator(translator);
+bool Locales::setLocale(const QLocale &locale, const QString& file, const QString& delimiter, const QString& location) {
+    auto obj = instance();
+    return obj->translate(locale, file, delimiter, location);
 }
 
-bool Locales::setLocale(const QString &prefix, const QString &locale) {
+bool Locales::translate(const QLocale &locale, const QString &file, const QString &delimiter, const QString &location) {
     auto translator = getTranslator();
 
-    if (translator->isEmpty() && !initLocale(translator)) {
-        Params::log("init translations fail! ", VerboseLvl::Error);
-    }
-
-    QString defaultLocale = QLocale::system().name();
-    defaultLocale.truncate(defaultLocale.lastIndexOf('_'));
-
-    if(translator->load(QString("%0/%1").arg(prefix, locale))) {
+    if(translator->load(locale, file, delimiter, location) && QCoreApplication::installTranslator(translator)) {
+        emit sigTranslationChanged();
         return true;
     }
 
-    if(translator->load(QString("%0/%1").arg(prefix, defaultLocale))) {
+    QLocale defaultLocale = QLocale::system();
+    if(translator->load(defaultLocale, file, delimiter, location) && QCoreApplication::installTranslator(translator)) {
+        emit sigTranslationChanged();
         return true;
     }
 
     Params::log("set translations fail!", VerboseLvl::Warning);
 
     return false;
+}
+
+Locales *Locales::instance() {
+    static auto instance = new Locales();
+    return instance;
 }
 
 QTranslator *Locales::getTranslator() {
