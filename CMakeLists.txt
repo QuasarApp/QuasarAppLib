@@ -44,4 +44,4 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-setVersion(1 3 1)
+setVersion(1 4 0)

@@ -148,6 +148,17 @@ public:
      * @return QVariantMap with user params
      */
     static QVariantMap getUserParamsMap();
+
+    /**
+     * @brief clearParsedData - this method clear allparsed data.
+     */
+    static void clearParsedData();
+
+    /**
+     * @brief getCurrentExecutable
+     * @return path to current executable.
+     */
+    static QString getCurrentExecutable();
 };
 }
 

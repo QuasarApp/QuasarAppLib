@@ -99,6 +99,15 @@ QVariantMap Params::getUserParamsMap() {
     return result;
 }
 
+void Params::clearParsedData() {
+    params.clear();
+    _argc = 0;
+}
+
+QString Params::getCurrentExecutable() {
+    return getStrArg(APP_PATH) + "/" + getStrArg(APP_NAME);
+}
+
 int Params::size() {
     return params.size();
 }
@@ -141,7 +150,7 @@ std::string Params::lvlToString(VerboseLvl vLvl) {
 bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     if (isEndable("fileLog")) {
 
-        QString path = getStrArg(APP_PATH) + "/" + getStrArg(APP_NAME) + ".log";
+        QString path = getCurrentExecutable() + ".log";
         auto file =  getStrArg("fileLog");
         if (file.size()) {
             QString path = file;
