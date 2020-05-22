@@ -124,5 +124,9 @@ constexpr unsigned char static_type_hash_8() {
 };
 
 
+#define H_8 static_type_hash_8
+#define H_16 static_type_hash_16
+#define H_32 static_type_hash_32
+#define H_64 static_type_hash_64
 
 #endif // GLOBAL_H
