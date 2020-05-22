@@ -65,68 +65,42 @@ constexpr inline T operator ^ (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) ^ static_cast<int>(rhs));
 }
 
-
-constexpr uint32_t static_hash(const char* str) {
-    uint32_t hash = 0;
-    unsigned char index = 0;
-    uint32_t tmp = 1;
-    while (str[index] && index < 0xff) {
-        tmp *= str[index];
-        if (index % 4 == 0) {
-            hash = hash % str[index];
-            tmp = 1;
-        }
-    }
-    return hash;
+template <class IntegerType>
+constexpr IntegerType static_mul(const char* str, unsigned char depth, unsigned char index = 0) noexcept {
+    return (str[index] && (depth > index))? str[index] * static_mul<IntegerType>(str, depth, index + 1) : 1;
 }
 
-
-template<class T, class Hash>
-/**
- * @brief static_type_hash_base
- * @return hash of type (on compiller time)
- */
-constexpr Hash static_type_hash_base() {
-
-    auto name = typeid(T).name();
-
-    Hash hash = 0;
-    unsigned char index = 0;
-    Hash tmp = 1;
-    while (name[index] && index < 0xff) {
-        tmp *= name[index];
-        if (index % sizeof(Hash) == 0) {
-            hash = hash % name[index];
-            tmp = 1;
-        }
-    }
-    return hash;
+template <class IntegerType>
+constexpr IntegerType static_hash(const char* str, unsigned char index = 0) noexcept {
+    return (index && index % sizeof(IntegerType) == 0)?
+                static_hash<IntegerType>(str, index + 1) % static_mul<IntegerType>(str, index , index - sizeof(IntegerType)):
+                (str[index])?
+                    static_hash<IntegerType>(str, index + 1):
+                    static_mul<IntegerType>(str, index, index - (index % sizeof(IntegerType)));
 }
 
 template<class T>
-constexpr uint64_t static_type_hash_64() {
-    return static_type_hash_base<T, uint64_t>();
+u_int64_t static_type_hash_64() noexcept {
+    return static_hash<u_int64_t>(typeid (T).name());
 };
 
 template<class T>
-constexpr uint32_t static_type_hash_32() {
-    return static_type_hash_base<T, uint32_t>();
+u_int32_t static_type_hash_32() noexcept {
+    return typeid (T).hash_code();
 };
 
 template<class T>
-constexpr uint16_t static_type_hash_16() {
-    return static_type_hash_base<T, uint16_t>();
+u_int16_t static_type_hash_16() noexcept {
+    return typeid (T).hash_code() % 0xFFFF;
 };
 
 template<class T>
-constexpr unsigned char static_type_hash_8() {
-    return static_type_hash_base<T, unsigned char>();
+u_int8_t static_type_hash_8() noexcept {
+    return typeid (T).hash_code() % 0xFF;
 };
-
 
 #define H_8 static_type_hash_8
 #define H_16 static_type_hash_16
 #define H_32 static_type_hash_32
-#define H_64 static_type_hash_64
 
 #endif // GLOBAL_H
