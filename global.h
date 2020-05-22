@@ -80,4 +80,49 @@ constexpr uint32_t static_hash(const char* str) {
     return hash;
 }
 
+
+template<class T, class Hash>
+/**
+ * @brief static_type_hash_base
+ * @return hash of type (on compiller time)
+ */
+constexpr Hash static_type_hash_base() {
+
+    auto name = typeid(T).name();
+
+    Hash hash = 0;
+    unsigned char index = 0;
+    Hash tmp = 1;
+    while (name[index] && index < 0xff) {
+        tmp *= name[index];
+        if (index % sizeof(Hash) == 0) {
+            hash = hash % name[index];
+            tmp = 1;
+        }
+    }
+    return hash;
+}
+
+template<class T>
+constexpr uint64_t static_type_hash_64() {
+    return static_type_hash_base<T, uint64_t>();
+};
+
+template<class T>
+constexpr uint32_t static_type_hash_32() {
+    return static_type_hash_base<T, uint32_t>();
+};
+
+template<class T>
+constexpr uint16_t static_type_hash_16() {
+    return static_type_hash_base<T, uint16_t>();
+};
+
+template<class T>
+constexpr unsigned char static_type_hash_8() {
+    return static_type_hash_base<T, unsigned char>();
+};
+
+
+
 #endif // GLOBAL_H
