@@ -87,22 +87,22 @@ constexpr IntegerType static_hash(const char* str, unsigned char index = 0) noex
 }
 
 template<class T>
-u_int64_t static_type_hash_64() noexcept {
-    return static_hash<u_int64_t>(typeid (T).name());
+uint64_t static_type_hash_64() noexcept {
+    return static_hash<uint64_t>(typeid (T).name());
 };
 
 template<class T>
-u_int32_t static_type_hash_32() noexcept {
+uint32_t static_type_hash_32() noexcept {
     return typeid (T).hash_code();
 };
 
 template<class T>
-u_int16_t static_type_hash_16() noexcept {
+uint16_t static_type_hash_16() noexcept {
     return typeid (T).hash_code() % 0xFFFF;
 };
 
 template<class T>
-u_int8_t static_type_hash_8() noexcept {
+uint8_t static_type_hash_8() noexcept {
     return typeid (T).hash_code() % 0xFF;
 };
 
