@@ -15,12 +15,12 @@ namespace Help {
 /**
  * @brief Options - this is list of key - descriptions pairs of help.
  */
-typedef QMap<QString, QString> Options;
+typedef QMultiMap<QString, QString> Options;
 
 /**
  * @brief Charters = ths is list of charters.
  */
-typedef QMap<QString, Options> Charters;
+typedef QMultiMap<QString, Options> Charters;
 
 int width();
 
