@@ -110,4 +110,11 @@ uint8_t static_type_hash_8() noexcept {
 #define H_16 static_type_hash_16
 #define H_32 static_type_hash_32
 
+
+#ifdef RELEASE_BUILD
+    #define debug_assert(condition)
+#else
+    #define debug_assert(condition) assert(condition)
+#endif
+
 #endif // GLOBAL_H
