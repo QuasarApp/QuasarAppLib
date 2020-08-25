@@ -26,8 +26,13 @@ enum VerboseLvl {
 
 };
 
+#ifdef RELEASE_BUILD
 #define DEFAULT_VERBOSE_LVL "1"
 
+#else
+#define DEFAULT_VERBOSE_LVL "3"
+
+#endif
 class QUASARAPPSHARED_EXPORT Params
 {
 private:
