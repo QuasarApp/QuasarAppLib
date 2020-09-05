@@ -107,6 +107,21 @@ uint8_t static_type_hash_8() noexcept {
     return typeid (T).hash_code() % 0xFF;
 };
 
+template<class T>
+uint32_t static_type_hash_32(T& object) noexcept {
+    return typeid (object).hash_code();
+};
+
+template<class T>
+uint16_t static_type_hash_16(T& object) noexcept {
+    return typeid (object).hash_code() % 0xFFFF;
+};
+
+template<class T>
+uint8_t static_type_hash_8(T& object) noexcept {
+    return typeid (object).hash_code() % 0xFF;
+};
+
 #define H_8 static_type_hash_8
 #define H_16 static_type_hash_16
 #define H_32 static_type_hash_32
