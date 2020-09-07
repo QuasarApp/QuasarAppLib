@@ -27,6 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG(release, debug|release): {
     DESTDIR = $$PWD/build/release
+    DEFINES += RELEASE_BUILD
 
 } else {
     DESTDIR = $$PWD/build/debug
