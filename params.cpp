@@ -161,7 +161,11 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
         if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
             QTextStream stream(&logFile);
+#if QT_VERSION > QT_VERSION_CHECK(5, 14, 0)
             stream << timeString() <<"| " << QString::fromStdString(lvlToString(vLvl)) + ": " + log << Qt::endl;
+#else
+            stream << timeString() <<"| " << QString::fromStdString(lvlToString(vLvl)) + ": " + log << endl;
+#endif
             logFile.close();
         } else {
             return false;
