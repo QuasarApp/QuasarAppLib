@@ -11,6 +11,8 @@
 #include <cstdlib>
 #include <type_traits>
 #include <string>
+#include <typeinfo>
+
 
 template <typename T>
 constexpr inline T operator | (T lhs, T rhs)
