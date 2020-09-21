@@ -12,7 +12,7 @@ else()
   add_definitions(-DQUASARAPP_LIBRARY)
 endif()
 
-project(QuasarApp LANGUAGES CXX)
+project(QuasarApp)
 
 if(TARGET ${PROJECT_NAME})
   message("The ${PROJECT_NAME} arledy included in main Project")
@@ -20,7 +20,7 @@ if(TARGET ${PROJECT_NAME})
 endif()
 
 cmake_minimum_required(VERSION 3.1)
-include(CMake/crossplatform/crossplatform.cmake)
+#include(CMake/crossplatform/crossplatform.cmake)
 
 
 include(CMake/ProjectOut.cmake)
@@ -40,7 +40,7 @@ file(GLOB SOURCE_CPP
     "*.cpp"
 )
 
-add_library(${PROJECT_NAME} SHARED ${SOURCE_CPP})
+add_library(${PROJECT_NAME} ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
