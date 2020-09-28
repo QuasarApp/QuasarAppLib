@@ -105,7 +105,11 @@ void Params::clearParsedData() {
 }
 
 QString Params::getCurrentExecutable() {
-    return getStrArg(APP_PATH) + "/" + getStrArg(APP_NAME);
+    return getCurrentExecutableDir() + "/" + getStrArg(APP_NAME);
+}
+
+QString Params::getCurrentExecutableDir() {
+    return getStrArg(APP_PATH);
 }
 
 int Params::size() {

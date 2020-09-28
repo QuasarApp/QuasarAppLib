@@ -164,6 +164,13 @@ public:
      * @return path to current executable.
      */
     static QString getCurrentExecutable();
+
+    /**
+     * @brief getCurrentExecutableDir This method return a path to a folder with the current executable.
+     * @return path of executable.
+     */
+    static QString getCurrentExecutableDir();
+
 };
 }
 
