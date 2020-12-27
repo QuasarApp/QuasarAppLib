@@ -74,16 +74,6 @@ constexpr inline T operator ^ (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) ^ static_cast<int>(rhs));
 }
 
-template <typename T>
-constexpr inline bool operator ! (T lhs)
-{
-
-    static_assert(std::is_enum<T>::value,
-                  "template parameter is not an enum type");
-
-    return !static_cast<bool>(lhs);
-}
-
 
 // TO DO need to testing. I am think this is does not work.
 //template <class IntegerType>
