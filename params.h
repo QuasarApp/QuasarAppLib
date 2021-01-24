@@ -132,6 +132,13 @@ public:
     static bool isDebug();
 
     /**
+     * @brief isDebugBuild This method return true if the library buildet in debug mode.
+     * @return true if this library buildet in debug mode.
+     */
+    static bool isDebugBuild();
+
+
+    /**
      * @brief size
      * @return size of all params array
      */

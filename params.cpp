@@ -87,6 +87,14 @@ bool Params::isDebug() {
     return getVerboseLvl() >= VerboseLvl::Debug;
 }
 
+bool Params::isDebugBuild() {
+#ifdef QT_DEBUG
+    return true;
+#else
+    return false;
+#endif
+}
+
 void Params::showHelp() {
     Help::print(getparamsHelp());
 }
