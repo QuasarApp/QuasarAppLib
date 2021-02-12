@@ -21,6 +21,10 @@ namespace QuasarAppUtils {
 
 /**
  * @brief The Locales class for parese local files
+ * Example :
+ * @code{cpp}
+ * QuasarAppUtils::Locales::init()
+ * @endcode
  */
 class QUASARAPPSHARED_EXPORT Locales : public QObject
 {
@@ -30,20 +34,18 @@ public:
     /**
      * @brief setLocale This method sets locale for application and loaded all translations for this locale.
      * @param locale This is new locale.
-     * @param location This is localtion of the qm file. if you want to load files from resource set patht to resources files
-     *  Example :(:/tr/)
      * @return true if the all ltranstations files loaded successful.
      */
     static bool setLocale(const QLocale &locale);
 
     /**
-     * @brief translate init translation of applictaion
+     * @brief init This method initialize translation of applictaion
      * @param locale - see info about QLocale
      * @param location - path to folder with qm files. example (:/tr)
      * @return return true if locale set for application
      */
-    bool translate(const QLocale &locale = QLocale::system(),
-                   QString location = "");
+    static bool init(const QLocale &locale = QLocale::system(),
+                     QString location = "");
 
     /**
      * @brief instance
@@ -60,7 +62,8 @@ signals:
 private:
     Locales() = default;
     bool setLocalePrivate(const QLocale &locale = QLocale::system());
-
+    bool initPrivate(const QLocale &locale = QLocale::system(),
+                     QString location = "");
 
     /**
      * @brief getTranslator

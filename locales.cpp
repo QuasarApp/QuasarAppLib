@@ -39,7 +39,12 @@ bool Locales::setLocale(const QLocale &locale) {
     return obj->setLocalePrivate(locale);
 }
 
-bool Locales::translate(const QLocale &locale, QString location) {
+bool Locales::init(const QLocale &locale, QString location) {
+    auto obj = instance();
+    return obj->initPrivate(locale, location);
+}
+
+bool Locales::initPrivate(const QLocale &locale, QString location) {
     auto translator = getTranslator();
 
     if (location.isEmpty())
