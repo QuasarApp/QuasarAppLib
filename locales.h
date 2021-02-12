@@ -28,25 +28,22 @@ class QUASARAPPSHARED_EXPORT Locales : public QObject
 public:
 
     /**
-     * @brief setLocale set translation of applictaion
-     * @param locale - see info about QLocale
-     * @param location - path to folder with qm files. example (:/tr)
-     * @param file - prefix for translations.
-     * @return return true if locale set for application
+     * @brief setLocale This method sets locale for application and loaded all translations for this locale.
+     * @param locale This is new locale.
+     * @param location This is localtion of the qm file. if you want to load files from resource set patht to resources files
+     *  Example :(:/tr/)
+     * @return true if the all ltranstations files loaded successful.
      */
-    static bool setLocale(const QLocale &locale = {}, const QString& file = {}, const QString& delimiter = "_", const QString& location = "");
+    static bool setLocale(const QLocale &locale);
 
     /**
      * @brief translate init translation of applictaion
      * @param locale - see info about QLocale
      * @param location - path to folder with qm files. example (:/tr)
-     * @param file - prefix for translations.
      * @return return true if locale set for application
      */
-    bool translate(const QLocale &locale = {},
-                   const QString& file = {},
-                   const QString& delimiter = "_",
-                   const QString& location = "");
+    bool translate(const QLocale &locale = QLocale::system(),
+                   QString location = "");
 
     /**
      * @brief instance
@@ -62,12 +59,15 @@ signals:
 
 private:
     Locales() = default;
+    bool setLocalePrivate(const QLocale &locale = QLocale::system());
+
 
     /**
      * @brief getTranslator
      * @return instance of Translation
      */
     static QTranslator* getTranslator();
+    QString _location;
 
 };
 }

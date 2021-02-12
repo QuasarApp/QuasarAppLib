@@ -11,32 +11,49 @@
 #include <QCoreApplication>
 #include <QTranslator>
 #include <QLocale>
+#include <QLibraryInfo>
+#include <QDir>
+#include <QRegularExpression>
 #include "params.h"
 
 using namespace QuasarAppUtils;
 
-bool Locales::setLocale(const QLocale &locale, const QString& file, const QString& delimiter, const QString& location) {
-    auto obj = instance();
-    return obj->translate(locale, file, delimiter, location);
-}
-
-bool Locales::translate(const QLocale &locale, const QString &file, const QString &delimiter, const QString &location) {
+bool Locales::setLocalePrivate(const QLocale &locale) {
     auto translator = getTranslator();
 
-    if(translator->load(locale, file, delimiter, location) && QCoreApplication::installTranslator(translator)) {
-        emit sigTranslationChanged();
-        return true;
+    const auto qmFiles = QDir(_location).entryInfoList({"*" + locale.bcp47Name() + "*.qm"}, QDir::Files);
+
+    for (const auto & file: qmFiles) {
+        if(!translator->load(file.absoluteFilePath())) {
+            return false;
+        }
     }
 
-    QLocale defaultLocale = QLocale::system();
-    if(translator->load(defaultLocale, file, delimiter, location) && QCoreApplication::installTranslator(translator)) {
-        emit sigTranslationChanged();
-        return true;
+    emit sigTranslationChanged();
+
+    return true;
+}
+
+bool Locales::setLocale(const QLocale &locale) {
+    auto obj = instance();
+    return obj->setLocalePrivate(locale);
+}
+
+bool Locales::translate(const QLocale &locale, QString location) {
+    auto translator = getTranslator();
+
+    if (location.isEmpty())
+        _location = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+    else
+        _location = location;
+
+    if (!setLocale(locale)) {
+        return false;
     }
 
-    Params::log("set translations fail!", VerboseLvl::Warning);
+    QCoreApplication::installTranslator(translator);
 
-    return false;
+    return true;
 }
 
 Locales *Locales::instance() {
