@@ -19,19 +19,27 @@
 using namespace QuasarAppUtils;
 
 bool Locales::setLocalePrivate(const QLocale &locale) {
-    auto translator = getTranslator();
+    removeOldTranslation();
+    QFileInfoList qmFiles;
 
-    const auto qmFiles = QDir(_location).entryInfoList({"*" + locale.bcp47Name() + "*.qm"}, QDir::Files);
-
-    for (const auto & file: qmFiles) {
-        if(!translator->load(file.absoluteFilePath())) {
-            return false;
-        }
+    for (const auto &location: qAsConst(_locations)) {
+       qmFiles += QDir(location).entryInfoList({"*" + locale.bcp47Name() + "*.qm"}, QDir::Files);
     }
 
+    for (const auto & file: qAsConst(qmFiles)) {
+        auto translator = new QTranslator();
+
+        if(!(translator->load(file.absoluteFilePath()) && QCoreApplication::installTranslator(translator))) {
+            delete translator;
+            continue;
+        }
+
+        _translations.push_back(translator);
+
+    }
     emit sigTranslationChanged();
 
-    return true;
+    return _translations.size();
 }
 
 bool Locales::setLocale(const QLocale &locale) {
@@ -39,26 +47,20 @@ bool Locales::setLocale(const QLocale &locale) {
     return obj->setLocalePrivate(locale);
 }
 
-bool Locales::init(const QLocale &locale, QString location) {
+bool Locales::init(const QLocale &locale, const QSet<QString> & location) {
     auto obj = instance();
     return obj->initPrivate(locale, location);
 }
 
-bool Locales::initPrivate(const QLocale &locale, QString location) {
-    auto translator = getTranslator();
+bool Locales::initPrivate(const QLocale &locale, const QSet<QString> & locations) {
+    auto defaultTr = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 
-    if (location.isEmpty())
-        _location = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
-    else
-        _location = location;
-
-    if (!setLocale(locale)) {
-        return false;
+    _locations = locations;
+    if (!_locations.contains(defaultTr)) {
+        _locations += defaultTr;
     }
 
-    QCoreApplication::installTranslator(translator);
-
-    return true;
+    return setLocalePrivate(locale);
 }
 
 Locales *Locales::instance() {
@@ -66,7 +68,13 @@ Locales *Locales::instance() {
     return instance;
 }
 
-QTranslator *Locales::getTranslator() {
-    static QTranslator *translator = new QTranslator();
-    return translator;
+void Locales::removeOldTranslation() {
+    for (const auto & tr :qAsConst(_translations)) {
+        QCoreApplication::removeTranslator(tr);
+        delete tr;
+    }
+}
+
+Locales::~Locales() {
+    removeOldTranslation();
 }

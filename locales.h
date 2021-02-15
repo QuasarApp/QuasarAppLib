@@ -45,8 +45,7 @@ public:
      * @return return true if locale set for application
      */
     static bool init(const QLocale &locale = QLocale::system(),
-                     QString location = "");
-
+                     const QSet<QString> & location = {});
     /**
      * @brief instance
      * @return return static object
@@ -61,16 +60,15 @@ signals:
 
 private:
     Locales() = default;
+    ~Locales();
+
     bool setLocalePrivate(const QLocale &locale = QLocale::system());
     bool initPrivate(const QLocale &locale = QLocale::system(),
-                     QString location = "");
+                     const QSet<QString> &location = {});
+    void removeOldTranslation();
 
-    /**
-     * @brief getTranslator
-     * @return instance of Translation
-     */
-    static QTranslator* getTranslator();
-    QString _location;
+    QSet<QString> _locations;
+    QList<QTranslator *> _translations;
 
 };
 }
