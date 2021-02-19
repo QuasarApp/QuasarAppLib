@@ -185,6 +185,8 @@ bool Params::parseParams(const int argc, const char *argv[]) {
     QStringList params;
     for (int i = 1; i < argc; i++) {
         params.push_back(argv[i]);
+        QuasarAppUtils::Params::log(QString("Arguments[%0]: %1").arg(i).arg(argv[i]),
+                                    QuasarAppUtils::Info);
     }
 
     _argc = argc;
