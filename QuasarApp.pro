@@ -64,4 +64,5 @@ VERSION = 1.4.4
 
 # Add empty target for CI system
 QMAKE_EXTRA_TARGETS += \
-    test
+    test \
+    deploy
