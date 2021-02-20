@@ -26,7 +26,7 @@ cmake_minimum_required(VERSION 3.1)
 include(CMake/ProjectOut.cmake)
 include(CMake/ccache.cmake)
 include(CMake/Version.cmake)
-
+include(CMake/QuasarAppCITargets.cmake)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -46,3 +46,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 setVersion(1 4 4)
+
+initAll()
+addDoc(${PROJECT_NAME}Docs ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.conf)

@@ -14,6 +14,7 @@
 #include <QLibraryInfo>
 #include <QDir>
 #include <QRegularExpression>
+#include <QLibraryInfo>
 #include "params.h"
 
 using namespace QuasarAppUtils;
@@ -53,8 +54,12 @@ bool Locales::init(const QLocale &locale, const QSet<QString> & location) {
 }
 
 bool Locales::initPrivate(const QLocale &locale, const QSet<QString> & locations) {
-    auto defaultTr = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
 
+#if QT_VERSION <= QT_VERSION_CHECK(6, 0, 0)
+    auto defaultTr = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#else
+    auto defaultTr = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#endif
     _locations = locations;
     if (!_locations.contains(defaultTr)) {
         _locations += defaultTr;
