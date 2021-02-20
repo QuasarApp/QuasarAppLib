@@ -12,6 +12,7 @@
 #include "quasarapp_global.h"
 
 #include <QLocale>
+#include <QSet>
 #include <QString>
 
 class QCoreApplication;
