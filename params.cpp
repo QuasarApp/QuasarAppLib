@@ -247,7 +247,32 @@ bool Params::parseParams(const QStringList &paramsArray) {
         }
     }
 
+    printWorkingOptions();
+
     return true;
+}
+
+void Params::printWorkingOptions() {
+    QuasarAppUtils::Params::log("--- Working options table start ---",
+                                QuasarAppUtils::Debug);
+
+    QVariantMap::const_iterator iter = params.constBegin();
+    while (iter != params.constEnd()) {
+
+        QString row = QString{"Option[%0]"}.arg(iter.key());
+
+        QString value = iter.value().toString();
+        if (!value.isEmpty()) {
+            row += QString{": %1"}.arg(value);
+        }
+
+        QuasarAppUtils::Params::log(row, QuasarAppUtils::Debug);
+
+        ++iter;
+    }
+
+    QuasarAppUtils::Params::log("--- Working options table end ---",
+                                QuasarAppUtils::Debug);
 }
 
 QString Params::getStrArg(const QString& key, const QString &def) {
