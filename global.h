@@ -131,9 +131,16 @@ uint8_t static_type_hash_8(T& object) noexcept {
 
 
 #ifdef RELEASE_BUILD
-    #define debug_assert(condition)
+    // The debug_assert it is assert that abort application only in debug mode.
+    // In the release mode This assert prin Error message only.
+    #define debug_assert(condition, msg) \
+        if (!condition) \
+            QuasarAppLib:params::log(msg, QuasarAppLib::Error);
+
 #else
-    #define debug_assert(condition) assert(condition)
+    // The debug_assert it is assert that abort application only in debug mode.
+    // In the release mode This assert prin Error message only.
+    #define debug_assert(condition, msg) assert(condition && msg)
 #endif
 
 #endif // GLOBAL_H
