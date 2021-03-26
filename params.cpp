@@ -25,7 +25,7 @@
 
 using namespace QuasarAppUtils;
 
-static QVariantMap params = QVariantMap();
+static QMap<QString, QString> params = QMap<QString, QString>();
 static int _argc = 0;
 
 
@@ -99,7 +99,7 @@ void Params::showHelp() {
     Help::print(getparamsHelp());
 }
 
-QVariantMap Params::getUserParamsMap() {
+QMap<QString, QString> Params::getUserParamsMap() {
     auto result = params;
     result.remove(APP_PATH);
     result.remove(APP_NAME);
@@ -113,11 +113,11 @@ void Params::clearParsedData() {
 }
 
 QString Params::getCurrentExecutable() {
-    return getCurrentExecutableDir() + "/" + getStrArg(APP_NAME);
+    return getCurrentExecutableDir() + "/" + getArg(APP_NAME);
 }
 
 QString Params::getCurrentExecutableDir() {
-    return getStrArg(APP_PATH);
+    return getArg(APP_PATH);
 }
 
 int Params::size() {
@@ -163,9 +163,9 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     if (isEndable("fileLog")) {
 
         QString path = getCurrentExecutable() + ".log";
-        auto file =  getStrArg("fileLog");
+        auto file =  getArg("fileLog");
         if (file.size()) {
-            QString path = file;
+            path = file;
         }
 
         QFile logFile(path);
@@ -228,7 +228,7 @@ bool Params::parseParams(const QStringList &paramsArray) {
 
 #endif
 
-    if (!getStrArg(APP_PATH).size()) {
+    if (!getArg(APP_PATH).size()) {
         return false;
     }
 
@@ -256,12 +256,12 @@ void Params::printWorkingOptions() {
     QuasarAppUtils::Params::log("--- Working options table start ---",
                                 QuasarAppUtils::Debug);
 
-    QVariantMap::const_iterator iter = params.constBegin();
+    QMap<QString, QString>::const_iterator iter = params.constBegin();
     while (iter != params.constEnd()) {
 
         QString row = QString{"Option[%0]"}.arg(iter.key());
 
-        QString value = iter.value().toString();
+        QString value = iter.value();
         if (!value.isEmpty()) {
             row += QString{": %1"}.arg(value);
         }
@@ -275,15 +275,11 @@ void Params::printWorkingOptions() {
                                 QuasarAppUtils::Debug);
 }
 
-QString Params::getStrArg(const QString& key, const QString &def) {
-    return params.value(key, def).toString();
-}
-
-QVariant Params::getArg(const QString& key,const QVariant& def) {
+QString Params::getArg(const QString& key,const QString& def) {
     return params.value(key, def);
 }
 
-void Params::setArg(const QString &key, const QVariant &val) {
+void Params::setArg(const QString &key, const QString &val) {
     params.insert(key, val);
 }
 

@@ -67,29 +67,21 @@ public:
     static bool parseParams(const QStringList& paramsArray);
 
     /**
-     * @brief getStrArg - get string value of key
-     * @param key
-     * @param def - default value
-     * @return string value of argument
-     */
-    static QString getStrArg(const QString& key, const QString& def = "");
-
-    /**
      * @brief getArg - get string value of key
-     * @param key
+     * @param key This is key of the parameter.
      * @param def - default value
      * @return string value of argument
      */
-    static QVariant getArg(const QString& key, const QVariant &def = {});
+    static QString getArg(const QString& key, const QString &def = {});
 
     /**
-     * @brief setArg - set value of key
-     * @param key
+     * @brief setArg - sets value of key
+     * @param key This is new value of the @a key
      */
-    static void setArg(const QString& key, const QVariant& val);
+    static void setArg(const QString& key, const QString& val);
 
     /**
-     * @brief setArg - set boolean value of key
+     * @brief setArg - sets boolean value of key
      * @param key
      * @param enable - new value of key
      */
@@ -127,7 +119,7 @@ public:
     static void showHelp(const Help::Charters& help);
 
     /**
-     * @brief getVerboseLvl
+     * @brief getVerboseLvl This method return the verbose log level.
      * @return verbose lvl
      */
     static VerboseLvl getVerboseLvl();
@@ -146,13 +138,13 @@ public:
 
 
     /**
-     * @brief size
+     * @brief size This method return size of all params array
      * @return size of all params array
      */
     static int size();
 
     /**
-     * @brief customParamasSize
+     * @brief customParamasSize This method return a size of params entered in conosole
      * @return size of params entered in conosole
      */
     static int customParamasSize();
@@ -166,7 +158,7 @@ public:
      * @brief getUserParamsMap
      * @return QVariantMap with user params
      */
-    static QVariantMap getUserParamsMap();
+    static QMap<QString, QString> getUserParamsMap();
 
     /**
      * @brief clearParsedData - this method clear allparsed data.
