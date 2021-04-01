@@ -27,17 +27,13 @@ include(CMake/ProjectOut.cmake)
 include(CMake/ccache.cmake)
 include(CMake/Version.cmake)
 include(CMake/QuasarAppCITargets.cmake)
+include(CMake/QtUtils.cmake)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (NOT QT_VERSION_MAJOR)
-    find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
-endif ()
+includeQt(Core)
 
 file(GLOB SOURCE_CPP
     "*.cpp"
