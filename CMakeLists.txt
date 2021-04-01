@@ -27,11 +27,9 @@ include(CMake/ProjectOut.cmake)
 include(CMake/ccache.cmake)
 include(CMake/Version.cmake)
 include(CMake/QuasarAppCITargets.cmake)
-include(CMake/QtFunctions.cmake)
+include(CMake/QtUtils.cmake)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
