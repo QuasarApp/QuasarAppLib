@@ -9,6 +9,8 @@
 #define HELPDATA_H
 
 #include <QMap>
+#include "quasarapp_global.h"
+
 namespace QuasarAppUtils{
 
 namespace Help {
@@ -29,25 +31,25 @@ int width();
  * @param key - option name
  * @param value - description of option
  */
-void print(const QString& key, const QString& value, int keyLength);
+void QUASARAPPSHARED_EXPORT print(const QString& key, const QString& value, int keyLength);
 
 /**
  * @brief print = help Charter
  * @param charter - charter of help
  */
-void print(const Options& charter);
+void QUASARAPPSHARED_EXPORT print(const Options& charter);
 
 /**
  * @brief print - all help
  * @param help - help for printing
  */
-void print(const Charters& help);
+void QUASARAPPSHARED_EXPORT print(const Charters& help);
 
 /**
  * @brief setLineLength - sets new length of helps line
  * @param newLength - new size
  */
-void setLineLength(int newLength);
+void QUASARAPPSHARED_EXPORT setLineLength(int newLength);
 }
 }
 
