@@ -98,7 +98,7 @@ public:
      * @brief log Print text on console if the flag "vergose" is enabled.
      * @param log Printed textP.     
      */
-    static void log(const QStrinP& log, VerboseLvl vLvl = VerboseLvl::Debug);
+    static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**
      * @brief getparamsHelp
