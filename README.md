@@ -34,7 +34,7 @@ This lib include include next modules:
 
 ``` cmake
 add_subdirectory(QuasarAppLib)
-target_link_libraries(MyBinary PUBLIC QtBigInt)
+target_link_libraries(MyBinary PUBLIC QuasarApp)
 ```
 
 ### Note 
@@ -44,7 +44,7 @@ Example :
 ``` cmake
 set(BUILD_SHARED_LIBS ON)
 add_subdirectory(QuasarAppLib)
-target_link_libraries(MyBinary PUBLIC QtBigInt)
+target_link_libraries(MyBinary PUBLIC QuasarApp)
 
 ```
 
