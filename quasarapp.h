@@ -15,8 +15,8 @@
 
 /**
  * @brief The QuasaraAppUtils class
- * this lib include base functions for the all applications of QuasarApp group.
- * all methods of the Quasar AppUtils is static
+ * This lib include base functions for the all applications of QuasarApp group.
+ * All methods of the Quasar AppUtils is static.
  */
 namespace QuasarAppUtils{
 

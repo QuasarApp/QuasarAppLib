@@ -15,39 +15,39 @@ namespace QuasarAppUtils{
 
 namespace Help {
 /**
- * @brief Options - this is list of key - descriptions pairs of help.
+ * @brief Options this is list of key - descriptions pairs of help.
  */
 typedef QMultiMap<QString, QString> Options;
 
 /**
- * @brief Charters = ths is list of charters.
+ * @brief Charters ths is list of charters.
  */
 typedef QMultiMap<QString, Options> Charters;
 
 int width();
 
 /**
- * @brief print - line of help
- * @param key - option name
- * @param value - description of option
+ * @brief print Line of help.
+ * @param key Option name.
+ * @param value Description of option.
  */
 void QUASARAPPSHARED_EXPORT print(const QString& key, const QString& value, int keyLength);
 
 /**
- * @brief print = help Charter
- * @param charter - charter of help
+ * @brief print Help Charter.
+ * @param charter Charter of help.
  */
 void QUASARAPPSHARED_EXPORT print(const Options& charter);
 
 /**
- * @brief print - all help
- * @param help - help for printing
+ * @brief print All help.
+ * @param help Help for printing.
  */
 void QUASARAPPSHARED_EXPORT print(const Charters& help);
 
 /**
- * @brief setLineLength - sets new length of helps line
- * @param newLength - new size
+ * @brief setLineLength sets new length of helps line.
+ * @param newLength New size.
  */
 void QUASARAPPSHARED_EXPORT setLineLength(int newLength);
 }
