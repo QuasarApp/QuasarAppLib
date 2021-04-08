@@ -40,10 +40,10 @@ public:
     static bool setLocale(const QLocale &locale);
 
     /**
-     * @brief init This method initialize translation of applictaion
-     * @param locale - see info about QLocale
-     * @param location - path to folder with qm files. example (:/tr)
-     * @return return true if locale set for application
+     * @brief init This method initialize translation of applictaion.
+     * @param locale See info about QLocale.
+     * @param location Path to folder with qm files. example (:/tr).
+     * @return return true if locale set for application.
      */
     static bool init(const QLocale &locale = QLocale::system(),
                      const QSet<QString> & location = {});
@@ -55,7 +55,7 @@ public:
 
 signals:
     /**
-     * @brief sigTranslationChanged - emited when set new locale for application.
+     * @brief sigTranslationChanged Emited when set new locale for application.
      */
     void sigTranslationChanged();
 

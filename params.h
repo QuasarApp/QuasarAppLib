@@ -15,7 +15,7 @@
 namespace QuasarAppUtils {
 
 /**
- * @brief The Params class for parese app params
+ * @brief The Params class for parese app params.
  */
 
 enum VerboseLvl {
@@ -51,69 +51,69 @@ public:
     Params() = delete;
 
     /**
-     * @brief parseParams - parase input data of started application
-     * @param argc - count of arguments
-     * @param argv - arrat of arguments
-     * @return true if all arguments read else false
+     * @brief parseParams Parse input data of started application.
+     * @param argc Count of arguments.
+     * @param argv Array of arguments.
+     * @return true if all arguments read else false.
      */
     static bool parseParams(const int argc, const char *argv[]);
     static bool parseParams(int argc, char *argv[]);
 
     /**
-     * @brief parseParams - parase input data of started application
-     * @param params -  arguments
-     * @return true if all arguments read else false
+     * @brief parseParams Parse input data of started application.
+     * @param paramsArray Arguments.
+     * @return true if all arguments read else false.
      */
     static bool parseParams(const QStringList& paramsArray);
 
     /**
-     * @brief getArg - get string value of key
+     * @brief getArg Get string value of key.
      * @param key This is key of the parameter.
-     * @param def - default value
-     * @return string value of argument
+     * @param def Default value.
+     * @return string value of argument.
      */
     static QString getArg(const QString& key, const QString &def = {});
 
     /**
-     * @brief setArg - sets value of key
-     * @param key This is new value of the @a key
+     * @brief setArg Sets value of key.
+     * @param key This is new value of the @a key.
      */
     static void setArg(const QString& key, const QString& val);
 
     /**
-     * @brief setArg - sets boolean value of key
+     * @brief setArg Sets boolean value of key.
      * @param key
-     * @param enable - new value of key
+     * @param enable New value of key.
      */
     static void setEnable(const QString& key, bool enable);
 
     /**
-     * @brief isEndable - check if enable argument of key
+     * @brief isEndable Check if enable argument of key.
      * @param key
-     * @return true if argument enabled
+     * @return true if argument enabled.
      */
     static bool isEndable(const QString& key);
 
     /**
-     * @brief log - print text on console if the flag "vergose" is enabled
-     * @param log - printed text
+     * @brief log Print text on console if the flag "vergose" is enabled.
+     * @param log Printed textP.     
      */
     static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**
      * @brief getparamsHelp
-     * @return help string of default params
+     * @return help string of default params.
      */
     static Help::Charters getparamsHelp();
 
     /**
-     * @brief showHelp - show all strings of help
+     * @brief showHelp Show all strings of help.
      * @param help
      */
     static void showHelp(const QStringList& help);
 
     /**
-     * @brief showHelp - show structe of help value
+     * @brief showHelp Show structe of help value.
      * @param help
      */
     static void showHelp(const Help::Charters& help);
@@ -138,30 +138,30 @@ public:
 
 
     /**
-     * @brief size This method return size of all params array
-     * @return size of all params array
+     * @brief size This method return size of all params array.
+     * @return size Of all params array.
      */
     static int size();
 
     /**
-     * @brief customParamasSize This method return a size of params entered in conosole
-     * @return size of params entered in conosole
+     * @brief customParamasSize This method return a size of params entered in conosole.
+     * @return size of params entered in conosole.
      */
     static int customParamasSize();
 
     /**
-     * @brief showHelp - show base help section of QuasarAppLib
+     * @brief showHelp - show base help section of QuasarAppLib.
      */
     static void showHelp();
 
     /**
-     * @brief getUserParamsMap
-     * @return QVariantMap with user params
+     * @brief getUserParamsMap.
+     * @return QVariantMap With user params.
      */
     static QMap<QString, QString> getUserParamsMap();
 
     /**
-     * @brief clearParsedData - this method clear allparsed data.
+     * @brief clearParsedData - This method clear allparsed data.
      */
     static void clearParsedData();
 
