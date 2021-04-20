@@ -20,14 +20,10 @@ if(TARGET ${PROJECT_NAME})
 endif()
 
 cmake_minimum_required(VERSION 3.1)
-#include(CMake/crossplatform/crossplatform.cmake)
 
 
-include(CMake/ProjectOut.cmake)
-include(CMake/ccache.cmake)
+include(CMake/QuasarApp.cmake)
 include(CMake/Version.cmake)
-include(CMake/QuasarAppCITargets.cmake)
-include(CMake/QtUtils.cmake)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
@@ -47,7 +43,7 @@ add_library(${PROJECT_NAME} ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-setVersion(1 4 5)
+setVersion(1 4 6)
 
 initAll()
 addDoc(${PROJECT_NAME}Docs ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.conf)
