@@ -89,7 +89,7 @@ public:
     static void setArg(const QString& key, const QString& val);
 
     /**
-     * @brief setArg This methid sets boolean value of key.
+     * @brief setArg This method sets boolean value of key.
      * @param key This is name of the console option.
      * @param enable New value of key.
      * @note For check is enable @a key argument use the Params::isEndable method.
