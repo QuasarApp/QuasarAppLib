@@ -88,7 +88,7 @@ public:
      * @brief setArg This methid sets boolean value of key.
      * @param key This is name of the console option.
      * @param enable New value of key.
-     * @note For check is enable @a key argument use the isEndable method.
+     * @note For check is enable @a key argument use the Params::isEndable method.
      */
     static void setEnable(const QString& key, bool enable);
 
@@ -102,7 +102,7 @@ public:
     /**
      * @brief log This method print @a log text on console.
      * @param log This is printed text message.
-     * @param vLvl This is verbose level of message, for get more information see the VerboseLvl enum.
+     * @param vLvl This is verbose level of message, for get more information see the QuasarAppUtils::VerboseLvl enum.
      * @note All messages will be printed according to the current verbose setting.
      * @note The verbose level sets by verbose option on console.
      */
