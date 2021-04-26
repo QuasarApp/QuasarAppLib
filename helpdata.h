@@ -18,10 +18,10 @@ namespace QuasarAppUtils{
  */
 namespace Help {
 /**
- * @brief Options this is list of @bold key-descriptions pairs of help.
- *  The @bold key is name of the available argument and @bold description is description of the available argument.
+ * @brief Options this is list of **key-descriptions** pairs of help.
+ *  The  **key** is name of the available argument and  **description** is description of the available argument.
  *
- * @bold Example:
+ * **Example**:
  *
  * @code{cpp}
  * Options myOptionsList = {{"argument1", "This is test argumetn1 of my application."},
@@ -34,7 +34,7 @@ typedef QMultiMap<QString, QString> Options;
 /**
  * @brief Section This is list of the help Sections. The one section it is Title of the section and Help::Options list.
  *
- * @bold Example:
+ * **Example:**
  * @code{cpp}
  * Options myOptionsList = {{"argument1", "This is test argumetn1 of my application."},
  *                          {"argument1", "This is test argumetn1 of my application."}};

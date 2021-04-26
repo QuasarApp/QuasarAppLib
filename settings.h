@@ -77,7 +77,7 @@ public:
 
 public slots:
     /**
-     * @brief setValue This slot sets new value for a @key setting
+     * @brief setValue This slot sets new value for a @a key setting
      * @param key This is name of the changed setting.
      * @param value This is a new value of the setting
      */

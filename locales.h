@@ -22,7 +22,7 @@ namespace QuasarAppUtils {
 
 /**
  * @brief The Locales class for parese local files
- * @bold Example :
+ * **Example :**
  * @code{cpp}
  * QuasarAppUtils::Locales::init();
  * @endcode

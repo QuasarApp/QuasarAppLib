@@ -19,13 +19,13 @@ namespace QuasarAppUtils {
  * @brief The VerboseLvl enum uses for sets log level.
  */
 enum VerboseLvl {
-    /// General information. This logs will marked as a @bold Info and printing always.
+    /// General information. This logs will marked as a **Info** and printing always.
     Info    = 0x0,
-    /// Error message. This logs will marked as a @bold Error and printing if the verbose lvl >= 1
+    /// Error message. This logs will marked as a **Error** and printing if the verbose lvl >= 1
     Error   = 0x1,
-    /// Warning message. This logs will marked as a @bold Warning and printing if the verbose lvl >= 2
+    /// Warning message. This logs will marked as a **Warning** and printing if the verbose lvl >= 2
     Warning = 0x2,
-    /// Debug message. This logs will marked as a @bold Debug and printing if the verbose lvl >= 3
+    /// Debug message. This logs will marked as a **Debug** and printing if the verbose lvl >= 3
     Debug   = 0x3,
 
 };
@@ -40,6 +40,9 @@ enum VerboseLvl {
 
 /**
  * @brief The Params class Contains fonctions for working with input arguments and logs.
+ * This Class support next comandline arguments.
+ *  * **-verbose** (level 1 - 3) Shows debug log
+ *  * **-fileLog** (path to file) Sets path of log file. Default it is path to executable file with suffix '.log'
  */
 class QUASARAPPSHARED_EXPORT Params
 {
