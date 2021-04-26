@@ -8,6 +8,7 @@
 #ifndef PARAMS_H
 #define PARAMS_H
 
+#include <QMap>
 #include <QVariant>
 #include "quasarapp_global.h"
 #include "helpdata.h"
@@ -15,13 +16,16 @@
 namespace QuasarAppUtils {
 
 /**
- * @brief The Params class for parese app params.
+ * @brief The VerboseLvl enum uses for sets log level.
  */
-
 enum VerboseLvl {
+    /// General information. This logs will marked as a **Info** and printing always.
     Info    = 0x0,
+    /// Error message. This logs will marked as a **Error** and printing if the verbose lvl >= 1
     Error   = 0x1,
+    /// Warning message. This logs will marked as a **Warning** and printing if the verbose lvl >= 2
     Warning = 0x2,
+    /// Debug message. This logs will marked as a **Debug** and printing if the verbose lvl >= 3
     Debug   = 0x3,
 
 };
@@ -33,8 +37,141 @@ enum VerboseLvl {
 #define DEFAULT_VERBOSE_LVL "3"
 
 #endif
+
+/**
+ * @brief The Params class Contains fonctions for working with input arguments and logs.
+ * This Class support next comandline arguments.
+ *  * **-verbose** (level 1 - 3) Shows debug log
+ *  * **-fileLog** (path to file) Sets path of log file. Default it is path to executable file with suffix '.log'
+ */
 class QUASARAPPSHARED_EXPORT Params
 {
+public:
+    Params() = delete;
+
+    /**
+     * @brief parseParams Parse input data of started application.
+     * @param argc Count of arguments.
+     * @param argv Array of arguments.
+     * @return true if all arguments read successful else false.
+     */
+    static bool parseParams(const int argc, const char *argv[]);
+
+    /**
+     * @brief parseParams Parse input data of started application.
+     * @param argc Count of arguments.
+     * @param argv Array of arguments.
+     * @return true if all arguments read successful else false.
+     */
+    static bool parseParams(int argc, char *argv[]);
+
+    /**
+     * @brief parseParams Parse input data of started application.
+     * @param paramsArray Arguments.
+     * @return true if all arguments read successful else false.
+     */
+    static bool parseParams(const QStringList& paramsArray);
+
+    /**
+     * @brief getArg return string value of a @a key if key is exits else return a @a def value.
+     *  If a @a def value not defined retunr empty string.
+     * @param key This is key of a console argument.
+     * @param def This is Default value. If key not exits This function will return a default value.
+     * @return a string value of argument.
+     */
+    static QString getArg(const QString& key, const QString &def = {});
+
+    /**
+     * @brief setArg sets a new value of a @a key.
+     * @param key This is a name of sets option.
+     * @param val This is a new value of the @a key.
+     */
+    static void setArg(const QString& key, const QString& val);
+
+    /**
+     * @brief setArg This method sets boolean value of key.
+     * @param key This is name of the console option.
+     * @param enable New value of key.
+     * @note For check is enable @a key argument use the Params::isEndable method.
+     */
+    static void setEnable(const QString& key, bool enable);
+
+    /**
+     * @brief isEndable This method check if enable a @a key argument.
+     * @param key This is name of the validate arguments
+     * @return true if argument enabled.
+     */
+    static bool isEndable(const QString& key);
+
+    /**
+     * @brief log This method print @a log text on console.
+     * @param log This is printed text message.
+     * @param vLvl This is verbose level of message, for get more information see the QuasarAppUtils::VerboseLvl enum.
+     * @note All messages will be printed according to the current verbose setting.
+     * @note The verbose level sets by verbose option on console.
+     */
+    static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
+
+    /**
+     * @brief getParamsHelp This method return help object of the params class.
+     * @note All Options from the Params class can be used on any application that incuded this library. So if you printing your own help do not forget print this help.
+     * @return help object of default params.
+     */
+    static Help::Section getParamsHelp();
+
+    /**
+     * @brief getVerboseLvl This method return the verbose log level.
+     * @return verbose log lvl.
+     */
+    static VerboseLvl getVerboseLvl();
+
+    /**
+     * @brief isDebug This method return true if the application verbose level >= VerboseLvl::Debug.
+     * @return true if a verbose level >= VerboseLvl::Debug
+     */
+    static bool isDebug();
+
+    /**
+     * @brief isDebugBuild This method return true if the library buildet in debug mode.
+     * @return true if this library buildet in debug mode.
+     */
+    static bool isDebugBuild();
+
+
+    /**
+     * @brief size This method return count of the all input arguments.
+     * @return size of all params array.
+     */
+    static int size();
+
+    /**
+     * @brief showHelp This method shows help of the Params class of the QuasarAppLib.
+     */
+    static void showHelp();
+
+    /**
+     * @brief getUserParamsMap This method return const reference to the parsed arguments map.
+     * @return A map object with parsed arguments.
+     */
+    static const QMap<QString, QString> &getUserParamsMap();
+
+    /**
+     * @brief clearParsedData This method clear all parsed data.
+     */
+    static void clearParsedData();
+
+    /**
+     * @brief getCurrentExecutable This method return path to the current executable.
+     * @return path to current executable.
+     */
+    static QString getCurrentExecutable();
+
+    /**
+     * @brief getCurrentExecutableDir This method return a path to a folder with the current executable.
+     * @return path of the folder with current executable.
+     */
+    static QString getCurrentExecutableDir();
+
 private:
     static QString timeString();
     static std::string lvlToString(VerboseLvl vLvl);
@@ -47,135 +184,10 @@ private:
      */
     static void printWorkingOptions();
 
-public:
-    Params() = delete;
 
-    /**
-     * @brief parseParams Parse input data of started application.
-     * @param argc Count of arguments.
-     * @param argv Array of arguments.
-     * @return true if all arguments read else false.
-     */
-    static bool parseParams(const int argc, const char *argv[]);
-    static bool parseParams(int argc, char *argv[]);
-
-    /**
-     * @brief parseParams Parse input data of started application.
-     * @param paramsArray Arguments.
-     * @return true if all arguments read else false.
-     */
-    static bool parseParams(const QStringList& paramsArray);
-
-    /**
-     * @brief getArg Get string value of key.
-     * @param key This is key of the parameter.
-     * @param def Default value.
-     * @return string value of argument.
-     */
-    static QString getArg(const QString& key, const QString &def = {});
-
-    /**
-     * @brief setArg Sets value of key.
-     * @param key This is new value of the @a key.
-     */
-    static void setArg(const QString& key, const QString& val);
-
-    /**
-     * @brief setArg Sets boolean value of key.
-     * @param key
-     * @param enable New value of key.
-     */
-    static void setEnable(const QString& key, bool enable);
-
-    /**
-     * @brief isEndable Check if enable argument of key.
-     * @param key
-     * @return true if argument enabled.
-     */
-    static bool isEndable(const QString& key);
-
-    /**
-     * @brief log Print text on console if the flag "vergose" is enabled.
-     * @param log Printed textP.     
-     */
-    static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
-
-    /**
-     * @brief getparamsHelp
-     * @return help string of default params.
-     */
-    static Help::Charters getparamsHelp();
-
-    /**
-     * @brief showHelp Show all strings of help.
-     * @param help
-     */
-    static void showHelp(const QStringList& help);
-
-    /**
-     * @brief showHelp Show structe of help value.
-     * @param help
-     */
-    static void showHelp(const Help::Charters& help);
-
-    /**
-     * @brief getVerboseLvl This method return the verbose log level.
-     * @return verbose lvl
-     */
-    static VerboseLvl getVerboseLvl();
-
-    /**
-     * @brief isDebug
-     * @return true if verbose lvl >= 3
-     */
-    static bool isDebug();
-
-    /**
-     * @brief isDebugBuild This method return true if the library buildet in debug mode.
-     * @return true if this library buildet in debug mode.
-     */
-    static bool isDebugBuild();
-
-
-    /**
-     * @brief size This method return size of all params array.
-     * @return size Of all params array.
-     */
-    static int size();
-
-    /**
-     * @brief customParamasSize This method return a size of params entered in conosole.
-     * @return size of params entered in conosole.
-     */
-    static int customParamasSize();
-
-    /**
-     * @brief showHelp - show base help section of QuasarAppLib.
-     */
-    static void showHelp();
-
-    /**
-     * @brief getUserParamsMap.
-     * @return QVariantMap With user params.
-     */
-    static QMap<QString, QString> getUserParamsMap();
-
-    /**
-     * @brief clearParsedData - This method clear allparsed data.
-     */
-    static void clearParsedData();
-
-    /**
-     * @brief getCurrentExecutable
-     * @return path to current executable.
-     */
-    static QString getCurrentExecutable();
-
-    /**
-     * @brief getCurrentExecutableDir This method return a path to a folder with the current executable.
-     * @return path of executable.
-     */
-    static QString getCurrentExecutableDir();
+    static QMap<QString, QString> params;
+    static QString appPath;
+    static QString appName;
 
 };
 }

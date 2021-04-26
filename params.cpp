@@ -20,13 +20,10 @@
 #include <limits.h>
 #endif
 
-#define APP_PATH "appPath"
-#define APP_NAME "appName"
-
 using namespace QuasarAppUtils;
-
-static QMap<QString, QString> params = QMap<QString, QString>();
-static int _argc = 0;
+QMap<QString, QString> Params::params = QMap<QString, QString>();
+QString Params::appPath = "";
+QString Params::appName = "";
 
 
 bool Params::isEndable(const QString& key) {
@@ -58,7 +55,7 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
     }
 }
 
-Help::Charters Params::getparamsHelp() {
+Help::Charters Params::getParamsHelp() {
     return {
         {
             "Base Options", {
@@ -67,16 +64,6 @@ Help::Charters Params::getparamsHelp() {
             }
         }
     };
-}
-
-void Params::showHelp(const QStringList &help) {
-    for (const QString& line : help) {
-        std::cout << line.toStdString() << std::endl;
-    }
-}
-
-void Params::showHelp(const Help::Charters &help) {
-    Help::print(help);
 }
 
 VerboseLvl Params::getVerboseLvl() {
@@ -96,39 +83,29 @@ bool Params::isDebugBuild() {
 }
 
 void Params::showHelp() {
-    Help::print(getparamsHelp());
+    Help::print(getParamsHelp());
 }
 
-QMap<QString, QString> Params::getUserParamsMap() {
-    auto result = params;
-    result.remove(APP_PATH);
-    result.remove(APP_NAME);
-
-    return result;
+const QMap<QString, QString>& Params::getUserParamsMap() {
+    return params;
 }
 
 void Params::clearParsedData() {
     params.clear();
-    _argc = 0;
+    appPath = "";
+    appName = "";
 }
 
 QString Params::getCurrentExecutable() {
-    return getCurrentExecutableDir() + "/" + getArg(APP_NAME);
+    return getCurrentExecutableDir() + "/" + appName;
 }
 
 QString Params::getCurrentExecutableDir() {
-    return getArg(APP_PATH);
+    return appPath;
 }
 
 int Params::size() {
     return params.size();
-}
-
-int Params::customParamasSize() {
-    if (_argc)
-        return _argc - 1;
-
-    return size() - 2;
 }
 
 QString Params::timeString() {
@@ -195,7 +172,6 @@ bool Params::parseParams(const int argc, const char *argv[]) {
         params.push_back(argv[i]);
     }
 
-    _argc = argc;
     return parseParams(params);
 }
 
@@ -211,8 +187,8 @@ bool Params::parseParams(const QStringList &paramsArray) {
     memset(buffer, 0, sizeof buffer);
 
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
-    params [APP_PATH] = QFileInfo(buffer).absolutePath();
-    params [APP_NAME] = QFileInfo(buffer).fileName();
+    appPath = QFileInfo(buffer).absolutePath();
+    appName = QFileInfo(buffer).fileName();
 
 #else
     char path[2048];
@@ -223,12 +199,12 @@ bool Params::parseParams(const QStringList &paramsArray) {
                                            QuasarAppUtils::Error);
         return false;
     }
-    params [APP_PATH] =  QFileInfo(path).absolutePath();
-    params [APP_NAME] =  QFileInfo(path).fileName();
+    appPath =  QFileInfo(path).absolutePath();
+    appName =  QFileInfo(path).fileName();
 
 #endif
 
-    if (!getArg(APP_PATH).size()) {
+    if (!appPath.size()) {
         return false;
     }
 

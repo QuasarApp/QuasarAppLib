@@ -54,19 +54,19 @@ Create objects of the BigInt class, and do what you got to do!
 ``` cpp
 #include <quasarapp.h>
 
-    if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
-        QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
+if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
+    QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
 
-        Help::Charters help = {
-            {
-                "Main Section ", {
-                    {"-argument1",  "description of the argument1"},
-                    {"-argument2",  "description of the argument2"},
-                }
+    Help::Charters help = {
+        {
+            "Main Section ", {
+                {"-argument1",  "description of the argument1"},
+                {"-argument2",  "description of the argument2"},
             }
-        };
+        }
+    };
 
-        QuasarAppUtils::Help::print(help);
-        exit(0);
-    }
+    QuasarAppUtils::Help::print(help);
+    exit(0);
+}
 ```
