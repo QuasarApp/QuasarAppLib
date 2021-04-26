@@ -21,6 +21,9 @@
 #endif
 
 using namespace QuasarAppUtils;
+QMap<QString, QString> Params::params = QMap<QString, QString>();
+QString Params::appPath = "";
+QString Params::appName = "";
 
 
 bool Params::isEndable(const QString& key) {
