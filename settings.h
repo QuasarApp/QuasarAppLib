@@ -18,87 +18,100 @@ namespace QuasarAppUtils {
 
 /**
  * @brief The SettingsSaveMode enum
- * Auto - value save on hard disk when calling method "value"
- * manual - save all data on hard disk when calling method Settings::sync
  */
 enum class SettingsSaveMode: quint64 {
+    /// a settings will be saved on hard disk when called the Settings::setValue method.
     Auto,
+    /// a settings will be saved on hard disk when called the Settings::Sync method.
     Manual
 };
 
 /**
- * @brief The Settings class - singleton for QSettings
+ * @brief The Settings class This is wraper of the QSettings object.
+ * @note This is singleton object.
  */
 class QUASARAPPSHARED_EXPORT Settings : public QObject
 {
     Q_OBJECT
+
+public:
+
+    /**
+     * @brief instance This method return instance of the settings object
+     * @return pointer to a settings object;
+     */
+    static Settings* instance();
+
+    /**
+     * @brief getValue This method return the value of the settings.
+     * @param key This is name of the required settings value.
+     * @param def This is default value if a value is not finded.
+     * @return value of a @a key
+     */
+    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& def);
+
+    /**
+     * @brief getStrValue some as getValue but convert result object to QString type.
+     * @param key This is name of the required settings value.
+     * @param def This is default value if a value is not finded.
+     * @return value of a @a key
+     */
+    Q_INVOKABLE QString getStrValue(const QString &key, const QString& def);
+
+    /**
+     * @brief sync This method save all setings data on a hard disk;
+     */
+    void sync();
+
+    /**
+     * @brief getMode This method return the current mode of the settings.
+     * @return the current mode of the settings.
+     */
+    SettingsSaveMode getMode() const;
+
+    /**
+     * @brief setMode This method sets a new value of the settings mode.
+     * @param mode This is a new value of the settings mode.
+     */
+    void setMode(const SettingsSaveMode &mode);
+
+public slots:
+    /**
+     * @brief setValue This slot sets new value for a @key setting
+     * @param key This is name of the changed setting.
+     * @param value This is a new value of the setting
+     */
+    void setValue(const QString key, const QVariant& value);
+
+    /**
+     * @brief setStrValue This is some as setValue but working with the QString type.
+     * @param key This is name of the changed setting.
+     * @param value This is a new value of the setting
+     */
+    void setStrValue(const QString& key, const QString& value);
+
+
+signals:
+    /**
+     * @brief valueChanged This signal when value of the @a key settings changed
+     * @param key This is name of change setting.
+     * @param value This is a new value of @a key.
+     */
+    void valueChanged(QString key, QVariant value);
+
+    /**
+     * @brief valueStrChanged some as valueChanged(QString key, QVariant value) but value has ben converted to the QString type.
+     * @param key This is name of change setting.
+     * @param value This is a new value of @a key.
+     */
+    void valueStrChanged(QString key, QString value);
+
 private:
     explicit Settings(SettingsSaveMode mode = SettingsSaveMode::Auto);
     QSettings *_settings = nullptr;
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
 
     static Settings* initSettings(SettingsSaveMode mode = SettingsSaveMode::Auto);
-public:
-
-    /**
-     * @brief get
-     * @return object of all settings app;
-     */
-    static Settings* get();
-
-    /**
-     * @brief get
-     * @return const object of all settings app;
-     */
-    static const Settings* getConst();
-
-    /**
-     * @brief getValue
-     * @param key - key of value
-     * @param def - default value if is value not finded
-     * @return value of key
-     */
-    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& def);
-
-    /**
-     * @brief getStrValue some as getValue but work with QString
-     */
-    Q_INVOKABLE QString getStrValue(const QString &key, const QString& def);
-
-    /**
-     * @brief sync - save all data on hard disk;
-     */
-    void sync();
-
-    /**
-     * @brief getMode
-     * @return
-     */
-    SettingsSaveMode getMode() const;
-
-    /**
-     * @brief setMode
-     * @param mode
-     */
-    void setMode(const SettingsSaveMode &mode);
-
-public slots:
-    /**
-     * @brief setValue - set new value of key
-     * @param key - key pf settings
-     * @param value - new value
-     */
-    void setValue(const QString key, const QVariant& value);
-
-    /**
-     * @brief setStrValue - some as setValue< but use QString
-     */
-    void setStrValue(const QString& key, const QString& value);
-
-
-signals:
-    void valueChanged(QString key, QVariant value);
-    void valueStrChanged(QString key, QString value);
 
 };
 } ;

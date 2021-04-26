@@ -26,13 +26,11 @@ Settings::Settings(SettingsSaveMode mode) {
     _mode = mode;
 }
 
-SettingsSaveMode Settings::getMode() const
-{
+SettingsSaveMode Settings::getMode() const {
     return _mode;
 }
 
-void Settings::setMode(const SettingsSaveMode &mode)
-{
+void Settings::setMode(const SettingsSaveMode &mode) {
     _mode = mode;
 }
 
@@ -41,11 +39,7 @@ Settings *Settings::initSettings(SettingsSaveMode mode) {
     return res;
 }
 
-Settings *Settings::get() {
-    return initSettings();
-}
-
-const Settings *Settings::getConst() {
+Settings *Settings::instance() {
     return initSettings();
 }
 

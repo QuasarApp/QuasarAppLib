@@ -22,9 +22,15 @@ namespace QuasarAppUtils {
 
 /**
  * @brief The Locales class for parese local files
- * Example :
+ * @bold Example :
  * @code{cpp}
- * QuasarAppUtils::Locales::init()
+ * QuasarAppUtils::Locales::init();
+ * @endcode
+ *
+ * @note If you want to add you own location of the qm files then add this into seccond arguments of the Locales::init method.
+ *
+ * @code{cpp}
+ *  QuasarAppUtils::Locales::init(QLocale::system(), "myPath");
  * @endcode
  */
 class QUASARAPPSHARED_EXPORT Locales : public QObject
@@ -48,8 +54,8 @@ public:
     static bool init(const QLocale &locale = QLocale::system(),
                      const QSet<QString> & location = {});
     /**
-     * @brief instance
-     * @return return static object
+     * @brief instance This method return pointer to the Locales service.
+     * @return return pointer to the Locales static object
      */
     static Locales *instance();
 
