@@ -82,8 +82,9 @@ public:
     static QString getArg(const QString& key, const QString &def = {});
 
     /**
-     * @brief setArg sets new value of a @a key.
-     * @param key This is new value of the @a key.
+     * @brief setArg sets a new value of a @a key.
+     * @param key This is a name of sets option.
+     * @param val This is a new value of the @a key.
      */
     static void setArg(const QString& key, const QString& val);
 
