@@ -53,6 +53,13 @@ public:
      */
     static bool init(const QLocale &locale = QLocale::system(),
                      const QSet<QString> & location = {});
+
+    /**
+     * @brief addLocation This method add location for qm files. Use This method if you create a own library with translations supports.
+     * @param location This is a new location of the qm files.
+     */
+    static void addLocation(const QString& location);
+
     /**
      * @brief instance This method return pointer to the Locales service.
      * @return return pointer to the Locales static object
@@ -73,6 +80,7 @@ private:
     bool initPrivate(const QLocale &locale = QLocale::system(),
                      const QSet<QString> &location = {});
     void removeOldTranslation();
+    void addLocationPrivate(const QString& location);
 
     QSet<QString> _locations;
     QList<QTranslator *> _translations;

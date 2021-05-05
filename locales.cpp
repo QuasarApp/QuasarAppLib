@@ -24,7 +24,7 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
     QFileInfoList qmFiles;
 
     for (const auto &location: qAsConst(_locations)) {
-       qmFiles += QDir(location).entryInfoList({"*" + locale.bcp47Name() + "*.qm"}, QDir::Files);
+        qmFiles += QDir(location).entryInfoList({"*" + locale.bcp47Name() + "*.qm"}, QDir::Files);
     }
 
     for (const auto & file: qAsConst(qmFiles)) {
@@ -78,6 +78,15 @@ void Locales::removeOldTranslation() {
         QCoreApplication::removeTranslator(tr);
         delete tr;
     }
+}
+
+void Locales::addLocationPrivate(const QString &location) {
+    _locations += location;
+}
+
+void Locales::addLocation(const QString &location) {
+    auto obj = instance();
+    obj->addLocationPrivate(location);
 }
 
 Locales::~Locales() {
