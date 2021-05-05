@@ -19,19 +19,19 @@ namespace QuasarAppUtils {
  * @brief The VerboseLvl enum uses for sets log level.
  */
 enum VerboseLvl {
-    /// General information. This logs will marked as a **Info** and printing always.
-    Info    = 0x0,
-    /// Error message. This logs will marked as a **Error** and printing if the verbose lvl >= 1
-    Error   = 0x1,
-    /// Warning message. This logs will marked as a **Warning** and printing if the verbose lvl >= 2
-    Warning = 0x2,
+    /// Error message. This logs will marked as a **Error** and printing if the verbose lvl >= 0
+    Error   = 0x0,
+    /// Warning message. This logs will marked as a **Warning** and printing if the verbose lvl >= 1
+    Warning = 0x1,
+    /// General information. This logs will marked as a **Info** and and printing if the verbose lvl >= 2.
+    Info    = 0x2,
     /// Debug message. This logs will marked as a **Debug** and printing if the verbose lvl >= 3
     Debug   = 0x3,
 
 };
 
 #ifdef RELEASE_BUILD
-#define DEFAULT_VERBOSE_LVL "1"
+#define DEFAULT_VERBOSE_LVL "2"
 
 #else
 #define DEFAULT_VERBOSE_LVL "3"

@@ -32,7 +32,7 @@ This lib include include next modules:
   >> add_subdirectory(QuasarAppLib)
  * Rebuild yuor project
 
-``` cmake
+```cmake
 add_subdirectory(QuasarAppLib)
 target_link_libraries(MyBinary PUBLIC QuasarApp)
 ```
@@ -41,7 +41,7 @@ target_link_libraries(MyBinary PUBLIC QuasarApp)
 By Default QuasarAppLib makes as a static library. If you want to create a shared library just add the BUILD_SHARED_LIBS into your main CMakeLists.txt file.
 Example :
 
-``` cmake
+```cmake
 set(BUILD_SHARED_LIBS ON)
 add_subdirectory(QuasarAppLib)
 target_link_libraries(MyBinary PUBLIC QuasarApp)
@@ -51,7 +51,7 @@ target_link_libraries(MyBinary PUBLIC QuasarApp)
 # Usage
 Create objects of the BigInt class, and do what you got to do!
 
-``` cpp
+```cpp
 #include <quasarapp.h>
 
 if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
