@@ -12,6 +12,7 @@
 #include <type_traits>
 #include <string>
 #include <typeinfo>
+#include "QtGlobal"
 
 
 template <typename T>
@@ -168,7 +169,7 @@ uint8_t static_type_hash_8(T& object) noexcept {
 #define H_32 static_type_hash_32
 
 
-#ifdef RELEASE_BUILD
+#ifndef QT_DEBUG
     // The debug_assert it is assert that abort application only in debug mode.
     // In the release mode This assert prin Error message only.
     #define debug_assert(condition, msg) \
