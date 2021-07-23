@@ -30,12 +30,10 @@ enum VerboseLvl {
 
 };
 
-#ifdef RELEASE_BUILD
-#define DEFAULT_VERBOSE_LVL "2"
-
-#else
+#ifdef QT_DEBUG
 #define DEFAULT_VERBOSE_LVL "3"
-
+#else
+#define DEFAULT_VERBOSE_LVL "2"
 #endif
 
 /**
