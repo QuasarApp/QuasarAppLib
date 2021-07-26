@@ -12,8 +12,10 @@
 #include <QVariant>
 #include "quasarapp_global.h"
 #include "helpdata.h"
+#include "optiondata.h"
 
 namespace QuasarAppUtils {
+
 
 /**
  * @brief The VerboseLvl enum uses for sets log level.
@@ -53,7 +55,7 @@ public:
      * @param argv Array of arguments.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(const int argc, const char *argv[]);
+    static bool parseParams(const int argc, const char *argv[], const OptionsDataList& options);
 
     /**
      * @brief parseParams Parse input data of started application.
@@ -61,14 +63,14 @@ public:
      * @param argv Array of arguments.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(int argc, char *argv[]);
+    static bool parseParams(int argc, char *argv[], const OptionsDataList& options);
 
     /**
      * @brief parseParams Parse input data of started application.
      * @param paramsArray Arguments.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(const QStringList& paramsArray);
+    static bool parseParams(const QStringList& paramsArray, const OptionsDataList& options);
 
     /**
      * @brief getArg return string value of a @a key if key is exits else return a @a def value.
@@ -135,7 +137,6 @@ public:
      */
     static bool isDebugBuild();
 
-
     /**
      * @brief size This method return count of the all input arguments.
      * @return size of all params array.
@@ -143,9 +144,14 @@ public:
     static int size();
 
     /**
-     * @brief showHelp This method shows help of the Params class of the QuasarAppLib.
+     * @brief showHelp This method shows all help message.
      */
     static void showHelp();
+
+    /**
+     * @brief showUserHelp This method shows help message that has generated after invoke the parseParams method.
+     */
+    static void showUserHelp();
 
     /**
      * @brief getUserParamsMap This method return const reference to the parsed arguments map.
@@ -182,8 +188,19 @@ private:
      */
     static void printWorkingOptions();
 
+    /**
+     * @brief parseAvailableOptions This is private method for parsing availabel options.
+     * @param availableOptionsListIn input data of the available options.
+     * @param availableOptionsListOut hash of available options wher key it options name and value it is options data
+     * @param helpOut This is help object that generated from the
+     */
+    static void parseAvailableOptions(const OptionsDataList& availableOptionsListIn,
+                                      OptionsDataList* availableOptionsListOut,
+                                      Help::Section* helpOut);
+
 
     static QMap<QString, QString> params;
+    static Help::Section userHelp;
     static QString appPath;
     static QString appName;
 

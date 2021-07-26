@@ -24,6 +24,7 @@ using namespace QuasarAppUtils;
 QMap<QString, QString> Params::params = QMap<QString, QString>();
 QString Params::appPath = "";
 QString Params::appName = "";
+Help::Section Params::userHelp = {};
 
 
 bool Params::isEndable(const QString& key) {
@@ -83,7 +84,11 @@ bool Params::isDebugBuild() {
 }
 
 void Params::showHelp() {
-    Help::print(getParamsHelp());
+    Help::print(getParamsHelp() + userHelp);
+}
+
+void Params::showUserHelp() {
+    Help::print(userHelp);
 }
 
 const QMap<QString, QString>& Params::getUserParamsMap() {
@@ -165,22 +170,25 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     return true;
 }
 
-bool Params::parseParams(const int argc, const char *argv[]) {
+bool Params::parseParams(const int argc, const char *argv[], const OptionsDataList& options) {
 
     QStringList params;
     for (int i = 1; i < argc; i++) {
         params.push_back(argv[i]);
     }
 
-    return parseParams(params);
+    return parseParams(params, options);
 }
 
-bool Params::parseParams(int argc, char *argv[]) {
-    return parseParams(argc, const_cast<const char**>(argv));
+bool Params::parseParams(int argc, char *argv[], const OptionsDataList& options) {
+    return parseParams(argc, const_cast<const char**>(argv), options);
 }
 
-bool Params::parseParams(const QStringList &paramsArray) {
+bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &options) {
     params.clear();
+    OptionsDataList availableOptions;
+
+    parseAvailableOptions(options, &availableOptions, &userHelp);
 
 #ifdef Q_OS_WIN
     char buffer[MAX_PATH];
@@ -209,6 +217,30 @@ bool Params::parseParams(const QStringList &paramsArray) {
     }
 
     for (int i = 0 ; i < paramsArray.size(); ++i) {
+
+        auto optionData = availableOptions.value(paramsArray[i], {""});
+
+        if (!optionData.isValid()) {
+            QuasarAppUtils::Params::log("You use wrong option name, please check the help before run your commnad.",
+                                        QuasarAppUtils::Error);
+            return false;
+        }
+
+        if (optionData.isDepricated()) {
+
+
+
+            if (optionData.isRemoved()) {
+                QuasarAppUtils::Params::log(optionData.depricatedMsg(),
+                                            QuasarAppUtils::Error);
+                return false;
+            }
+
+            QuasarAppUtils::Params::log(optionData.depricatedMsg(),
+                                        QuasarAppUtils::Warning);
+
+        }
+
         if (paramsArray[i][0] == '-') {
             if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
                 params[paramsArray[i].mid(1)] = paramsArray[i + 1];
@@ -249,6 +281,25 @@ void Params::printWorkingOptions() {
 
     QuasarAppUtils::Params::log("--- Working options table end ---",
                                 QuasarAppUtils::Debug);
+}
+
+void Params::parseAvailableOptions(const OptionsDataList &availableOptionsListIn,
+                                   OptionsDataList *availableOptionsListOut,
+                                   Help::Section *helpOut) {
+
+    if (!(availableOptionsListOut && helpOut))
+        return;
+
+    for (auto it = availableOptionsListIn.begin(); it != availableOptionsListIn.end(); ++it) {
+
+        if (availableOptionsListOut) {
+            availableOptionsListOut->insert(it.value().name(), it.value());
+        }
+
+        if (helpOut) {
+            helpOut->insert(it.key(), it.value().toHelp());
+        }
+    }
 }
 
 QString Params::getArg(const QString& key,const QString& def) {
