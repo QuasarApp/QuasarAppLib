@@ -56,16 +56,6 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
     }
 }
 
-Help::Charters Params::getParamsHelp() {
-    return {
-        {
-            "Base Options", {
-                {"-verbose (level 1 - 3)",  "Shows debug log"},
-                {"-fileLog (path to file)", "Sets path of log file. Default it is path to executable file with suffix '.log'"},
-            }
-        }
-    };
-}
 
 VerboseLvl Params::getVerboseLvl() {
     return static_cast<VerboseLvl>(getArg("verbose", DEFAULT_VERBOSE_LVL).toInt());
@@ -84,10 +74,6 @@ bool Params::isDebugBuild() {
 }
 
 void Params::showHelp() {
-    Help::print(getParamsHelp() + userHelp);
-}
-
-void Params::showUserHelp() {
     Help::print(userHelp);
 }
 
@@ -107,6 +93,23 @@ QString Params::getCurrentExecutable() {
 
 QString Params::getCurrentExecutableDir() {
     return appPath;
+}
+
+OptionsDataList Params::availableArguments() {
+    return OptionsDataList{
+        {
+            "Base Options",
+            OptionData{
+                {"-verbose"}, "(level 1 - 3)", "Shows debug log"
+            }
+        },
+        {
+            "Base Options",
+            OptionData{
+                {"-fileLog"}, "(path to file)", "Sets path of log file. Default it is path to executable file with suffix '.log'"
+            }
+        }
+    };
 }
 
 int Params::size() {
@@ -188,7 +191,9 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
     params.clear();
     OptionsDataList availableOptions;
 
-    parseAvailableOptions(options, &availableOptions, &userHelp);
+    parseAvailableOptions(OptionsDataList{}.unite(options).unite(availableArguments()),
+                          &availableOptions,
+                          &userHelp);
 
 #ifdef Q_OS_WIN
     char buffer[MAX_PATH];
@@ -218,7 +223,7 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
 
     for (int i = 0 ; i < paramsArray.size(); ++i) {
 
-        auto optionData = availableOptions.value(paramsArray[i], {""});
+        auto optionData = availableOptions.value(paramsArray[i], {{}});
 
         if (!optionData.isValid()) {
             QuasarAppUtils::Params::log("You use wrong option name, please check the help before run your commnad.",
@@ -290,15 +295,22 @@ void Params::parseAvailableOptions(const OptionsDataList &availableOptionsListIn
     if (!(availableOptionsListOut && helpOut))
         return;
 
+    QHash<QString, Help::Options> options;
     for (auto it = availableOptionsListIn.begin(); it != availableOptionsListIn.end(); ++it) {
 
         if (availableOptionsListOut) {
-            availableOptionsListOut->insert(it.value().name(), it.value());
+            for (const auto &name : qAsConst(it.value().names())) {
+                availableOptionsListOut->insert(name, it.value());
+            }
         }
 
         if (helpOut) {
-            helpOut->insert(it.key(), it.value().toHelp());
+            options[it.key()].unite(it.value().toHelp());
         }
+    }
+
+    for (auto it = options.begin(); it != options.end(); ++it) {
+        helpOut->insert(it.key(), it.value());
     }
 }
 

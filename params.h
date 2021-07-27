@@ -113,13 +113,6 @@ public:
     static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**
-     * @brief getParamsHelp This method return help object of the params class.
-     * @note All Options from the Params class can be used on any application that incuded this library. So if you printing your own help do not forget print this help.
-     * @return help object of default params.
-     */
-    static Help::Section getParamsHelp();
-
-    /**
      * @brief getVerboseLvl This method return the verbose log level.
      * @return verbose log lvl.
      */
@@ -149,11 +142,6 @@ public:
     static void showHelp();
 
     /**
-     * @brief showUserHelp This method shows help message that has generated after invoke the parseParams method.
-     */
-    static void showUserHelp();
-
-    /**
      * @brief getUserParamsMap This method return const reference to the parsed arguments map.
      * @return A map object with parsed arguments.
      */
@@ -175,6 +163,12 @@ public:
      * @return path of the folder with current executable.
      */
     static QString getCurrentExecutableDir();
+
+    /**
+     * @brief availableArguments This method return list of the available arguments of QuasarAppLibrary
+     * @return list of the available arguments
+     */
+    static OptionsDataList availableArguments();
 
 private:
     static QString timeString();

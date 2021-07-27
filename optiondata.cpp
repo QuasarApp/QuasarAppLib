@@ -11,14 +11,14 @@
 
 namespace QuasarAppUtils{
 
-OptionData::OptionData(const QString& name,
+OptionData::OptionData(const QStringList& name,
                        const QString& arguments,
                        const QString& description,
                        const QString& example,
                        const QString& depricatedMsg,
                        bool removed) {
 
-    setName(name);
+    setNames(name);
     setArguments(arguments);
     setDescription(description);
     setExample(example);
@@ -26,11 +26,11 @@ OptionData::OptionData(const QString& name,
     _removed = removed;
 }
 
-const QString &OptionData::name() const {
+const QStringList &OptionData::names() const {
     return _name;
 }
 
-void OptionData::setName(const QString &newName) {
+void OptionData::setNames(const QStringList &newName) {
     _name = newName;
 }
 
@@ -75,6 +75,6 @@ bool OptionData::isDepricated() const {
 }
 
 Help::Options OptionData::toHelp() const {
-    return {{{name() + " " + arguments()}, {description() + " " + example()}}};
+    return {{{names().join(" / ") + " " + arguments()}, {description() + " " + example()}}};
 }
 }

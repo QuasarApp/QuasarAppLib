@@ -23,14 +23,14 @@ public:
 
     /**
      * @brief OptionData This is main constructor
-     * @param name This is name of the option. It is a required argument and cannot be empty.
+     * @param names This is names list of the option. It is a required argument and cannot be empty.
      * @param arguments This is input arguments of this option or help meesage about arguments.
      * @param description This is description message of this option.
      * @param example This is example of use string.
      * @param depricatedMsg This is a message that will be printed as a warning if user will use this option. If you set this argument to empty value then warning message will be ignored and option not be marked asa a depricated. An option will be marked as a depricated when this arguments will not equal empty string.
      * @param removed This option show depricatedMsg as a error and force the parseParams method return false. This option will be ignored if the depricatedMsg will be empty.
      */
-    OptionData(const QString& name,
+    OptionData(const QStringList& names,
                const QString& arguments = "",
                const QString& description = "",
                const QString& example = "",
@@ -41,7 +41,7 @@ public:
      * @brief name This is name of the option. It is a required argument and cannot be empty.
      * @return return name of this option.
      */
-    const QString &name() const;
+    const QStringList &names() const;
 
     /**
      * @brief description  This is description message of this option.
@@ -98,11 +98,11 @@ public:
 
 protected:
     /**
-     * @brief setName This method sets new value of the option name.
-     * @param newName This is a new value of the options name.
+     * @brief setNames This method sets new value of the option name.
+     * @param newNames This is a new value of the options name.
      * @note see the OptionData::name method.
      */
-    void setName(const QString &newName);
+    void setNames(const QStringList &newNames);
 
     /**
      * @brief setDescription This method sets new description of this options.
@@ -136,7 +136,7 @@ protected:
     void setDepricatedMsg(const QString &newDepricatedMsg);
 
 private:
-    QString _name;
+    QStringList _name;
     QString _description;
     QString _example;
     QString _arguments;
@@ -147,6 +147,6 @@ private:
 /**
  * @brief OptionsList is Hash map of the OptionData items. Where the key it is group name and value it is option data.
  */
-typedef QHash<QString, OptionData> OptionsDataList;
+typedef QMultiHash<QString, OptionData> OptionsDataList;
 }
 #endif // OPTIONDATA_H
