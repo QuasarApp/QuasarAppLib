@@ -43,7 +43,7 @@ void print(const QString& key, const QString& value, int keyLength) {
     QString expander(keyLength + SectionMargin, ' ');
     auto words = value.split(" ");
 
-    int currentLength = std::max(keyLength, key.size());
+    int currentLength = std::max(keyLength, static_cast<int>(key.size()));
     for (const auto& word : words) {
         if (currentLength + 2 + word.size() < WIDTH) {
             std::cout << " " << word.toStdString();
