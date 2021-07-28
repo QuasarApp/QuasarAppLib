@@ -25,6 +25,7 @@ QMap<QString, QString> Params::params = QMap<QString, QString>();
 QString Params::appPath = "";
 QString Params::appName = "";
 Help::Section Params::userHelp = {};
+OptionsDataList Params::inputOptions = {};
 
 
 bool Params::isEndable(const QString& key) {
@@ -73,8 +74,33 @@ bool Params::isDebugBuild() {
 #endif
 }
 
-void Params::showHelp() {
-    Help::print(userHelp);
+void Params::showHelp(const QString &option) {
+    if (userHelp.contains(option))
+        Help::print(userHelp.value(option));
+    else
+        Help::print(userHelp);
+}
+
+void Params::showHelpForInputOptions() {
+    Help::print(getHelpOfInputOptions());
+}
+
+Help::Section Params::getHelpOfInputOptions() {
+
+    if (inputOptions.size() <= 1 ) {
+        return {};
+    }
+
+    Help::Options help;
+    for (const auto &optionData: qAsConst(inputOptions) ) {
+        help.unite(optionData.toHelp());
+    }
+
+    return Help::Section{{"Information about using options", help}};
+}
+
+const Help::Section &Params::getHelp() {
+    return userHelp;
 }
 
 const QMap<QString, QString>& Params::getUserParamsMap() {
@@ -102,6 +128,7 @@ OptionsDataList Params::availableArguments() {
             OptionData{
                 {"-verbose"}, "(level 1 - 3)", "Shows debug log"
             }
+
         },
         {
             "Base Options",
@@ -224,27 +251,11 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
     for (int i = 0 ; i < paramsArray.size(); ++i) {
 
         auto optionData = availableOptions.value(paramsArray[i], {{}});
-
-        if (!optionData.isValid()) {
-            QuasarAppUtils::Params::log("You use wrong option name, please check the help before run your commnad.",
-                                        QuasarAppUtils::Error);
+        if (options.size() && !checkOption(optionData, paramsArray[i])) {
             return false;
         }
 
-        if (optionData.isDepricated()) {
-
-
-
-            if (optionData.isRemoved()) {
-                QuasarAppUtils::Params::log(optionData.depricatedMsg(),
-                                            QuasarAppUtils::Error);
-                return false;
-            }
-
-            QuasarAppUtils::Params::log(optionData.depricatedMsg(),
-                                        QuasarAppUtils::Warning);
-
-        }
+        inputOptions.insert(paramsArray[i], optionData);
 
         if (paramsArray[i][0] == '-') {
             if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
@@ -288,12 +299,41 @@ void Params::printWorkingOptions() {
                                 QuasarAppUtils::Debug);
 }
 
+bool Params::checkOption(const OptionData& optionData, const QString& rawOptionName) {
+
+    if (!optionData.isValid()) {
+        QuasarAppUtils::Params::log(QString("The '%0' option not exists!"
+                                    " You use wrong option name, please check the help before run your commnad.").arg(
+                                    rawOptionName),
+                                    QuasarAppUtils::Error);
+        return false;
+    }
+
+    if (optionData.isDepricated()) {
+
+
+
+        if (optionData.isRemoved()) {
+            QuasarAppUtils::Params::log(optionData.depricatedMsg(),
+                                        QuasarAppUtils::Error);
+            return false;
+        }
+
+        QuasarAppUtils::Params::log(optionData.depricatedMsg(),
+                                    QuasarAppUtils::Warning);
+    }
+
+    return true;
+}
+
 void Params::parseAvailableOptions(const OptionsDataList &availableOptionsListIn,
                                    OptionsDataList *availableOptionsListOut,
                                    Help::Section *helpOut) {
 
     if (!(availableOptionsListOut && helpOut))
         return;
+
+    helpOut->clear();
 
     QHash<QString, Help::Options> options;
     for (auto it = availableOptionsListIn.begin(); it != availableOptionsListIn.end(); ++it) {

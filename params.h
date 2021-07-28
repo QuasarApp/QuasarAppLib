@@ -53,24 +53,30 @@ public:
      * @brief parseParams Parse input data of started application.
      * @param argc Count of arguments.
      * @param argv Array of arguments.
+     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
+     *  If you skip thi argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(const int argc, const char *argv[], const OptionsDataList& options);
+    static bool parseParams(const int argc, const char *argv[], const OptionsDataList& options = {});
 
     /**
      * @brief parseParams Parse input data of started application.
      * @param argc Count of arguments.
      * @param argv Array of arguments.
+     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
+     *  If you skip thi argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(int argc, char *argv[], const OptionsDataList& options);
+    static bool parseParams(int argc, char *argv[], const OptionsDataList& options = {});
 
     /**
      * @brief parseParams Parse input data of started application.
      * @param paramsArray Arguments.
+     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
+     *  If you skip thi argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(const QStringList& paramsArray, const OptionsDataList& options);
+    static bool parseParams(const QStringList& paramsArray, const OptionsDataList& options = {});
 
     /**
      * @brief getArg return string value of a @a key if key is exits else return a @a def value.
@@ -138,8 +144,34 @@ public:
 
     /**
      * @brief showHelp This method shows all help message.
+     * @param option This is option key that needed show a help message.
      */
-    static void showHelp();
+    static void showHelp(const QString& option = "");
+
+    /**
+     * @brief showHelpForInputOptions This method show help for each input option.
+     * @note Befor using of this method invoke the parseParams method. This is needed for generate the help message.
+     *
+     * **Example:**
+     *
+     * ```bash
+     * myTool help option1 -option2 argumets
+     * ```
+     */
+    static void showHelpForInputOptions();
+
+    /**
+     * @brief getHelpOfInputOptions This method return help abut input options only. Exept help and h options.
+     * @return help abut input options only. Exept help and h options.
+     */
+    static Help::Section getHelpOfInputOptions();
+
+    /**
+     * @brief getHelp This method return options help page.
+     * @note Befor using of this method invoke the parseParams method. This is needed for generate the help message.
+     * @return help of available options.
+     */
+    static const Help::Section& getHelp();
 
     /**
      * @brief getUserParamsMap This method return const reference to the parsed arguments map.
@@ -183,6 +215,13 @@ private:
     static void printWorkingOptions();
 
     /**
+     * @brief checkOption return tru if the option is supported
+     * @param option checked option
+     * @return true if option is supported
+     */
+    static bool checkOption(const OptionData &option, const QString &rawOptionName);
+
+    /**
      * @brief parseAvailableOptions This is private method for parsing availabel options.
      * @param availableOptionsListIn input data of the available options.
      * @param availableOptionsListOut hash of available options wher key it options name and value it is options data
@@ -194,6 +233,8 @@ private:
 
 
     static QMap<QString, QString> params;
+    static OptionsDataList inputOptions;
+
     static Help::Section userHelp;
     static QString appPath;
     static QString appName;

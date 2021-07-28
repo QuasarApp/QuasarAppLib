@@ -75,6 +75,17 @@ bool OptionData::isDepricated() const {
 }
 
 Help::Options OptionData::toHelp() const {
-    return {{{names().join(" / ") + " " + arguments()}, {description() + " " + example()}}};
+    QString left = names().join(" / ") + " " + arguments();
+
+    QString right = description();
+    if (example().size()) {
+        right += " Example: " + example();
+    }
+
+    return {{left, {right}}};
+}
+
+bool OptionData::isValid() const {
+    return names().size();
 }
 }
