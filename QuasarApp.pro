@@ -35,6 +35,7 @@ CONFIG(release, debug|release): {
 
 SOURCES += \
         helpdata.cpp \
+        optiondata.cpp \
         quasarapp.cpp \
         params.cpp \
         locales.cpp \
@@ -43,6 +44,7 @@ SOURCES += \
 
 HEADERS += \
         helpdata.h \
+        optiondata.h \
         quasarapp.h \
         quasarapp_global.h \ 
         params.h \

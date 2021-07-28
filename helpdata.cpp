@@ -20,7 +20,7 @@ namespace QuasarAppUtils {
 namespace Help {
 
 static int MAX_LENGTH = -1;
-static int SectionMargin = 3;
+static int SectionMargin = 2;
 
 #define EXPANDER(COUNT, ITEM) QString(COUNT, ITEM).toStdString()
 #define SPACES(X) EXPANDER(X, ' ')
@@ -43,7 +43,7 @@ void print(const QString& key, const QString& value, int keyLength) {
     QString expander(keyLength + SectionMargin, ' ');
     auto words = value.split(" ");
 
-    int currentLength = keyLength;
+    int currentLength = std::max(keyLength, static_cast<int>(key.size()));
     for (const auto& word : words) {
         if (currentLength + 2 + word.size() < WIDTH) {
             std::cout << " " << word.toStdString();
@@ -65,6 +65,8 @@ void print(const QuasarAppUtils::Help::Options &oprionsList) {
         if (line.key().size() > maxLength)
             maxLength = line.key().size();
     }
+
+    maxLength = std::min(WIDTH / 3, maxLength);
 
     for (auto line = oprionsList.begin(); line != oprionsList.end(); ++line) {
         print(line.key(), line.value(), maxLength + SectionMargin);

@@ -25,7 +25,7 @@ namespace Help {
  *
  * @code{cpp}
  * Options myOptionsList = {{"argument1", "This is test argumetn1 of my application."},
- *                          {"argument1", "This is test argumetn1 of my application."}};
+ *                          {"argument2", "This is test argumetn2 of my application."}};
  *
  * @endcode
  */
@@ -37,7 +37,7 @@ typedef QMultiMap<QString, QString> Options;
  * **Example:**
  * @code{cpp}
  * Options myOptionsList = {{"argument1", "This is test argumetn1 of my application."},
- *                          {"argument1", "This is test argumetn1 of my application."}};
+ *                          {"argument2", "This is test argumetn2 of my application."}};
  * Section mySections = {{"This Is main section of the help", myOptionsList}};
  * QuasarAppUtils::Help::print(mySections);
  * @endcode

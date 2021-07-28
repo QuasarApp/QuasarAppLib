@@ -12,8 +12,10 @@
 #include <QVariant>
 #include "quasarapp_global.h"
 #include "helpdata.h"
+#include "optiondata.h"
 
 namespace QuasarAppUtils {
+
 
 /**
  * @brief The VerboseLvl enum uses for sets log level.
@@ -41,6 +43,18 @@ enum VerboseLvl {
  * This Class support next comandline arguments.
  *  * **-verbose** (level 1 - 3) Shows debug log
  *  * **-fileLog** (path to file) Sets path of log file. Default it is path to executable file with suffix '.log'
+ *
+ * ### Usage
+ *
+ * ```cpp
+    #include <quasarapp.h>
+
+    if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
+        QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
+        QuasarAppUtils::Params::showHelp();
+        exit(0);
+    }
+    ```
  */
 class QUASARAPPSHARED_EXPORT Params
 {
@@ -51,24 +65,30 @@ public:
      * @brief parseParams Parse input data of started application.
      * @param argc Count of arguments.
      * @param argv Array of arguments.
+     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
+     *  If you skip thi argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(const int argc, const char *argv[]);
+    static bool parseParams(const int argc, const char *argv[], const OptionsDataList& options = {});
 
     /**
      * @brief parseParams Parse input data of started application.
      * @param argc Count of arguments.
      * @param argv Array of arguments.
+     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
+     *  If you skip thi argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(int argc, char *argv[]);
+    static bool parseParams(int argc, char *argv[], const OptionsDataList& options = {});
 
     /**
      * @brief parseParams Parse input data of started application.
      * @param paramsArray Arguments.
+     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
+     *  If you skip thi argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
-    static bool parseParams(const QStringList& paramsArray);
+    static bool parseParams(const QStringList& paramsArray, const OptionsDataList& options = {});
 
     /**
      * @brief getArg return string value of a @a key if key is exits else return a @a def value.
@@ -111,13 +131,6 @@ public:
     static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**
-     * @brief getParamsHelp This method return help object of the params class.
-     * @note All Options from the Params class can be used on any application that incuded this library. So if you printing your own help do not forget print this help.
-     * @return help object of default params.
-     */
-    static Help::Section getParamsHelp();
-
-    /**
      * @brief getVerboseLvl This method return the verbose log level.
      * @return verbose log lvl.
      */
@@ -135,7 +148,6 @@ public:
      */
     static bool isDebugBuild();
 
-
     /**
      * @brief size This method return count of the all input arguments.
      * @return size of all params array.
@@ -143,9 +155,34 @@ public:
     static int size();
 
     /**
-     * @brief showHelp This method shows help of the Params class of the QuasarAppLib.
+     * @brief showHelp This method shows all help message.
      */
     static void showHelp();
+
+    /**
+     * @brief showHelpForInputOptions This method show help for each input option.
+     * @note Befor using of this method invoke the parseParams method. This is needed for generate the help message.
+     *
+     * **Example:**
+     *
+     * ```bash
+     * myTool help option1 -option2 argumets
+     * ```
+     */
+    static void showHelpForInputOptions();
+
+    /**
+     * @brief getHelpOfInputOptions This method return help abut input options only. Exept help and h options.
+     * @return help abut input options only. Exept help and h options.
+     */
+    static Help::Section getHelpOfInputOptions();
+
+    /**
+     * @brief getHelp This method return options help page.
+     * @note Befor using of this method invoke the parseParams method. This is needed for generate the help message.
+     * @return help of available options.
+     */
+    static const Help::Section& getHelp();
 
     /**
      * @brief getUserParamsMap This method return const reference to the parsed arguments map.
@@ -170,6 +207,12 @@ public:
      */
     static QString getCurrentExecutableDir();
 
+    /**
+     * @brief availableArguments This method return list of the available arguments of QuasarAppLibrary
+     * @return list of the available arguments
+     */
+    static OptionsDataList availableArguments();
+
 private:
     static QString timeString();
     static std::string lvlToString(VerboseLvl vLvl);
@@ -182,8 +225,28 @@ private:
      */
     static void printWorkingOptions();
 
+    /**
+     * @brief checkOption return tru if the option is supported
+     * @param option checked option
+     * @return true if option is supported
+     */
+    static bool checkOption(const OptionData &option, const QString &rawOptionName);
+
+    /**
+     * @brief parseAvailableOptions This is private method for parsing availabel options.
+     * @param availableOptionsListIn input data of the available options.
+     * @param availableOptionsListOut hash of available options wher key it options name and value it is options data
+     * @param helpOut This is help object that generated from the
+     */
+    static void parseAvailableOptions(const OptionsDataList& availableOptionsListIn,
+                                      OptionsDataList* availableOptionsListOut,
+                                      Help::Section* helpOut);
+
 
     static QMap<QString, QString> params;
+    static OptionsDataList inputOptions;
+
+    static Help::Section userHelp;
     static QString appPath;
     static QString appName;
 
