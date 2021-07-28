@@ -62,7 +62,7 @@ RESOURCES += \
 
 include(Etalons/qmake/ccache.pri)
 
-VERSION = 1.4.5
+VERSION = 1.5.1
 
 # Add empty target for CI system
 QMAKE_EXTRA_TARGETS += \
