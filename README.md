@@ -3,11 +3,8 @@ Global functions used in applications QuasarApp.
 This lib include include next modules:
 
 * Locales - This module use for parse local files. This module allows you to work with translations. 
-
 * Params - This module use for parese app params and create log.
-
 * Settings - This is a module that allows you to work with application settings. 
-
 * Global - This module contains other global functions.
 
 
@@ -49,24 +46,13 @@ target_link_libraries(MyBinary PUBLIC QuasarApp)
 ```
 
 # Usage
-Create objects of the BigInt class, and do what you got to do!
 
 ```cpp
 #include <quasarapp.h>
 
 if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
     QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
-
-    Help::Charters help = {
-        {
-            "Main Section ", {
-                {"-argument1",  "description of the argument1"},
-                {"-argument2",  "description of the argument2"},
-            }
-        }
-    };
-
-    QuasarAppUtils::Help::print(help);
+    QuasarAppUtils::Params::showHelp();
     exit(0);
 }
 ```

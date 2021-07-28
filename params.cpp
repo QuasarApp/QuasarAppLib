@@ -74,11 +74,13 @@ bool Params::isDebugBuild() {
 #endif
 }
 
-void Params::showHelp(const QString &option) {
-    if (userHelp.contains(option))
-        Help::print(userHelp.value(option));
-    else
+void Params::showHelp() {
+
+    if (inputOptions.size() > 1) {
+        showHelpForInputOptions();
+    } else {
         Help::print(userHelp);
+    }
 }
 
 void Params::showHelpForInputOptions() {

@@ -43,6 +43,18 @@ enum VerboseLvl {
  * This Class support next comandline arguments.
  *  * **-verbose** (level 1 - 3) Shows debug log
  *  * **-fileLog** (path to file) Sets path of log file. Default it is path to executable file with suffix '.log'
+ *
+ * ### Usage
+ *
+ * ```cpp
+    #include <quasarapp.h>
+
+    if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
+        QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
+        QuasarAppUtils::Params::showHelp();
+        exit(0);
+    }
+    ```
  */
 class QUASARAPPSHARED_EXPORT Params
 {
@@ -144,9 +156,8 @@ public:
 
     /**
      * @brief showHelp This method shows all help message.
-     * @param option This is option key that needed show a help message.
      */
-    static void showHelp(const QString& option = "");
+    static void showHelp();
 
     /**
      * @brief showHelpForInputOptions This method show help for each input option.
