@@ -9,7 +9,9 @@
 #include <QSettings>
 #include <QCoreApplication>
 
-using namespace QuasarAppUtils;
+namespace QuasarAppUtils {
+
+ISettings* ISettings::_settings = nullptr;
 
 ISettings::ISettings(SettingsSaveMode mode) {
     _mode = mode;
@@ -22,15 +24,6 @@ SettingsSaveMode ISettings::getMode() const {
 void ISettings::setMode(const SettingsSaveMode &mode) {
     _mode = mode;
 }
-
-//ISettings *ISettings::initSettings(SettingsSaveMode mode) {
-//    static ISettings* res = new ISettings(mode);
-//    return res;
-//}
-
-//ISettings *ISettings::instance() {
-//    return initSettings();
-//}
 
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
     return getValueImplementation(key, def);
@@ -58,4 +51,6 @@ void ISettings::setValue(const QString key, const QVariant &value) {
 
 void ISettings::setStrValue(const QString &key, const QString &value) {
     setValue(key, value);
+}
+
 }

@@ -36,11 +36,21 @@ class QUASARAPPSHARED_EXPORT ISettings : public QObject
 
 public:
 
-//    /**
-//     * @brief instance This method return instance of the settings object
-//     * @return pointer to a settings object;
-//     */
-//    static ISettings* instance();
+    /**
+     * @brief instance This method return instance of the settings object
+     * @return pointer to a settings object;
+     */
+    template <class Settingstype>
+    static ISettings* instance() {
+        static_assert (std::is_base_of<Settingstype, ISettings>::value,
+                        "the Settingstype type must be ISettings");
+
+        if(_settings == nullptr){
+            _settings = new Settingstype();
+        }
+
+        return _settings;
+    }
 
     /**
      * @brief getValue This method return the value of the settings.
@@ -132,9 +142,7 @@ protected:
 
 private:
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
-
-//    static ISettings* initSettings(SettingsSaveMode mode = SettingsSaveMode::Auto);
-
+    static ISettings* _settings;
 };
 } ;
 
