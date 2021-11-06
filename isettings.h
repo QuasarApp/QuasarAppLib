@@ -123,7 +123,7 @@ protected:
     /**
      * @brief syncImplementation This method should save all configuration data to the hard drive;
      */
-    virtual void syncImplementation();
+    virtual void syncImplementation() = 0;
 
     /**
      * @brief getValueImplementation This method will return the value of the settings.
@@ -131,14 +131,14 @@ protected:
      * @param def This is default value if a value is not finded.
      * @return value of a @a key
      */
-    virtual QVariant getValueImplementation(const QString &key, const QVariant& def);
+    virtual QVariant getValueImplementation(const QString &key, const QVariant& def) = 0;
 
     /**
      * @brief setValueImplementation This slot will set a new value for the @a key parameter.
      * @param key This is name of the changed setting.
      * @param value This is a new value of the setting
      */
-    virtual void setValueImplementation(const QString key, const QVariant& value);
+    virtual void setValueImplementation(const QString key, const QVariant& value) = 0;
 
 private:
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
