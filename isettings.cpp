@@ -33,7 +33,7 @@ void ISettings::setMode(const SettingsSaveMode &mode) {
 //}
 
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
-    getValueImplementation(key, def);
+    return getValueImplementation(key, def);
 }
 
 QString ISettings::getStrValue(const QString &key, const QString &def) {
@@ -41,11 +41,11 @@ QString ISettings::getStrValue(const QString &key, const QString &def) {
 }
 
 void ISettings::sync() {
-    syncImplementation();
+    return syncImplementation();
 }
 
 void ISettings::setValue(const QString key, const QVariant &value) {
-    setValueImplementation(key, value);
+    return setValueImplementation(key, value);
 
     emit valueChanged(key, value);
     emit valueStrChanged(key, value.toString());
