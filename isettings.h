@@ -46,7 +46,7 @@ public:
                         "the Settingstype type must be ISettings");
 
         if(!_settings){
-            _settings = new Settingstype();
+            _settings = new SettingsType();
         }
 
         return _settings;
