@@ -40,6 +40,7 @@ SOURCES += \
         params.cpp \
         locales.cpp \
         settings.cpp \
+        isettings.cpp \
         global.cpp
 
 HEADERS += \
@@ -50,6 +51,7 @@ HEADERS += \
         params.h \
         locales.h \
         settings.h \
+        isettings.h \
         global.h
 
 DISTFILES += \
