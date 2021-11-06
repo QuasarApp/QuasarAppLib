@@ -45,7 +45,7 @@ public:
         static_assert (std::is_base_of<SettingsType, ISettings>::value,
                         "the Settingstype type must be ISettings");
 
-        if(_settings == nullptr){
+        if(!_settings){
             _settings = new Settingstype();
         }
 
