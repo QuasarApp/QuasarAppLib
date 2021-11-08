@@ -40,13 +40,13 @@ public:
      * @brief instance This method return instance of the settings object
      * @return pointer to a settings object;
      */
-    template <class SettingsType>
-    static ISettings* instance() {
-        static_assert (std::is_base_of<SettingsType, ISettings>::value,
+    template <class SettingsType, class... Args>
+    static ISettings* instance(Args&&... args) {
+        static_assert (std::is_base_of<ISettings, SettingsType>::value,
                         "the Settingstype type must be ISettings");
 
         if(!_settings){
-            _settings = new SettingsType();
+            _settings = new SettingsType(std::forward<Args>(args)...);
         }
 
         return _settings;
