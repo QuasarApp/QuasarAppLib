@@ -37,11 +37,11 @@ class QUASARAPPSHARED_EXPORT ISettings : public QObject
 public:
 
     /**
-     * @brief instance This method return instance of the settings object
+     * @brief init This method return instance of the settings object
      * @return pointer to a settings object;
      */
     template <class SettingsType, class... Args>
-    static ISettings* instance(Args&&... args) {
+    static ISettings* init(Args&&... args) {
         static_assert (std::is_base_of<ISettings, SettingsType>::value,
                         "the Settingstype type must be ISettings");
 
@@ -51,6 +51,12 @@ public:
 
         return _settings;
     }
+
+    /**
+     * @brief instance
+     * @return
+     */
+    static const ISettings* instance();
 
     /**
      * @brief getValue This method return the value of the settings.
