@@ -37,8 +37,12 @@ class QUASARAPPSHARED_EXPORT ISettings : public QObject
 public:
 
     /**
-     * @brief init This method return instance of the settings object
+     * @brief init This method return instance of the settings object and initialize new settings model if object not exists.
+     * @code{cpp}
+         auto settingsObject = ISettings::init<SettingsModelClass>(arg...)
+     * @endcode
      * @return pointer to a settings object;
+     * @see ISettings::instance
      */
     template <class SettingsType, class... Args>
     static ISettings* init(Args&&... args) {
@@ -53,8 +57,9 @@ public:
     }
 
     /**
-     * @brief instance
-     * @return
+     * @brief instance This method return pointer to current settings model. if this model not initialized then return nullptr.
+     * @return pointer to current settings model if object initialized else nullptr.
+     * @see ISettings::init
      */
     static const ISettings* instance();
 
