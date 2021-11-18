@@ -25,6 +25,10 @@ void ISettings::setMode(const SettingsSaveMode &mode) {
     _mode = mode;
 }
 
+const ISettings *ISettings::instance(){
+    return _settings;
+}
+
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
     return getValueImplementation(key, def);
 }
