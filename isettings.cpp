@@ -30,7 +30,12 @@ ISettings *ISettings::instance(){
 }
 
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
-    return getValueImplementation(key, def);
+
+    if (!_cache.contains(key)) {
+        _cache[key] = getValueImplementation(key, def);
+    }
+
+    return _cache.value(key, def);
 }
 
 QString ISettings::getStrValue(const QString &key, const QString &def) {
@@ -38,11 +43,16 @@ QString ISettings::getStrValue(const QString &key, const QString &def) {
 }
 
 void ISettings::sync() {
+    for (auto it = _cache.begin(); it != _cache.end(); ++it) {
+        setValueImplementation(it.key(), it.value());
+    }
+
     return syncImplementation();
 }
 
 void ISettings::setValue(const QString key, const QVariant &value) {
-    return setValueImplementation(key, value);
+
+    _cache[key] = value;
 
     emit valueChanged(key, value);
     emit valueStrChanged(key, value.toString());

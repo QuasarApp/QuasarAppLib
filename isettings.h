@@ -153,6 +153,9 @@ protected:
 
 private:
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
+
+    QHash<QString, QVariant> _cache;
+
     static ISettings* _settings;
 };
 } ;
