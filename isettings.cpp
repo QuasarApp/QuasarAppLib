@@ -35,7 +35,13 @@ QVariant ISettings::getValue(const QString &key, const QVariant &def) {
         _cache[key] = getValueImplementation(key, def);
     }
 
-    return _cache.value(key, def);
+    auto result = _cache.value(key, def);
+
+    if (result.isNull()) {
+        return def;
+    }
+
+    return result;
 }
 
 QString ISettings::getStrValue(const QString &key, const QString &def) {
