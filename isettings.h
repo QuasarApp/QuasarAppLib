@@ -61,7 +61,7 @@ public:
      * @return pointer to current settings model if object initialized else nullptr.
      * @see ISettings::init
      */
-    static const ISettings* instance();
+    static ISettings *instance();
 
     /**
      * @brief getValue This method return the value of the settings.

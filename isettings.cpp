@@ -25,7 +25,7 @@ void ISettings::setMode(const SettingsSaveMode &mode) {
     _mode = mode;
 }
 
-const ISettings *ISettings::instance(){
+ISettings *ISettings::instance(){
     return _settings;
 }
 
