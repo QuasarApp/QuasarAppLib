@@ -10,6 +10,7 @@
 
 #include <QString>
 #include <QVariant>
+#include "quasarapp_global.h"
 
 
 namespace QuasarAppUtils {
@@ -35,7 +36,7 @@ namespace QuasarAppUtils {
  * @endcode
  * @see ISettings
  */
-class SettingsListner
+class QUASARAPPSHARED_EXPORT SettingsListner
 {
 public:
     SettingsListner();
