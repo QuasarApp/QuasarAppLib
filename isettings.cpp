@@ -58,6 +58,10 @@ void ISettings::sync() {
 
 void ISettings::setValue(const QString key, const QVariant &value) {
 
+    if (_cache.contains(key) && _cache.value(key) == value) {
+        return;
+    }
+
     _cache[key] = value;
 
     emit valueChanged(key, value);
