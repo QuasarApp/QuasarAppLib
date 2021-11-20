@@ -24,6 +24,12 @@ namespace QuasarAppUtils {
  *
  * @code{cpp}
  *  class MyClass : protected QuasarAppUtils::SettingsListner {
+ *
+ *  public:
+ *      MyClass(){
+ *          handleSettings();
+ *      }
+ *
  *  protected:
  *      void handleSettingsChanged(const QString& key, const QVariant& value) override {
  *
@@ -34,6 +40,9 @@ namespace QuasarAppUtils {
  *
  *  };
  * @endcode
+ *
+ * @warning For correctly working this handler you should be create a class that inherit of the QObject class else
+ *  the SettingsListner::handleSettingsChanged will nit invoked when settings has changed.
  * @see ISettings
  */
 class QUASARAPPSHARED_EXPORT SettingsListner
@@ -43,6 +52,13 @@ public:
     virtual ~SettingsListner();
 
 protected:
+
+    /**
+     * @brief handleSettings This method subscribe this class to listning settings changes.
+     * @return true if subscribed successful else false.
+     * @see SettingsListner::handleSettingsChanged
+     */
+    bool handleSettings();
 
     /**
      * @brief handleSettingsChanged This method will be invoked when settings of application has bean changed.
