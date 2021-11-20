@@ -15,7 +15,7 @@ SettingsListner::SettingsListner() {
     auto settings = ISettings::instance();
     if (settings) {
 
-        auto listner = [this](const QString& key, const QVariant& val){
+        auto listner = [this](QString key, QVariant val){
             this->handleSettingsChanged(key, val);
         };
 
