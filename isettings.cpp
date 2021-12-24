@@ -17,6 +17,10 @@ ISettings::ISettings(SettingsSaveMode mode) {
     _mode = mode;
 }
 
+void ISettings::clearCache() {
+    _cache.clear();
+}
+
 SettingsSaveMode ISettings::getMode() const {
     return _mode;
 }

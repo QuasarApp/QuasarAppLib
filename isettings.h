@@ -151,6 +151,10 @@ protected:
      */
     virtual void setValueImplementation(const QString key, const QVariant& value) = 0;
 
+    /**
+     * @brief clearCache This method clear all data from cache.
+     */
+    void clearCache();
 private:
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
 
