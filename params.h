@@ -215,7 +215,7 @@ public:
 
 private:
     static QString timeString();
-    static std::string lvlToString(VerboseLvl vLvl);
+    static QString lvlToString(VerboseLvl vLvl);
     static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**

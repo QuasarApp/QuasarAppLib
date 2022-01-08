@@ -37,19 +37,28 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
     writeLoginFile(log, vLvl);
 
     auto lvl = getVerboseLvl();
-
     if (vLvl <= lvl) {
 
         switch (vLvl) {
 
         case VerboseLvl::Error:
+            qCritical() << lvlToString(vLvl) + ": " + log;
         case VerboseLvl::Warning: {
-            std::cerr << lvlToString(vLvl) + ": " + log.toStdString() << std::endl;
+            qWarning() << lvlToString(vLvl) + ": " + log;
+            break;
+        }
+        case VerboseLvl::Debug: {
+            qDebug() << lvlToString(vLvl) + ": " + log;
+            break;
+        }
+
+        case VerboseLvl::Info: {
+            qInfo() << lvlToString(vLvl) + ": " + log;
             break;
         }
 
         default: {
-            std::cout << lvlToString(vLvl) + ": " + log.toStdString() << std::endl;
+            qInfo() << lvlToString(vLvl) + ": " + log;
             break;
         }
         }
@@ -149,7 +158,7 @@ QString Params::timeString() {
     return QDateTime::currentDateTime().toString();
 }
 
-std::string Params::lvlToString(VerboseLvl vLvl) {
+QString Params::lvlToString(VerboseLvl vLvl) {
     switch (vLvl) {
 
     case VerboseLvl::Error: {
@@ -188,9 +197,9 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
 
             QTextStream stream(&logFile);
 #if QT_VERSION > QT_VERSION_CHECK(5, 14, 0)
-            stream << timeString() <<"| " << QString::fromStdString(lvlToString(vLvl)) + ": " + log << Qt::endl;
+            stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << Qt::endl;
 #else
-            stream << timeString() <<"| " << QString::fromStdString(lvlToString(vLvl)) + ": " + log << endl;
+            stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << endl;
 #endif
             logFile.close();
         } else {
