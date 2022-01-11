@@ -27,44 +27,65 @@ public:
      * @brief Doctor This is base contructor of doctor calss.
      * @param base This is list of known issues.
      */
-    Doctor(const QList<QSharedPointer<iPill>>& base);
+    Doctor(const QList<QSharedPointer<iPill>> &base);
 
     /**
-     * @brief diagnostick This method run full diagnostick of this application.
+     * @brief diagnostic This method run full diagnostick of this application.
      *  If the @a fix is true then doctor try fix the foundet issues.
      *  If the @a fix value if false then the Doctor emit the sigTroubleDetected signal.
      * @param fix set this argument to tru if you want fix all foundet issues.
-     */
-    void diagnostick(bool fix = false) const;
+     * @see Doctor::fix
+     * @see Doctor::addPill
+     * @see Doctor::sigFixesFailed
+     * @see Doctor::sigFixesFinishedSuccessful
+    */
+    void diagnostic(bool fix = false) const;
 
     /**
-     * @brief fix
-     * @param pill
+     * @brief fix This method try run fixes by input pills.
+     * @note All fixes will be checked before execute fix.
+     * @param pills This is list of fixes that will be executed.
+     * @see Doctor::diagnostick
+     * @see Doctor::addPill
+     * @see Doctor::sigFixesFailed
+     * @see Doctor::sigFixesFinishedSuccessful
      */
-    void fix(const QList<QSharedPointer<iPill>>& pill) const;
+    void fix(const QList<QSharedPointer<iPill>>& pills) const;
+
+    /**
+     * @brief addPill This method add new pill object to doctor library
+     * @param pill This is pill object.
+     * @see Doctor::diagnostick
+     * @see Doctor::fix
+     * @see Doctor::sigFixesFailed
+     * @see Doctor::sigFixesFinishedSuccessful
+     */
+    void addPill(const QSharedPointer<iPill>& pill);
 signals:
     /**
      * @brief sigTroubleDetected This signal will emited when The doctor object found issues in this application.
-     * @param issues
+     * @param issues this is list of detected issues.
      * @see Doctor::diagnostick
+     * @see Doctor::fix
+     * @see Doctor::sigFixesFailed
+     * @see Doctor::sigFixesFinishedSuccessful
      */
-    void sigTroubleDetected(QList<QSharedPointer<iPill>> issues);
+    void sigTroubleDetected(QList<QSharedPointer<iPill>> issues) const;
 
     /**
      * @brief sigFixesFailed This signal emited when the doctor can't fix foundet issues.
      * @param issues This is list of the unfixable issues.
      */
-    void sigFixesFailed(QList<QSharedPointer<iPill>> issues);
+    void sigFixesFailed(QList<QSharedPointer<iPill>> issues) const;
 
     /**
      * @brief sigFixesFinishedSuccessful This signal emited when the doctor fix foundet issues successfull.
      * @param issues This is list of the fixed issues.
      */
-    void sigFixesFinishedSuccessful(QList<QSharedPointer<iPill>> issues);
-
+    void sigFixesFinishedSuccessful(QList<QSharedPointer<iPill>> issues) const;
 
 private:
-    QHash<QString, QSharedPointer<iPill>> _pillsData;
+    QList<QSharedPointer<iPill>> _pillsData;
 };
 
 

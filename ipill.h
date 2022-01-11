@@ -53,11 +53,11 @@ public:
 protected:
 
     /**
-     * @brief diagnostick This method execute action that should be check if exits issues or not.
+     * @brief diagnostic This method execute action that should be check if exits issues or not.
      * @note This method will executed only on the Doctor object.
      * @return true if the issues is detected.
      */
-    virtual bool diagnostick() const = 0;
+    virtual bool diagnostic() const = 0;
 
     /**
      * @brief fix This method should be fix detected issue.
@@ -67,6 +67,7 @@ protected:
 
 
     friend class Doctor;
+    friend class DoctorTest;
 };
 
 }
