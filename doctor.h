@@ -8,11 +8,12 @@
 #ifndef DOCTOR_H
 #define DOCTOR_H
 
+#include "ipill.h"
+
 #include <QSharedPointer>
 
 namespace QuasarAppUtils {
 
-class iPill;
 /**
  * @brief The Doctor class is class that execute pills objects.
  *  The Doctor check issue that will be executed and if the issue realy then execute fix.
