@@ -31,7 +31,7 @@ public:
     Doctor(const QList<QSharedPointer<iPill>> &base);
 
     /**
-     * @brief diagnostic This method run full diagnostick of this application.
+     * @brief diagnostic This method run full diagnostic of this application.
      *  If the @a fix is true then doctor try fix the foundet issues.
      *  If the @a fix value if false then the Doctor emit the sigTroubleDetected signal.
      * @param fix set this argument to tru if you want fix all foundet issues.
@@ -46,7 +46,7 @@ public:
      * @brief fix This method try run fixes by input pills.
      * @note All fixes will be checked before execute fix.
      * @param pills This is list of fixes that will be executed.
-     * @see Doctor::diagnostick
+     * @see Doctor::diagnostic
      * @see Doctor::addPill
      * @see Doctor::sigFixesFailed
      * @see Doctor::sigFixesFinishedSuccessful
@@ -56,7 +56,7 @@ public:
     /**
      * @brief addPill This method add new pill object to doctor library
      * @param pill This is pill object.
-     * @see Doctor::diagnostick
+     * @see Doctor::diagnostic
      * @see Doctor::fix
      * @see Doctor::sigFixesFailed
      * @see Doctor::sigFixesFinishedSuccessful
@@ -66,7 +66,7 @@ signals:
     /**
      * @brief sigTroubleDetected This signal will emited when The doctor object found issues in this application.
      * @param issues this is list of detected issues.
-     * @see Doctor::diagnostick
+     * @see Doctor::diagnostic
      * @see Doctor::fix
      * @see Doctor::sigFixesFailed
      * @see Doctor::sigFixesFinishedSuccessful
