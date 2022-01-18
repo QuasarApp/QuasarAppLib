@@ -39,7 +39,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
 
 file(GLOB SOURCE_CPP
-    "*.cpp"
+    "*.cpp" "*.h"
 )
 
 add_library(${PROJECT_NAME} ${SOURCE_CPP})
