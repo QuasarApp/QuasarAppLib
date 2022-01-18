@@ -49,4 +49,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 setVersion(1 5 1)
 
 initAll()
+make_directory("${CMAKE_CURRENT_SOURCE_DIR}/Distro")
+
 addDoc(${PROJECT_NAME}Docs ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.conf)
