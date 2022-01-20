@@ -5,8 +5,8 @@
  * of this license document, but changing it is not allowed.
 */
 
-#ifndef GLOBAL_H
-#define GLOBAL_H
+#ifndef QU_GLOBAL_UTILS_H
+#define QU_GLOBAL_UTILS_H
 
 #include <cstdlib>
 #include <type_traits>
