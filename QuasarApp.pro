@@ -40,8 +40,7 @@ SOURCES += \
         params.cpp \
         locales.cpp \
         settings.cpp \
-        isettings.cpp \
-        global.cpp
+        isettings.cpp
 
 HEADERS += \
         helpdata.h \
@@ -52,7 +51,7 @@ HEADERS += \
         locales.h \
         settings.h \
         isettings.h \
-        global.h
+        qaglobalutils.h
 
 DISTFILES += \
     QuasarLib.pri \
