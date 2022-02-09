@@ -240,8 +240,9 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
     GetModuleFileNameA(nullptr, buffer, MAX_PATH);
     appPath = QFileInfo(buffer).absolutePath();
     appName = QFileInfo(buffer).fileName();
+#endif
 
-#else
+#ifdef Q_OS_LINUX
     char path[2048];
     memset(path, 0, sizeof path);
 
@@ -253,6 +254,10 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
     appPath =  QFileInfo(path).absolutePath();
     appName =  QFileInfo(path).fileName();
 
+#endif
+#ifdef Q_OS_DARWIN
+    appPath =  QCoreApplication::applicationDirPath();
+    appName =  QCoreApplication::applicationName();
 #endif
 
     if (!appPath.size()) {
