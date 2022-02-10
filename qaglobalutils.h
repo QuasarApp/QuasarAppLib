@@ -12,6 +12,7 @@
 #include <type_traits>
 #include <string>
 #include <typeinfo>
+#include <QByteArray>
 #include "QtGlobal"
 
 
@@ -181,5 +182,12 @@ uint8_t static_type_hash_8(T& object) noexcept {
     // In the release mode This assert prin Error message only.
     #define debug_assert(condition, msg) assert(condition && msg)
 #endif
+
+/**
+ * @brief randomArray This function return random arrat with size @a size
+ * @param size This is size of needed array.
+ * @param result This is result value of generated array.
+*/
+void randomArray(int size, QByteArray &result);
 
 #endif // GLOBAL_H
