@@ -6,6 +6,7 @@
 */
 
 #include "qaglobalutils.h"
+#include <limits>
 
 template<class NUM>
 void gen(int size, QByteArray &result) {
