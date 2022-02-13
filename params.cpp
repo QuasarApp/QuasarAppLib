@@ -43,6 +43,8 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 
         case VerboseLvl::Error:
             qCritical() << lvlToString(vLvl) + ": " + log;
+            break;
+
         case VerboseLvl::Warning: {
             qWarning() << lvlToString(vLvl) + ": " + log;
             break;
