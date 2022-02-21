@@ -40,7 +40,14 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
     }
     emit sigTranslationChanged();
 
+    _currentLocate = locale;
+
     return _translations.size();
+}
+
+const QLocale &Locales::currentLocate() {
+    auto obj = instance();
+    return obj->currentLocatePrivate();
 }
 
 bool Locales::setLocale(const QLocale &locale) {
@@ -78,12 +85,17 @@ void Locales::removeOldTranslation() {
         QCoreApplication::removeTranslator(tr);
         delete tr;
     }
+    _translations.clear();
 }
 
 void Locales::addLocationPrivate(const QString &location) {
     _locations += location;
 }
 
+const QLocale &Locales::currentLocatePrivate() const {
+    return _currentLocate;
+
+}
 void Locales::addLocation(const QString &location) {
     auto obj = instance();
     obj->addLocationPrivate(location);

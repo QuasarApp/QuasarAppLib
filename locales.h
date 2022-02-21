@@ -66,6 +66,12 @@ public:
      */
     static Locales *instance();
 
+    /**
+     * @brief currentLocate This method return current locate of applicatuon.
+     * @return current or last sets locate of applciation.
+     */
+    static const QLocale &currentLocate();
+
 signals:
     /**
      * @brief sigTranslationChanged Emited when set new locale for application.
@@ -82,6 +88,9 @@ private:
     void removeOldTranslation();
     void addLocationPrivate(const QString& location);
 
+    const QLocale &currentLocatePrivate() const;
+
+    QLocale _currentLocate;
     QSet<QString> _locations;
     QList<QTranslator *> _translations;
 
