@@ -14,13 +14,33 @@
 
 namespace QuasarAppUtils {
 
+/**
+ * @brief The Settings class This is  wraper of the QSettings object.
+ *
+ * Example of initialisation :
+ *
+ *  ```
+ *     auto settingsInstance = Setting::init();
+ *  ```
+ *
+ *  @see Settings::init
+ */
 class QUASARAPPSHARED_EXPORT Settings: public ISettings
 {
 public:
     Settings();
 
+    /**
+    * @brief init This is simple wrapper of the Settings::init method for convenient access to initialisation.
+    * @return instance of the setting.
+    */
+    static ISettings* init();
+
     // ISettings interface
 protected:
+
+
+
     void syncImplementation();
     QVariant getValueImplementation(const QString &key, const QVariant &def);
     void setValueImplementation(const QString key, const QVariant &value);

@@ -27,8 +27,19 @@ enum class SettingsSaveMode: quint64 {
 };
 
 /**
- * @brief The Settings class This is wraper of the QSettings object.
+ * @brief The Settings class base interface for implementation settings backends.
+ * Available implementations:
+ *  Setting (based on QSettings backend)
  * @note This is singleton object.
+ *
+ * @note The all child classes should be initialized before used.
+ *
+ * ```
+ *     auto settingsInstance = Setting::init<Setting>();
+ * ```
+ *
+ * @see ISettings::init method.
+ *
  */
 class QUASARAPPSHARED_EXPORT ISettings : public QObject
 {
