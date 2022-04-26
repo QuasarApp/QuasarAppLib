@@ -14,6 +14,7 @@
 #include <QLocale>
 #include <QSet>
 #include <QString>
+#include <QDir>
 
 class QCoreApplication;
 class QTranslator;
@@ -89,6 +90,9 @@ private:
     void addLocationPrivate(const QString& location);
 
     const QLocale &currentLocatePrivate() const;
+
+    bool findQm(const QString &localePrefix,
+                QFileInfoList& result);
 
     QLocale _currentLocate;
     QSet<QString> _locations;

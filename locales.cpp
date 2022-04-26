@@ -12,20 +12,34 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
-#include <QDir>
 #include <QRegularExpression>
-#include <QLibraryInfo>
 #include "params.h"
 
 using namespace QuasarAppUtils;
 
-bool Locales::setLocalePrivate(const QLocale &locale) {
-    removeOldTranslation();
-    QFileInfoList qmFiles;
+bool QuasarAppUtils::Locales::findQm(const QString& localePrefix,
+                                     QFileInfoList &qmFiles) {
 
     for (const auto &location: qAsConst(_locations)) {
-        qmFiles += QDir(location).entryInfoList({"*" + locale.bcp47Name() + "*.qm"}, QDir::Files);
+        qmFiles += QDir(location).entryInfoList({"*" + localePrefix + "*.qm"}, QDir::Files);
     }
+
+    return qmFiles.size();
+}
+
+bool Locales::setLocalePrivate(const QLocale &locale) {
+    removeOldTranslation();
+
+    const auto list = locale.uiLanguages();
+    QFileInfoList qmFiles;
+
+    auto it = list.begin();
+    while (it != list.end() && !findQm(*it, qmFiles)) {
+        it++;
+    }
+
+    if (qmFiles.isEmpty())
+        return false;
 
     for (const auto & file: qAsConst(qmFiles)) {
         auto translator = new QTranslator();
