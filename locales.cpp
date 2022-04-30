@@ -14,6 +14,7 @@
 #include <QLibraryInfo>
 #include <QRegularExpression>
 #include "params.h"
+#include "qdebug.h"
 
 using namespace QuasarAppUtils;
 
@@ -44,7 +45,18 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
     for (const auto & file: qAsConst(qmFiles)) {
         auto translator = new QTranslator();
 
-        if(!(translator->load(file.absoluteFilePath()) && QCoreApplication::installTranslator(translator))) {
+        if(!translator->load(file.absoluteFilePath())) {
+            QuasarAppUtils::Params::log("Failed to load translation file : " + file.absoluteFilePath(),
+                                        QuasarAppUtils::Warning);
+            delete translator;
+            continue;
+        }
+
+        if (!QCoreApplication::installTranslator(translator)) {
+
+            QuasarAppUtils::Params::log("Failed to install translation file : " + translator->filePath(),
+                                        QuasarAppUtils::Warning);
+
             delete translator;
             continue;
         }
