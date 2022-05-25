@@ -37,6 +37,21 @@ endif()
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
+option(QA_ASSERT_ON_WARN "Enable for add assert to every warning message" OFF)
+option(QA_ASSERT_ON_ERROR "Enable for add assert to every error message" OFF)
+option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
+
+if (QA_ASSERT_ON_WARN)
+    add_definitions(-DQA_ASSERT_ON_WARN)
+endif()
+
+if (QA_ASSERT_ON_ERROR)
+    add_definitions(-DQA_ASSERT_ON_ERROR)
+endif()
+
+if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
+    add_definitions(-DQA_ALLOW_NOT_SUPPORTED_OPTIONS)
+endif()
 
 file(GLOB SOURCE_CPP
     "*.cpp" "*.h"

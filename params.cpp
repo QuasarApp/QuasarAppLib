@@ -12,6 +12,7 @@
 #include <iostream>
 #include <QDateTime>
 #include <QCoreApplication>
+#include "qaglobalutils.h"
 
 #ifdef Q_OS_WIN
 #include "windows.h"
@@ -43,10 +44,20 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 
         case VerboseLvl::Error:
             qCritical() << lvlToString(vLvl) + ": " + log;
+
+#ifdef QA_ASSERT_ON_ERROR
+            debug_assert(false, "You requested to throw assert in every error message."
+                                " See The ASSERT_ON_ERROR option in cmake config.");
+#endif
             break;
 
         case VerboseLvl::Warning: {
             qWarning() << lvlToString(vLvl) + ": " + log;
+
+#ifdef QA_ASSERT_ON_WARN
+            debug_assert(false, "You requested to throw assert in every warning message."
+                                " See The ASSERT_ON_ERROR option in cmake config.");
+#endif
             break;
         }
         case VerboseLvl::Debug: {
@@ -213,6 +224,42 @@ bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     return true;
 }
 
+bool Params::optionsForEach(const QStringList &paramsArray,
+                            const OptionsDataList& availableOptions) {
+
+    for (int i = 0 ; i < paramsArray.size(); ++i) {
+
+        QStringList virtualOptionsList = paramsArray[i].split('=');
+
+        if (virtualOptionsList.size() > 1) {
+            return optionsForEach(virtualOptionsList, availableOptions);
+        }
+
+        auto optionData = availableOptions.value(paramsArray[i], {{}});
+        if (!checkOption(optionData, paramsArray[i])) {
+            return false;
+        }
+
+        inputOptions.insert(paramsArray[i], optionData);
+
+        if (paramsArray[i][0] == '-') {
+
+            if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
+                params[paramsArray[i].mid(1)] = paramsArray[i + 1];
+                i++;
+            } else {
+                QuasarAppUtils::Params::log("Missing argument for " + paramsArray[i],
+                                            QuasarAppUtils::Error);
+                return false;
+            }
+        } else {
+            params[paramsArray[i]] = "";
+        }
+    }
+
+    return true;
+}
+
 bool Params::parseParams(const int argc, const char *argv[], const OptionsDataList& options) {
 
     QStringList params;
@@ -250,7 +297,7 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
 
     if (readlink("/proc/self/exe", path, 2048) < 0) {
         QuasarAppUtils::Params::log("parseParams can't get self path!",
-                                           QuasarAppUtils::Error);
+                                    QuasarAppUtils::Error);
         return false;
     }
     appPath =  QFileInfo(path).absolutePath();
@@ -266,27 +313,8 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
         return false;
     }
 
-    for (int i = 0 ; i < paramsArray.size(); ++i) {
-
-        auto optionData = availableOptions.value(paramsArray[i], {{}});
-        if (options.size() && !checkOption(optionData, paramsArray[i])) {
-            return false;
-        }
-
-        inputOptions.insert(paramsArray[i], optionData);
-
-        if (paramsArray[i][0] == '-') {
-            if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
-                params[paramsArray[i].mid(1)] = paramsArray[i + 1];
-                i++;
-            } else {
-                QuasarAppUtils::Params::log("Missing argument for " + paramsArray[i],
-                                                   QuasarAppUtils::Error);
-                return false;
-            }
-        } else {
-            params[paramsArray[i]] = "";
-        }
+    if (!optionsForEach(paramsArray, availableOptions)) {
+        return false;
     }
 
     printWorkingOptions();
@@ -319,13 +347,17 @@ void Params::printWorkingOptions() {
 
 bool Params::checkOption(const OptionData& optionData, const QString& rawOptionName) {
 
+#ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
     if (!optionData.isValid()) {
         QuasarAppUtils::Params::log(QString("The '%0' option not exists!"
-                                    " You use wrong option name, please check the help before run your commnad.").arg(
-                                    rawOptionName),
+                                            " You use wrong option name, please check the help before run your commnad.").arg(
+                                        rawOptionName),
                                     QuasarAppUtils::Error);
         return false;
     }
+#else
+    Q_UNUSED(rawOptionName);
+#endif
 
     if (optionData.isDepricated()) {
 

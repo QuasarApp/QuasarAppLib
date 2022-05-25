@@ -218,6 +218,10 @@ private:
     static QString lvlToString(VerboseLvl vLvl);
     static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
+
+    static bool optionsForEach(const QStringList& paramsArray,
+                               const OptionsDataList &availableOptions);
+
     /**
      * @brief Traverse @a params and output its content (all the working
      *    options) to stdout in the form of option-value groups at the
