@@ -18,6 +18,15 @@ This lib include include next modules:
  * make -j8
  * make test #(for testing)
 
+
+### Available build options:
+
+```cmake
+option(QA_ASSERT_ON_WARN "Enable for add assert to every warning message" OFF)
+option(QA_ASSERT_ON_ERROR "Enable for add assert to every error message" OFF)
+option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
+```
+
 ## Include
 
 #### The cmake build do not required Qt libraries. 
@@ -35,6 +44,7 @@ target_link_libraries(MyBinary PUBLIC QuasarApp)
 ```
 
 ### Note 
+
 By Default QuasarAppLib makes as a static library. If you want to create a shared library just add the BUILD_SHARED_LIBS into your main CMakeLists.txt file.
 Example :
 
