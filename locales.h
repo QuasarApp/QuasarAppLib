@@ -33,6 +33,8 @@ namespace QuasarAppUtils {
  * @code{cpp}
  *  QuasarAppUtils::Locales::init(QLocale::system(), "myPath");
  * @endcode
+ *
+ * @note All translations qm files should be named with lower case example : en.qm
  */
 class QUASARAPPSHARED_EXPORT Locales : public QObject
 {
