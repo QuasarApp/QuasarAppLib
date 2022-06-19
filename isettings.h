@@ -96,6 +96,12 @@ public:
     void sync();
 
     /**
+     * @brief forceReloadCache This method force reload settings data from disk.
+     * @note Cache will be refreshed
+     */
+    void forceReloadCache();
+
+    /**
      * @brief getMode This method return the current mode of the settings.
      * @return the current mode of the settings.
      */

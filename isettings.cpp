@@ -60,6 +60,12 @@ void ISettings::sync() {
     return syncImplementation();
 }
 
+void ISettings::forceReloadCache() {
+    for (auto it = _cache.begin(); it != _cache.end(); ++it) {
+        setValue(it.key(), getValueImplementation(it.key(), it.value()));
+    }
+}
+
 void ISettings::setValue(const QString key, const QVariant &value) {
 
     if (_cache.contains(key) && _cache.value(key) == value) {
