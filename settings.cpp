@@ -26,10 +26,6 @@ Settings::Settings() {
     _settings = new QSettings(QSettings::IniFormat, QSettings::Scope::UserScope, company, name);
 }
 
-ISettings *Settings::init() {
-    return ISettings::init<Settings>();
-}
-
 void Settings::syncImplementation() {
     return _settings->sync();
 }

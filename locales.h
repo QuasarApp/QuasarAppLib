@@ -10,6 +10,7 @@
 #define LOCALES_H
 
 #include "quasarapp_global.h"
+#include "service.h"
 
 #include <QLocale>
 #include <QSet>
@@ -46,7 +47,7 @@ public:
      * @param locale This is new locale.
      * @return true if the all ltranstations files loaded successful.
      */
-    static bool setLocale(const QLocale &locale);
+    bool setLocale(const QLocale &locale);
 
     /**
      * @brief init This method initialize translation of applictaion.
@@ -54,26 +55,20 @@ public:
      * @param location Path to folder with qm files. example (:/tr).
      * @return return true if locale set for application.
      */
-    static bool init(const QLocale &locale = QLocale::system(),
-                     const QSet<QString> & location = {});
+    bool init(const QLocale &locale = QLocale::system(),
+              const QSet<QString> & location = {});
 
     /**
      * @brief addLocation This method add location for qm files. Use This method if you create a own library with translations supports.
      * @param location This is a new location of the qm files.
      */
-    static void addLocation(const QString& location);
-
-    /**
-     * @brief instance This method return pointer to the Locales service.
-     * @return return pointer to the Locales static object
-     */
-    static Locales *instance();
+    void addLocation(const QString& location);
 
     /**
      * @brief currentLocate This method return current locate of applicatuon.
      * @return current or last sets locate of applciation.
      */
-    static const QLocale &currentLocate();
+    const QLocale &currentLocate();
 
 signals:
     /**
@@ -101,6 +96,43 @@ private:
     QList<QTranslator *> _translations;
 
 };
+
+
+/**
+ * @brief SettingsService This is Locales service object.
+ * @see Service
+ * @see Locales
+ */
+class QUASARAPPSHARED_EXPORT LocalesService: public Service<Locales> {
+    /**
+     * @brief setLocale This method sets locale for application and loaded all translations for this locale.
+     * @param locale This is new locale.
+     * @return true if the all ltranstations files loaded successful.
+     */
+    static bool setLocale(const QLocale &locale);
+
+    /**
+     * @brief init This method initialize translation of applictaion.
+     * @param locale See info about QLocale.
+     * @param location Path to folder with qm files. example (:/tr).
+     * @return return true if locale set for application.
+     */
+    static bool init(const QLocale &locale = QLocale::system(),
+                     const QSet<QString> & location = {});
+
+    /**
+     * @brief addLocation This method add location for qm files. Use This method if you create a own library with translations supports.
+     * @param location This is a new location of the qm files.
+     */
+    static void addLocation(const QString& location);
+
+    /**
+     * @brief currentLocate This method return current locate of applicatuon.
+     * @return current or last sets locate of applciation.
+     */
+    static const QLocale &currentLocate();
+};
+
 }
 
 
