@@ -14,6 +14,7 @@
 #include <typeinfo>
 #include <QByteArray>
 #include "QtGlobal"
+#include "params.h"
 
 
 template <typename T>
