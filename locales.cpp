@@ -12,7 +12,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
-#include <QRegularExpression>
+#include <QRegExp>
 #include "params.h"
 #include "qdebug.h"
 
