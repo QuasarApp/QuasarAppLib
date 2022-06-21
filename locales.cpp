@@ -12,7 +12,7 @@
 #include <QTranslator>
 #include <QLocale>
 #include <QLibraryInfo>
-#include <QRegExp>
+#include <QRegularExpression>
 #include "params.h"
 #include "qdebug.h"
 
@@ -26,7 +26,7 @@ bool QuasarAppUtils::Locales::findQm(const QString& localePrefix,
 
     qDebug() << "Search for " << localePrefix;
 
-    const auto prefixes = localePrefix.split(QRegExp("[_-]"));
+    const auto prefixes = localePrefix.split(QRegularExpression("[_-]"));
 
     auto prefixIt = prefixes.begin();
 
