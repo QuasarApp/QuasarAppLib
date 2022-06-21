@@ -82,6 +82,21 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
     return _translations.size();
 }
 
+const QLocale &Locales::currentLocate() {
+    auto obj = instance();
+    return obj->currentLocatePrivate();
+}
+
+bool Locales::setLocale(const QLocale &locale) {
+    auto obj = instance();
+    return obj->setLocalePrivate(locale);
+}
+
+bool Locales::init(const QLocale &locale, const QSet<QString> & location) {
+    auto obj = instance();
+    return obj->initPrivate(locale, location);
+}
+
 bool Locales::initPrivate(const QLocale &locale, const QSet<QString> & locations) {
 
 #if QT_VERSION <= QT_VERSION_CHECK(6, 0, 0)
@@ -95,6 +110,11 @@ bool Locales::initPrivate(const QLocale &locale, const QSet<QString> & locations
     }
 
     return setLocalePrivate(locale);
+}
+
+Locales *Locales::instance() {
+    static auto instance = new Locales();
+    return instance;
 }
 
 void Locales::removeOldTranslation() {
@@ -113,44 +133,11 @@ const QLocale &Locales::currentLocatePrivate() const {
     return _currentLocate;
 
 }
-
-bool Locales::setLocale(const QLocale &locale) {
-    return setLocalePrivate(locale);
-}
-
-bool Locales::init(const QLocale &locale, const QSet<QString> &location) {
-    return initPrivate(locale, location);
-}
-
 void Locales::addLocation(const QString &location) {
-    return addLocationPrivate(location);
+    auto obj = instance();
+    obj->addLocationPrivate(location);
 }
-
-const QLocale &Locales::currentLocate() {
-    return currentLocatePrivate();
-}
-
 
 Locales::~Locales() {
     removeOldTranslation();
-}
-
-void LocalesService::addLocation(const QString &location) {
-    auto obj = instance();
-    obj->addLocation(location);
-}
-
-const QLocale &LocalesService::currentLocate() {
-    auto obj = instance();
-    return obj->currentLocate();
-}
-
-bool LocalesService::setLocale(const QLocale &locale) {
-    auto obj = instance();
-    return obj->setLocale(locale);
-}
-
-bool LocalesService::init(const QLocale &locale, const QSet<QString> & location) {
-    auto obj = instance();
-    return obj->init(locale, location);
 }

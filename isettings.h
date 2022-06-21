@@ -9,7 +9,6 @@
 #define ISETTINGS_H
 
 #include "quasarapp_global.h"
-#include "service.h"
 #include <QObject>
 #include <QVariant>
 
@@ -28,15 +27,52 @@ enum class SettingsSaveMode: quint64 {
 };
 
 /**
- * @brief The ISettings class This is base implementation of the settings object. usaly it is used as a service
- * So see the ISettingsService class wrapper.
- * @see ISettingsService
+ * @brief The Settings class base interface for implementation settings backends.
+ * Available implementations:
+ *  Setting (based on QSettings backend)
+ * @note This is singleton object.
+ *
+ * @note The all child classes should be initialized before used.
+ *
+ * ```
+ *     auto settingsInstance = Setting::init<Setting>();
+ * ```
+ *
+ * @see ISettings::init method.
+ *
  */
 class QUASARAPPSHARED_EXPORT ISettings : public QObject
 {
     Q_OBJECT
 
 public:
+
+    /**
+     * @brief init This method return instance of the settings object and initialize new settings model if object not exists.
+     * @code{cpp}
+         auto settingsObject = ISettings::init<SettingsModelClass>(arg...)
+     * @endcode
+     * @return pointer to a settings object;
+     * @see ISettings::instance
+     */
+    template <class SettingsType, class... Args>
+    static ISettings* init(Args&&... args) {
+        static_assert (std::is_base_of<ISettings, SettingsType>::value,
+                        "the Settingstype type must be ISettings");
+
+        if(!_settings){
+            _settings = new SettingsType(std::forward<Args>(args)...);
+        }
+
+        return _settings;
+    }
+
+    /**
+     * @brief instance This method return pointer to current settings model. if this model not initialized then return nullptr.
+     * @return pointer to current settings model if object initialized else nullptr.
+     * @see ISettings::init
+     */
+    static ISettings *instance();
 
     /**
      * @brief getValue This method return the value of the settings.
@@ -140,27 +176,10 @@ private:
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
 
     QHash<QString, QVariant> _cache;
+
+    static ISettings* _settings;
 };
-
-/**
- * @brief The ISettingsService class base interface for implementation settings backends.
- * Available implementations:
- *  Setting (based on QSettings backend)
- * @note This is singleton object.
- *
- * @note The all child classes should be initialized before used.
- *
- * ```
- *     auto settingsInstance = Setting::init<Setting>();
- * ```
- *
- * @see Service::init method.
- *
- */
-class QUASARAPPSHARED_EXPORT ISettingsService: public QuasarAppUtils::Service<ISettings> {};
-
 } ;
-
 
 
 #endif // ISETTINGS_H

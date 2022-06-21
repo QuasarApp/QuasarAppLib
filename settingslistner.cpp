@@ -12,7 +12,7 @@ namespace QuasarAppUtils {
 
 SettingsListner::SettingsListner() {
 
-    auto settings = ISettingsService::instance();
+    auto settings = ISettings::instance();
     if (settings) {
 
         auto listner = [this](QString key, QVariant val){

@@ -11,6 +11,8 @@
 
 namespace QuasarAppUtils {
 
+ISettings* ISettings::_settings = nullptr;
+
 ISettings::ISettings(SettingsSaveMode mode) {
     _mode = mode;
 }
@@ -25,6 +27,10 @@ SettingsSaveMode ISettings::getMode() const {
 
 void ISettings::setMode(const SettingsSaveMode &mode) {
     _mode = mode;
+}
+
+ISettings *ISettings::instance(){
+    return _settings;
 }
 
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {

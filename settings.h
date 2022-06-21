@@ -25,13 +25,21 @@ namespace QuasarAppUtils {
  *
  *  @see Settings::init
  */
-class QUASARAPPSHARED_EXPORT Settings: public ISettingsService
+class QUASARAPPSHARED_EXPORT Settings: public ISettings
 {
 public:
     Settings();
 
+    /**
+    * @brief init This is simple wrapper of the Settings::init method for convenient access to initialisation.
+    * @return instance of the setting.
+    */
+    static ISettings* init();
+
     // ISettings interface
 protected:
+
+
 
     void syncImplementation();
     QVariant getValueImplementation(const QString &key, const QVariant &def);
@@ -43,6 +51,5 @@ private:
 };
 
 }
-
 
 #endif // SETTINGS_H
