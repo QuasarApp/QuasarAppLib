@@ -27,14 +27,9 @@ namespace QuasarAppUtils {
  */
 class QUASARAPPSHARED_EXPORT Settings: public ISettings
 {
+    Q_OBJECT
 public:
     Settings();
-
-    /**
-    * @brief init This is simple wrapper of the Settings::init method for convenient access to initialisation.
-    * @return instance of the setting.
-    */
-    static ISettings* init();
 
     // ISettings interface
 protected:

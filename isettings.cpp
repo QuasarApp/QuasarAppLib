@@ -17,8 +17,20 @@ ISettings::ISettings(SettingsSaveMode mode) {
     _mode = mode;
 }
 
+ISettings::~ISettings() {
+    if (_defaultConfig)
+        delete _defaultConfig;
+}
+
 void ISettings::clearCache() {
     _cache.clear();
+}
+
+QHash<QString, QVariant> &ISettings::settingsMap() {
+    if (!_defaultConfig)
+        _defaultConfig = new QHash<QString, QVariant>(defaultSettings());
+
+    return *_defaultConfig;
 }
 
 SettingsSaveMode ISettings::getMode() const {
@@ -39,17 +51,34 @@ QVariant ISettings::getValue(const QString &key, const QVariant &def) {
         _cache[key] = getValueImplementation(key, def);
     }
 
-    auto result = _cache.value(key, def);
+    QVariant defVal = def;
+    if (defVal.isNull()) {
+        defVal = settingsMap().value(key);
+    }
+
+    auto result = _cache.value(key, defVal);
 
     if (result.isNull()) {
-        return def;
+        return defVal;
     }
 
     return result;
 }
 
 QString ISettings::getStrValue(const QString &key, const QString &def) {
+    if (def.isEmpty()) {
+        return getValue(key).toString();
+
+    }
+
     return getValue(key, QVariant(def)).toString();
+}
+
+void ISettings::resetToDefault() {
+
+    for (auto it = _defaultConfig->begin(); it != _defaultConfig->end(); ++it) {
+        setValue(it.key(), settingsMap().value(it.key()));
+    }
 }
 
 void ISettings::sync() {

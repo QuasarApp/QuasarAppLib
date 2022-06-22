@@ -77,18 +77,26 @@ public:
     /**
      * @brief getValue This method return the value of the settings.
      * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not finded.
+     * @param def This is default value if a value is not finded. If this params will be skipped, then The Settngs model try find default value in the defaultSettings map.
      * @return value of a @a key
+     * @see ISettings::defaultSettings
      */
-    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& def);
+    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& def = {});
 
     /**
      * @brief getStrValue some as getValue but convert result object to QString type.
      * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not finded.
+     * @param def This is default value if a value is not finded. If this params will be skipped, then The Settngs model try find default value in the defaultSettings map.
      * @return value of a @a key
+     * @see ISettings::defaultSettings
+     * @warning If you set a def arguments to empty string then this method will return default value from the defaultSettings map.
      */
-    Q_INVOKABLE QString getStrValue(const QString &key, const QString& def);
+    Q_INVOKABLE QString getStrValue(const QString &key, const QString& def = {});
+
+    /**
+     * @brief resetToDefault This method reset all settings to default values.
+     */
+    Q_INVOKABLE void resetToDefault();
 
     /**
      * @brief sync This method save all setings data on a hard disk;
@@ -147,6 +155,30 @@ signals:
 protected:
 
     explicit ISettings(SettingsSaveMode mode = SettingsSaveMode::Auto);
+    ~ISettings() override;
+
+    /**
+     * @brief defaultSettings This method must be return default map of the settings and them values. If the default value argument in a getValue method will be skipped, then settings model try find a default value in this map.
+     * @return The default settings map.
+     * @see ISettings::getValue
+     * @example example of implementation of this method:
+     *
+     * @code{cpp}
+     *
+        QHash<QString, QVariant> SettingsModel::defaultSettings() {
+            QHash<QString, QVariant> settings;
+
+            settings["colorTheme"] = "#ff6b01";
+            settings["shareName"] = true;
+            settings["devSettingEnable"] = false;
+            settings["host"] = "";
+            settings["APIVersion"] = 2;
+
+            return settings;
+        }
+     * @endcode
+     */
+    virtual QHash<QString, QVariant> defaultSettings() = 0;
 
     /**
      * @brief syncImplementation This method should save all configuration data to the hard drive;
@@ -173,9 +205,13 @@ protected:
      */
     void clearCache();
 private:
+
+    QHash<QString, QVariant>& settingsMap();
+
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
 
     QHash<QString, QVariant> _cache;
+    QHash<QString, QVariant> *_defaultConfig = nullptr;
 
     static ISettings* _settings;
 };
