@@ -75,9 +75,10 @@ QString ISettings::getStrValue(const QString &key, const QString &def) {
 }
 
 void ISettings::resetToDefault() {
+    auto &defaultConfig = settingsMap();
 
-    for (auto it = _defaultConfig->begin(); it != _defaultConfig->end(); ++it) {
-        setValue(it.key(), settingsMap().value(it.key()));
+    for (auto it = defaultConfig.begin(); it != defaultConfig.end(); ++it) {
+        setValue(it.key(), defaultConfig.value(it.key()));
     }
 }
 
@@ -90,7 +91,9 @@ void ISettings::sync() {
 }
 
 void ISettings::forceReloadCache() {
-    for (auto it = _cache.begin(); it != _cache.end(); ++it) {
+    auto &defaultConfig = settingsMap();
+
+    for (auto it = defaultConfig.begin(); it != defaultConfig.end(); ++it) {
         setValue(it.key(), getValueImplementation(it.key(), it.value()));
     }
 }

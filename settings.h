@@ -34,12 +34,11 @@ public:
     // ISettings interface
 protected:
 
-
-
     void syncImplementation();
     QVariant getValueImplementation(const QString &key, const QVariant &def);
     void setValueImplementation(const QString key, const QVariant &value);
 
+    void setGroup(const QString&);
 
 private:
     QSettings *_settings = nullptr;
