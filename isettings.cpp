@@ -8,6 +8,7 @@
 #include "isettings.h"
 #include <QSettings>
 #include <QCoreApplication>
+#include "qaglobalutils.h""
 
 namespace QuasarAppUtils {
 
@@ -46,23 +47,19 @@ ISettings *ISettings::instance(){
 }
 
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
+    debug_assert(key.size(), "You can't use the empty key value!");
 
     if (!_cache.contains(key)) {
+
+        QVariant defVal = def;
+        if (defVal.isNull()) {
+            defVal = settingsMap().value(key);
+        }
+
         _cache[key] = getValueImplementation(key, def);
     }
 
-    QVariant defVal = def;
-    if (defVal.isNull()) {
-        defVal = settingsMap().value(key);
-    }
-
-    auto result = _cache.value(key, defVal);
-
-    if (result.isNull()) {
-        return defVal;
-    }
-
-    return result;
+    return _cache[key];
 }
 
 QString ISettings::getStrValue(const QString &key, const QString &def) {
@@ -98,7 +95,9 @@ void ISettings::forceReloadCache() {
     }
 }
 
-void ISettings::setValue(const QString key, const QVariant &value) {
+void ISettings::setValue(const QString &key, const QVariant &value) {
+
+    debug_assert(key.size(), "You can't use the empty key value!");
 
     if (_cache.contains(key) && _cache.value(key) == value) {
         return;

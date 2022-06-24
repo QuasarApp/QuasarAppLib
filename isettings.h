@@ -127,7 +127,7 @@ public slots:
      * @param key This is name of the changed setting.
      * @param value This is a new value of the setting
      */
-    void setValue(const QString key, const QVariant& value);
+    void setValue(const QString &key, const QVariant& value);
 
     /**
      * @brief setStrValue This is some as setValue but working with the QString type.
