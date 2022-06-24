@@ -32,11 +32,29 @@ void Settings::syncImplementation() {
 }
 
 QVariant Settings::getValueImplementation(const QString &key, const QVariant &def) {
+    if (isBool(key)) {
+        return _settings->value(key, def).toBool();
+    }
+
     return _settings->value(key, def);
 }
 
 void Settings::setValueImplementation(const QString key, const QVariant &value) {
     return _settings->setValue(key, value);
+}
+
+bool Settings::isBool(const QString &) const {
+    return false;
+}
+
+const QSet<QString> &Settings::boolOptions() const
+{
+    return _boolOptions;
+}
+
+void Settings::setBoolOptions(const QSet<QString> &newBoolOptions)
+{
+    _boolOptions = newBoolOptions;
 }
 
 }

@@ -8,7 +8,7 @@
 #include "isettings.h"
 #include <QSettings>
 #include <QCoreApplication>
-#include "qaglobalutils.h""
+#include "qaglobalutils.h"
 
 namespace QuasarAppUtils {
 
@@ -75,8 +75,13 @@ void ISettings::resetToDefault() {
     auto &defaultConfig = settingsMap();
 
     for (auto it = defaultConfig.begin(); it != defaultConfig.end(); ++it) {
-        setValue(it.key(), defaultConfig.value(it.key()));
+        if (!ignoreToRest(it.key()))
+            setValue(it.key(), defaultConfig.value(it.key()));
     }
+}
+
+bool ISettings::ignoreToRest(const QString &) const {
+    return false;
 }
 
 void ISettings::sync() {
@@ -109,7 +114,7 @@ void ISettings::setValue(const QString &key, const QVariant &value) {
     emit valueStrChanged(key, value.toString());
 
     if (_mode == SettingsSaveMode::Auto) {
-        sync();
+        setValueImplementation(key, value);
     }
 
 }

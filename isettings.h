@@ -99,6 +99,14 @@ public:
     Q_INVOKABLE void resetToDefault();
 
     /**
+     * @brief ignoreToRest This method should be returns true if the @a key setting is not be reset on the resetToDefault method.
+     * @param key This is keuy value.
+     * @return true if the @a key option can't be reset to default.
+     * The default implementaion alwayes return false.
+     */
+    virtual bool ignoreToRest(const QString& key) const;
+
+    /**
      * @brief sync This method save all setings data on a hard disk;
      */
     void sync();
@@ -204,9 +212,18 @@ protected:
      * @brief clearCache This method clear all data from cache.
      */
     void clearCache();
-private:
 
+
+
+    /**
+     * @brief settingsMap This method returns initialized settings map.
+     * Settings map contains pairs with settings key and default value.
+     * @return initialized settings map.
+     * @see ISettings::defaultSettings method
+     */
     QHash<QString, QVariant>& settingsMap();
+
+private:
 
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
 
