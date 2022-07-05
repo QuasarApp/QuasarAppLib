@@ -21,10 +21,8 @@ using namespace QuasarAppUtils;
 bool QuasarAppUtils::Locales::findQm(const QString& localePrefix,
                                      QFileInfoList &qmFiles) {
 
-    if (localePrefix.isEmpty())
+    if (localePrefix.size() < 2)
         return false;
-
-    qDebug() << "Search for " << localePrefix;
 
     const auto prefixes = localePrefix.split(QRegularExpression("[_-]"));
 
@@ -33,8 +31,6 @@ bool QuasarAppUtils::Locales::findQm(const QString& localePrefix,
     for (const auto &location: qAsConst(_locations)) {
         qmFiles += QDir(location).entryInfoList({"*" + (*prefixIt).toLower() + "*.qm"}, QDir::Files);
     }
-
-    qDebug() << "Found" << qmFiles;
 
     return qmFiles.size();
 }
