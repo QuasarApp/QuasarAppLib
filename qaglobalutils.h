@@ -77,27 +77,6 @@ constexpr inline T operator ^ (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) ^ static_cast<int>(rhs));
 }
 
-
-// TO DO need to testing. I am think this is does not work.
-//template <class IntegerType>
-//constexpr IntegerType static_mul(const char* str, unsigned char depth, unsigned char index = 0) noexcept {
-//    return (str[index] && (depth > index))? str[index] * static_mul<IntegerType>(str, depth, index + 1) : 1;
-//}
-
-//template <class IntegerType>
-//constexpr IntegerType static_hash(const char* str, unsigned char index = 0) noexcept {
-//    return (index && index % sizeof(IntegerType) == 0)?
-//                static_hash<IntegerType>(str, index + 1) % static_mul<IntegerType>(str, index , index - sizeof(IntegerType)):
-//                (str[index])?
-//                    static_hash<IntegerType>(str, index + 1):
-//                    static_mul<IntegerType>(str, index, index - (index % sizeof(IntegerType)));
-//}
-
-//template<class T>
-//uint64_t static_type_hash_64() noexcept {
-//    return static_hash<uint64_t>(typeid (T).name());
-//};
-
 template<class T>
 /**
  * @brief static_type_hash_32 This function return hash code of the class T.
@@ -189,6 +168,6 @@ uint8_t static_type_hash_8(T& object) noexcept {
  * @param size This is size of needed array.
  * @param result This is result value of generated array.
 */
-void randomArray(int size, QByteArray &result);
+void QUASARAPPSHARED_EXPORT randomArray(int size, QByteArray &result);
 
 #endif // GLOBAL_H
