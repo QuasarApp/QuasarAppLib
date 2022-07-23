@@ -8,6 +8,7 @@
 #ifndef ISETTINGS_H
 #define ISETTINGS_H
 
+#include "qaservice.h"
 #include "quasarapp_global.h"
 #include <QObject>
 #include <QVariant>
@@ -41,38 +42,11 @@ enum class SettingsSaveMode: quint64 {
  * @see ISettings::init method.
  *
  */
-class QUASARAPPSHARED_EXPORT ISettings : public QObject
+class QUASARAPPSHARED_EXPORT ISettings : public QObject, public Service<ISettings>
 {
     Q_OBJECT
 
 public:
-
-    /**
-     * @brief init This method return instance of the settings object and initialize new settings model if object not exists.
-     * @code{cpp}
-         auto settingsObject = ISettings::init<SettingsModelClass>(arg...)
-     * @endcode
-     * @return pointer to a settings object;
-     * @see ISettings::instance
-     */
-    template <class SettingsType, class... Args>
-    static ISettings* init(Args&&... args) {
-        static_assert (std::is_base_of<ISettings, SettingsType>::value,
-                        "the Settingstype type must be ISettings");
-
-        if(!_settings){
-            _settings = new SettingsType(std::forward<Args>(args)...);
-        }
-
-        return _settings;
-    }
-
-    /**
-     * @brief instance This method return pointer to current settings model. if this model not initialized then return nullptr.
-     * @return pointer to current settings model if object initialized else nullptr.
-     * @see ISettings::init
-     */
-    static ISettings *instance();
 
     /**
      * @brief getValue This method return the value of the settings.
@@ -230,7 +204,7 @@ private:
     QHash<QString, QVariant> _cache;
     QHash<QString, QVariant> *_defaultConfig = nullptr;
 
-    static ISettings* _settings;
+//    static ISettings* _settings;
 };
 } ;
 
