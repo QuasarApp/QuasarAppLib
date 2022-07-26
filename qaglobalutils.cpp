@@ -15,7 +15,7 @@ void gen(int size, QByteArray &result) {
         result.insert(0, reinterpret_cast<char*>(&random), sizeof(random));
     }
 }
-
+// to do the random functions should be generate 4 bit number any wher exept last number
 void randomArray(int size, QByteArray &result) {
     if (size % sizeof(unsigned long long) == 0) {
         gen<unsigned long long>(size, result);
