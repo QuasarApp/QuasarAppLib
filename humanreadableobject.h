@@ -30,9 +30,9 @@ protected:
 };
 
 /**
- * @brief HRO This is short abriviature of the HumanReadableObject class.
+ * @brief iHRO This is short abriviature of the HumanReadableObject class.
  */
-typedef HumanReadableObject HRO;
+typedef HumanReadableObject iHRO;
 
 }
 #endif // HUMANREADABLEOBJECT_H
