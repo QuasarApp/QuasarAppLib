@@ -7,11 +7,9 @@
 
 #ifndef QASERVICE_H
 #define QASERVICE_H
-#include "quasarapp_global.h"
 
+#include <utility>
 namespace QuasarAppUtils {
-
-
 
 /**
  * @brief The Service class is a template class for creating a singleton services objects.
@@ -50,6 +48,19 @@ namespace QuasarAppUtils {
  *  MyService::deinitService();
  *
  * @endcode
+ *
+ *
+ * Or you can use the autoInstance method for initialize instance object if not exists.
+ * @note This method try initialize base instance object use default construct.
+ *
+ * @code{cpp}
+ *
+ *  #include <MyService.h>
+ *
+ *  // initialise service
+ *  MyService* serviceInstance = MyService::autoInstance();
+ *
+ * @endcode
  */
 template<class Base>
 class Service
@@ -62,6 +73,9 @@ public:
      * @brief initService This method initialize the @a Base object as a service.
      * @param args This is argumets of a constructo of the @a Base class.
      * @return instance pointer. If the service alredy initialized then return pointer to current service object.
+     * @see instance
+     * @see deinitService
+     * @see autoInstance
      */
     template<class BaseClass = Base, class... Args>
     static Base* initService(Args&&... args) {
@@ -77,14 +91,34 @@ public:
      * @brief instance This method return pointerer to current service object.
      * @note If object was not initialized, then return false.
      * @return pointerer to current service object if service initialized else nullptr.
+     * @see initService
+     * @see deinitService
+     * @see autoInstance
      */
     static Base* instance() {
         return privateInstance()->_data;
     }
 
     /**
+     * @brief autoInstance This method return pointerer to current service object and if it is not inited try to initialize it use default constructor.
+     * @return pointerer to current service object if service initialized else nullptr.
+     * @see instance
+     */
+    static Base* autoInstance() {
+
+        if (!privateInstance()->_data) {
+            initService();
+        }
+
+        return privateInstance()->_data;
+    }
+
+    /**
      * @brief deinitService This is distructor method for the service.
      * @note do nothink if this object alredy distroyed.
+     * @see instance
+     * @see initService
+     * @see autoInstance
      */
     static void deinitService() {
         auto instanceObj = privateInstance();
