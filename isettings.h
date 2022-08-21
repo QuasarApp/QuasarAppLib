@@ -35,9 +35,9 @@ enum class SettingsSaveMode: quint64 {
  *
  * @note The all child classes should be initialized before used.
  *
- * ```
- *     auto settingsInstance = Setting::init<Setting>();
- * ```
+ * @code{cpp}
+ *     auto settingsInstance = Setting::initService<Setting>();
+ * @endcode
  *
  * @see ISettings::init method.
  *
@@ -187,8 +187,6 @@ protected:
      */
     void clearCache();
 
-
-
     /**
      * @brief settingsMap This method returns initialized settings map.
      * Settings map contains pairs with settings key and default value.
@@ -204,9 +202,11 @@ private:
     QHash<QString, QVariant> _cache;
     QHash<QString, QVariant> *_defaultConfig = nullptr;
 
-//    static ISettings* _settings;
+    friend class Service<ISettings>;
 };
-} ;
+
+
+};
 
 
 #endif // ISETTINGS_H

@@ -43,6 +43,14 @@ void Settings::setValueImplementation(const QString key, const QVariant &value) 
     return _settings->setValue(key, value);
 }
 
+bool Settings::ignoreToRest(const QString &) const {
+    return false;
+}
+
+QHash<QString, QVariant> Settings::defaultSettings() {
+    return {};
+}
+
 bool Settings::isBool(const QString &) const {
     return false;
 }

@@ -20,9 +20,21 @@ namespace QuasarAppUtils {
  *
  * Example of initialisation :
  *
- *  ```
- *     auto settingsInstance = Setting::init();
- *  ```
+ *  @code{cpp}
+ *     auto settingsInstance = QuasarAppUtils::Setting::initService();
+ *
+ *     // on any another site you can use the instance method for get settings instance object.
+ *     auto settingsInstance = QuasarAppUtils::Setting::instance();
+ *
+ *     // and you can destroy setting object if they are not needed anymore
+ *     QuasarAppUtils::Setting::deinitService();
+ *  @endcode
+ *
+ *  **Or** you can use the Settings::autoInstance method.
+ *
+ *  @code{cpp}
+ *     auto settingsInstance = QuasarAppUtils::Setting::autoInstance();
+ *  @endcode
  *
  *  @see Settings::init
  */
@@ -51,9 +63,11 @@ public:
 
 protected:
 
-    void syncImplementation();
-    QVariant getValueImplementation(const QString &key, const QVariant &def);
-    void setValueImplementation(const QString key, const QVariant &value);
+    void syncImplementation() override;
+    QVariant getValueImplementation(const QString &key, const QVariant &def) override;
+    void setValueImplementation(const QString key, const QVariant &value) override;
+    bool ignoreToRest(const QString &) const override;
+    QHash<QString, QVariant> defaultSettings() override;
 
     /**
      * @brief isBool This method should be return true if the key's type is bool.

@@ -66,8 +66,7 @@ template<class Base>
 class Service
 {
 public:
-    Service() {
-    };
+    Service() {};
 
     /**
      * @brief initService This method initialize the @a Base object as a service.
@@ -79,8 +78,8 @@ public:
      */
     template<class BaseClass = Base, class... Args>
     static Base* initService(Args&&... args) {
-        auto instanceObj = privateInstance();
-        if(instanceObj->_data) {
+        Service<Base>* instanceObj = privateInstance();
+        if(!instanceObj->_data) {
             instanceObj->_data = new BaseClass(std::forward<Args>(args)...);
         }
 
@@ -121,7 +120,7 @@ public:
      * @see autoInstance
      */
     static void deinitService() {
-        auto instanceObj = privateInstance();
+        Service<Base>* instanceObj = privateInstance();
         if(instanceObj->_data) {
             delete instanceObj->_data;
             instanceObj->_data = nullptr;
