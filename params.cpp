@@ -43,7 +43,11 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
         switch (vLvl) {
 
         case VerboseLvl::Error:
+#ifdef Q_OS_WIN32
+            std::cerr << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
+#else
             qCritical() << lvlToString(vLvl) + ": " + log;
+#endif
 
 #ifdef QA_ASSERT_ON_ERROR
             debug_assert(false, "You requested to throw assert in every error message."
@@ -52,7 +56,12 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
             break;
 
         case VerboseLvl::Warning: {
+#ifdef Q_OS_WIN32
+            std::cerr << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
+#else
             qWarning() << lvlToString(vLvl) + ": " + log;
+#endif
+
 
 #ifdef QA_ASSERT_ON_WARN
             debug_assert(false, "You requested to throw assert in every warning message."
@@ -61,19 +70,24 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
             break;
         }
         case VerboseLvl::Debug: {
+#ifdef Q_OS_WIN32
+            std::cout << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
+#else
             qDebug() << lvlToString(vLvl) + ": " + log;
+#endif
             break;
         }
 
-        case VerboseLvl::Info: {
-            qInfo() << lvlToString(vLvl) + ": " + log;
-            break;
-        }
-
+        case VerboseLvl::Info:
         default: {
+#ifdef Q_OS_WIN32
+            std::cout << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
+#else
             qInfo() << lvlToString(vLvl) + ": " + log;
+#endif
             break;
         }
+
         }
 
     }
