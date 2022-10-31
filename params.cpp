@@ -46,7 +46,7 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 #ifdef Q_OS_WIN32
             std::cerr << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
 #else
-            qCritical() << lvlToString(vLvl) + ": " + log;
+            qCritical().noquote() << lvlToString(vLvl) + ": " + log;
 #endif
 
 #ifdef QA_ASSERT_ON_ERROR
@@ -59,7 +59,7 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 #ifdef Q_OS_WIN32
             std::cerr << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
 #else
-            qWarning() << lvlToString(vLvl) + ": " + log;
+            qWarning().noquote() << lvlToString(vLvl) + ": " + log;
 #endif
 
 
@@ -73,7 +73,7 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 #ifdef Q_OS_WIN32
             std::cout << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
 #else
-            qDebug() << lvlToString(vLvl) + ": " + log;
+            qDebug().noquote() << lvlToString(vLvl) + ": " + log;
 #endif
             break;
         }
@@ -83,7 +83,7 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 #ifdef Q_OS_WIN32
             std::cout << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
 #else
-            qInfo() << lvlToString(vLvl) + ": " + log;
+            qInfo().noquote() << lvlToString(vLvl) + ": " + log;
 #endif
             break;
         }
