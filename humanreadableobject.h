@@ -9,6 +9,7 @@
 #define HUMANREADABLEOBJECT_H
 
 #include <QString>
+#include "quasarapp_global.h"
 
 namespace QuasarAppUtils {
 
@@ -16,7 +17,7 @@ namespace QuasarAppUtils {
  * @brief The HumanReadableObject interface This is simple class  that add one virtula method toString.
  * All childs object should be override this method.
  */
-class HumanReadableObject
+class QUASARAPPSHARED_EXPORT HumanReadableObject
 {
 public:
     /**
