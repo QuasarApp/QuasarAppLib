@@ -383,7 +383,13 @@ bool Params::checkOption(const OptionData& optionData, const QString& rawOptionN
             return false;
         }
 
-        QuasarAppUtils::Params::log(optionData.depricatedMsg(),
+        QuasarAppUtils::Params::log(QString("The %0 option(s) marked as deprecated! "
+                                            "And most likely will be removed in next release.").
+                                    arg(optionData.names().join("/")),
+                                    QuasarAppUtils::Warning);
+
+
+        QuasarAppUtils::Params::log(QString("Option message: %0").arg(optionData.depricatedMsg()),
                                     QuasarAppUtils::Warning);
     }
 
