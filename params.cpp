@@ -50,8 +50,13 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 #endif
 
 #ifdef QA_ASSERT_ON_ERROR
+#ifdef __GNUC__
+            __builtin_trap();
+#else
             debug_assert(false, "You requested to throw assert in every error message."
                                 " See The ASSERT_ON_ERROR option in cmake config.");
+#endif
+
 #endif
             break;
 
@@ -64,8 +69,13 @@ void Params::log(const QString &log, VerboseLvl vLvl) {
 
 
 #ifdef QA_ASSERT_ON_WARN
+#ifdef __GNUC__
+            __builtin_trap();
+#else
             debug_assert(false, "You requested to throw assert in every warning message."
                                 " See The ASSERT_ON_ERROR option in cmake config.");
+#endif
+
 #endif
             break;
         }
