@@ -14,32 +14,77 @@
 #include <QLibraryInfo>
 #include <QRegularExpression>
 #include "params.h"
-#include "qdebug.h"
 
 using namespace QuasarAppUtils;
 
-bool QuasarAppUtils::Locales::findQm(const QString& localePrefix,
-                                     QFileInfoList &qmFiles) {
-
-    if (localePrefix.size() < 2)
-        return false;
-
-    const auto prefixes = localePrefix.split(QRegularExpression("[_-]"));
-
-    auto prefixIt = prefixes.begin();
+bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
+                                            QList<QTranslator*> &qmFiles) {
 
     for (const auto &location: qAsConst(_locations)) {
-        qmFiles += QDir(location).entryInfoList({"*" + (*prefixIt).toLower() + "*.qm"}, QDir::Files);
+
+        const auto availableFiles = QDir(location).entryInfoList(
+            {"*" + prefix + "*.qm"}, QDir::Files);
+
+        for (const auto &file : availableFiles) {
+            auto qmFile = new QTranslator();
+
+            if(!qmFile->load(file.absoluteFilePath())) {
+                QuasarAppUtils::Params::log("Failed to load translation file : "
+                                                + file.absoluteFilePath(),
+                                            QuasarAppUtils::Warning);
+                delete qmFile;
+                continue;
+            }
+
+            if (qmFile->isEmpty()) {
+                QuasarAppUtils::Params::log("Translation file is Empty: " +
+                                                file.absoluteFilePath(),
+                                            QuasarAppUtils::Debug);
+                delete qmFile;
+                continue;
+            }
+
+            auto language = qmFile->language();
+            if (language.size() && !language.contains(prefix, Qt::CaseInsensitive)) {
+                auto message = QString("The target language (%0) and a choosed qm file (%1) "
+                                       "is different, Loading will be skiped: ").
+                               arg(language, file.absoluteFilePath());
+                QuasarAppUtils::Params::log(message,  QuasarAppUtils::Debug);
+
+                delete qmFile;
+                continue;
+            }
+
+            qmFiles += qmFile;
+        }
+    }
+    return qmFiles.size();
+}
+
+bool QuasarAppUtils::Locales::findQm(const QString &localePrefix,
+                                     QList<QTranslator *> &qmFiles) {
+
+    if (localePrefix.size() < 2) {
+        if (localePrefix.compare('c', Qt::CaseInsensitive) == 0) {
+            return findQmPrivate("en", qmFiles);
+
+        }
+
+        return false;
     }
 
-    return qmFiles.size();
+    static QRegularExpression regexp("[_-]");
+    const auto prefixes = localePrefix.split(regexp);
+
+    auto prefixIt = prefixes.begin();
+    return findQmPrivate((*prefixIt).toLower(), qmFiles);
 }
 
 bool Locales::setLocalePrivate(const QLocale &locale) {
     removeOldTranslation();
 
     const auto list = locale.uiLanguages();
-    QFileInfoList qmFiles;
+    QList<QTranslator *> qmFiles;
 
     auto it = list.begin();
     while (it != list.end() && !findQm(*it, qmFiles)) {
@@ -49,16 +94,7 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
     if (qmFiles.isEmpty())
         return false;
 
-    for (const auto & file: qAsConst(qmFiles)) {
-        auto translator = new QTranslator();
-
-        if(!translator->load(file.absoluteFilePath())) {
-            QuasarAppUtils::Params::log("Failed to load translation file : " + file.absoluteFilePath(),
-                                        QuasarAppUtils::Warning);
-            delete translator;
-            continue;
-        }
-
+    for (const auto & translator: qAsConst(qmFiles)) {
         if (!QCoreApplication::installTranslator(translator)) {
 
             QuasarAppUtils::Params::log("Failed to install translation file : " + translator->filePath(),

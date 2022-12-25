@@ -94,7 +94,9 @@ private:
     const QLocale &currentLocatePrivate() const;
 
     bool findQm(const QString &localePrefix,
-                QFileInfoList& result);
+                QList<QTranslator *> &result);
+    bool findQmPrivate(const QString &prefix,
+                       QList<QTranslator *> &qmFiles);
 
     QLocale _currentLocate;
     QSet<QString> _locations;
