@@ -10,7 +10,7 @@
 
 template<class NUM>
 void gen(int size, QByteArray &result) {
-    for (; size >= 0; size -= sizeof(NUM)) {
+    for (; size > 0; size -= sizeof(NUM)) {
         NUM random = (rand() * rand()) % std::numeric_limits<NUM>::max();
         result.insert(0, reinterpret_cast<char*>(&random), sizeof(random));
     }
