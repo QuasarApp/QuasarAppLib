@@ -73,11 +73,7 @@ bool QuasarAppUtils::Locales::findQm(const QString &localePrefix,
         return false;
     }
 
-    static QRegularExpression regexp("[_-]");
-    const auto prefixes = localePrefix.split(regexp);
-
-    auto prefixIt = prefixes.begin();
-    return findQmPrivate((*prefixIt).toLower(), qmFiles);
+    return findQmPrivate(localePrefix, qmFiles);
 }
 
 bool Locales::setLocalePrivate(const QLocale &locale) {
@@ -86,8 +82,8 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
     const auto list = locale.uiLanguages();
     QList<QTranslator *> qmFiles;
 
-    auto it = list.begin();
-    while (it != list.end() && !findQm(*it, qmFiles)) {
+    auto it = list.rbegin();
+    while (qmFiles.isEmpty() && it != list.rend() && !findQm(*it, qmFiles)) {
         it++;
     }
 
