@@ -65,6 +65,10 @@ namespace QuasarAppUtils {
 template<class Base>
 class Service
 {
+    struct Block {
+        Base* _data = nullptr;
+    };
+
 public:
     Service() {};
 
@@ -78,10 +82,11 @@ public:
      */
     template<class BaseClass = Base, class... Args>
     static Base* initService(Args&&... args) {
-        if(!_data) {
-            _data = new BaseClass(std::forward<Args>(args)...);
+        auto& val = instancePrivat();
+        if(!val._data) {
+            val._data = new BaseClass(std::forward<Args>(args)...);
         }
-        return _data;
+        return val._data;
     }
 
     /**
@@ -93,7 +98,7 @@ public:
      * @see autoInstance
      */
     static Base* instance() {
-        return _data;
+        return instancePrivat()._data;
     }
 
     /**
@@ -102,12 +107,13 @@ public:
      * @see instance
      */
     static Base* autoInstance() {
+        auto& val = instancePrivat();
 
-        if (!_data) {
+        if (!val._data) {
             initService();
         }
 
-        return _data;
+        return val._data;
     }
 
     /**
@@ -118,20 +124,22 @@ public:
      * @see autoInstance
      */
     static void deinitService() {
-        if(_data) {
-            delete _data;
-            _data = nullptr;
+        auto& val = instancePrivat();
+
+        if(val._data) {
+            delete val._data;
+            val._data = nullptr;
         }
     }
 
 private:
-    static Base* _data;
-
+    static inline Block& instancePrivat() {
+        static Block instance;
+        return instance;
+    }
 
 };
 
-template<class Base>
-Base* Service<Base>::_data = nullptr;
 
 }
 #endif // QASERVICE_H
