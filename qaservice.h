@@ -78,12 +78,10 @@ public:
      */
     template<class BaseClass = Base, class... Args>
     static Base* initService(Args&&... args) {
-        Service<Base>* instanceObj = privateInstance();
-        if(!instanceObj->_data) {
-            instanceObj->_data = new BaseClass(std::forward<Args>(args)...);
+        if(!_data) {
+            _data = new BaseClass(std::forward<Args>(args)...);
         }
-
-        return instanceObj->_data;
+        return _data;
     }
 
     /**
@@ -95,7 +93,7 @@ public:
      * @see autoInstance
      */
     static Base* instance() {
-        return privateInstance()->_data;
+        return _data;
     }
 
     /**
@@ -105,11 +103,11 @@ public:
      */
     static Base* autoInstance() {
 
-        if (!privateInstance()->_data) {
+        if (!_data) {
             initService();
         }
 
-        return privateInstance()->_data;
+        return _data;
     }
 
     /**
@@ -120,23 +118,20 @@ public:
      * @see autoInstance
      */
     static void deinitService() {
-        Service<Base>* instanceObj = privateInstance();
-        if(instanceObj->_data) {
-            delete instanceObj->_data;
-            instanceObj->_data = nullptr;
+        if(_data) {
+            delete _data;
+            _data = nullptr;
         }
     }
 
 private:
-    static Service<Base>* privateInstance() {
-        static Service<Base>* privateObject = new Service<Base>;
-        return privateObject;
-    };
+    static Base* _data;
 
-    Base* _data = nullptr;
 
 };
 
+template<class Base>
+Base* Service<Base>::_data = nullptr;
 
 }
 #endif // QASERVICE_H
