@@ -47,6 +47,7 @@ class QUASARAPPSHARED_EXPORT ISettings : public QObject, public Service<ISetting
     Q_OBJECT
 
 public:
+    ~ISettings() override;
 
     /**
      * @brief getValue This method return the value of the settings.
@@ -137,7 +138,6 @@ signals:
 protected:
 
     explicit ISettings(SettingsSaveMode mode = SettingsSaveMode::Auto);
-    ~ISettings() override;
 
     /**
      * @brief defaultSettings This method must be return default map of the settings and them values. If the default value argument in a getValue method will be skipped, then settings model try find a default value in this map.

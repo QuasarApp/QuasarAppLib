@@ -8,6 +8,7 @@
 #ifndef QASERVICE_H
 #define QASERVICE_H
 
+#include <memory>
 #include <utility>
 namespace QuasarAppUtils {
 
@@ -65,9 +66,6 @@ namespace QuasarAppUtils {
 template<class Base>
 class Service
 {
-    struct Block {
-        Base* _data = nullptr;
-    };
 
 public:
     Service() {};
@@ -80,14 +78,31 @@ public:
      * @see deinitService
      * @see autoInstance
      */
-    template<class BaseClass = Base, class... Args>
-    static Base* initService(Args&&... args) {
+    static Base* initService() {
         auto& val = instancePrivat();
-        if(!val._data) {
-            val._data = new BaseClass(std::forward<Args>(args)...);
+        if(!val) {
+            val.reset(new Base());
         }
         return val._data;
     }
+
+    /**
+     * @brief initService This is overrided static method of initialization cross libraryes object.
+     * @note If you want to create your own implementation of the settings object - you need to use this method for initioalisation instant qaservice::initService - template method.
+     *  Becouse Some OS has every shared libraryes has itself isolation address space (for example Android).
+     *  If you initialize instance of your settings model on one libarary the this instance will be available only on your library or upper.
+     *  Bot not on the QuasarApp lib so SettingsListner will not work.
+     * @param obj This is inited settings object.
+     * @return true if the @a obj service was saved as a service object else false.
+     */
+    static bool initService(std::unique_ptr<Base> obj) {
+        auto& val = instancePrivat();
+        if(!val) {
+            val = std::move(obj);
+            return true;
+        }
+        return false;
+    };
 
     /**
      * @brief instance This method return pointerer to current service object.
@@ -98,7 +113,7 @@ public:
      * @see autoInstance
      */
     static Base* instance() {
-        return instancePrivat()._data;
+        return instancePrivat().get();
     }
 
     /**
@@ -109,11 +124,11 @@ public:
     static Base* autoInstance() {
         auto& val = instancePrivat();
 
-        if (!val._data) {
+        if (!val) {
             initService();
         }
 
-        return val._data;
+        return val.get();
     }
 
     /**
@@ -126,15 +141,14 @@ public:
     static void deinitService() {
         auto& val = instancePrivat();
 
-        if(val._data) {
-            delete val._data;
-            val._data = nullptr;
+        if(val) {
+            val.release();
         }
     }
 
 private:
-    static inline Block& instancePrivat() {
-        static Block instance;
+    static inline std::unique_ptr<Base>& instancePrivat() {
+        static std::unique_ptr<Base> instance = nullptr;
         return instance;
     }
 
