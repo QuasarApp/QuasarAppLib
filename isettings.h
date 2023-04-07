@@ -104,6 +104,9 @@ public:
      */
     void setMode(const SettingsSaveMode &mode);
 
+    static ISettings* instance();
+    static bool initService(std::unique_ptr<ISettings> obj);
+
 public slots:
     /**
      * @brief setValue This slot sets new value for a @a key setting

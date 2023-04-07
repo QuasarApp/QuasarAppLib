@@ -40,6 +40,14 @@ void ISettings::setMode(const SettingsSaveMode &mode) {
     _mode = mode;
 }
 
+ISettings *ISettings::instance() {
+    return Service<ISettings>::instance();
+}
+
+bool ISettings::initService(std::unique_ptr<ISettings> obj) {
+    return Service<ISettings>::initService(std::move(obj));
+}
+
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
     debug_assert(key.size(), "You can't use the empty key value!");
 
