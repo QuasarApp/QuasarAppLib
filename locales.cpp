@@ -23,7 +23,7 @@ bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
     for (const auto &location: qAsConst(_locations)) {
 
         const auto availableFiles = QDir(location).entryInfoList(
-            {"*" + prefix + "*.qm"}, QDir::Files);
+            {prefix + ".qm"}, QDir::Files);
 
         for (const auto &file : availableFiles) {
             auto qmFile = new QTranslator();
@@ -61,7 +61,7 @@ bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
     return qmFiles.size();
 }
 
-bool QuasarAppUtils::Locales::findQm(const QString &localePrefix,
+bool QuasarAppUtils::Locales::findQm(QString localePrefix,
                                      QList<QTranslator *> &qmFiles) {
 
     if (localePrefix.size() < 2) {
@@ -71,6 +71,8 @@ bool QuasarAppUtils::Locales::findQm(const QString &localePrefix,
         }
 
         return false;
+    } else if (localePrefix.size() >= 4) {
+        return findQmPrivate(localePrefix.replace('-', '_'), qmFiles);
     }
 
     return findQmPrivate(localePrefix, qmFiles);

@@ -93,7 +93,7 @@ private:
 
     const QLocale &currentLocatePrivate() const;
 
-    bool findQm(const QString &localePrefix,
+    bool findQm(QString localePrefix,
                 QList<QTranslator *> &result);
     bool findQmPrivate(const QString &prefix,
                        QList<QTranslator *> &qmFiles);
