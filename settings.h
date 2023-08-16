@@ -61,6 +61,13 @@ public:
      */
     void setBoolOptions(const QSet<QString> &newBoolOptions);
 
+    /**
+     * @brief initService This method initialize default object of the QuasarAppUtils::Settings type.
+     * @return true if initialization finished successfull else false.
+     * @see ISettings::initService
+     */
+    static bool initService();
+
 protected:
 
     void syncImplementation() override;

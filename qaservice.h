@@ -78,12 +78,12 @@ public:
      * @see deinitService
      * @see autoInstance
      */
-    static Base* initService() {
+    static inline std::unique_ptr<Base>& initService() {
         auto& val = instancePrivat();
         if(!val) {
             val.reset(new Base());
         }
-        return val._data;
+        return val;
     }
 
     /**

@@ -104,7 +104,22 @@ public:
      */
     void setMode(const SettingsSaveMode &mode);
 
+    /**
+     * @brief instance This method returns pointer to current settings object.
+     * @return pointer to current settings object.
+     * @see Service::instance
+     */
     static ISettings* instance();
+
+    /**
+     * @brief initService This method initialize the global settings object.
+     * @param obj This is prepared settings object. You should create a your object monyaly, and add to initialization
+     * @code{cpp}
+     *  bool result = initService(std::make_unique<MySettings>());
+     * @endcode
+     * @return true if initialization finished successful else false.
+     * @see Service::initService
+     */
     static bool initService(std::unique_ptr<ISettings> obj);
 
 public slots:

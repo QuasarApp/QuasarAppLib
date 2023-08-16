@@ -65,4 +65,8 @@ void Settings::setBoolOptions(const QSet<QString> &newBoolOptions)
     _boolOptions = newBoolOptions;
 }
 
+bool Settings::initService() {
+    return ISettings::initService(std::make_unique<Settings>());
+}
+
 }
