@@ -46,7 +46,16 @@ public:
      * @param locale This is new locale.
      * @return true if the all ltranstations files loaded successful.
      */
-    static bool setLocale(const QLocale &locale);
+    static bool setLocale(const QLocale &locale, bool force = false);
+
+    /**
+     * @brief init This method initialize translations of applictaion.
+     * @param locales This is list of locales that you want to locad to application cache. See info about QLocale.
+     * @param location Path to folder with qm files. example (:/tr).
+     * @return return true if locale set for application.
+     */
+    static bool init(const QList<QLocale> & locales,
+                     const QSet<QString> & location = {});
 
     /**
      * @brief init This method initialize translation of applictaion.
@@ -75,6 +84,15 @@ public:
      */
     static const QLocale &currentLocate();
 
+    /**
+     * @brief tr This method will translate single string to choosed language.
+     * @param source This is source string of translations.
+     * @param locale This is choosed language.
+     * @return translated string value.
+     * @note use instant QOBject::tr, This method must be read by the lupdate utility
+     */
+    static QString tr(const char *source, const QLocale& locale);
+
 signals:
     /**
      * @brief sigTranslationChanged Emited when set new locale for application.
@@ -85,10 +103,18 @@ private:
     Locales() = default;
     ~Locales();
 
-    bool setLocalePrivate(const QLocale &locale = QLocale::system());
+    bool setLocalePrivate(const QLocale &locale = QLocale::system(), bool force = false, bool install = true);
     bool initPrivate(const QLocale &locale = QLocale::system(),
                      const QSet<QString> &location = {});
-    void removeOldTranslation();
+
+    bool initPrivate(const QList<QLocale> &locales,
+                     const QSet<QString> &location = {});
+
+    void clearCache(const QLocale& locale);
+    void clearCache();
+
+    void removeOldTranslation(const QLocale& locale);
+
     void addLocationPrivate(const QString& location);
 
     const QLocale &currentLocatePrivate() const;
@@ -97,10 +123,13 @@ private:
                 QList<QTranslator *> &result);
     bool findQmPrivate(const QString &prefix,
                        QList<QTranslator *> &qmFiles);
+    void installTranslations(QList<QTranslator *> &qmFiles);
+    QString translatePrivate(const char *source, const QLocale& locale);
+
 
     QLocale _currentLocate;
     QSet<QString> _locations;
-    QList<QTranslator *> _translations;
+    QHash<QLocale, QList<QTranslator *>> _translations;
 
 };
 }
