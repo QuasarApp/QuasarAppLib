@@ -13,6 +13,8 @@
 #include <QLocale>
 #include <QLibraryInfo>
 #include <QRegularExpression>
+#include <QLocale>
+#include <QMap>
 #include "params.h"
 
 using namespace QuasarAppUtils;
@@ -78,20 +80,8 @@ bool QuasarAppUtils::Locales::findQm(QString localePrefix,
     return findQmPrivate(localePrefix, qmFiles);
 }
 
-bool Locales::setLocalePrivate(const QLocale &locale) {
-    removeOldTranslation();
-
-    const auto list = locale.uiLanguages();
-    QList<QTranslator *> qmFiles;
-
-    auto it = list.rbegin();
-    while (qmFiles.isEmpty() && it != list.rend() && !findQm(*it, qmFiles)) {
-        it++;
-    }
-
-    if (qmFiles.isEmpty())
-        return false;
-
+void QuasarAppUtils::Locales::installTranslations( QList<QTranslator *> &qmFiles)
+{
     for (const auto & translator: qAsConst(qmFiles)) {
         if (!QCoreApplication::installTranslator(translator)) {
 
@@ -99,17 +89,59 @@ bool Locales::setLocalePrivate(const QLocale &locale) {
                                         QuasarAppUtils::Warning);
 
             delete translator;
+            // we use a link of qmFiles so remove all invalid translations.
+            qmFiles.removeAll(translator);
+
             continue;
         }
+    }
+}
 
-        _translations.push_back(translator);
+QString Locales::translatePrivate(const char *source, const QLocale &locale) {
+    auto translations = _translations.value(locale);
+
+    for (const auto& tr : translations) {
+        auto result = tr->translate("QuasarAppUtils::Locales", source);
+        if (result.size()) {
+            return result;
+        }
+    }
+
+    return source;
+}
+
+bool Locales::setLocalePrivate(const QLocale &locale, bool force, bool install) {
+    if (force) {
+        clearCache(locale);
+    }
+
+    removeOldTranslation(_currentLocate);
+
+    // take a link to list of translations.
+    QList<QTranslator *> &qmFiles = _translations[locale];
+
+    if (qmFiles.isEmpty()) {
+        // fill list of translations
+        const auto list = locale.uiLanguages();
+
+        auto it = list.rbegin();
+        while (qmFiles.isEmpty() && it != list.rend() && !findQm(*it, qmFiles)) {
+            it++;
+        }
+
+        if (qmFiles.isEmpty())
+            return false;
 
     }
+
+    if (install)
+        installTranslations(qmFiles);
+
     emit sigTranslationChanged();
 
     _currentLocate = locale;
 
-    return _translations.size();
+    return _translations[locale].size();
 }
 
 const QLocale &Locales::currentLocate() {
@@ -117,9 +149,19 @@ const QLocale &Locales::currentLocate() {
     return obj->currentLocatePrivate();
 }
 
-bool Locales::setLocale(const QLocale &locale) {
+QString Locales::tr(const char *source, const QLocale &locale) {
     auto obj = instance();
-    return obj->setLocalePrivate(locale);
+    return obj->translatePrivate(source, locale);
+}
+
+bool Locales::setLocale(const QLocale &locale, bool force) {
+    auto obj = instance();
+    return obj->setLocalePrivate(locale, force);
+}
+
+bool Locales::init(const QList<QLocale> &locales, const QSet<QString> &location) {
+    auto obj = instance();
+    return obj->initPrivate(locales, location);
 }
 
 bool Locales::init(const QLocale &locale, const QSet<QString> & location) {
@@ -142,17 +184,51 @@ bool Locales::initPrivate(const QLocale &locale, const QSet<QString> & locations
     return setLocalePrivate(locale);
 }
 
+bool Locales::initPrivate(const QList<QLocale> &locales, const QSet<QString> &locations) {
+#if QT_VERSION <= QT_VERSION_CHECK(6, 0, 0)
+    auto defaultTr = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#else
+    auto defaultTr = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#endif
+    _locations = locations;
+    if (!_locations.contains(defaultTr)) {
+        _locations += defaultTr;
+    }
+
+    for (const auto& locale: locales) {
+        if (!setLocalePrivate(locale, false, false)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void Locales::clearCache(const QLocale &locale) {
+    for (const auto & tr :qAsConst(_translations[locale])) {
+        QCoreApplication::removeTranslator(tr);
+        delete tr;
+    }
+
+    _translations[locale].clear();
+}
+
+void Locales::clearCache() {
+    for (auto it = _translations.keyBegin(); it != _translations.keyEnd(); it = std::next(it)) {
+        clearCache(*it);
+    }
+    _translations.clear();
+}
+
 Locales *Locales::instance() {
     static auto instance = new Locales();
     return instance;
 }
 
-void Locales::removeOldTranslation() {
-    for (const auto & tr :qAsConst(_translations)) {
+void Locales::removeOldTranslation(const QLocale &locale) {
+    for (const auto & tr :qAsConst(_translations[locale])) {
         QCoreApplication::removeTranslator(tr);
-        delete tr;
     }
-    _translations.clear();
 }
 
 void Locales::addLocationPrivate(const QString &location) {
@@ -169,5 +245,5 @@ void Locales::addLocation(const QString &location) {
 }
 
 Locales::~Locales() {
-    removeOldTranslation();
+    clearCache();
 }
