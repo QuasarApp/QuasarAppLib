@@ -140,7 +140,7 @@ Help::Section Params::getHelpOfInputOptions() {
     }
 
     Help::Options help;
-    for (const auto &optionData: qAsConst(inputOptions) ) {
+    for (const auto &optionData: std::as_const(inputOptions) ) {
         help.unite(optionData.toHelp());
     }
 
@@ -419,7 +419,7 @@ void Params::parseAvailableOptions(const OptionsDataList &availableOptionsListIn
     for (auto it = availableOptionsListIn.begin(); it != availableOptionsListIn.end(); ++it) {
 
         if (availableOptionsListOut) {
-            for (const auto &name : qAsConst(it.value().names())) {
+            for (const auto &name : std::as_const(it.value().names())) {
                 availableOptionsListOut->insert(name, it.value());
             }
         }

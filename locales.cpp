@@ -22,7 +22,7 @@ using namespace QuasarAppUtils;
 bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
                                             QList<QTranslator*> &qmFiles) {
 
-    for (const auto &location: qAsConst(_locations)) {
+    for (const auto &location: std::as_const(_locations)) {
 
         const auto availableFiles = QDir(location).entryInfoList(
             {prefix + ".qm"}, QDir::Files);
@@ -82,7 +82,7 @@ bool QuasarAppUtils::Locales::findQm(QString localePrefix,
 
 void QuasarAppUtils::Locales::installTranslations( QList<QTranslator *> &qmFiles)
 {
-    for (const auto & translator: qAsConst(qmFiles)) {
+    for (const auto & translator: std::as_const(qmFiles)) {
         if (!QCoreApplication::installTranslator(translator)) {
 
             QuasarAppUtils::Params::log("Failed to install translation file : " + translator->filePath(),
@@ -205,7 +205,7 @@ bool Locales::initPrivate(const QList<QLocale> &locales, const QSet<QString> &lo
 }
 
 void Locales::clearCache(const QLocale &locale) {
-    for (const auto & tr :qAsConst(_translations[locale])) {
+    for (const auto & tr :std::as_const(_translations[locale])) {
         QCoreApplication::removeTranslator(tr);
         delete tr;
     }
@@ -226,7 +226,7 @@ Locales *Locales::instance() {
 }
 
 void Locales::removeOldTranslation(const QLocale &locale) {
-    for (const auto & tr :qAsConst(_translations[locale])) {
+    for (const auto & tr :std::as_const(_translations[locale])) {
         QCoreApplication::removeTranslator(tr);
     }
 }
