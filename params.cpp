@@ -222,27 +222,29 @@ QString Params::lvlToString(VerboseLvl vLvl) {
 bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
     if (isEndable("fileLog")) {
 
-        QString path = getCurrentExecutable() + ".log";
-        auto file =  getArg("fileLog");
-        if (file.size()) {
-            path = file;
-        }
+        auto lvl = getVerboseLvl();
+        if (vLvl <= lvl) {
+            QString path = getCurrentExecutable() + ".log";
+            auto file =  getArg("fileLog");
+            if (file.size()) {
+                path = file;
+            }
 
-        QFile logFile(path);
+            QFile logFile(path);
 
-        if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+            if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
-            QTextStream stream(&logFile);
+                QTextStream stream(&logFile);
 #if QT_VERSION > QT_VERSION_CHECK(5, 14, 0)
-            stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << Qt::endl;
+                stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << Qt::endl;
 #else
-            stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << endl;
+                stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << endl;
 #endif
-            logFile.close();
-        } else {
-            return false;
+                logFile.close();
+            } else {
+                return false;
+            }
         }
-
     }
 
     return true;

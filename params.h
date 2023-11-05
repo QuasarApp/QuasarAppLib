@@ -31,11 +31,14 @@ enum VerboseLvl {
     Debug   = 0x3,
 
 };
-
+#ifdef QA_DISABLE_LOG
+#define DEFAULT_VERBOSE_LVL "0"
+#else
 #ifdef QT_DEBUG
 #define DEFAULT_VERBOSE_LVL "3"
 #else
 #define DEFAULT_VERBOSE_LVL "2"
+#endif
 #endif
 
 /**

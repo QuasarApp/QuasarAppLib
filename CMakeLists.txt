@@ -41,9 +41,14 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 option(QA_ASSERT_ON_WARN "Enable for add assert to every warning message" OFF)
 option(QA_ASSERT_ON_ERROR "Enable for add assert to every error message" OFF)
 option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
+option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
 
 if (QA_ASSERT_ON_WARN)
     add_definitions(-DQA_ASSERT_ON_WARN)
+endif()
+
+if (QA_DISABLE_LOG)
+    add_definitions(-DQA_DISABLE_LOG)
 endif()
 
 if (QA_ASSERT_ON_ERROR)
