@@ -24,9 +24,11 @@ class QASecretService
 public:
     QASecretService();
 
+#ifdef Q_OS_LINUX
+
     static QByteArray getByAlias(const QString& alias);
     static QByteArray getByHash(const QByteArray& hash);
-
+#endif
 };
 
 }

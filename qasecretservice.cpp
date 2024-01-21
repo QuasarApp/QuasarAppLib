@@ -1,4 +1,6 @@
 #include "qasecretservice.h"
+
+#ifdef Q_OS_LINUX
 #include <QProcess>
 
 QByteArray QuasarAppUtils::QASecretService::getByAlias(const QString &alias) {
@@ -38,3 +40,4 @@ QByteArray QuasarAppUtils::QASecretService::getByHash(const QByteArray &hash)
     // drop \n
     return result.left(result.size() - 1);
 }
+#endif
