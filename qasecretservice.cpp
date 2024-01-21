@@ -10,7 +10,10 @@ QByteArray QuasarAppUtils::QASecretService::getByAlias(const QString &alias) {
 
     proc.waitForFinished(2000);
 
-    return proc.readAllStandardOutput();
+    QByteArray result = proc.readAllStandardOutput();
+
+    // drop \n
+    return result.left(result.size() - 1);
 }
 
 QByteArray QuasarAppUtils::QASecretService::getByHash(const QByteArray &hash)
@@ -22,6 +25,8 @@ QByteArray QuasarAppUtils::QASecretService::getByHash(const QByteArray &hash)
     proc.start();
 
     proc.waitForFinished(2000);
+    QByteArray result = proc.readAllStandardOutput();
 
-    return proc.readAllStandardOutput();
+    // drop \n
+    return result.left(result.size() - 1);
 }
