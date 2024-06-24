@@ -14,12 +14,6 @@
 
 namespace QuasarAppUtils {
 
-struct QUASARAPPSHARED_EXPORT LogData {
-    char type = 0;
-    int time = 0;
-    QString text;
-};
-
 /**
  * @brief The QALogger class is logger handler for app.
  */
@@ -28,6 +22,9 @@ class QUASARAPPSHARED_EXPORT QALogger
 public:
     QALogger();
 
+    /**
+     * @brief init This method initialize logging of all qt message into file.
+     */
     void init();
 
 
