@@ -7,7 +7,6 @@
 
 
 #include "optiondata.h"
-#include "qaglobalutils.h"
 
 namespace QuasarAppUtils{
 

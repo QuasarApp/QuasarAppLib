@@ -8,14 +8,11 @@
 #ifndef QU_GLOBAL_UTILS_H
 #define QU_GLOBAL_UTILS_H
 
-#include <cstdlib>
 #include <type_traits>
-#include <string>
 #include <typeinfo>
 #include <QByteArray>
 #include "QtGlobal"
-#include "params.h"
-
+#include "quasarapp_global.h"
 
 template <typename T>
 constexpr inline T operator | (T lhs, T rhs)
@@ -150,18 +147,7 @@ uint8_t static_type_hash_8(T& object) noexcept {
 #define H_32 static_type_hash_32
 
 
-#ifndef QT_DEBUG
-    // The debug_assert it is assert that abort application only in debug mode.
-    // In the release mode This assert prin Error message only.
-    #define debug_assert(condition, msg) \
-        if (!condition) \
-            QuasarAppUtils::Params::log(msg, QuasarAppUtils::Error);
-
-#else
-    // The debug_assert it is assert that abort application only in debug mode.
-    // In the release mode This assert prin Error message only.
-    #define debug_assert(condition, msg) assert(condition && msg)
-#endif
+#define debug_assert(C, M) Q_ASSERT(C && M)
 
 /**
  * @brief randomArray This function return random arrat with size @a size
