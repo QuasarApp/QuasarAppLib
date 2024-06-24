@@ -131,6 +131,7 @@ public:
      * @note All messages will be printed according to the current verbose setting.
      * @note The verbose level sets by verbose option on console.
      */
+    [[deprecated("Use QALogger and qt debug functions(qDebug, qInfo, qError...)")]]
     static void log(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
 
     /**
@@ -149,6 +150,7 @@ public:
      * @brief isDebugBuild This method return true if the library buildet in debug mode.
      * @return true if this library buildet in debug mode.
      */
+    [[deprecated("Use Qt MACROSSSES")]]
     static bool isDebugBuild();
 
     /**
@@ -217,10 +219,6 @@ public:
     static OptionsDataList availableArguments();
 
 private:
-    static QString timeString();
-    static QString lvlToString(VerboseLvl vLvl);
-    static bool writeLoginFile(const QString& log, VerboseLvl vLvl = VerboseLvl::Debug);
-
 
     static bool optionsForEach(const QStringList& paramsArray,
                                const OptionsDataList &availableOptions);
