@@ -13,6 +13,7 @@
 #include <QDateTime>
 #include <QCoreApplication>
 #include "qaglobalutils.h"
+#include <QDir>
 
 #ifdef Q_OS_WIN
 #include "windows.h"
@@ -331,7 +332,7 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
 
 #endif
 #ifdef Q_OS_DARWIN
-    appPath =  QCoreApplication::applicationDirPath();
+    appPath =  QDir::currentPath();
     appName =  QCoreApplication::applicationName();
 #endif
 
