@@ -38,21 +38,11 @@ endif()
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
-option(QA_ASSERT_ON_WARN "Enable for add assert to every warning message" OFF)
-option(QA_ASSERT_ON_ERROR "Enable for add assert to every error message" OFF)
 option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
 option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
 
-if (QA_ASSERT_ON_WARN)
-    add_definitions(-DQA_ASSERT_ON_WARN)
-endif()
-
 if (QA_DISABLE_LOG)
     add_definitions(-DQA_DISABLE_LOG)
-endif()
-
-if (QA_ASSERT_ON_ERROR)
-    add_definitions(-DQA_ASSERT_ON_ERROR)
 endif()
 
 if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
@@ -63,12 +53,11 @@ file(GLOB SOURCE_CPP
     "*.cpp" "*.h"
 )
 
-add_library(${PROJECT_NAME} ${SOURCE_CPP}
-    qasecretservice.h qasecretservice.cpp)
+add_library(${PROJECT_NAME} ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-setVersion(1 5 3)
+setVersion(1 5 4)
 
 initAll()
 make_directory("${CMAKE_CURRENT_SOURCE_DIR}/Distro")

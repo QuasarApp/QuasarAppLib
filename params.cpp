@@ -9,17 +9,17 @@
 #include <QVariantMap>
 #include <QDebug>
 #include <QFileInfo>
-#include <iostream>
 #include <QDateTime>
 #include <QCoreApplication>
 #include "qaglobalutils.h"
 #include <QDir>
+#include <QtLogging>
+
 
 #ifdef Q_OS_WIN
 #include "windows.h"
 #else
 #include <unistd.h>
-#include <limits.h>
 #endif
 
 using namespace QuasarAppUtils;
@@ -36,66 +36,27 @@ bool Params::isEndable(const QString& key) {
 
 void Params::log(const QString &log, VerboseLvl vLvl) {
 
-    writeLoginFile(log, vLvl);
-
     auto lvl = getVerboseLvl();
     if (vLvl <= lvl) {
 
         switch (vLvl) {
 
         case VerboseLvl::Error:
-#ifdef Q_OS_WIN32
-            std::cerr << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
-#else
-            qCritical().noquote() << lvlToString(vLvl) + ": " + log;
-#endif
-
-#ifdef QA_ASSERT_ON_ERROR
-#ifdef __GNUC__
-            __builtin_trap();
-#else
-            debug_assert(false, "You requested to throw assert in every error message."
-                                " See The ASSERT_ON_ERROR option in cmake config.");
-#endif
-
-#endif
+            qCritical().noquote() << log;
             break;
 
         case VerboseLvl::Warning: {
-#ifdef Q_OS_WIN32
-            std::cerr << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
-#else
-            qWarning().noquote() << lvlToString(vLvl) + ": " + log;
-#endif
-
-
-#ifdef QA_ASSERT_ON_WARN
-#ifdef __GNUC__
-            __builtin_trap();
-#else
-            debug_assert(false, "You requested to throw assert in every warning message."
-                                " See The ASSERT_ON_ERROR option in cmake config.");
-#endif
-
-#endif
+            qWarning().noquote() << log;
             break;
         }
         case VerboseLvl::Debug: {
-#ifdef Q_OS_WIN32
-            std::cout << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
-#else
-            qDebug().noquote() << lvlToString(vLvl) + ": " + log;
-#endif
+            qDebug().noquote() << log;
             break;
         }
 
         case VerboseLvl::Info:
         default: {
-#ifdef Q_OS_WIN32
-            std::cout << QString{lvlToString(vLvl) + ": " + log}.toStdString() << std::endl;
-#else
-            qInfo().noquote() << lvlToString(vLvl) + ": " + log;
-#endif
+            qInfo().noquote() <<  log;
             break;
         }
 
@@ -192,65 +153,6 @@ int Params::size() {
     return params.size();
 }
 
-QString Params::timeString() {
-    return QDateTime::currentDateTime().toString();
-}
-
-QString Params::lvlToString(VerboseLvl vLvl) {
-    switch (vLvl) {
-
-    case VerboseLvl::Error: {
-        return "Error";
-    }
-
-    case VerboseLvl::Warning: {
-        return "Warning";
-    }
-
-    case VerboseLvl::Info: {
-        return "Info";
-    }
-
-    case VerboseLvl::Debug: {
-        return "Verbose log";
-    }
-    default: return "";
-    }
-
-    return "";
-}
-
-bool Params::writeLoginFile(const QString &log, VerboseLvl vLvl) {
-    if (isEndable("fileLog")) {
-
-        auto lvl = getVerboseLvl();
-        if (vLvl <= lvl) {
-            QString path = getCurrentExecutable() + ".log";
-            auto file =  getArg("fileLog");
-            if (file.size()) {
-                path = file;
-            }
-
-            QFile logFile(path);
-
-            if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
-
-                QTextStream stream(&logFile);
-#if QT_VERSION > QT_VERSION_CHECK(5, 14, 0)
-                stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << Qt::endl;
-#else
-                stream << timeString() <<"| " << lvlToString(vLvl) + ": " + log << endl;
-#endif
-                logFile.close();
-            } else {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
 bool Params::optionsForEach(const QStringList &paramsArray,
                             const OptionsDataList& availableOptions) {
 
@@ -275,8 +177,7 @@ bool Params::optionsForEach(const QStringList &paramsArray,
                 params[paramsArray[i].mid(1)] = paramsArray[i + 1];
                 i++;
             } else {
-                QuasarAppUtils::Params::log("Missing argument for " + paramsArray[i],
-                                            QuasarAppUtils::Error);
+                qCritical() << "Missing argument for " + paramsArray[i];
                 return false;
             }
         } else {
@@ -323,8 +224,7 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
     memset(path, 0, sizeof path);
 
     if (readlink("/proc/self/exe", path, 2048) < 0) {
-        QuasarAppUtils::Params::log("parseParams can't get self path!",
-                                    QuasarAppUtils::Error);
+        qCritical() << "parseParams can't get self path!";
         return false;
     }
     appPath =  QFileInfo(path).absolutePath();
@@ -350,8 +250,7 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
 }
 
 void Params::printWorkingOptions() {
-    QuasarAppUtils::Params::log("--- Working options table start ---",
-                                QuasarAppUtils::Debug);
+    qDebug() << "--- Working options table start ---";
 
     QMap<QString, QString>::const_iterator iter = params.constBegin();
     while (iter != params.constEnd()) {
@@ -363,23 +262,24 @@ void Params::printWorkingOptions() {
             row += QString{": %1"}.arg(value);
         }
 
-        QuasarAppUtils::Params::log(row, QuasarAppUtils::Debug);
+        qDebug() << row;
 
         ++iter;
     }
 
-    QuasarAppUtils::Params::log("--- Working options table end ---",
-                                QuasarAppUtils::Debug);
+    qDebug() << "--- Working options table end ---";
 }
 
 bool Params::checkOption(const OptionData& optionData, const QString& rawOptionName) {
 
 #ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
     if (!optionData.isValid()) {
-        QuasarAppUtils::Params::log(QString("The '%0' option not exists!"
-                                            " You use wrong option name, please check the help before run your commnad.").arg(
-                                        rawOptionName),
-                                    QuasarAppUtils::Error);
+
+        qCritical() << QString("The '%0' option not exists!"
+                               " You use wrong option name,"
+                               " please check the help before run your commnad.").
+                       arg(rawOptionName);
+
         return false;
     }
 #else
@@ -391,19 +291,17 @@ bool Params::checkOption(const OptionData& optionData, const QString& rawOptionN
 
 
         if (optionData.isRemoved()) {
-            QuasarAppUtils::Params::log(optionData.depricatedMsg(),
-                                        QuasarAppUtils::Error);
+            qCritical() << optionData.depricatedMsg();
+
             return false;
         }
 
-        QuasarAppUtils::Params::log(QString("The %0 option(s) marked as deprecated! "
-                                            "And most likely will be removed in next release.").
-                                    arg(optionData.names().join("/")),
-                                    QuasarAppUtils::Warning);
+        qWarning() << QString("The %0 option(s) marked as deprecated! "
+                               "And most likely will be removed in next release.").
+                       arg(optionData.names().join("/"));
 
+        qWarning() << QString("Option message: %0").arg(optionData.depricatedMsg());
 
-        QuasarAppUtils::Params::log(QString("Option message: %0").arg(optionData.depricatedMsg()),
-                                    QuasarAppUtils::Warning);
     }
 
     return true;
