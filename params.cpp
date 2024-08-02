@@ -13,7 +13,10 @@
 #include <QCoreApplication>
 #include "qaglobalutils.h"
 #include <QtLogging>
+
+#ifdef Q_OS_DARWIN
 #include <mach-o/dyld.h>
+#endif
 
 #ifdef Q_OS_WIN
 #include "windows.h"
