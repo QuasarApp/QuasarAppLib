@@ -25,6 +25,8 @@ namespace QuasarAppUtils {
  *
  * QuasarAppUtils::QALogger logger;
  *
+ *   QuasarAppUtils::Params::setEnable("fileLog", true); //force enable file writing using efault file location - located in localApplication data.
+ *
  * QuasarAppUtils::Params::parseParams(argc, argv);
  *
  * logger.init();

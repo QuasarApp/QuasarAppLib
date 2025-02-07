@@ -9,7 +9,9 @@
 #include "params.h"
 #include <iostream>
 
+#include <QCoreApplication>
 #include <QFile>
+#include <QStandardPaths>
 
 namespace QuasarAppUtils {
 
@@ -91,7 +93,7 @@ void QALogger::init() {
 
     if (Params::isEndable("fileLog")) {
         _toFile = true;
-        QString path = Params::getCurrentExecutable() + ".log";
+        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/" + QCoreApplication::applicationName() + ".log";
         auto file =  Params::getArg("fileLog");
         if (file.size()) {
             path = file;
