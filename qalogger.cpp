@@ -7,16 +7,33 @@
 
 #include "qalogger.h"
 #include "params.h"
+#include <iostream>
 
+#include <QCoreApplication>
 #include <QFile>
+#include <QStandardPaths>
 
 namespace QuasarAppUtils {
 
+static QFile* _logFile;
+static bool _toFile = false;
+static VerboseLvl _verboseLevel = Debug;
+
 
 #define MESSAGE_PATTERN                                                                                           \
-    "[%{time MM-dd h:mm:ss.zzz} %{threadid} "                                                                          \
-    "%{if-debug}D%{endif}%{if-info}I%{endif}%{if-warning}W%{endif}%{if-critical}C%{endif}%{if-fatal}F%{endif}] "       \
+"[%{time MM-dd h:mm:ss.zzz} %{threadid} "                                                                          \
+    "%{if-debug}Debug%{endif}%{if-info}Info%{endif}%{if-warning}Warning%{endif}%{if-critical}Error%{endif}%{if-fatal}Fatal%{endif}] "       \
     "%{message}"
+
+
+QALogger::QALogger() {
+    _logFile  = new QFile();
+}
+
+QALogger::~QALogger() {
+    _logFile->close();
+    delete _logFile;
+}
 
 
 bool checkLogType(QtMsgType type, VerboseLvl lvl) {
@@ -32,35 +49,63 @@ bool checkLogType(QtMsgType type, VerboseLvl lvl) {
 
     return true;
 }
-void messageHandler(QtMsgType type, const QMessageLogContext &, const QString &msg) {
+void messageHandler(QtMsgType type, const QMessageLogContext & context, const QString &msg) {
 
-    if (Params::isEndable("fileLog")) {
-        auto verboselvl = Params::getVerboseLvl();
-        if (checkLogType(type, verboselvl)) {
-            QString path = Params::getCurrentExecutable() + ".log";
-            auto file =  Params::getArg("fileLog");
-            if (file.size()) {
-                path = file;
-            }
 
-            QFile logFile(path);
-            if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
 
-                QTextStream stream(&logFile);
-#if QT_VERSION > QT_VERSION_CHECK(5, 14, 0)
-                stream << msg << Qt::endl;
-#else
-                stream << msg << endl;
-#endif
-                logFile.close();
-            }
+    if (checkLogType(type, _verboseLevel)) {
+        if (_toFile && _logFile) {
+            QTextStream stream(_logFile);
+            stream << qFormatLogMessage(type, context, msg) << Qt::endl;
+            _logFile->flush();
+        }
+
+        switch (type) {
+        case QtMsgType::QtFatalMsg: {
+            Q_ASSERT_X(false, __FUNCTION__ , qFormatLogMessage(type, context, msg).toLatin1().data());
+            break;
+        }
+
+        case QtMsgType::QtCriticalMsg:
+        case QtMsgType::QtWarningMsg: {
+            std::cerr << qFormatLogMessage(type, context, msg).toStdString() << std::endl;
+            break;
+        }
+        case QtMsgType::QtDebugMsg:
+        case QtMsgType::QtInfoMsg:
+        default: {
+            std::cout << qFormatLogMessage(type, context, msg).toStdString() << std::endl;
+
+            break;
+        }
+
         }
     }
 }
 
+
 void QALogger::init() {
     qSetMessagePattern(MESSAGE_PATTERN);
     qInstallMessageHandler(messageHandler);
+
+
+    _verboseLevel = Params::getVerboseLvl();
+
+    if (Params::isEndable("fileLog")) {
+        _toFile = true;
+        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/" + QCoreApplication::applicationName() + ".log";
+        auto file =  Params::getArg("fileLog");
+        if (file.size()) {
+            path = file;
+        }
+
+        _logFile->setFileName(path);
+
+        if (!_logFile->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+            qFatal() << "Can't open log file";
+        }
+
+    }
 
 }
 
