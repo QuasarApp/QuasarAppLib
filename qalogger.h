@@ -18,6 +18,17 @@ namespace QuasarAppUtils {
 /**
  * @brief The QALogger class is logger handler for app.
  * This class allow to log all message from app to file.
+ *
+ * Example:
+ * @code
+ * #include <qalogger.h>
+ *
+ * QuasarAppUtils::QALogger logger;
+ *
+ * QuasarAppUtils::Params::parseParams(argc, argv);
+ *
+ * logger.init();
+ * @endcode
  */
 class QUASARAPPSHARED_EXPORT QALogger
 {
@@ -27,6 +38,8 @@ public:
 
     /**
      * @brief init This method initialize logging of all qt message into file.
+     * @note This function should be invokae after  parsing arguments.
+     *  if you invoke this before parsing arguments, verbose level of logs will not created correct.
      */
     void init();
 
