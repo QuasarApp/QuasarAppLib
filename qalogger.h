@@ -10,23 +10,25 @@
 
 #include "quasarapp_global.h"
 
+#include <QFile>
 #include <QList>
 
 namespace QuasarAppUtils {
 
 /**
  * @brief The QALogger class is logger handler for app.
+ * This class allow to log all message from app to file.
  */
 class QUASARAPPSHARED_EXPORT QALogger
 {
 public:
     QALogger();
+    ~QALogger();
 
     /**
      * @brief init This method initialize logging of all qt message into file.
      */
     void init();
-
 
 };
 }
