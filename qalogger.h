@@ -31,6 +31,16 @@ namespace QuasarAppUtils {
  *
  * logger.init();
  * @endcode
+ *
+ *
+ * Standart file log locations per platforms :
+ * - Windows: %APPDATA%/OrganisationName/YourAppName/YourAppName.log
+ * - Linux: $HOME/.config/OrganisationName/YourAppName/YourAppName.log
+ * - Mac: $HOME/Library/Application Support/OrganisationName/YourAppName/YourAppName.log
+ * - Android: /data/data/com.organisationName.yourAppName/files/YourAppName.log
+ * - iOS: /var/mobile/Applications/Data/YourAppName/YourAppName.log
+ *
+ * you can overiwite this location by setting "fileLog" option in Params.
  */
 class QUASARAPPSHARED_EXPORT QALogger
 {
