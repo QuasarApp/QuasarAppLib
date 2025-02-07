@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include <QCoreApplication>
+#include <QDir>
 #include <QFile>
 #include <QStandardPaths>
 
@@ -93,13 +94,16 @@ void QALogger::init() {
 
     if (Params::isEndable("fileLog")) {
         _toFile = true;
-        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/" + QCoreApplication::applicationName() + ".log";
+        QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QString filePath = path + "/" + QCoreApplication::applicationName() + ".log";
         auto file =  Params::getArg("fileLog");
         if (file.size()) {
-            path = file;
+            filePath = file;
         }
 
-        _logFile->setFileName(path);
+        QDir().mkpath(path);
+
+        _logFile->setFileName(filePath);
 
         if (!_logFile->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
             qFatal() << "Can't open log file";
