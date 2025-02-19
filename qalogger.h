@@ -55,6 +55,12 @@ public:
      */
     void init();
 
+    /**
+     * @brief setVerboseLevel This method set verbose level of the logger.
+     * @param lvl This is new verbose level.
+     */
+    static QString getLogFilePath();
+
 };
 }
 #endif // QALOGGER_H
