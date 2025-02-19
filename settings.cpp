@@ -69,4 +69,13 @@ bool Settings::initService() {
     return ISettings::initService(std::make_unique<Settings>());
 }
 
+ISettings *Settings::autoInstance() {
+    if (auto result = instance()) {
+        return result;
+    }
+
+    Settings::initService();
+    return ISettings::instance();
+}
+
 }

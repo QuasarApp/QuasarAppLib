@@ -16,7 +16,8 @@
 
 namespace QuasarAppUtils {
 
-static QFile* _logFile;
+Q_GLOBAL_STATIC(QString, _logFile)
+
 static bool _toFile = false;
 static VerboseLvl _verboseLevel = Debug;
 
@@ -28,12 +29,9 @@ static VerboseLvl _verboseLevel = Debug;
 
 
 QALogger::QALogger() {
-    _logFile  = new QFile();
 }
 
 QALogger::~QALogger() {
-    _logFile->close();
-    delete _logFile;
 }
 
 
@@ -55,18 +53,17 @@ void messageHandler(QtMsgType type, const QMessageLogContext & context, const QS
 
 
     if (checkLogType(type, _verboseLevel)) {
-        if (_toFile && _logFile) {
-            QTextStream stream(_logFile);
-            stream << qFormatLogMessage(type, context, msg) << Qt::endl;
-            _logFile->flush();
+        if (_toFile && _logFile->size()) {
+            QFile logFile(*_logFile);
+            if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+                QTextStream stream(&logFile);
+                stream << qFormatLogMessage(type, context, msg) << Qt::endl;
+            }
+
         }
 
         switch (type) {
-        case QtMsgType::QtFatalMsg: {
-            Q_ASSERT_X(false, __FUNCTION__ , qFormatLogMessage(type, context, msg).toLatin1().data());
-            break;
-        }
-
+        case QtMsgType::QtFatalMsg:
         case QtMsgType::QtCriticalMsg:
         case QtMsgType::QtWarningMsg: {
             std::cerr << qFormatLogMessage(type, context, msg).toStdString() << std::endl;
@@ -95,7 +92,8 @@ void QALogger::init() {
     if (Params::isEndable("fileLog")) {
         _toFile = true;
         QString path = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QString filePath = path + "/" + QCoreApplication::applicationName() + ".log";
+        QString filePath = path + "/" + QCoreApplication::applicationName() +
+                           " " + QDate::currentDate().toString(Qt::DateFormat::ISODate) + ".log";
         auto file =  Params::getArg("fileLog");
         if (file.size()) {
             filePath = file;
@@ -103,11 +101,7 @@ void QALogger::init() {
 
         QDir().mkpath(path);
 
-        _logFile->setFileName(filePath);
-
-        if (!_logFile->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
-            qFatal() << "Can't open log file";
-        }
+        *_logFile = filePath;
 
     }
 

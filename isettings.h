@@ -161,7 +161,7 @@ protected:
      * @brief defaultSettings This method must be return default map of the settings and them values. If the default value argument in a getValue method will be skipped, then settings model try find a default value in this map.
      * @return The default settings map.
      * @see ISettings::getValue
-     * @example example of implementation of this method:
+     * **example:** example of implementation of this method:
      *
      * @code{cpp}
      *

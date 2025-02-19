@@ -68,6 +68,13 @@ public:
      */
     static bool initService();
 
+    /**
+     * @brief deinitService This method destroy default object of the QuasarAppUtils::Settings type.
+     * @see ISettings::deinitService
+     */
+    static ISettings *autoInstance();
+
+
 protected:
 
     void syncImplementation() override;
