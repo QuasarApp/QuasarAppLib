@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018-2024 QuasarApp.
+# Copyright (C) 2018-2025 QuasarApp.
 # Distributed under the lgplv3 software license, see the accompanying
 # Everyone is permitted to copy and distribute verbatim copies
 # of this license document, but changing it is not allowed.
@@ -38,21 +38,11 @@ endif()
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
-option(QA_ASSERT_ON_WARN "Enable for add assert to every warning message" OFF)
-option(QA_ASSERT_ON_ERROR "Enable for add assert to every error message" OFF)
 option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
 option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
 
-if (QA_ASSERT_ON_WARN)
-    add_definitions(-DQA_ASSERT_ON_WARN)
-endif()
-
 if (QA_DISABLE_LOG)
     add_definitions(-DQA_DISABLE_LOG)
-endif()
-
-if (QA_ASSERT_ON_ERROR)
-    add_definitions(-DQA_ASSERT_ON_ERROR)
 endif()
 
 if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
