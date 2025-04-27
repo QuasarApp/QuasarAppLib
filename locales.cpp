@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2024 QuasarApp.
+ * Copyright (C) 2018-2025 QuasarApp.
  * Distributed under the lgplv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -15,7 +15,6 @@
 #include <QRegularExpression>
 #include <QLocale>
 #include <QMap>
-#include "params.h"
 
 using namespace QuasarAppUtils;
 
@@ -31,17 +30,15 @@ bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
             auto qmFile = new QTranslator();
 
             if(!qmFile->load(file.absoluteFilePath())) {
-                QuasarAppUtils::Params::log("Failed to load translation file : "
-                                                + file.absoluteFilePath(),
-                                            QuasarAppUtils::Warning);
+                qWarning() << "Failed to load translation file : "
+                                  + file.absoluteFilePath();
                 delete qmFile;
                 continue;
             }
 
             if (qmFile->isEmpty()) {
-                QuasarAppUtils::Params::log("Translation file is Empty: " +
-                                                file.absoluteFilePath(),
-                                            QuasarAppUtils::Debug);
+                qDebug() << "Translation file is Empty: " +
+                                file.absoluteFilePath();
                 delete qmFile;
                 continue;
             }
@@ -51,7 +48,7 @@ bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
                 auto message = QString("The target language (%0) and a choosed qm file (%1) "
                                        "is different, Loading will be skiped: ").
                                arg(language, file.absoluteFilePath());
-                QuasarAppUtils::Params::log(message,  QuasarAppUtils::Debug);
+                qDebug() << message;
 
                 delete qmFile;
                 continue;
@@ -85,9 +82,7 @@ void QuasarAppUtils::Locales::installTranslations( QList<QTranslator *> &qmFiles
     for (const auto & translator: std::as_const(qmFiles)) {
         if (!QCoreApplication::installTranslator(translator)) {
 
-            QuasarAppUtils::Params::log("Failed to install translation file : " + translator->filePath(),
-                                        QuasarAppUtils::Warning);
-
+            qWarning() << "Failed to install translation file : " + translator->filePath();
             delete translator;
             // we use a link of qmFiles so remove all invalid translations.
             qmFiles.removeAll(translator);

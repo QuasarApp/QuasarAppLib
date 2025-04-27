@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024 QuasarApp.
+ * Copyright (C) 2021-2025 QuasarApp.
  * Distributed under the lgplv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -67,6 +67,15 @@ void Settings::setBoolOptions(const QSet<QString> &newBoolOptions)
 
 bool Settings::initService() {
     return ISettings::initService(std::make_unique<Settings>());
+}
+
+ISettings *Settings::autoInstance() {
+    if (auto result = instance()) {
+        return result;
+    }
+
+    Settings::initService();
+    return ISettings::instance();
 }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2024 QuasarApp.
+ * Copyright (C) 2018-2025 QuasarApp.
  * Distributed under the lgplv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -161,7 +161,7 @@ protected:
      * @brief defaultSettings This method must be return default map of the settings and them values. If the default value argument in a getValue method will be skipped, then settings model try find a default value in this map.
      * @return The default settings map.
      * @see ISettings::getValue
-     * @example example of implementation of this method:
+     * **example:** example of implementation of this method:
      *
      * @code{cpp}
      *

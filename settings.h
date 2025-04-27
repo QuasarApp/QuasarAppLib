@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2024 QuasarApp.
+ * Copyright (C) 2021-2025 QuasarApp.
  * Distributed under the lgplv3 software license, see the accompanying
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
@@ -67,6 +67,13 @@ public:
      * @see ISettings::initService
      */
     static bool initService();
+
+    /**
+     * @brief deinitService This method destroy default object of the QuasarAppUtils::Settings type.
+     * @see ISettings::deinitService
+     */
+    static ISettings *autoInstance();
+
 
 protected:
 
