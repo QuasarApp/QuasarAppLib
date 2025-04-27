@@ -57,9 +57,14 @@ add_library(${PROJECT_NAME} ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-setVersion(1 5 4)
+setVersion(1 6 0)
 
 initAll()
 make_directory("${CMAKE_CURRENT_SOURCE_DIR}/Distro")
 
 addDoc(${PROJECT_NAME}Docs ${CMAKE_CURRENT_SOURCE_DIR}/doxygen.conf)
+
+
+install(TARGETS ${PROJECT_NAME}
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
