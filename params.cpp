@@ -11,7 +11,12 @@
 #include <QFileInfo>
 #include <QDateTime>
 #include <QCoreApplication>
+#include "qaglobalutils.h"
 #include <QtLogging>
+
+#ifdef Q_OS_DARWIN
+#include <mach-o/dyld.h>
+#endif
 
 #ifdef Q_OS_WIN
 #include "windows.h"
@@ -229,7 +234,15 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
 
 #endif
 #ifdef Q_OS_DARWIN
-    appPath =  QCoreApplication::applicationDirPath();
+    uint32_t size = 0;
+    _NSGetExecutablePath(nullptr, &size);  // request to buffer size
+    std::vector<char> buffer(size);
+    if (_NSGetExecutablePath(buffer.data(), &size) == 0) {
+        appPath =  QString::fromUtf8(buffer.data());
+    } else {
+        appPath =  QString();
+    }
+
     appName =  QCoreApplication::applicationName();
 #endif
 

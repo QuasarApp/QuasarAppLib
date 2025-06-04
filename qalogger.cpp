@@ -107,4 +107,8 @@ void QALogger::init() {
 
 }
 
+QString QALogger::getLogFilePath() {
+    return *_logFile;
+}
+
 }
