@@ -9,12 +9,14 @@
 #ifndef VALIDABLEOBJECT_H
 #define VALIDABLEOBJECT_H
 
+#include "quasarapp_global.h"
+
 namespace QuasarAppUtils{
 
 /**
  * @brief The ValidableObject class is Base interface for all object that can be checked to valid.
  */
-class ValidableObject
+class QUASARAPPSHARED_EXPORT ValidableObject
 {
 public:
     ValidableObject();
