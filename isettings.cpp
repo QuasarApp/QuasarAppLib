@@ -58,7 +58,7 @@ QVariant ISettings::getValue(const QString &key, const QVariant &def) {
             defVal = settingsMap().value(key);
         }
 
-        _cache[key] = getValueImplementation(key, def);
+        _cache[key] = getValueImplementation(key, defVal);
     }
 
     return _cache[key];
