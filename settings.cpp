@@ -13,7 +13,7 @@
 
 namespace QuasarAppUtils {
 
-Settings::Settings() {
+Settings::Settings(QSettings::Format format) {
     auto name = QCoreApplication::applicationName();
     auto company = QCoreApplication::organizationName();
     if (name.isEmpty()) {
@@ -24,7 +24,7 @@ Settings::Settings() {
         company = "QuasarApp";
     }
 
-    _settings = new QSettings(QSettings::NativeFormat, QSettings::Scope::UserScope, company, name);
+    _settings = new QSettings(format, QSettings::Scope::UserScope, company, name);
 }
 
 void Settings::syncImplementation() {
