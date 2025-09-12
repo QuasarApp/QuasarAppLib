@@ -12,6 +12,7 @@
 #include "quasarapp_global.h"
 #include "isettings.h"
 #include <QSet>
+#include <QSettings>
 
 namespace QuasarAppUtils {
 
@@ -42,7 +43,7 @@ class QUASARAPPSHARED_EXPORT Settings: public ISettings
 {
     Q_OBJECT
 public:
-    Settings();
+    Settings(QSettings::Format format = QSettings::IniFormat);
 
     // ISettings interface
     /**

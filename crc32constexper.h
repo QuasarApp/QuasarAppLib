@@ -78,6 +78,9 @@ constexpr uint16_t calculateCrc16(const char* data, size_t size, uint32_t initia
 constexpr uint16_t calculateCrc8(const char* data, size_t size, uint32_t initialCrc = 0xFFFFFFFF) {
     return calculateCrc32(data, size, initialCrc) % 0xFF;
 }
+
+#define LITIRAL_CRC32(str) \
+    (QuasarAppUtils::calculateCrc32(str, sizeof(str) - 1))
 }
 
 #endif // CRC32CONSTEXPER_H

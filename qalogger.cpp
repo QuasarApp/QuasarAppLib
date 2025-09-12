@@ -53,7 +53,7 @@ void messageHandler(QtMsgType type, const QMessageLogContext & context, const QS
 
 
     if (checkLogType(type, _verboseLevel)) {
-        if (_toFile && _logFile->size()) {
+        if (_toFile && !_logFile.isDestroyed() && _logFile->size()) {
             QFile logFile(*_logFile);
             if (logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
                 QTextStream stream(&logFile);
