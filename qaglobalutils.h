@@ -219,5 +219,23 @@ QHashType &unite(QHashType &left, const QHashType& right) {
     return left;
 }
 
+template <class QHashType>
+QHashType &match(QHashType &left, const QHashType& right) {
+    if (!left.isSharedWith(right)) {
+        for (auto&& it =  left.begin(); it != left.end(); ) {
+            if (!right.contains(it.key())) {
+                it = left.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        return left;
+    }
+
+    left.clear();
+    return left;
+}
+
 
 #endif // GLOBAL_H
