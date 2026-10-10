@@ -20,6 +20,9 @@ namespace QuasarAppUtils {
 class QUASARAPPSHARED_EXPORT PlatformUtils
 {
 public:
+    /**
+     * @brief PlatformUtils This is the default constructor of the PlatformUtils object.
+     */
     PlatformUtils();
 
     /**
