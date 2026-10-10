@@ -27,6 +27,9 @@ public:
     virtual QString toString() const = 0;
 
 protected:
+    /**
+     * @brief HumanReadableObject This is the protected default constructor of the HumanReadableObject class.
+     */
     HumanReadableObject();
 };
 
