@@ -48,6 +48,13 @@ if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
     add_definitions(-DQA_ALLOW_NOT_SUPPORTED_OPTIONS)
 endif()
 
+# When the library is built as a static archive the symbols must not be
+# decorated with Q_DECL_IMPORT/Q_DECL_EXPORT (dllimport/dllexport on Windows),
+# otherwise the Windows link fails with undefined __imp_ references.
+if (NOT BUILD_SHARED_LIBS)
+    add_definitions(-DQUASARAPP_STATIC_LIB)
+endif()
+
 file(GLOB SOURCE_CPP
     "*.cpp" "*.h"
 )
