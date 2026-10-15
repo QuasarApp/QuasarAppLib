@@ -68,11 +68,15 @@ class Service
 {
 
 public:
+    /**
+     * @brief Service This is the default constructor of the Service template class.
+     * It does nothing and is used only to allow the inheritance from the Service class.
+     */
     Service() {};
 
     /**
-     * @brief initService This method initialize the @a Base object as a service.
-     * @param args This is argumets of a constructo of the @a Base class.
+     * @brief initService This method initialize the @a Base object as a service using the default constructor.
+     * If the service is already initialized then the current service object will be returned.
      * @return instance pointer. If the service alredy initialized then return pointer to current service object.
      * @see instance
      * @see deinitService
@@ -147,6 +151,11 @@ public:
     }
 
 private:
+    /**
+     * @brief instancePrivat This is a private method that returns the reference to the static service instance of the @a Base class.
+     * The instance is created on the first call and destroyed automatically when the application will be closed.
+     * @return reference to the static service instance of the @a Base class.
+     */
     static inline std::unique_ptr<Base>& instancePrivat() {
         static std::unique_ptr<Base> instance = nullptr;
         return instance;

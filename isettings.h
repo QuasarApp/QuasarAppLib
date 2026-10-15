@@ -47,6 +47,10 @@ class QUASARAPPSHARED_EXPORT ISettings : public QObject, public Service<ISetting
     Q_OBJECT
 
 public:
+    /**
+     * @brief ~ISettings This is the destructor of the ISettings class.
+     * It removes the object from the global service list and disconnects the internal signals.
+     */
     ~ISettings() override;
 
     /**

@@ -19,6 +19,9 @@ namespace QuasarAppUtils{
 class QUASARAPPSHARED_EXPORT ValidableObject
 {
 public:
+    /**
+     * @brief ValidableObject This is the default constructor of the ValidableObject class.
+     */
     ValidableObject();
 
     /**
