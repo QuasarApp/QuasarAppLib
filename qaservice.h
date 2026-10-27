@@ -72,8 +72,8 @@ public:
 
     /**
      * @brief initService This method initialize the @a Base object as a service.
-     * @param args This is argumets of a constructo of the @a Base class.
-     * @return instance pointer. If the service alredy initialized then return pointer to current service object.
+     * @param args This is arguments of a constructo of the @a Base class.
+     * @return instance pointer. If the service already initialized then return pointer to current service object.
      * @see instance
      * @see deinitService
      * @see autoInstance
@@ -87,11 +87,11 @@ public:
     }
 
     /**
-     * @brief initService This is overrided static method of initialization cross libraryes object.
+     * @brief initService This is overridden static method of initialization cross libraries object.
      * @note If you want to create your own implementation of the settings object - you need to use this method for initioalisation instant qaservice::initService - template method.
-     *  Becouse Some OS has every shared libraryes has itself isolation address space (for example Android).
-     *  If you initialize instance of your settings model on one libarary the this instance will be available only on your library or upper.
-     *  Bot not on the QuasarApp lib so SettingsListner will not work.
+     *  Because Some OS has every shared libraries has itself isolation address space (for example Android).
+     *  If you initialize instance of your settings model on one library the this instance will be available only on your library or upper.
+     *  Bot not on the QuasarApp lib so SettingsListener will not work.
      * @param obj This is inited settings object.
      * @return true if the @a obj service was saved as a service object else false.
      */
@@ -132,8 +132,8 @@ public:
     }
 
     /**
-     * @brief deinitService This is distructor method for the service.
-     * @note do nothink if this object alredy distroyed.
+     * @brief deinitService This is destructor method for the service.
+     * @note do nothing if this object already destroyed.
      * @see instance
      * @see initService
      * @see autoInstance

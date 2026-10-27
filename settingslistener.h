@@ -16,14 +16,14 @@
 namespace QuasarAppUtils {
 
 /**
- * @brief The SettingsListner class is listner of the ISettings global object.
- * The SettingsListner class is abstrct class and contains only one method for hendling settings changes.
+ * @brief The SettingsListener class is listener of the ISettings global object.
+ * The SettingsListener class is abstract class and contains only one method for hendling settings changes.
  *
  *
  * ### Example of use :
  *
  * @code{cpp}
- *  class MyClass : protected QuasarAppUtils::SettingsListner {
+ *  class MyClass : protected QuasarAppUtils::SettingsListener {
  *  protected:
  *      void handleSettingsChanged(const QString& key, const QVariant& value) override {
  *
@@ -36,11 +36,11 @@ namespace QuasarAppUtils {
  * @endcode
  * @see ISettings
  */
-class QUASARAPPSHARED_EXPORT SettingsListner
+class QUASARAPPSHARED_EXPORT SettingsListener
 {
 public:
-    SettingsListner();
-    virtual ~SettingsListner();
+    SettingsListener();
+    virtual ~SettingsListener();
 
 protected:
 
@@ -52,7 +52,7 @@ protected:
     virtual void handleSettingsChanged(const QString& key,
                                        const QVariant& value) = 0;
 private:
-    QMetaObject::Connection _listnerConnection;
+    QMetaObject::Connection _listenerConnection;
 };
 
 }

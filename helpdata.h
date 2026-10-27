@@ -14,7 +14,7 @@
 namespace QuasarAppUtils{
 
 /**
- * @brief Help namespace contains functions for printing help in to console. All Print fucntions automaticly calc width of the console and aligns the text to fit the window.
+ * @brief Help namespace contains functions for printing help in to console. All Print functions automatically calc width of the console and aligns the text to fit the window.
  */
 namespace Help {
 /**
@@ -24,8 +24,8 @@ namespace Help {
  * **Example**:
  *
  * @code{cpp}
- * Options myOptionsList = {{"argument1", "This is test argumetn1 of my application."},
- *                          {"argument2", "This is test argumetn2 of my application."}};
+ * Options myOptionsList = {{"argument1", "This is test argument1 of my application."},
+ *                          {"argument2", "This is test argument2 of my application."}};
  *
  * @endcode
  */
@@ -36,8 +36,8 @@ typedef QMultiMap<QString, QString> Options;
  *
  * **Example:**
  * @code{cpp}
- * Options myOptionsList = {{"argument1", "This is test argumetn1 of my application."},
- *                          {"argument2", "This is test argumetn2 of my application."}};
+ * Options myOptionsList = {{"argument1", "This is test argument1 of my application."},
+ *                          {"argument2", "This is test argument2 of my application."}};
  * Section mySections = {{"This Is main section of the help", myOptionsList}};
  * QuasarAppUtils::Help::print(mySections);
  * @endcode
@@ -45,22 +45,22 @@ typedef QMultiMap<QString, QString> Options;
 typedef QMultiMap<QString, Options> Section;
 
 /**
- * @brief Charters is wraper of the Section type.
- * @warning This type is depricated. Use the Help:Section type.
+ * @brief Charters is wrapper of the Section type.
+ * @warning This type is deprecated. Use the Help:Section type.
  */
 typedef Section Charters;
 
 /**
- * @brief width This method return current width of the cosole window.
- * @return width in pxels of the cosole window.
+ * @brief width This method return current width of the console window.
+ * @return width in pxels of the console window.
  */
 int width();
 
 /**
  * @brief print This method print a one options list.
- * @param oprionsList This is options list.
+ * @param optionsList This is options list.
  */
-void QUASARAPPSHARED_EXPORT print(const Options& oprionsList);
+void QUASARAPPSHARED_EXPORT print(const Options& optionsList);
 
 /**
  * @brief print This method print all sections of the help.

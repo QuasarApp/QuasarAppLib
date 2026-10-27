@@ -78,7 +78,7 @@ template<class T>
 /**
  * @brief static_type_hash_32 This function return hash code of the class T.
  *  For get more information see the std [documentation](https://en.cppreference.com/w/cpp/types/type_info/hash_code).
- * @note This method will create a T object on stack, so if you have a alredy created object use the static_type_hash_32(const  T&) function.
+ * @note This method will create a T object on stack, so if you have a already created object use the static_type_hash_32(const  T&) function.
  * @return uint32_t hash code of the class T
  */
 uint32_t static_type_hash_32() noexcept {
@@ -89,7 +89,7 @@ template<class T>
 /**
  * @brief static_type_hash_16 This function return hash code of the class T.
  *  For get more information see the std [documentation](https://en.cppreference.com/w/cpp/types/type_info/hash_code).
- * @note This method will create a T object on stack, so if you have a alredy created object use the static_type_hash_16(const  T&) function.
+ * @note This method will create a T object on stack, so if you have a already created object use the static_type_hash_16(const  T&) function.
  * @return uint16_t hash code of the class T
  */
 uint16_t static_type_hash_16() noexcept {
@@ -100,7 +100,7 @@ template<class T>
 /**
  * @brief static_type_hash_8 This function return hash code of the class T.
  *  For get more information see the std [documentation](https://en.cppreference.com/w/cpp/types/type_info/hash_code).
- * @note This method will create a T object on stack, so if you have a alredy created object use the static_type_hash_8(const  T&) function.
+ * @note This method will create a T object on stack, so if you have a already created object use the static_type_hash_8(const  T&) function.
  * @return uint8_t hash code of the class T
  */
 uint8_t static_type_hash_8() noexcept {
@@ -137,13 +137,13 @@ uint8_t static_type_hash_8(T& object) noexcept {
     return typeid (object).hash_code() % 0xFF;
 };
 
-/// @brief H_8 This is short wraper of the  static_type_hash_8 fucntion.
+/// @brief H_8 This is short wrapper of the  static_type_hash_8 function.
 #define H_8 static_type_hash_8
 
-/// @brief H_16 This is short wraper of the  static_type_hash_16 fucntion.
+/// @brief H_16 This is short wrapper of the  static_type_hash_16 function.
 #define H_16 static_type_hash_16
 
-/// @brief H_32 This is short wraper of the  static_type_hash_32 fucntion.
+/// @brief H_32 This is short wrapper of the  static_type_hash_32 function.
 #define H_32 static_type_hash_32
 
 

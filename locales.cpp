@@ -45,8 +45,8 @@ bool QuasarAppUtils::Locales::findQmPrivate(const QString &prefix,
 
             auto language = qmFile->language();
             if (language.size() && !language.contains(prefix, Qt::CaseInsensitive)) {
-                auto message = QString("The target language (%0) and a choosed qm file (%1) "
-                                       "is different, Loading will be skiped: ").
+                auto message = QString("The target language (%0) and a chosen qm file (%1) "
+                                       "is different, Loading will be skipped: ").
                                arg(language, file.absoluteFilePath());
                 qDebug() << message;
 

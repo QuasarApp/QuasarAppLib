@@ -14,7 +14,7 @@ This lib include include next modules:
  * git clone https://github.com/QuasarApp/QuasarAppLib.git
  * git submodule update --init --recursive
  * cd QuasarAppLib
- * cmake -DCMAKE_PREFIX_PATH=Yuor/Qt/Dir/Path .  
+ * cmake -DCMAKE_PREFIX_PATH=Your/Qt/Dir/Path .  
  * make -j8
  * make test #(for testing)
 
@@ -36,7 +36,7 @@ option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
  * git submodule update --init --recursive
  * Include in your CMakeLists.txt file the main CMakeLists.txt file of QuasarAppLib library
   >> add_subdirectory(QuasarAppLib)
- * Rebuild yuor project
+ * Rebuild your project
 
 ```cmake
 add_subdirectory(QuasarAppLib)

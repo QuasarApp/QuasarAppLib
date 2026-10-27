@@ -14,14 +14,14 @@ OptionData::OptionData(const QStringList& name,
                        const QString& arguments,
                        const QString& description,
                        const QString& example,
-                       const QString& depricatedMsg,
+                       const QString& deprecatedMsg,
                        bool removed) {
 
     setNames(name);
     setArguments(arguments);
     setDescription(description);
     setExample(example);
-    setDepricatedMsg(depricatedMsg);
+    setDeprecatedMsg(deprecatedMsg);
     _removed = removed;
 }
 
@@ -57,20 +57,20 @@ void OptionData::setArguments(const QString &newArguments) {
     _arguments = newArguments;
 }
 
-const QString &OptionData::depricatedMsg() const {
-    return _depricatedMsg;
+const QString &OptionData::deprecatedMsg() const {
+    return _deprecatedMsg;
 }
 
-void OptionData::setDepricatedMsg(const QString &newDepricatedMsg) {
-    _depricatedMsg = newDepricatedMsg;
+void OptionData::setDeprecatedMsg(const QString &newDeprecatedMsg) {
+    _deprecatedMsg = newDeprecatedMsg;
 }
 
 bool OptionData::isRemoved() const {
     return _removed;
 }
 
-bool OptionData::isDepricated() const {
-    return depricatedMsg().size();
+bool OptionData::isDeprecated() const {
+    return deprecatedMsg().size();
 }
 
 Help::Options OptionData::toHelp() const {

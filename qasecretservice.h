@@ -14,9 +14,9 @@
 namespace QuasarAppUtils {
 
 /**
- * @brief The qasecretservice class This is a simeple provider of QASecretService tool
+ * @brief The qasecretservice class This is a simple provider of QASecretService tool
  * See https://github.com/QuasarApp/SecretService
- * @note Before use this class please install QASecretService to your runtime mashine.
+ * @note Before use this class please install QASecretService to your runtime machine.
  *
  */
 class QASecretService

@@ -33,7 +33,7 @@ namespace QuasarAppUtils {
  * @endcode
  *
  *
- * Standart file log locations per platforms :
+ * Standard file log locations per platforms :
  * - Windows: %APPDATA%/OrganisationName/YourAppName/YourAppName.log
  * - Linux: $HOME/.config/OrganisationName/YourAppName/YourAppName.log
  * - Mac: $HOME/Library/Application Support/OrganisationName/YourAppName/YourAppName.log

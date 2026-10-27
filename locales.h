@@ -28,7 +28,7 @@ namespace QuasarAppUtils {
  * QuasarAppUtils::Locales::init();
  * @endcode
  *
- * @note If you want to add you own location of the qm files then add this into seccond arguments of the Locales::init method.
+ * @note If you want to add you own location of the qm files then add this into second arguments of the Locales::init method.
  *
  * @code{cpp}
  *  QuasarAppUtils::Locales::init(QLocale::system(), "myPath");
@@ -49,7 +49,7 @@ public:
     static bool setLocale(const QLocale &locale, bool force = false);
 
     /**
-     * @brief init This method initialize translations of applictaion.
+     * @brief init This method initialize translations of application.
      * @param locales This is list of locales that you want to locad to application cache. See info about QLocale.
      * @param location Path to folder with qm files. example (:/tr).
      * @return return true if locale set for application.
@@ -58,7 +58,7 @@ public:
                      const QSet<QString> & location = {});
 
     /**
-     * @brief init This method initialize translation of applictaion.
+     * @brief init This method initialize translation of application.
      * @param locale See info about QLocale.
      * @param location Path to folder with qm files. example (:/tr).
      * @return return true if locale set for application.
@@ -80,14 +80,14 @@ public:
 
     /**
      * @brief currentLocate This method return current locate of applicatuon.
-     * @return current or last sets locate of applciation.
+     * @return current or last sets locate of application.
      */
     static const QLocale &currentLocate();
 
     /**
-     * @brief tr This method will translate single string to choosed language.
+     * @brief tr This method will translate single string to chosen language.
      * @param source This is source string of translations.
-     * @param locale This is choosed language.
+     * @param locale This is chosen language.
      * @return translated string value.
      * @note use instant QOBject::tr, This method must be read by the lupdate utility
      */
@@ -95,7 +95,7 @@ public:
 
 signals:
     /**
-     * @brief sigTranslationChanged Emited when set new locale for application.
+     * @brief sigTranslationChanged Emitted when set new locale for application.
      */
     void sigTranslationChanged();
 

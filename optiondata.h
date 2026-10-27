@@ -24,17 +24,17 @@ public:
     /**
      * @brief OptionData This is main constructor
      * @param names This is names list of the option. It is a required argument and cannot be empty.
-     * @param arguments This is input arguments of this option or help meesage about arguments.
+     * @param arguments This is input arguments of this option or help message about arguments.
      * @param description This is description message of this option.
      * @param example This is example of use string.
-     * @param depricatedMsg This is a message that will be printed as a warning if user will use this option. If you set this argument to empty value then warning message will be ignored and option not be marked asa a depricated. An option will be marked as a depricated when this arguments will not equal empty string.
-     * @param removed This option show depricatedMsg as a error and force the parseParams method return false. This option will be ignored if the depricatedMsg will be empty.
+     * @param deprecatedMsg This is a message that will be printed as a warning if user will use this option. If you set this argument to empty value then warning message will be ignored and option not be marked asa a deprecated. An option will be marked as a deprecated when this arguments will not equal empty string.
+     * @param removed This option show deprecatedMsg as a error and force the parseParams method return false. This option will be ignored if the deprecatedMsg will be empty.
      */
     OptionData(const QStringList& names,
                const QString& arguments = "",
                const QString& description = "",
                const QString& example = "",
-               const QString& depricatedMsg = "",
+               const QString& deprecatedMsg = "",
                bool removed = false);
 
     /**
@@ -56,17 +56,17 @@ public:
     const QString &example() const;
 
     /**
-     * @brief arguments This is input arguments of this option or help meesage about arguments.
+     * @brief arguments This is input arguments of this option or help message about arguments.
      * @return return arguments of this option.
      */
     const QString &arguments() const;
 
     /**
-     * @brief depricatedWarning This is a message that will be printed as a warning if user will use this option. If you set this argument to empty value then warning message will be ignored and option not be marked asa a depricated. An option will be marked as a depricated when this arguments will not equal empty string.
-     * @note if this value is empty the option are not depricated.
-     * @return warning meessage of the depricated options.
+     * @brief deprecatedWarning This is a message that will be printed as a warning if user will use this option. If you set this argument to empty value then warning message will be ignored and option not be marked asa a deprecated. An option will be marked as a deprecated when this arguments will not equal empty string.
+     * @note if this value is empty the option are not deprecated.
+     * @return warning message of the deprecated options.
      */
-    const QString &depricatedMsg() const;
+    const QString &deprecatedMsg() const;
 
     /**
      * @brief toHelp This method convert this option into help line.
@@ -91,10 +91,10 @@ public:
     bool isRemoved() const;
 
     /**
-     * @brief isDepricated This method return true if this option is depricated.
-     * @return true if options is depricated else false
+     * @brief isDeprecated This method return true if this option is deprecated.
+     * @return true if options is deprecated else false
      */
-    bool isDepricated() const;
+    bool isDeprecated() const;
 
 protected:
     /**
@@ -106,7 +106,7 @@ protected:
 
     /**
      * @brief setDescription This method sets new description of this options.
-     * @param newDescription This is new value of optons description
+     * @param newDescription This is new value of options description
      * @note See the OptionData::description method.
 
      */
@@ -129,18 +129,18 @@ protected:
     void setArguments(const QString &newArguments);
 
     /**
-     * @brief setDepricatedMsg This method sets new value of the depricated warnning message of this option.
-     * @param newDepricatedMsg This is new value of the depricated message.
-     * @note See the OptionData::depricatedMsg method.
+     * @brief setDeprecatedMsg This method sets new value of the deprecated warning message of this option.
+     * @param newDeprecatedMsg This is new value of the deprecated message.
+     * @note See the OptionData::deprecatedMsg method.
      */
-    void setDepricatedMsg(const QString &newDepricatedMsg);
+    void setDeprecatedMsg(const QString &newDeprecatedMsg);
 
 private:
     QStringList _name;
     QString _description;
     QString _example;
     QString _arguments;
-    QString _depricatedMsg;
+    QString _deprecatedMsg;
     bool _removed;
 };
 

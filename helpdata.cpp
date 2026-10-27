@@ -58,16 +58,16 @@ void print(const QString& key, const QString& value, int keyLength) {
     }
 }
 
-void print(const QuasarAppUtils::Help::Options &oprionsList) {
+void print(const QuasarAppUtils::Help::Options &optionsList) {
     int maxLength = 0;
-    for (auto line = oprionsList.begin(); line != oprionsList.end(); ++line) {
+    for (auto line = optionsList.begin(); line != optionsList.end(); ++line) {
         if (line.key().size() > maxLength)
             maxLength = line.key().size();
     }
 
     maxLength = std::min(WIDTH / 3, maxLength);
 
-    for (auto line = oprionsList.begin(); line != oprionsList.end(); ++line) {
+    for (auto line = optionsList.begin(); line != optionsList.end(); ++line) {
         print(line.key(), line.value(), maxLength + SectionMargin);
         std::cout << std::endl;
     }
