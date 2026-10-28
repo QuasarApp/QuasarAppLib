@@ -66,3 +66,5 @@ if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
     exit(0);
 }
 ```
+
+For more information, see the QuasarAppLib [documentation](https://quasarapp.github.io/QuasarAppLib/) and the [API reference](https://quasarapp.github.io/QuasarAppLib/api/).
