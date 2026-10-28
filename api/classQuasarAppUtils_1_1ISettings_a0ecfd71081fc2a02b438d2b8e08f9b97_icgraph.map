@@ -1,0 +1,5 @@
+<map id="QuasarAppUtils::ISettings::ignoreToRest" name="QuasarAppUtils::ISettings::ignoreToRest">
+<area shape="rect" id="Node000001" title="ignoreToRest This method should be returns true if the key setting is not be reset on the resetToDefa..." alt="" coords="241,5,429,45"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#ab8b4f0c2f61f7ef504d5c18174732a3b" title="resetToDefault This method reset all settings to default values." alt="" coords="5,5,193,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,28,194,28,194,23,227,23"/>
+</map>

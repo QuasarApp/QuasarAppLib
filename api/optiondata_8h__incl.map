@@ -1,0 +1,12 @@
+<map id="optiondata.h" name="optiondata.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="69,5,173,31"/>
+<area shape="rect" id="Node000002" href="$quasarapp__global_8h.html" title=" " alt="" coords="5,152,155,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,32,90,139,84,138,115,30"/>
+<area shape="rect" id="Node000004" href="$helpdata_8h.html" title=" " alt="" coords="117,79,208,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="130,30,151,65,147,68,126,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="15,225,145,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,178,83,212,77,212,77,178"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="151,106,106,145,102,141,148,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="179,152,239,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="173,103,196,139,192,142,168,106"/>
+</map>

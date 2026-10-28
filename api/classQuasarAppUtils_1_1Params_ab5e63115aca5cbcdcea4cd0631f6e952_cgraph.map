@@ -1,0 +1,5 @@
+<map id="QuasarAppUtils::Params::getCurrentExecutable" name="QuasarAppUtils::Params::getCurrentExecutable">
+<area shape="rect" id="Node000001" title="getCurrentExecutable This method return path to the current executable." alt="" coords="5,5,184,45"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#a2544160eb2e970ed102b913d4a0f24ad" title="getCurrentExecutableDir This method return a path to a folder with the current executable." alt="" coords="232,5,421,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,23,218,23,218,28,184,28"/>
+</map>

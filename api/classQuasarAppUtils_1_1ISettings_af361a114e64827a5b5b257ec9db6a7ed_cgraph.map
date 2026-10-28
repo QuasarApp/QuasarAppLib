@@ -1,0 +1,19 @@
+<map id="QuasarAppUtils::ISettings::setStrValue" name="QuasarAppUtils::ISettings::setStrValue">
+<area shape="rect" id="Node000001" title="setStrValue This is some as setValue but working with the QString type." alt="" coords="5,101,193,141"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a38f9173ed54831ea3ba75a2659042fa5" title="setValue This slot sets new value for a key setting" alt="" coords="241,101,429,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,119,227,119,227,124,194,124"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a61adda9805be4cc552608d4d15b40690" title="setValueImplementation This slot will set a new value for the key parameter." alt="" coords="477,37,668,77"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,99,484,78,486,83,411,104"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1ISettings.html#a48a7b24b0e46ade1347332b81d209cf4" title="valueChanged This signal when value of the key settings changed" alt="" coords="479,101,667,141"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="429,119,465,119,465,124,429,124"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1ISettings.html#a278a6ddc25f6d07a2bc48248295f6f41" title="valueStrChanged some as valueChanged(QString key, QVariant value) but value has ben converted to the ..." alt="" coords="479,165,667,205"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="411,139,486,159,484,164,410,144"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#a706906f56ad3ebf369696962b87b4f3b" title="clearCache This method clear all data from cache." alt="" coords="716,5,904,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="668,42,702,37,703,42,668,47"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#a29be7ef3dbbe0a27dab8820eb3040b37" title="settingsMap This method returns initialized settings map. Settings map contains pairs with settings k..." alt="" coords="716,69,904,109"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="668,68,703,72,702,77,668,73"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1ISettings.html#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values...." alt="" coords="952,69,1140,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="904,87,938,87,938,92,904,92"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="716,165,904,205"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="667,183,702,183,702,188,667,188"/>
+</map>

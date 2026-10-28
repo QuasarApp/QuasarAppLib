@@ -1,0 +1,11 @@
+<map id="humanreadableobject.cpp" name="humanreadableobject.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="12,5,203,31"/>
+<area shape="rect" id="Node000002" href="$humanreadableobject_8h.html" title=" " alt="" coords="19,79,195,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,31,110,65,105,65,105,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,106,63,144,59,140,94,103"/>
+<area shape="rect" id="Node000004" href="$quasarapp__global_8h.html" title=" " alt="" coords="101,152,250,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="120,102,157,140,153,144,117,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="110,225,241,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="178,178,178,212,173,212,173,178"/>
+</map>

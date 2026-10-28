@@ -1,0 +1,10 @@
+<map id="QuasarAppUtils::Params::parseParams" name="QuasarAppUtils::Params::parseParams">
+<area shape="rect" id="Node000001" title="parseParams Parse input data of started application." alt="" coords="5,69,184,109"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#aa7097f823116d67aa5def3eeff52c514" title="availableArguments This method return list of the available arguments of QuasarAppLibrary" alt="" coords="232,5,411,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,67,236,47,237,52,167,72"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#ab0862f913658dc5ecbb52c7cc8a9e3d5" title="size This method return count of the all input arguments." alt="" coords="232,69,411,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,87,218,87,218,92,185,92"/>
+<area shape="rect" id="Node000004" href="$qaglobalutils_8h.html#a6c477c218dbe6c3407fe3d7ad0b84c28" title="Simplified union operation for QHash." alt="" coords="294,158,349,183"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="152,107,282,154,280,159,150,112"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="292,164,278,154,278,142,293,134,321,131,345,133,360,138,366,147,363,156,358,154,361,147,357,143,344,138,321,137,295,139,283,145,283,151,295,160"/>
+</map>

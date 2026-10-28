@@ -1,0 +1,7 @@
+<map id="QuasarAppUtils::OptionData::arguments" name="QuasarAppUtils::OptionData::arguments">
+<area shape="rect" id="Node000001" title="arguments This is input arguments of this option or help message about arguments." alt="" coords="259,37,464,77"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1OptionData.html#a4aca08da272d5f990211ee2287d84aea" title="OptionData This is main constructor." alt="" coords="5,5,211,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,45,211,41,211,36,245,40"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1OptionData.html#a8c3ff3610bd5c88b67450a995f8111e9" title="toHelp This method convert this option into help line. The help line have next structure :" alt="" coords="5,69,211,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="245,75,211,79,211,74,245,69"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="QuasarAppUtils::Settings::isBool" name="QuasarAppUtils::Settings::isBool">
+<area shape="rect" id="Node000001" title="isBool This method should be return true if the key&#39;s type is bool. This is needed because QVariant w..." alt="" coords="244,5,428,45"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Settings.html#a9e9b53f78a6bc94a9b8582ce5f5b9a74" title="getValueImplementation This method returns the value of the key setting from the QSettings backend." alt="" coords="5,5,196,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,28,196,28,196,23,230,23"/>
+</map>

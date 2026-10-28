@@ -1,0 +1,11 @@
+<map id="QuasarAppUtils::ISettings::getStrValue" name="QuasarAppUtils::ISettings::getStrValue">
+<area shape="rect" id="Node000001" title="getStrValue some as getValue but convert result object to QString type." alt="" coords="5,37,193,77"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#ae07249afa177f48a0858d9f2eb1a9660" title="getValue This method return the value of the settings." alt="" coords="241,37,429,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,55,227,55,227,60,194,60"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a4e1e0bd23554cd62bf57d1f08cce36f5" title="getValueImplementation This method will return the value of the settings." alt="" coords="477,5,668,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="429,42,463,37,464,43,430,47"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#a29be7ef3dbbe0a27dab8820eb3040b37" title="settingsMap This method returns initialized settings map. Settings map contains pairs with settings k..." alt="" coords="479,69,667,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="430,67,465,72,465,77,429,73"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values...." alt="" coords="716,69,904,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="667,87,702,87,702,92,667,92"/>
+</map>

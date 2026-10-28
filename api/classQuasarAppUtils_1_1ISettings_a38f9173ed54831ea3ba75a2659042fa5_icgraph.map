@@ -1,0 +1,9 @@
+<map id="QuasarAppUtils::ISettings::setValue" name="QuasarAppUtils::ISettings::setValue">
+<area shape="rect" id="Node000001" title="setValue This slot sets new value for a key setting" alt="" coords="241,69,429,109"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#ac1b2a5a034ebf18f052101f1373bf57d" title="forceReloadCache This method force reload settings data from disk." alt="" coords="5,5,193,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,68,173,48,174,43,249,63"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#ab8b4f0c2f61f7ef504d5c18174732a3b" title="resetToDefault This method reset all settings to default values." alt="" coords="5,69,193,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="227,92,194,92,194,87,227,87"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#af361a114e64827a5b5b257ec9db6a7ed" title="setStrValue This is some as setValue but working with the QString type." alt="" coords="5,133,193,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="249,116,174,136,173,131,247,110"/>
+</map>

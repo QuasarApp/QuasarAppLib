@@ -1,0 +1,7 @@
+<map id="QuasarAppUtils::OptionData::deprecatedMsg" name="QuasarAppUtils::OptionData::deprecatedMsg">
+<area shape="rect" id="Node000001" title="deprecatedWarning This is a message that will be printed as a warning if user will use this option...." alt="" coords="259,37,464,77"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1OptionData.html#a06bed2e3f96c0576b061770e06cd1404" title="isDeprecated This method return true if this option is deprecated." alt="" coords="5,5,211,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,45,211,41,211,36,245,40"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1OptionData.html#a4aca08da272d5f990211ee2287d84aea" title="OptionData This is main constructor." alt="" coords="5,69,211,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="245,75,211,79,211,74,245,69"/>
+</map>

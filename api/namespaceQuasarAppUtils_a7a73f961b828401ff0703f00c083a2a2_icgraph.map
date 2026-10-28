@@ -1,0 +1,9 @@
+<map id="QuasarAppUtils::checkLogType" name="QuasarAppUtils::checkLogType">
+<area shape="rect" id="Node000001" title=" " alt="" coords="537,29,760,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="699,21,696,16,688,12,649,8,618,10,602,15,599,20,607,27,604,31,594,21,599,11,617,5,649,3,689,7,700,12,704,18"/>
+<area shape="rect" id="Node000002" href="$namespaceQuasarAppUtils.html#a9e8223bdd4a21e715de146081e35d799" title=" " alt="" coords="248,29,489,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="524,45,489,45,489,39,524,39"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="416,20,413,16,405,12,369,8,340,10,325,15,322,20,330,27,326,31,317,21,322,11,339,5,369,3,407,7,417,12,420,18"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1QALogger.html#ace1b2ac35ad7d36933b081c1805fc2db" title="init This method initialize logging of all qt message into file." alt="" coords="5,22,200,62"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="234,45,200,45,200,39,234,39"/>
+</map>

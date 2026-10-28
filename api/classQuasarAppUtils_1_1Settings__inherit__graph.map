@@ -1,0 +1,9 @@
+<map id="QuasarAppUtils::Settings" name="QuasarAppUtils::Settings">
+<area shape="rect" id="Node000001" title="The Settings class This is wrapper of the QSettings object." alt="" coords="9,707,209,992"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="9,213,209,659"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,672,112,706,107,706,107,672"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,53,72,118"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="50,131,67,213,62,214,45,132"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Service.html" title=" " alt="" coords="96,5,267,165"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="165,179,158,214,153,213,160,178"/>
+</map>

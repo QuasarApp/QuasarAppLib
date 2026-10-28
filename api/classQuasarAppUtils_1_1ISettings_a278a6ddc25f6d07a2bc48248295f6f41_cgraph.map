@@ -1,0 +1,5 @@
+<map id="QuasarAppUtils::ISettings::valueStrChanged" name="QuasarAppUtils::ISettings::valueStrChanged">
+<area shape="rect" id="Node000001" title="valueStrChanged some as valueChanged(QString key, QVariant value) but value has ben converted to the ..." alt="" coords="5,5,193,45"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="241,5,429,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,23,227,23,227,28,194,28"/>
+</map>

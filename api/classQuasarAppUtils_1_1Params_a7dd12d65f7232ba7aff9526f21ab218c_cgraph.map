@@ -1,0 +1,7 @@
+<map id="QuasarAppUtils::Params::isDebug" name="QuasarAppUtils::Params::isDebug">
+<area shape="rect" id="Node000001" title="isDebug This method return true if the application verbose level &gt;= VerboseLvl::Debug." alt="" coords="5,5,184,45"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#a95d9d6b4da5b0b5bb863b974b40ab646" title="getVerboseLvl This method return the verbose log level." alt="" coords="232,5,411,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,23,218,23,218,28,185,28"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#aa8dd57b07fcc628278d337cf89c0b480" title="getArg return string value of a key if key is exits else return a def value. If a def value not defin..." alt="" coords="459,5,637,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,23,445,23,445,28,411,28"/>
+</map>

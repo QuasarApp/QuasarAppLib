@@ -1,0 +1,7 @@
+<map id="QuasarAppUtils::Service::initService" name="QuasarAppUtils::Service::initService">
+<area shape="rect" id="Node000001" title="initService This method initialize the Base object as a service using the default constructor...." alt="" coords="241,37,420,77"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Service.html#ac553676cac25b8776b20caa89353c7ab" title="autoInstance This method return pointerer to current service object and if it is not inited try to in..." alt="" coords="10,5,189,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,46,188,40,189,35,228,40"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a14e3ac0dc3a34561827df5fbfd44fb15" title="initService This method initialize the global settings object." alt="" coords="5,69,193,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,74,194,79,193,74,227,69"/>
+</map>

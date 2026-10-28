@@ -1,0 +1,10 @@
+<map id="QuasarAppUtils::Params::getVerboseLvl" name="QuasarAppUtils::Params::getVerboseLvl">
+<area shape="rect" id="Node000001" title="getVerboseLvl This method return the verbose log level." alt="" coords="260,69,439,109"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1QALogger.html#ace1b2ac35ad7d36933b081c1805fc2db" title="init This method initialize logging of all qt message into file." alt="" coords="11,5,206,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,68,184,48,185,43,261,63"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#a7dd12d65f7232ba7aff9526f21ab218c" title="isDebug This method return true if the application verbose level &gt;= VerboseLvl::Debug." alt="" coords="19,69,198,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="246,92,198,92,198,87,246,87"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Params.html#ab20a066955d690172a4aaa82889475f3" title="log This method print log text on console." alt="" coords="5,158,212,183"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="277,116,148,160,147,155,275,111"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="152,149,140,140,109,137,83,139,69,144,67,149,74,156,70,160,61,150,66,140,82,134,109,131,142,135,155,145"/>
+</map>

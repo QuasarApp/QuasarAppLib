@@ -1,0 +1,9 @@
+<map id="QuasarAppUtils::ISettings::setValueImplementation" name="QuasarAppUtils::ISettings::setValueImplementation">
+<area shape="rect" id="Node000001" title="setValueImplementation This slot will set a new value for the key parameter." alt="" coords="5,37,196,77"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a706906f56ad3ebf369696962b87b4f3b" title="clearCache This method clear all data from cache." alt="" coords="244,5,432,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,42,230,37,231,42,196,47"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a29be7ef3dbbe0a27dab8820eb3040b37" title="settingsMap This method returns initialized settings map. Settings map contains pairs with settings k..." alt="" coords="244,69,432,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,68,231,72,230,77,196,73"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values...." alt="" coords="480,69,668,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="432,87,466,87,466,92,432,92"/>
+</map>

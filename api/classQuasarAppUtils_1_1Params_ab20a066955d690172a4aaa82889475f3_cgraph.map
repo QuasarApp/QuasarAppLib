@@ -1,0 +1,8 @@
+<map id="QuasarAppUtils::Params::log" name="QuasarAppUtils::Params::log">
+<area shape="rect" id="Node000001" title="log This method print log text on console." alt="" coords="5,29,212,55"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="70,31,61,21,66,11,82,5,109,3,142,7,155,16,152,20,140,11,109,8,83,10,69,15,67,20,74,27"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#a95d9d6b4da5b0b5bb863b974b40ab646" title="getVerboseLvl This method return the verbose log level." alt="" coords="260,22,439,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,39,246,39,246,45,212,45"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#aa8dd57b07fcc628278d337cf89c0b480" title="getArg return string value of a key if key is exits else return a def value. If a def value not defin..." alt="" coords="487,22,665,62"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,39,473,39,473,45,439,45"/>
+</map>

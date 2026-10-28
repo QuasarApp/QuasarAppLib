@@ -1,0 +1,7 @@
+<map id="QuasarAppUtils::ISettings::instance" name="QuasarAppUtils::ISettings::instance">
+<area shape="rect" id="Node000001" title="instance This method returns pointer to current settings object." alt="" coords="5,37,193,77"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Service.html#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object." alt="" coords="246,5,425,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,42,232,37,233,42,194,47"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="241,69,429,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,67,228,72,227,77,193,73"/>
+</map>

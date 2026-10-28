@@ -1,0 +1,13 @@
+<map id="QuasarAppUtils::SettingsListener::SettingsListener" name="QuasarAppUtils::SettingsListener::SettingsListener">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,192,109"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1SettingsListener.html#a28662b9a2e495e339febbc0ec049cdf6" title="handleSettingsChanged This method will be invoked when settings of application has bean changed." alt="" coords="240,5,476,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,67,263,46,264,51,181,72"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a2ad2d0eb1a8abb5cb04006085a84f750" title="instance This method returns pointer to current settings object." alt="" coords="264,69,452,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,87,250,87,250,92,192,92"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1ISettings.html#a48a7b24b0e46ade1347332b81d209cf4" title="valueChanged This signal when value of the key settings changed" alt="" coords="264,133,452,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="181,107,264,127,263,133,180,112"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Service.html#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object." alt="" coords="529,37,707,77"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="452,75,515,67,515,73,453,80"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="524,101,712,141"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="453,98,511,106,510,111,452,104"/>
+</map>

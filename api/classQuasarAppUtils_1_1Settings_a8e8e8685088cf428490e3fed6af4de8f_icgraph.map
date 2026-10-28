@@ -1,0 +1,5 @@
+<map id="QuasarAppUtils::Settings::initService" name="QuasarAppUtils::Settings::initService">
+<area shape="rect" id="Node000001" title="initService This method initialize default object of the QuasarAppUtils::Settings type." alt="" coords="237,5,421,45"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Settings.html#aeadc7671cfdd41083f6dd4856ed553ed" title="autoInstance This method returns the default object of the QuasarAppUtils::Settings type and if it wa..." alt="" coords="5,5,189,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>

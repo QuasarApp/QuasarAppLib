@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="57,70,132,95"/>
+<area shape="rect" id="Node000001" href="$classQuasarAppUtils_1_1ISettings.html" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="232,17,420,42"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="145,68,270,39,271,45,146,74"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Locales.html" title="The Locales class for parese local files Example :." alt="" coords="236,70,416,95"/>
+<area shape="poly" id="edge3_Node000000_Node000004" title=" " alt="" coords="146,80,236,80,236,85,146,85"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Settings.html" title="The Settings class This is wrapper of the QSettings object." alt="" coords="468,17,652,42"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="433,27,468,27,468,32,433,32"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Service.html" title=" " alt="" coords="5,5,184,45"/>
+<area shape="poly" id="edge4_Node000003_Node000001" title=" " alt="" coords="198,24,232,25,232,30,198,30"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="QuasarAppUtils::calculateCrc8" name="QuasarAppUtils::calculateCrc8">
+<area shape="rect" id="Node000001" title="calculateCrc8 This method calculate crc8 hash for data." alt="" coords="5,37,224,62"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="74,38,65,28,70,18,87,12,115,10,150,14,160,19,164,24,159,27,157,23,149,19,115,15,88,17,73,22,71,28,78,35"/>
+<area shape="rect" id="Node000002" href="$namespaceQuasarAppUtils.html#a71c79809784f297f95f2051873b950b0" title="calculateCrc32 This method calculate crc32 hash for data." alt="" coords="272,29,463,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,47,258,47,258,52,224,52"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="321,30,318,20,325,10,342,5,367,3,396,6,412,13,410,18,395,11,367,8,343,10,328,15,323,21,326,28"/>
+</map>
