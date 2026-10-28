@@ -182,7 +182,7 @@ private:
     /**
      * @brief translatePrivate This is a private method that translates the @a source string to the @a locale.
      * @param source This is the source string of translations.
-     * @param locale This is the choosed language.
+     * @param locale This is the chosen language.
      * @return translated string value of the @a source string.
      */
     QString translatePrivate(const char *source, const QLocale& locale);
