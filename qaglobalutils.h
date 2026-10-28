@@ -14,6 +14,13 @@
 #include "QtGlobal"
 #include "quasarapp_global.h"
 
+/**
+ * @brief operator | This operator returns the bitwise OR of two enum values of type @a T.
+ * @param lhs This is the left operand of the bitwise OR operation.
+ * @param rhs This is the right operand of the bitwise OR operation.
+ * @return bitwise OR result of @a lhs and @a rhs as enum value of type @a T.
+ * @note The template parameter @a T must be an enum type, otherwise a static_assert error is triggered.
+ */
 template <typename T>
 constexpr inline T operator | (T lhs, T rhs)
 {
@@ -24,6 +31,13 @@ constexpr inline T operator | (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) | static_cast<int>(rhs));
 }
 
+/**
+ * @brief operator & This operator returns the bitwise AND of two enum values of type @a T.
+ * @param lhs This is the left operand of the bitwise AND operation.
+ * @param rhs This is the right operand of the bitwise AND operation.
+ * @return bitwise AND result of @a lhs and @a rhs as enum value of type @a T.
+ * @note The template parameter @a T must be an enum type, otherwise a static_assert error is triggered.
+ */
 template <typename T>
 constexpr inline T operator & (T lhs, T rhs)
 {
@@ -34,6 +48,13 @@ constexpr inline T operator & (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) & static_cast<int>(rhs));
 }
 
+/**
+ * @brief operator >> This operator returns the right shift of an enum value of type @a T by @a rhs positions.
+ * @param lhs This is the operand of the right shift operation.
+ * @param rhs This is the count of shifted positions.
+ * @return right shifted result of @a lhs as enum value of type @a T.
+ * @note The template parameter @a T must be an enum type, otherwise a static_assert error is triggered.
+ */
 template <typename T>
 constexpr inline T operator >> (T lhs, T rhs)
 {
@@ -44,6 +65,13 @@ constexpr inline T operator >> (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) >> static_cast<int>(rhs));
 }
 
+/**
+ * @brief operator << This operator returns the left shift of an enum value of type @a T by @a rhs positions.
+ * @param lhs This is the operand of the left shift operation.
+ * @param rhs This is the count of shifted positions.
+ * @return left shifted result of @a lhs as enum value of type @a T.
+ * @note The template parameter @a T must be an enum type, otherwise a static_assert error is triggered.
+ */
 template <typename T>
 constexpr inline T operator << (T lhs, T rhs)
 {
@@ -54,6 +82,12 @@ constexpr inline T operator << (T lhs, T rhs)
     return static_cast<T>(static_cast<int>(lhs) << static_cast<int>(rhs));
 }
 
+/**
+ * @brief operator ~ This operator returns the bitwise complement of an enum value of type @a T.
+ * @param lhs This is the operand of the bitwise complement operation.
+ * @return bitwise complement result of @a lhs as enum value of type @a T.
+ * @note The template parameter @a T must be an enum type, otherwise a static_assert error is triggered.
+ */
 template <typename T>
 constexpr inline T operator ~ (T lhs)
 {
@@ -64,6 +98,13 @@ constexpr inline T operator ~ (T lhs)
     return static_cast<T>(~static_cast<int>(lhs));
 }
 
+/**
+ * @brief operator ^ This operator returns the bitwise XOR of two enum values of type @a T.
+ * @param lhs This is the left operand of the bitwise XOR operation.
+ * @param rhs This is the right operand of the bitwise XOR operation.
+ * @return bitwise XOR result of @a lhs and @a rhs as enum value of type @a T.
+ * @note The template parameter @a T must be an enum type, otherwise a static_assert error is triggered.
+ */
 template <typename T>
 constexpr inline T operator ^ (T lhs, T rhs)
 {
@@ -147,6 +188,12 @@ uint8_t static_type_hash_8(T& object) noexcept {
 #define H_32 static_type_hash_32
 
 
+/**
+ * @brief debug_assert This is a debug macro that asserts the condition @a C and the message @a M.
+ * The assertion is active only in debug builds and aborts the application if the condition is not met.
+ * @param C This is the checked condition.
+ * @param M This is the message that will be printed if the condition is not met.
+ */
 #define debug_assert(C, M) Q_ASSERT(C && M)
 
 /**
@@ -219,6 +266,27 @@ QHashType &unite(QHashType &left, const QHashType& right) {
     return left;
 }
 
+/*!
+ * \brief Simplified match (intersection) operation for QHash.
+ *
+ * This function provides a convenient way to keep only the elements of one `QHash`
+ * whose keys are also present in another `QHash`. It's designed to
+ * simplify common `QHash` operations.
+ *
+ * The function modifies the `left` QHash by removing all key-value pairs
+ * whose keys are NOT present in the `right` QHash. After the call `left`
+ * contains only the intersection of the keys of `left` and `right`.
+ *
+ * If `left` and `right` share the same internal data (i.e., `left.isSharedWith(right)`
+ * returns true), the `left` hash is cleared entirely to prevent
+ * unpredictable behavior or unintended modifications to the shared data.
+ *
+ * \tparam QHashType The type of the QHash (e.g., QHash<QString, int>).
+ * \param left A reference to the QHash to be modified. Elements whose keys are
+ * not present in `right` will be removed from this hash.
+ * \param right A constant reference to the QHash containing the keys to be matched against.
+ * \return A reference to the modified `left` QHash.
+ */
 template <class QHashType>
 QHashType &match(QHashType &left, const QHashType& right) {
     if (!left.isSharedWith(right)) {

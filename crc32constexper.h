@@ -79,6 +79,11 @@ constexpr uint16_t calculateCrc8(const char* data, size_t size, uint32_t initial
     return calculateCrc32(data, size, initialCrc) % 0xFF;
 }
 
+/**
+ * @brief LITIRAL_CRC32 This is a compile-time macro that calculates the crc32 hash of the string literal.
+ * @param str This is the string literal that will be hashed.
+ * @note The trailing zero of the string literal is not included into the hash.
+ */
 #define LITIRAL_CRC32(str) \
     (QuasarAppUtils::calculateCrc32(str, sizeof(str) - 1))
 }

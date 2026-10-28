@@ -43,6 +43,10 @@ class QUASARAPPSHARED_EXPORT Settings: public ISettings
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Settings This is the main constructor of the Settings object.
+     * @param format This is the format of the QSettings backend. By default QSettings::IniFormat.
+     */
     Settings(QSettings::Format format = QSettings::IniFormat);
 
     // ISettings interface
@@ -70,18 +74,44 @@ public:
     static bool initService();
 
     /**
-     * @brief deinitService This method destroy default object of the QuasarAppUtils::Settings type.
-     * @see ISettings::deinitService
+     * @brief autoInstance This method returns the default object of the QuasarAppUtils::Settings type
+     * and if it was not initialized yet - it will be created automatically.
+     * @return pointer to the default settings object.
+     * @see ISettings::autoInstance
      */
     static ISettings *autoInstance();
 
 
 protected:
 
+    /**
+     * @brief syncImplementation This method saves all settings data to the hard disk.
+     * This is the QSettings based implementation of the ISettings::syncImplementation method.
+     */
     void syncImplementation() override;
+    /**
+     * @brief getValueImplementation This method returns the value of the @a key setting from the QSettings backend.
+     * @param key This is name of the required settings value.
+     * @param def This is default value if a value is not found.
+     * @return value of a @a key
+     */
     QVariant getValueImplementation(const QString &key, const QVariant &def) override;
+    /**
+     * @brief setValueImplementation This method sets a new value for the @a key setting in the QSettings backend.
+     * @param key This is name of the changed setting.
+     * @param value This is a new value of the setting.
+     */
     void setValueImplementation(const QString key, const QVariant &value) override;
+    /**
+     * @brief ignoreToRest This method checks if the key is a boolean option.
+     * @return true if the key option can't be reset to default else false.
+     */
     bool ignoreToRest(const QString &) const override;
+    /**
+     * @brief defaultSettings This method returns the default map of the settings and their values.
+     * By default the map is empty.
+     * @return the default settings map.
+     */
     QHash<QString, QVariant> defaultSettings() override;
 
     /**
@@ -95,10 +125,18 @@ protected:
      * @see Settings::boolOptions
      */
     virtual bool isBool(const QString& key) const;
+    /**
+     * @brief setGroup This method sets a new settings group in the QSettings backend.
+     * All values that will be read or written after the call will be stored in this group.
+     * Use empty string for remove the current group.
+     */
     void setGroup(const QString&);
 
 private:
+    /// @brief _settings This is the internal QSettings object that is used as a settings backend.
     QSettings *_settings = nullptr;
+
+    /// @brief _boolOptions This is the set of the keys that has a bool type in the settings map.
     QSet<QString> _boolOptions;
 };
 

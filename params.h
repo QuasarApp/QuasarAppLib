@@ -50,14 +50,16 @@ enum VerboseLvl {
  * ### Usage
  *
  * ```cpp
-    #include <quasarapp.h>
-
-    if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
-        QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
-        QuasarAppUtils::Params::showHelp();
-        exit(0);
-    }
-    ```
+ *
+ * #include <quasarapp.h>
+ *
+ * if (!QuasarAppUtils::Params::parseParams(argc, argv)) {
+ *     QuasarAppUtils::Params::log("Warning message", QuasarAppUtils::Warning);
+ *     QuasarAppUtils::Params::showHelp();
+ *     exit(0);
+ * }
+ *
+ * ```
  */
 class QUASARAPPSHARED_EXPORT Params
 {
@@ -110,7 +112,7 @@ public:
     static void setArg(const QString& key, const QString& val);
 
     /**
-     * @brief setArg This method sets boolean value of key.
+     * @brief setEnable This method sets boolean value of key.
      * @param key This is name of the console option.
      * @param enable New value of key.
      * @note For check is enable @a key argument use the Params::isEndable method.
@@ -220,6 +222,16 @@ public:
 
 private:
 
+    /**
+     * @brief optionsForEach This is a private method for parsing the input options.
+     * Iterates over the @a paramsArray and checks every parameter against the
+     * @a availableOptions list. Unsupported options are reported according to
+     * the QA_ALLOW_NOT_SUPPORTED_OPTIONS build option and the parsing result
+     * is stored in the static params map.
+     * @param paramsArray This is the input array of the raw parameters.
+     * @param availableOptions This is the list of the available options for check.
+     * @return true if all input options are supported and parsed correctly else false.
+     */
     static bool optionsForEach(const QStringList& paramsArray,
                                const OptionsDataList &availableOptions);
 
@@ -248,11 +260,19 @@ private:
                                       Help::Section* helpOut);
 
 
+    /// @brief params This is the static map with all parsed key-value input arguments.
     static QMap<QString, QString> params;
+
+    /// @brief inputOptions This is the static list of the available input options that was parsed in the parseParams method.
     static OptionsDataList inputOptions;
 
+    /// @brief userHelp This is the static help section generated from the available input options.
     static Help::Section userHelp;
+
+    /// @brief appPath This is the static path of the current executable file.
     static QString appPath;
+
+    /// @brief appName This is the static name of the current executable file.
     static QString appName;
 
 };

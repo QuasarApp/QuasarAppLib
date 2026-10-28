@@ -45,7 +45,15 @@ namespace QuasarAppUtils {
 class QUASARAPPSHARED_EXPORT QALogger
 {
 public:
+    /**
+     * @brief QALogger This is the default constructor of the QALogger object.
+     * After the construction call the init method for enable the logging.
+     */
     QALogger();
+    /**
+     * @brief ~QALogger This is the destructor of the QALogger object.
+     * It removes the message handler and closes the log file if it was opened.
+     */
     ~QALogger();
 
     /**
@@ -56,8 +64,9 @@ public:
     void init();
 
     /**
-     * @brief setVerboseLevel This method set verbose level of the logger.
-     * @param lvl This is new verbose level.
+     * @brief getLogFilePath This method returns the path of the log file that will be used by the logger.
+     * The location can be overridden with the "fileLog" option of the Params class.
+     * @return path of the log file.
      */
     static QString getLogFilePath();
 

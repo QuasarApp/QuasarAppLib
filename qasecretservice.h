@@ -22,11 +22,24 @@ namespace QuasarAppUtils {
 class QASecretService
 {
 public:
+    /**
+     * @brief QASecretService This is the default constructor of the QASecretService object.
+     */
     QASecretService();
 
 #ifdef Q_OS_LINUX
 
+    /**
+     * @brief getByAlias This method returns the secret data by alias from the QASecretService tool.
+     * @param alias This is the alias of the required secret.
+     * @return secret data of the @a alias or an empty QByteArray if the secret was not found.
+     */
     static QByteArray getByAlias(const QString& alias);
+    /**
+     * @brief getByHash This method returns the secret data by hash from the QASecretService tool.
+     * @param hash This is the hash of the required secret.
+     * @return secret data of the @a hash or an empty QByteArray if the secret was not found.
+     */
     static QByteArray getByHash(const QByteArray& hash);
 #endif
 };

@@ -14,9 +14,8 @@
 #include "qaplatformutils.h"
 
 /**
- * @brief The QuasaraAppUtils class
- * This lib include base functions for the all applications of QuasarApp group.
- * All methods of the Quasar AppUtils is static.
+ * @brief The QuasarAppUtils namespace contains the base functions for all applications of the QuasarApp group.
+ * All methods of the QuasarAppUtils classes are static.
  */
 namespace QuasarAppUtils{
 
