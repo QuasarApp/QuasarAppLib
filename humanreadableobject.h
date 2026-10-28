@@ -15,7 +15,7 @@ namespace QuasarAppUtils {
 
 /**
  * @brief The HumanReadableObject interface This is simple class  that add one virtula method toString.
- * All childs object should be override this method.
+ * All children object should be override this method.
  */
 class QUASARAPPSHARED_EXPORT HumanReadableObject
 {

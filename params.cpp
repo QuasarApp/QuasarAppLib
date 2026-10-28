@@ -287,7 +287,7 @@ bool Params::checkOption(const OptionData& optionData, const QString& rawOptionN
 
         qCritical() << QString("The '%0' option not exists!"
                                " You use wrong option name,"
-                               " please check the help before run your commnad.").
+                               " please check the help before run your command.").
                        arg(rawOptionName);
 
         return false;
@@ -296,12 +296,12 @@ bool Params::checkOption(const OptionData& optionData, const QString& rawOptionN
     Q_UNUSED(rawOptionName);
 #endif
 
-    if (optionData.isDepricated()) {
+    if (optionData.isDeprecated()) {
 
 
 
         if (optionData.isRemoved()) {
-            qCritical() << optionData.depricatedMsg();
+            qCritical() << optionData.deprecatedMsg();
 
             return false;
         }
@@ -310,7 +310,7 @@ bool Params::checkOption(const OptionData& optionData, const QString& rawOptionN
                                "And most likely will be removed in next release.").
                        arg(optionData.names().join("/"));
 
-        qWarning() << QString("Option message: %0").arg(optionData.depricatedMsg());
+        qWarning() << QString("Option message: %0").arg(optionData.deprecatedMsg());
 
     }
 

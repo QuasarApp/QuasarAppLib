@@ -17,7 +17,7 @@
 namespace QuasarAppUtils {
 
 /**
- * @brief The Settings class This is  wraper of the QSettings object.
+ * @brief The Settings class This is  wrapper of the QSettings object.
  *
  * Example of initialisation :
  *
@@ -68,7 +68,7 @@ public:
 
     /**
      * @brief initService This method initialize default object of the QuasarAppUtils::Settings type.
-     * @return true if initialization finished successfull else false.
+     * @return true if initialization finished successful else false.
      * @see ISettings::initService
      */
     static bool initService();

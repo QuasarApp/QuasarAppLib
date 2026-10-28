@@ -29,7 +29,7 @@ QString PlatformUtils::snapRootFS() {
 }
 
 QString PlatformUtils::transportPathToSnapRoot(const QString &path) {
-    if (isSnap() && checkSystemBakupSnapInterface()) {
+    if (isSnap() && checkSystemBackupSnapInterface()) {
 
         if(QFileInfo(path).isWritable()) {
             return path;
@@ -50,7 +50,7 @@ QString PlatformUtils::transportPathToSnapRoot(const QString &path) {
     return path;
 }
 
-bool PlatformUtils::checkSystemBakupSnapInterface() {
+bool PlatformUtils::checkSystemBackupSnapInterface() {
     return QDir(snapRootFS()).entryList(QDir::AllEntries | QDir::NoDotAndDotDot).size();
 }
 
@@ -62,7 +62,7 @@ QString PlatformUtils::snapRootFS() { return "";}
 
 QString PlatformUtils::transportPathToSnapRoot(const QString &path) { return path; }
 
-bool PlatformUtils::checkSystemBakupSnapInterface() { return false; }
+bool PlatformUtils::checkSystemBackupSnapInterface() { return false; }
 
 #elif defined(Q_OS_WIN32)
 
@@ -72,7 +72,7 @@ QString PlatformUtils::snapRootFS() { return "";}
 
 QString PlatformUtils::transportPathToSnapRoot(const QString &path) { return path; }
 
-bool PlatformUtils::checkSystemBakupSnapInterface() { return false; }
+bool PlatformUtils::checkSystemBackupSnapInterface() { return false; }
 
 #elif defined(Q_OS_MACOS)
 
@@ -82,7 +82,7 @@ QString PlatformUtils::snapRootFS() { return "";}
 
 QString PlatformUtils::transportPathToSnapRoot(const QString &path) { return path; }
 
-bool PlatformUtils::checkSystemBakupSnapInterface() { return false; }
+bool PlatformUtils::checkSystemBackupSnapInterface() { return false; }
 
 #elif defined(Q_OS_IOS)
 
@@ -92,7 +92,7 @@ QString PlatformUtils::snapRootFS() { return "";}
 
 QString PlatformUtils::transportPathToSnapRoot(const QString &path) { return path; }
 
-bool PlatformUtils::checkSystemBakupSnapInterface() { return false; }
+bool PlatformUtils::checkSystemBackupSnapInterface() { return false; }
 
 #endif
 

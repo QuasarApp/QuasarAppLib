@@ -56,7 +56,7 @@ public:
     /**
      * @brief getValue This method return the value of the settings.
      * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not finded. If this params will be skipped, then The Settngs model try find default value in the defaultSettings map.
+     * @param def This is default value if a value is not found. If this params will be skipped, then The Settings model try find default value in the defaultSettings map.
      * @return value of a @a key
      * @see ISettings::defaultSettings
      */
@@ -65,7 +65,7 @@ public:
     /**
      * @brief getStrValue some as getValue but convert result object to QString type.
      * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not finded. If this params will be skipped, then The Settngs model try find default value in the defaultSettings map.
+     * @param def This is default value if a value is not found. If this params will be skipped, then The Settings model try find default value in the defaultSettings map.
      * @return value of a @a key
      * @see ISettings::defaultSettings
      * @warning If you set a def arguments to empty string then this method will return default value from the defaultSettings map.
@@ -81,12 +81,12 @@ public:
      * @brief ignoreToRest This method should be returns true if the @a key setting is not be reset on the resetToDefault method.
      * @param key This is keuy value.
      * @return true if the @a key option can't be reset to default.
-     * The default implementaion alwayes return false.
+     * The default implementation always return false.
      */
     virtual bool ignoreToRest(const QString& key) const;
 
     /**
-     * @brief sync This method save all setings data on a hard disk;
+     * @brief sync This method save all settings data on a hard disk;
      */
     void sync();
 
@@ -192,7 +192,7 @@ protected:
     /**
      * @brief getValueImplementation This method will return the value of the settings.
      * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not finded.
+     * @param def This is default value if a value is not found.
      * @return value of a @a key
      */
     virtual QVariant getValueImplementation(const QString &key, const QVariant& def) = 0;

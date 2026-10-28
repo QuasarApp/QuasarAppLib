@@ -6,27 +6,27 @@
 */
 
 #include "isettings.h"
-#include "settingslistner.h"
+#include "settingslistener.h"
 
 namespace QuasarAppUtils {
 
-SettingsListner::SettingsListner() {
+SettingsListener::SettingsListener() {
 
     auto settings = ISettings::instance();
     if (settings) {
 
-        auto listner = [this](QString key, QVariant val){
+        auto listener = [this](QString key, QVariant val){
             this->handleSettingsChanged(key, val);
         };
 
-        _listnerConnection = QObject::connect(settings,
+        _listenerConnection = QObject::connect(settings,
                                               &ISettings::valueChanged,
-                                              listner);
+                                              listener);
     }
 }
 
-SettingsListner::~SettingsListner() {
-    QObject::disconnect(_listnerConnection);
+SettingsListener::~SettingsListener() {
+    QObject::disconnect(_listenerConnection);
 }
 
 }

@@ -42,8 +42,8 @@ enum VerboseLvl {
 #endif
 
 /**
- * @brief The Params class Contains fonctions for working with input arguments and logs.
- * This Class support next comandline arguments.
+ * @brief The Params class Contains functions for working with input arguments and logs.
+ * This Class support next commandline arguments.
  *  * **-verbose** (level 1 - 3) Shows debug log
  *  * **-fileLog** (path to file) Sets path of log file. Default it is path to executable file with suffix '.log'
  *
@@ -70,8 +70,8 @@ public:
      * @brief parseParams Parse input data of started application.
      * @param argc Count of arguments.
      * @param argv Array of arguments.
-     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
-     *  If you skip thi argument then QuasarAppLib will not check input options.
+     * @param options This is list of the available options for parse. See the OptionData class for more information.
+     *  If you skip this argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
     static bool parseParams(const int argc, const char *argv[], const OptionsDataList& options = {});
@@ -80,8 +80,8 @@ public:
      * @brief parseParams Parse input data of started application.
      * @param argc Count of arguments.
      * @param argv Array of arguments.
-     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
-     *  If you skip thi argument then QuasarAppLib will not check input options.
+     * @param options This is list of the available options for parse. See the OptionData class for more information.
+     *  If you skip this argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
     static bool parseParams(int argc, char *argv[], const OptionsDataList& options = {});
@@ -89,15 +89,15 @@ public:
     /**
      * @brief parseParams Parse input data of started application.
      * @param paramsArray Arguments.
-     * @param options This is list of the available options for parse. See the OptionData class for more inforamtion.
-     *  If you skip thi argument then QuasarAppLib will not check input options.
+     * @param options This is list of the available options for parse. See the OptionData class for more information.
+     *  If you skip this argument then QuasarAppLib will not check input options.
      * @return true if all arguments read successful else false.
      */
     static bool parseParams(const QStringList& paramsArray, const OptionsDataList& options = {});
 
     /**
      * @brief getArg return string value of a @a key if key is exits else return a @a def value.
-     *  If a @a def value not defined retunr empty string.
+     *  If a @a def value not defined returns empty string.
      * @param key This is key of a console argument.
      * @param def This is Default value. If key not exits This function will return a default value.
      * @return a string value of argument.
@@ -168,25 +168,25 @@ public:
 
     /**
      * @brief showHelpForInputOptions This method show help for each input option.
-     * @note Befor using of this method invoke the parseParams method. This is needed for generate the help message.
+     * @note Before using of this method invoke the parseParams method. This is needed for generate the help message.
      *
      * **Example:**
      *
      * ```bash
-     * myTool help option1 -option2 argumets
+     * myTool help option1 -option2 arguments
      * ```
      */
     static void showHelpForInputOptions();
 
     /**
-     * @brief getHelpOfInputOptions This method return help abut input options only. Exept help and h options.
-     * @return help abut input options only. Exept help and h options.
+     * @brief getHelpOfInputOptions This method return help abut input options only. Except help and h options.
+     * @return help abut input options only. Except help and h options.
      */
     static Help::Section getHelpOfInputOptions();
 
     /**
      * @brief getHelp This method return options help page.
-     * @note Befor using of this method invoke the parseParams method. This is needed for generate the help message.
+     * @note Before using of this method invoke the parseParams method. This is needed for generate the help message.
      * @return help of available options.
      */
     static const Help::Section& getHelp();
@@ -243,16 +243,16 @@ private:
     static void printWorkingOptions();
 
     /**
-     * @brief checkOption return tru if the option is supported
+     * @brief checkOption return true if the option is supported
      * @param option checked option
      * @return true if option is supported
      */
     static bool checkOption(const OptionData &option, const QString &rawOptionName);
 
     /**
-     * @brief parseAvailableOptions This is private method for parsing availabel options.
+     * @brief parseAvailableOptions This is private method for parsing available options.
      * @param availableOptionsListIn input data of the available options.
-     * @param availableOptionsListOut hash of available options wher key it options name and value it is options data
+     * @param availableOptionsListOut hash of available options where key it options name and value it is options data
      * @param helpOut This is help object that generated from the
      */
     static void parseAvailableOptions(const OptionsDataList& availableOptionsListIn,

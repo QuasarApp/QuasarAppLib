@@ -15,7 +15,7 @@
 namespace QuasarAppUtils {
 
 /**
- * @brief The iPlatformUtils class bas interface for get access platform dependet functions and constants.
+ * @brief The iPlatformUtils class bas interface for get access platform dependent functions and constants.
  */
 class QUASARAPPSHARED_EXPORT PlatformUtils
 {
@@ -26,7 +26,7 @@ public:
     PlatformUtils();
 
     /**
-     * @brief isSnap This method check destribution type. true if the application packed as a snap.
+     * @brief isSnap This method check distribution type. true if the application packed as a snap.
      * @return true if the application packaged as a snap else false.
      */
     static bool isSnap();
@@ -38,19 +38,19 @@ public:
     static QString snapRootFS();
 
     /**
-     * @brief transportPathToSnapRoot change path to snap avaialble.
+     * @brief transportPathToSnapRoot change path to snap available.
      * @param path source path of main OS.
-     * @return readable path location for snap pacakge.
-     * @note this method is not a fast, so not invoke it too offten.
+     * @return readable path location for snap package.
+     * @note this method is not a fast, so not invoke it too often.
      */
     static QString transportPathToSnapRoot(const QString &path);
 
     /**
-     * @brief checkSystemBakupSnapInterface This method check access to bakcup permision of snap pacakge.
-     *  This permision required to get access to rootfs of main OS.
-     * @return true if the app have this accesss.
+     * @brief checkSystemBackupSnapInterface This method check access to backup permission of snap package.
+     *  This permission required to get access to rootfs of main OS.
+     * @return true if the app have this access.
      */
-    static bool checkSystemBakupSnapInterface();
+    static bool checkSystemBackupSnapInterface();
 };
 }
 #endif // IPLATFORMUTILS_H
