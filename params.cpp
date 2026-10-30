@@ -175,7 +175,13 @@ bool Params::optionsForEach(const QStringList &paramsArray,
 
         if (paramsArray[i][0] == '-') {
 
-            if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
+            // A single "-" token is a valid option value, not an option
+            // flag (for example the ad-hoc code signing identity of the
+            // codesign tool, issue #67), so it must be accepted as the
+            // argument of the option.
+            if (i < (paramsArray.size() - 1) &&
+                    (paramsArray[i + 1] == QLatin1String("-") ||
+                     paramsArray[i + 1][0] != '-')) {
                 params[paramsArray[i].mid(1)] = paramsArray[i + 1];
                 i++;
             } else {
