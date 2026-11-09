@@ -1,0 +1,188 @@
+# AGENTS.md
+
+Working guidance for AI coding agents and developers in the `QuasarApp/QuasarAppLib` repository.
+
+## Description
+
+QuasarAppLib provides the global utility functions used across QuasarApp
+applications — Locales (translations), Params (app params + logging),
+Settings (application settings) and other global helpers — plus the CMake
+layer (`CMake/`, the `QuasarApp/CMake` submodule) that every QuasarApp
+project includes for versioning and CI targets.
+
+- **Language:** C++17 + Qt (Core)
+- **Build system:** CMake ≥ 3.19 (typically with Ninja)
+- **License:** LGPLv3
+
+### Repository layout
+
+| Path | Contents |
+|---|---|
+| top-level `*.cpp` / `*.h` | the `QuasarApp` utility library: locales, settings, params, helpdata, … |
+| `CMake/` | the QuasarApp CMake layer (`QuasarApp.cmake`, `QuasarAppCITargets.cmake`, `QtUtils.cmake`, …) — the `QuasarApp/CMake` submodule |
+| `Docs/` | module documentation (mkdocs) |
+
+### Architecture
+
+- One C++ library target `QuasarApp` (links `Qt::Core`), consumed by other
+  QuasarApp projects via `add_subdirectory(QuasarAppLib)` or by including the
+  `CMake/` layer directly.
+- `initAll()` registers the standard `test` / `doc` / `deploy` / `release`
+  aggregates; `addDoc()` registers the Doxygen target.
+
+## Developing process
+
+### Toolchain
+
+| Tool | Version / notes |
+|---|---|
+| CMake | ≥ 3.19 |
+| Compiler | C++17 |
+| Qt | 6.10 (Qt 5 still supported by the layer), module: Core |
+| Ninja | preferred generator |
+| Doxygen | for the `doc` target |
+| mkdocs | documentation site (`Docs/`) |
+
+### Build
+
+Step by step.
+
+**1. One-time toolchain setup.** Qt 6.10.3 via aqtinstall
+(`aqt install-qt linux desktop 6.10.3 gcc_64 -O /opt/Qt`) plus CMake ≥ 3.19
+and Ninja.
+
+**2. Get the sources.** The CMake-layer submodule is mandatory:
+
+```sh
+git clone --recurse-submodules https://github.com/QuasarApp/QuasarAppLib.git
+# or, for an existing clone:
+git submodule update --init --recursive
+```
+
+**3. Configure.**
+
+```sh
+cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=/opt/Qt/6.10.3/gcc_64 -DCMAKE_BUILD_TYPE=Release
+```
+
+**4. Build.**
+
+```sh
+cmake --build build --parallel 16
+```
+
+**5. Find the result.** The deliverable is the `QuasarApp` utility library
+(`libQuasarApp`) plus the CMake layer; there is no product binary.
+
+CMake options (top level):
+
+- `QA_ALLOW_NOT_SUPPORTED_OPTIONS` — allow any command line options (default `ON`)
+- `QA_DISABLE_LOG` — disable all logs (default `OFF`)
+
+### Branching, labels and pull requests (workflow for AI agents)
+
+- Work is issue-driven: one GitHub issue → one branch named
+  `task_<issue-number>`, branched **strictly from `main`** — never from
+  another task branch.
+- Commit messages: short imperative subject + issue reference, e.g.
+  `fix: <summary> (issue #<issue>)`, `docs: <summary> (issue #<issue>)`.
+- Keep the build and lint green; a red CI blocks the merge.
+
+**The exact commands.**
+
+```sh
+# 1. every task starts from a freshly fetched main
+git fetch origin
+git checkout -b task_<issue> origin/main
+
+# 2. label the issue while working. Workflow labels in this repo:
+#    in-progress, waiting-for-review, ready-for-review,
+#    needs-clarification, help wanted, question
+gh issue edit <issue> --add-label in-progress
+
+# 3. post the initial checklist as a comment; afterwards update that same
+#    comment in place, never re-post it
+gh issue comment <issue> --body-file /tmp/checklist.md
+gh issue comment <issue> --edit-last --body-file /tmp/checklist.md
+
+# 4. push and open the PR — see "Creating the pull request" below
+git push -u origin task_<issue>
+gh pr create --base main --head task_<issue> \
+  --title "<type>: <short imperative summary> (issue #<issue>)" \
+  --body-file /tmp/pr_body.md
+
+# 5. the issue goes to waiting-for-review; watch CI from the CLI
+gh issue edit <issue> --remove-label in-progress --add-label waiting-for-review
+gh pr checks <number>
+```
+
+**Status messages — what to post and when.** An agent must keep a
+human-readable trail on the issue (and on the PR once it exists). Every
+message is a GitHub comment with a `##` heading; the checklist comment is
+updated in place (`--edit-last`), never duplicated.
+
+| Stage | Label(s) | Comment template |
+|---|---|---|
+| Start | `in-progress` | `## Task issue_XXX: <title> — initial checklist (branch task_XXX from main)` — one `- [ ]` line per sub-task |
+| Each step done | — | edit the checklist comment: mark the line `- [x]` + one short evidence note (command run, result) |
+| Blocked / needs input | `blocked` / `question` | `## Blocked — task_XXX` — what is blocking and exactly what is needed to continue |
+| PR opened | `waiting-for-review` | `## Progress — task_XXX` — all lines `- [x]` + `**PR: <url>**` + one-line verification summary |
+| Review changes requested | `waiting-for-review` | `## Review-fix cycle — PR #NNN — update` — one `- [x]` line per review point, each with the evidence |
+| CI red on the PR | `in-progress` | `## CI failure — PR #NNN` — failing check, cause, fix plan; push the fix, then update the comment |
+
+**Creating the pull request.** An agent has no browser and cannot create a
+pull request from the GitHub web UI — it must use the `gh` CLI (a token with
+the `repo` scope; in this organisation the agent runs as `QuasarAppCI`):
+
+```sh
+gh pr create \
+  --base main \
+  --head task_<issue> \
+  --title "<type>: <short imperative summary> (issue #<issue>)" \
+  --body-file /tmp/pr_body.md
+```
+
+- The body carries what changed and the verification actually performed
+  (commands + their real output); `(issue #<n>)` in the title links the PR
+  to the issue. Use `--draft` while still iterating.
+- A pull request exists only when `gh pr create` prints its URL. Confirm
+  with `gh pr view <number> --json number,url,mergeable` before reporting
+  "PR created" — never post that status on faith.
+- If work is blocked, keep the PR open, set the issue label to `blocked` and
+  post the status message above.
+
+### Documentation rules
+
+- `Docs/` (mkdocs) is the public module documentation — keep it in sync
+  with the code in the same PR.
+- A new utility module ships **with** its usage documented in the README —
+  never in a follow-up ticket.
+
+## Testing process
+
+### Test infrastructure
+
+This repository has no unit-test suite of its own: the library is consumed
+by other QuasarApp projects, which is where it gets exercised. The
+`initAll()` call registers the standard `test` aggregate (empty here) and
+`addDoc()` the Doxygen target.
+
+### Running the tests from CMake
+
+There is nothing to run here. Verification of a change = configure + build a
+consuming project:
+
+```sh
+# in a sibling clone (e.g. Heart), point the QuasarAppLib submodule at your branch, then:
+cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=/opt/Qt/6.10.3/gcc_64 \
+  -DCMAKE_BUILD_TYPE=Debug -DHEART_TESTS=ON
+cmake --build build --parallel 16
+```
+
+### Smoke tests — the most important testing step
+
+The smoke test for this repository is: a consuming project configures and
+builds green with the changed code. `Heart` is the natural consumer —
+configure it with `HEART_TESTS=ON` (Debug), build and execute its
+`HeartTest` suite. A red configure/build in any consumer is a smoke-test
+failure for this repository.
