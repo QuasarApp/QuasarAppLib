@@ -182,29 +182,25 @@ gh pr create \
 
 ### Test infrastructure
 
-This repository has no unit-test suite of its own: the library is consumed
-by other QuasarApp projects, which is where it gets exercised. The
-`initAll()` call registers the standard `test` aggregate (empty here) and
-`addDoc()` the Doxygen target.
+This repository has no unit-test suite and no smoke tests of its own: the
+library is consumed by other QuasarApp projects, which is where it gets
+exercised. The `initAll()` call registers the standard `test` aggregate
+(empty here) and `addDoc()` the Doxygen target.
 
-### Running the tests from CMake
+### Running the tests from CMake (via a consuming project)
 
-There is nothing to run here. Verification of a change = configure + build a
-consuming project:
+There is nothing to run in this repository. Verification of a change =
+configure + build a consuming project with its tests enabled. `Heart` is
+the natural consumer: its `HEART_TESTS` option (default `ON` on desktop
+platforms, `OFF` on Android/iOS — `Heart/CMakeLists.txt:30-32`) adds the
+`HeartTests` directory and builds the `HeartTest` Qt Test executable
+(`tst_testprotockol.cpp` + `units/`), runnable from
+`build/HeartTests/HeartTest`.
 
 ```sh
 # in a sibling clone (e.g. Heart), point the QuasarAppLib submodule at your branch, then:
 cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=/root/Qt/6.10.3/gcc_64 \
   -DCMAKE_BUILD_TYPE=Debug -DHEART_TESTS=ON
 cmake --build build --parallel 16
+./build/HeartTests/HeartTest
 ```
-
-### Smoke tests — the most important testing step
-
-The smoke test for this repository is: a consuming project configures and
-builds green with the changed code. `Heart` is the natural consumer —
-`HEART_TESTS` defaults to `ON` there (desktop platforms), which adds the
-`HeartTests` directory and builds the `HeartTest` Qt Test executable
-(`tst_testprotockol.cpp` + `units/`), runnable from
-`build/HeartTests/HeartTest`. A red configure/build in any consumer is a
-smoke-test failure for this repository.
