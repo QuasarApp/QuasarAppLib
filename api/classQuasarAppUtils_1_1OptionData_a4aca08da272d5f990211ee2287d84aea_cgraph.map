@@ -1,21 +1,21 @@
 <map id="QuasarAppUtils::OptionData::OptionData" name="QuasarAppUtils::OptionData::OptionData">
-<area shape="rect" id="Node000001" title="OptionData This is main constructor." alt="" coords="5,261,211,301"/>
-<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1OptionData.html#ad21516b706594675c25491f76f46f12b" title="arguments This is input arguments of this option or help message about arguments." alt="" coords="259,5,464,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,260,134,218,165,162,206,105,230,78,257,55,265,50,268,54,260,59,234,82,210,108,169,165,139,220,120,262"/>
-<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1OptionData.html#a1f87a9edeb9d70f7634ceffc79e03c06" title="deprecatedWarning This is a message that will be printed as a warning if user will use this option...." alt="" coords="259,69,464,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,259,175,191,214,152,257,119,268,113,271,117,260,124,217,156,179,194,125,263"/>
-<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1OptionData.html#aae9fff9beebee8e0d3c31c2f353e811e" title="description This is description message of this option." alt="" coords="259,133,464,173"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="135,259,190,221,257,183,274,176,277,181,260,188,193,225,138,263"/>
-<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1OptionData.html#a0c842bea23f0307618d87f57766fde68" title="example This is example of use string." alt="" coords="259,197,464,237"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="187,259,268,238,269,243,189,264"/>
-<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1OptionData.html#a8e28439710be37be808df9ed64695e41" title="setArguments This method sets new value of the options arguments" alt="" coords="259,261,464,301"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="211,279,245,279,245,284,211,284"/>
-<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1OptionData.html#ab0b53fd81673b1ad59c71e333048fd43" title="setDeprecatedMsg This method sets new value of the deprecated warning message of this option." alt="" coords="259,325,464,365"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="189,299,269,319,268,325,187,304"/>
-<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1OptionData.html#a80411bdaf876e5e918ed3e9d0f1f5b3e" title="setDescription This method sets new description of this options." alt="" coords="259,389,464,429"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="138,299,193,337,260,375,277,382,274,387,257,380,190,342,135,304"/>
-<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1OptionData.html#a090cffaa648a3bb1f9779fc5d8c8efc0" title="setExample This method sets a new example value of this option" alt="" coords="259,453,464,493"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="125,300,179,368,217,406,260,439,271,445,268,450,257,444,214,410,175,372,121,303"/>
-<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1OptionData.html#a5d4a8edba974b2a4602b0447d57fa0cc" title="setNames This method sets new value of the option name." alt="" coords="259,517,464,557"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="120,300,139,343,169,397,210,454,234,480,260,503,268,508,265,513,257,507,230,484,206,458,165,400,134,345,115,302"/>
+<area shape="rect" id="Node000001" title="OptionData This is main constructor." alt="" coords="5,283,210,327"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1OptionData.html#ad21516b706594675c25491f76f46f12b" title="arguments This is input arguments of this option or help message about arguments." alt="" coords="258,5,462,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,281,133,235,163,176,204,114,229,86,256,60,265,56,261,60,259,64,232,89,208,117,168,179,138,238,119,283"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1OptionData.html#a1f87a9edeb9d70f7634ceffc79e03c06" title="deprecatedWarning This is a message that will be printed as a warning if user will use this option...." alt="" coords="258,75,462,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,281,174,207,212,166,256,130,267,125,264,129,259,134,216,169,178,211,125,284"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1OptionData.html#aae9fff9beebee8e0d3c31c2f353e811e" title="description This is description message of this option." alt="" coords="258,144,462,189"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="134,280,189,239,256,199,272,193,268,197,259,203,192,244,138,284"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1OptionData.html#a0c842bea23f0307618d87f57766fde68" title="example This is example of use string." alt="" coords="258,213,462,258"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="190,280,264,261,260,264,193,284"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1OptionData.html#a8e28439710be37be808df9ed64695e41" title="setArguments This method sets new value of the options arguments" alt="" coords="258,283,462,327"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="209,303,244,304,240,306,211,307"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1OptionData.html#ab0b53fd81673b1ad59c71e333048fd43" title="setDeprecatedMsg This method sets new value of the deprecated warning message of this option." alt="" coords="258,352,462,397"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="191,325,264,346,259,349,192,331"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1OptionData.html#a80411bdaf876e5e918ed3e9d0f1f5b3e" title="setDescription This method sets new description of this options." alt="" coords="258,421,462,466"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="136,325,192,366,259,407,273,415,268,415,256,411,189,371,136,330"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1OptionData.html#a090cffaa648a3bb1f9779fc5d8c8efc0" title="setExample This method sets a new example value of this option" alt="" coords="258,491,462,535"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="123,325,178,399,216,441,259,476,268,483,263,483,256,480,212,444,174,403,122,330"/>
+<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1OptionData.html#a5d4a8edba974b2a4602b0447d57fa0cc" title="setNames This method sets new value of the option name." alt="" coords="258,560,462,605"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="117,325,138,372,168,431,208,493,232,521,259,546,266,552,261,551,256,550,229,524,204,496,163,434,133,375,116,330"/>
 </map>

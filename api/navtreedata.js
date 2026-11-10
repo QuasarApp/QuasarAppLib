@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "QuasarAppLib", "index.html", [
+    [ "AGENTS.md", "md_AGENTS.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
@@ -62,7 +63,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"qaglobalutils_8h.html#ae1f8c85b41b9185a0b358ccd02420f0e"
+"qaglobalutils_8h.html#ada680af33cc989b8732940ddc8501b1c"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

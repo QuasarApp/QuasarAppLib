@@ -1,11 +1,11 @@
 <map id="settingslistener.h" name="settingslistener.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="72,5,207,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,76,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="125,33,69,73,66,68,122,29"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="100,79,179,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,31,142,65,137,65,137,31"/>
-<area shape="rect" id="Node000004" href="$quasarapp__global_8h.html" title=" " alt="" coords="203,79,353,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,28,244,70,242,75,160,33"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="213,152,343,177"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="281,104,281,138,275,138,275,104"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="71,5,204,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,75,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,36,71,74,67,70,121,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="99,81,176,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,31,140,66,135,64,136,36"/>
+<area shape="rect" id="Node000004" href="$quasarapp__global_8h.html" title=" " alt="" coords="200,81,349,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,31,240,73,235,74,162,36"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="210,157,340,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="277,107,277,142,272,139,273,111"/>
 </map>

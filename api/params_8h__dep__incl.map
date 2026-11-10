@@ -1,9 +1,9 @@
 <map id="params.h" name="params.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="140,5,223,31"/>
-<area shape="rect" id="Node000002" href="$params_8cpp.html" title=" " alt="" coords="5,79,104,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,40,77,81,74,76,148,35"/>
-<area shape="rect" id="Node000003" href="$qalogger_8cpp.html" title=" " alt="" coords="129,79,234,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,44,184,79,179,79,179,44"/>
-<area shape="rect" id="Node000004" href="$quasarapp_8h.html" title=" " alt="" coords="258,79,361,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,35,290,76,287,81,213,40"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="138,5,220,33"/>
+<area shape="rect" id="Node000002" href="$params_8cpp.html" title=" " alt="" coords="5,81,103,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,42,77,83,75,78,142,40"/>
+<area shape="rect" id="Node000003" href="$qalogger_8cpp.html" title=" " alt="" coords="127,81,232,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,47,182,82,177,79,177,51"/>
+<area shape="rect" id="Node000004" href="$quasarapp_8h.html" title=" " alt="" coords="255,81,357,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="216,38,286,80,281,81,214,44"/>
 </map>
