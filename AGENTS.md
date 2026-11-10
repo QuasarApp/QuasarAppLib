@@ -61,7 +61,7 @@ source of truth) and `docs/api/` holds the Doxygen HTML — together with
 Step by step.
 
 **1. One-time toolchain setup.** Qt 6.10.3 via aqtinstall
-(`aqt install-qt linux desktop 6.10.3 gcc_64 -O /root/Qt`) plus CMake ≥ 3.19
+(`aqt install-qt linux desktop 6.10.3 gcc_64 -O /opt/Qt`) plus CMake ≥ 3.19
 and Ninja.
 
 **2. Get the sources.** The CMake-layer submodule is mandatory:
@@ -75,7 +75,7 @@ git submodule update --init --recursive
 **3. Configure.**
 
 ```sh
-cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=/root/Qt/6.10.3/gcc_64 -DCMAKE_BUILD_TYPE=Release
+cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=/opt/Qt/6.10.3/gcc_64 -DCMAKE_BUILD_TYPE=Release
 ```
 
 **4. Build.**
@@ -180,27 +180,15 @@ gh pr create \
 
 ## Testing process
 
-### Test infrastructure
+This repository has **no test infrastructure of its own** — no unit-test
+suite, no smoke tests, no test targets and no test options of its own
+(`HEART_TESTS`, for example, is an option of the `Heart` repository, not
+of this one). The library is consumed by other QuasarApp projects, which
+is where it gets exercised — consumers such as `Heart` maintain their own
+test suites, and the consumer-side test run is documented in that
+repository's `AGENTS.md`. The `initAll()` call registers the standard
+`test` aggregate (empty in this repository) and `addDoc()` the Doxygen
+target.
 
-This repository has no unit-test suite and no smoke tests of its own: the
-library is consumed by other QuasarApp projects, which is where it gets
-exercised. The `initAll()` call registers the standard `test` aggregate
-(empty here) and `addDoc()` the Doxygen target.
-
-### Running the tests from CMake (via a consuming project)
-
-There is nothing to run in this repository. Verification of a change =
-configure + build a consuming project with its tests enabled. `Heart` is
-the natural consumer: its `HEART_TESTS` option (default `ON` on desktop
-platforms, `OFF` on Android/iOS — `Heart/CMakeLists.txt:30-32`) adds the
-`HeartTests` directory and builds the `HeartTest` Qt Test executable
-(`tst_testprotockol.cpp` + `units/`), runnable from
-`build/HeartTests/HeartTest`.
-
-```sh
-# in a sibling clone (e.g. Heart), point the QuasarAppLib submodule at your branch, then:
-cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=/root/Qt/6.10.3/gcc_64 \
-  -DCMAKE_BUILD_TYPE=Debug -DHEART_TESTS=ON
-cmake --build build --parallel 16
-./build/HeartTests/HeartTest
-```
+Verification of a change in this repository = a green configure + build of
+the library (steps 3–4 of the Build section above).
