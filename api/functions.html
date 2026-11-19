@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.536.7a7493a</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.537.c42aa5d</span>
    </div>
   </td>
  </tr>
