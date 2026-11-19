@@ -16,7 +16,7 @@ namespace QuasarAppUtils {
  * @brief The Service class is a template class for creating a singleton services objects.
  * This is manual control wrapper. You should be manually initializing your service object and manually deinitializing.
  * If you don't destroy your service, then service object will be automatically destroyed when application will be closed.
- * @warning If service was destroyed automatically, then destructor of your base class will be not invoked. Use The deinit method for this.
+ * @warning If service was destroyed automatically, then distructor of your base class will be not invoked. Use The deinit method for this.
  * @todo Remove the template Base class. Instead, it needs to use a general inherit paradigm
  *
  * **Examples**
@@ -136,7 +136,7 @@ public:
     }
 
     /**
-     * @brief deinitService This is destructor method for the service.
+     * @brief deinitService This is distructor method for the service.
      * @note do nothing if this object already destroyed.
      * @see instance
      * @see initService
