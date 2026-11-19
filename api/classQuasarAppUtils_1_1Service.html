@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.535.b6388c1</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.536.7a7493a</span>
    </div>
   </td>
  </tr>
@@ -148,12 +148,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac553676cac25b8776b20caa89353c7ab" id="r_ac553676cac25b8776b20caa89353c7ab"><td class="memItemLeft">static Base *&#160;</td><td class="memItemRight"><a class="el" href="#ac553676cac25b8776b20caa89353c7ab">autoInstance</a> ()</td></tr>
 <tr class="memdesc:ac553676cac25b8776b20caa89353c7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">autoInstance This method return pointerer to current service object and if it is not inited try to initialize it use default constructor.  <br /></td></tr>
 <tr class="memitem:ab8893a6e2e7e0ae86115e22698b92f2f" id="r_ab8893a6e2e7e0ae86115e22698b92f2f"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ab8893a6e2e7e0ae86115e22698b92f2f">deinitService</a> ()</td></tr>
-<tr class="memdesc:ab8893a6e2e7e0ae86115e22698b92f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">deinitService This is destructor method for the service.  <br /></td></tr>
+<tr class="memdesc:ab8893a6e2e7e0ae86115e22698b92f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">deinitService This is distructor method for the service.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class Base&gt;<br />
 class QuasarAppUtils::Service&lt; Base &gt;</div><p>The <a class="el" href="classQuasarAppUtils_1_1Service.html" title="The Service class is a template class for creating a singleton services objects. This is manual contr...">Service</a> class is a template class for creating a singleton services objects. This is manual control wrapper. You should be manually initializing your service object and manually deinitializing. If you don't destroy your service, then service object will be automatically destroyed when application will be closed. </p>
-<dl class="section warning"><dt>Warning</dt><dd>If service was destroyed automatically, then destructor of your base class will be not invoked. Use The deinit method for this.</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>If service was destroyed automatically, then distructor of your base class will be not invoked. Use The deinit method for this.</dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd>Remove the template Base class. Instead, it needs to use a general inherit paradigm</dd></dl>
 <p><b>Examples</b></p>
 <p><b>Create a service class</b></p>
@@ -283,7 +283,7 @@ template&lt;class Base&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>deinitService This is destructor method for the service. </p>
+<p>deinitService This is distructor method for the service. </p>
 <dl class="section note"><dt>Note</dt><dd>do nothing if this object already destroyed. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object.">instance</a> </dd>
 <dd>
@@ -324,7 +324,7 @@ template&lt;class Base&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>instance pointer. If the service already initialized then return pointer to current service object. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object.">instance</a> </dd>
 <dd>
-<a class="el" href="#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is destructor method for the service.">deinitService</a> </dd>
+<a class="el" href="#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is distructor method for the service.">deinitService</a> </dd>
 <dd>
 <a class="el" href="#ac553676cac25b8776b20caa89353c7ab" title="autoInstance This method return pointerer to current service object and if it is not inited try to in...">autoInstance</a> </dd></dl>
 
@@ -413,7 +413,7 @@ template&lt;class Base&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>pointerer to current service object if service initialized else nullptr. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a276145c34ae9156e6a168ece16e10dc6" title="initService This method initialize the Base object as a service using the default constructor....">initService</a> </dd>
 <dd>
-<a class="el" href="#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is destructor method for the service.">deinitService</a> </dd>
+<a class="el" href="#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is distructor method for the service.">deinitService</a> </dd>
 <dd>
 <a class="el" href="#ac553676cac25b8776b20caa89353c7ab" title="autoInstance This method return pointerer to current service object and if it is not inited try to in...">autoInstance</a> </dd></dl>
 
