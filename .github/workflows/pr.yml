@@ -1,0 +1,85 @@
+name: CMake PR Test (Windows / Ubuntu / macOS)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened] # Triggers only on pull request events
+
+jobs:
+  build:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2025, ubuntu-24.04, macos-15]
+
+    steps:
+    - name: Install Qt (Windows)
+      uses: jurplel/install-qt-action@v4.3.0
+      if: runner.os == 'Windows'
+      with:
+        version: '6.10.3'
+        target: 'desktop'
+        arch: 'win64_mingw'
+        cache: true
+        tools: 'tools_mingw1310'
+        aqtversion: ==3.2.*
+
+    - name: Install Qt (Linux)
+      uses: jurplel/install-qt-action@v4.3.0
+      if: runner.os == 'Linux'
+      with:
+        version: '6.10.3'
+        target: 'desktop'
+        arch: 'linux_gcc_64'
+        cache: true
+        aqtversion: ==3.2.*
+
+    - name: Install Qt (macOS)
+      # The macOS Qt build is a universal binary (X86_64 + ARM64), so the
+      # clang_64 package works on both the Intel and the Apple Silicon
+      # runners.
+      uses: jurplel/install-qt-action@v4.3.0
+      if: runner.os == 'macOS'
+      with:
+        version: '6.10.3'
+        target: 'desktop'
+        arch: 'clang_64'
+        cache: true
+        aqtversion: ==3.2.*
+
+    # Checkout the repository with the CMake submodule (the QuasarApp CMake
+    # layer), which is required for the build.
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    # A single configure step for all platforms: install-qt-action exports
+    # the QT_ROOT_DIR environment variable on Windows, Linux and macOS.
+    - name: Configure CMake
+      run: >
+        cmake -B ${{ github.workspace }}/build
+        -G Ninja
+        -DBUILD_SHARED_LIBS=ON
+        -DCMAKE_PREFIX_PATH='${{ env.QT_ROOT_DIR }}'
+        -DCMAKE_BUILD_TYPE=Release
+        -S ${{ github.workspace }}
+
+    - name: Build
+      run: cmake --build ${{ github.workspace }}/build --parallel 16
+
+    - name: Run unit tests
+      # The QuasarApp CMake layer (initAll()) registers the `test` aggregate
+      # target. This repository has no test suite yet, so the target is an
+      # empty no-op that stays green; it runs all addTests() targets as soon
+      # as they are added.
+      run: cmake --build ${{ github.workspace }}/build --parallel 16 --target test
+
+    - name: Upload unit test reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: unit-test-reports-${{ matrix.os }}
+        path: ${{ github.workspace }}/Testing/*/test_report.txt*
+        if-no-files-found: ignore
