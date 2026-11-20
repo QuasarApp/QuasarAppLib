@@ -55,28 +55,9 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Configure CMake (Windows)
-      if: runner.os == 'Windows'
-      run: >
-        cmake -B ${{ github.workspace }}/build
-        -G Ninja
-        -DBUILD_SHARED_LIBS=ON
-        -DCMAKE_PREFIX_PATH='${{ env.QT_ROOT_DIR }}'
-        -DCMAKE_BUILD_TYPE=Release
-        -S ${{ github.workspace }}
-
-    - name: Configure CMake (Linux)
-      if: runner.os == 'Linux'
-      run: >
-        cmake -B ${{ github.workspace }}/build
-        -G Ninja
-        -DBUILD_SHARED_LIBS=ON
-        -DCMAKE_PREFIX_PATH='${{ env.QT_ROOT_DIR }}'
-        -DCMAKE_BUILD_TYPE=Release
-        -S ${{ github.workspace }}
-
-    - name: Configure CMake (macOS)
-      if: runner.os == 'macOS'
+    # A single configure step for all platforms: install-qt-action exports
+    # the QT_ROOT_DIR environment variable on Windows, Linux and macOS.
+    - name: Configure CMake
       run: >
         cmake -B ${{ github.workspace }}/build
         -G Ninja
