@@ -9,6 +9,14 @@ jobs:
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
+    env:
+      # On Windows the QtTest plain logger routes all of its messages to
+      # OutputDebugStringA() when stderr has no console attached (CI pipes),
+      # which makes the test output (including FAIL lines) invisible in the
+      # CI log. This variable forces the logger to write to the real
+      # streams.
+      QT_FORCE_STDERR_LOGGING: 1
+
     strategy:
       fail-fast: false
       matrix:
