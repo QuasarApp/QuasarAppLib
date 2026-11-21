@@ -6,7 +6,7 @@
 */
 
 
-#include "locales.h"
+#include "src/Locales/locales.h"
 
 #include <QCoreApplication>
 #include <QTranslator>

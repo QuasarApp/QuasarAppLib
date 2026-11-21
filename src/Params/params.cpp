@@ -5,13 +5,13 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "params.h"
+#include "src/Params/params.h"
 #include <QVariantMap>
 #include <QDebug>
 #include <QFileInfo>
 #include <QDateTime>
 #include <QCoreApplication>
-#include "qaglobalutils.h"
+#include "src/qaglobalutils.h"
 #include <QtLogging>
 
 #ifdef Q_OS_DARWIN

@@ -12,7 +12,7 @@
 #include <typeinfo>
 #include <QByteArray>
 #include "QtGlobal"
-#include "quasarapp_global.h"
+#include "src/Core/quasarapp_global.h"
 
 /**
  * @brief operator | This operator returns the bitwise OR of two enum values of type @a T.

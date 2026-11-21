@@ -5,7 +5,7 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "qaplatformutils.h"
+#include "src/Utils/qaplatformutils.h"
 
 #if defined(Q_OS_LINUX)
 #include <QDir>

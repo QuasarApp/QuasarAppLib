@@ -6,7 +6,7 @@
 //#
 
 
-#include "humanreadableobject.h"
+#include "src/Utils/humanreadableobject.h"
 
 namespace QuasarAppUtils{
 

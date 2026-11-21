@@ -55,7 +55,14 @@ if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
 endif()
 
 file(GLOB SOURCE_CPP
-    "*.cpp" "*.h"
+    "src/*.cpp" "src/*.h"
+    "src/Core/*.cpp" "src/Core/*.h"
+    "src/Params/*.cpp" "src/Params/*.h"
+    "src/Settings/*.cpp" "src/Settings/*.h"
+    "src/Locales/*.cpp" "src/Locales/*.h"
+    "src/HelpData/*.cpp" "src/HelpData/*.h"
+    "src/OptionData/*.cpp" "src/OptionData/*.h"
+    "src/Utils/*.cpp" "src/Utils/*.h"
 )
 
 qt_add_library(${PROJECT_NAME} ${SOURCE_CPP})

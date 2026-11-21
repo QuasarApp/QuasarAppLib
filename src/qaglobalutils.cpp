@@ -5,7 +5,7 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "qaglobalutils.h"
+#include "src/qaglobalutils.h"
 #include <limits>
 
 template<class NUM>

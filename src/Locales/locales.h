@@ -9,7 +9,7 @@
 #ifndef LOCALES_H
 #define LOCALES_H
 
-#include "quasarapp_global.h"
+#include "src/Core/quasarapp_global.h"
 
 #include <QLocale>
 #include <QSet>

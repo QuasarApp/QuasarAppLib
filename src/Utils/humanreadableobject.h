@@ -9,7 +9,7 @@
 #define HUMANREADABLEOBJECT_H
 
 #include <QString>
-#include "quasarapp_global.h"
+#include "src/Core/quasarapp_global.h"
 
 namespace QuasarAppUtils {
 
