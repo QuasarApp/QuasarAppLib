@@ -11,6 +11,7 @@
 #include <QFile>
 #include <QHash>
 #include <QSettings>
+#include <QSignalSpy>
 
 #include "isettings.h"
 #include "settings.h"
@@ -115,32 +116,31 @@ void SettingsTest::testValueStorage() {
 void SettingsTest::testSignals() {
     auto instance = ISettings::instance();
 
-    QString caughtKey;
-    QVariant caughtValue;
-    QString caughtStrValue;
+    // The signals are resolved on the runtime metaobject of the service
+    // instance and connected through the QMetaMethod based QSignalSpy
+    // constructor. A pointer-to-member connect of a signal that is defined
+    // in a shared library does not work from an application on Windows:
+    // the address of the signal function imported by the application
+    // differs from the address stored in the metaobject signal table of
+    // the library, so the connect fails with "signal not found".
+    const QMetaObject *mo = instance->metaObject();
+    const int valueIndex = mo->indexOfSignal("valueChanged(QString,QVariant)");
+    const int strIndex = mo->indexOfSignal("valueStrChanged(QString,QString)");
+    QVERIFY(valueIndex >= 0);
+    QVERIFY(strIndex >= 0);
 
-    auto valueConnection = QObject::connect(instance, &ISettings::valueChanged,
-                                            [&](const QString &key, const QVariant &value) {
-        caughtKey = key;
-        caughtValue = value;
-    });
-
-    auto strConnection = QObject::connect(instance, &ISettings::valueStrChanged,
-                                          [&](const QString &key, const QString &value) {
-        caughtStrValue = value;
-        Q_UNUSED(key);
-    });
+    QSignalSpy valueSpy(instance, mo->method(valueIndex));
+    QSignalSpy strSpy(instance, mo->method(strIndex));
 
     instance->setValue("signalKey", "signalValue");
 
-    QCOMPARE(caughtKey, QString("signalKey"));
-    QCOMPARE(caughtValue.toString(), QString("signalValue"));
-    QCOMPARE(caughtStrValue, QString("signalValue"));
+    QCOMPARE(valueSpy.count(), 1);
+    QCOMPARE(valueSpy.at(0).at(0).toString(), QString("signalKey"));
+    QCOMPARE(valueSpy.at(0).at(1).toString(), QString("signalValue"));
 
-    // the lambdas capture the local variables of this method by reference,
-    // so the connections must be removed before the method returns.
-    QObject::disconnect(valueConnection);
-    QObject::disconnect(strConnection);
+    QCOMPARE(strSpy.count(), 1);
+    QCOMPARE(strSpy.at(0).at(0).toString(), QString("signalKey"));
+    QCOMPARE(strSpy.at(0).at(1).toString(), QString("signalValue"));
 }
 
 void SettingsTest::testSaveModes() {
