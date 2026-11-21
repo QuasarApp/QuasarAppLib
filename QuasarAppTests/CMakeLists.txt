@@ -19,7 +19,7 @@ find_package(Qt6 COMPONENTS Core Test REQUIRED)
 # The test translation file (en.qm) is generated from the en.ts source of
 # this directory by the lrelease tool of the current Qt installation.
 get_filename_component(QT_BIN_DIR "${QT_QMAKE_EXECUTABLE}" DIRECTORY)
-find_program(LRELEASE_EXECUTABLE lrelease HINTS "${QT_BIN_DIR}")
+find_program(LRELEASE_EXECUTABLE NAMES lrelease lrelease.exe HINTS "${QT_BIN_DIR}")
 
 if (NOT LRELEASE_EXECUTABLE)
     message(FATAL_ERROR "The lrelease tool was not found (QT_QMAKE_EXECUTABLE=${QT_QMAKE_EXECUTABLE}). "
