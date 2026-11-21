@@ -55,51 +55,9 @@ jobs:
       with:
         submodules: recursive
 
-    # The `test` target of the QuasarApp CMake layer deploys the test
-    # executable with the CQtDeployer tool, so the tool must be installed
-    # before the tests are run.
-    # (v1.3.1 is the first release that supports the macOS (Darwin ARM64)
-    # runner image.)
     - name: Install CQtDeployer
-      uses: QuasarApp/cqtdeployer-install-action@v1.3.1
+      uses: QuasarApp/cqtdeployer-install-action@main
 
-    # The released Windows CQtDeployer binary (CQtDeployer.exe + Qt6Core.dll) is built with
-    # the MSVCRT-based MinGW (aqt win64_mingw / tools_mingw1310, GCC 13.1.0), but the
-    # bundled libstdc++-6.dll / libgcc_s_seh-1.dll / libwinpthread-1.dll in the release
-    # zip are from a UCRT-based MinGW (GCC 13.2.0, "x86_64-ucrt-posix-seh"). Loading the
-    # UCRT C++ runtime from the MSVCRT exe fails with STATUS_ENTRYPOINT_NOT_FOUND
-    # (0xC0000139) before the deploy step can run. Overwrite the three runtime DLLs with
-    # the matching MSVCRT versions shipped by aqt tools_mingw1310 so the bundle is
-    # self-consistent. aqt installs that toolchain under %IQTA_TOOLS%\\mingw1310_64.
-    - name: Fix CQtDeployer MinGW runtime (Windows)
-      if: runner.os == 'Windows'
-      shell: cmd
-      run: |
-        echo "Aligning CQtDeployer bundled MinGW runtime with aqt tools_mingw1310 (MSVCRT)"
-        set "MINGW_BIN=%IQTA_TOOLS%\mingw1310_64\bin"
-        if not exist "%MINGW_BIN%\libstdc++-6.dll" (
-          echo "ERROR: aqt MSVCRT MinGW runtime not found at %MINGW_BIN%"
-          echo "--- contents of %IQTA_TOOLS% ---"
-          dir "%IQTA_TOOLS%" 2>nul
-          exit /b 1
-        )
-        copy /Y "%MINGW_BIN%\libstdc++-6.dll" "%GITHUB_WORKSPACE%\cqt\libstdc++-6.dll"
-        copy /Y "%MINGW_BIN%\libgcc_s_seh-1.dll" "%GITHUB_WORKSPACE%\cqt\libgcc_s_seh-1.dll"
-        copy /Y "%MINGW_BIN%\libwinpthread-1.dll" "%GITHUB_WORKSPACE%\cqt\libwinpthread-1.dll"
-        echo "Done."
-
-    # The CQtDeployer bundle ships the CQtDeployer.sh wrapper, while the CMake
-    # `test` target invokes the lowercase `cqtdeployer` command. The install
-    # action creates that link for Linux only, so it is created here for
-    # macOS (on Windows the cmd.exe path resolution is case-insensitive and
-    # finds CQtDeployer.exe directly).
-    - name: Create the cqtdeployer command link (macOS)
-      if: runner.os == 'macOS'
-      shell: bash
-      run: |
-        chmod +x "${RUNNER_TEMP}/cqt/CQtDeployer.sh"
-        ln -sf "${RUNNER_TEMP}/cqt/CQtDeployer.sh" "${RUNNER_TEMP}/cqt/cqtdeployer"
-        ls -l "${RUNNER_TEMP}/cqt/cqtdeployer"
 
     # A single configure step for all platforms: install-qt-action exports
     # the QT_ROOT_DIR environment variable on Windows, Linux and macOS.
@@ -119,7 +77,7 @@ jobs:
       # The QuasarApp CMake layer registers the `test` aggregate target, which
       # deploys the QuasarAppTest executable with CQtDeployer and runs the Qt
       # Test suite (QuasarAppTests/).
-      run: cmake --build ${{ github.workspace }}/build --parallel 16 --target test
+      run: cmake --build ${{ github.workspace }}/build --parallel 1 --target test
 
     - name: Dump the test output (Windows diagnostics)
       # On Windows the console output of the deployed test executable is not
