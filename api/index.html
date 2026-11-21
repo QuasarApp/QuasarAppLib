@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.541.9c3262b</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.549.3178566</span>
    </div>
   </td>
  </tr>
@@ -139,7 +139,15 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <h2>Available build options:</h2>
 <div class="fragment"><div class="line">option(QA_ALLOW_NOT_SUPPORTED_OPTIONS &quot;Enable for allow any command line options&quot; ON)</div>
 <div class="line">option(QA_DISABLE_LOG &quot;Disabled all logs (force sets verbose to 0)&quot; OFF)</div>
-</div><!-- fragment --><h1>Include</h1>
+<div class="line">option(QA_TESTS &quot;Enable or disable tests of the QuasarApp library&quot; ON)</div>
+</div><!-- fragment --><h1>Testing</h1>
+<p>The repository contains a unit test suite based on the Qt Test framework in the <span class="tt">QuasarAppTests/</span> directory (structure and naming follow the <span class="tt">HeartTests</span> suite of the <span class="tt">QuasarApp/Heart</span> repository): a single <span class="tt">QuasarAppTest</span> executable with per-module test classes in <span class="tt">QuasarAppTests/units/</span> (Params, Settings/ISettings, Locales, OptionData, GlobalUtils).</p>
+<p>The tests are registered with the QuasarApp CMake layer (<span class="tt">initTests()</span> + <span class="tt">addTests()</span>) and are enabled by the <span class="tt">QA_TESTS</span> CMake option (default <span class="tt">ON</span>, disabled by default on Android and iOS). To build and run the tests:</p>
+<div class="fragment"><div class="line">cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=Your/Qt/Dir/Path</div>
+<div class="line">cmake --build build --parallel 8</div>
+<div class="line">cmake --build build --target test</div>
+</div><!-- fragment --><p>The <span class="tt">test</span> target deploys the test executable with the CQtDeployer tool into the (git-ignored) <span class="tt">Testing/</span> directory and runs it there, so the <a href="https://github.com/QuasarApp/CQtDeployer">CQtDeployer</a> tool must be installed on the build machine.</p>
+<h1>Include</h1>
 <h3>The cmake build do not required Qt libraries.</h3>
 <ul>
 <li>cd yourRepo</li>

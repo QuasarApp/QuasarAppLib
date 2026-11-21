@@ -348,6 +348,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#include" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -476,6 +487,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#include" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -555,7 +577,27 @@ This lib include include next modules:</p>
 <h3 id="available-build-options">Available build options:<a class="headerlink" href="#available-build-options" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="nb">option</span><span class="p">(</span><span class="s">QA_ALLOW_NOT_SUPPORTED_OPTIONS</span><span class="w"> </span><span class="s2">&quot;Enable for allow any command line options&quot;</span><span class="w"> </span><span class="s">ON</span><span class="p">)</span>
 <span class="nb">option</span><span class="p">(</span><span class="s">QA_DISABLE_LOG</span><span class="w"> </span><span class="s2">&quot;Disabled all logs (force sets verbose to 0)&quot;</span><span class="w"> </span><span class="s">OFF</span><span class="p">)</span>
+<span class="nb">option</span><span class="p">(</span><span class="s">QA_TESTS</span><span class="w"> </span><span class="s2">&quot;Enable or disable tests of the QuasarApp library&quot;</span><span class="w"> </span><span class="s">ON</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<p>The repository contains a unit test suite based on the Qt Test framework in
+the <code>QuasarAppTests/</code> directory (structure and naming follow the
+<code>HeartTests</code> suite of the <code>QuasarApp/Heart</code> repository): a single
+<code>QuasarAppTest</code> executable with per-module test classes in
+<code>QuasarAppTests/units/</code> (Params, Settings/ISettings, Locales, OptionData,
+GlobalUtils).</p>
+<p>The tests are registered with the QuasarApp CMake layer
+(<code>initTests()</code> + <code>addTests()</code>) and are enabled by the <code>QA_TESTS</code> CMake
+option (default <code>ON</code>, disabled by default on Android and iOS). To build and
+run the tests:</p>
+<div class="highlight"><pre><span></span><code>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span>Ninja<span class="w"> </span>-DCMAKE_PREFIX_PATH<span class="o">=</span>Your/Qt/Dir/Path
+cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--parallel<span class="w"> </span><span class="m">8</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>The <code>test</code> target deploys the test executable with the CQtDeployer tool into
+the (git-ignored) <code>Testing/</code> directory and runs it there, so the
+<a href="https://github.com/QuasarApp/CQtDeployer">CQtDeployer</a> tool must be
+installed on the build machine.</p>
 <h2 id="include">Include<a class="headerlink" href="#include" title="Permanent link">&para;</a></h2>
 <h4 id="the-cmake-build-do-not-required-qt-libraries">The cmake build do not required Qt libraries.<a class="headerlink" href="#the-cmake-build-do-not-required-qt-libraries" title="Permanent link">&para;</a></h4>
 <ul>

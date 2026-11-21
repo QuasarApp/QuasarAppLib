@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.541.9c3262b</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.549.3178566</span>
    </div>
   </td>
  </tr>
@@ -252,8 +252,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('md_AGENTS.html
 <li>The site rebuilds and redeploys automatically on every push to <span class="tt">main</span> — never hand-edit <span class="tt">docs/</span>, <span class="tt">site/</span> or <span class="tt">doxygen.conf</span> (all generated, git-ignored).</li>
 </ul>
 <h1>Testing process</h1>
-<p>This repository has <b>no test infrastructure of its own</b> — no unit-test suite, no smoke tests, no test targets and no test options of its own (<span class="tt">HEART_TESTS</span>, for example, is an option of the <span class="tt">Heart</span> repository, not of this one). The library is consumed by other QuasarApp projects, which is where it gets exercised — consumers such as <span class="tt">Heart</span> maintain their own test suites, and the consumer-side test run is documented in that repository's <span class="tt"><a class="el" href="AGENTS_8md.html">AGENTS.md</a></span>. The <span class="tt">initAll()</span> call registers the standard <span class="tt">test</span> aggregate (empty in this repository) and <span class="tt">addDoc()</span> the Doxygen target.</p>
-<p>Verification of a change in this repository = a green configure + build of the library (steps 3–4 of the Build section above). </p>
+<p>The repository contains a Qt Test unit-test suite in <span class="tt">QuasarAppTests/</span> (structure and naming follow the <span class="tt">HeartTests</span> suite of the <span class="tt">QuasarApp/Heart</span> repository). A single <span class="tt">QuasarAppTest</span> executable links the <span class="tt">QuasarApp</span> library and the <span class="tt">Qt::Test</span> module; the per-module test classes live in <span class="tt">QuasarAppTests/units/</span> (Params, Settings/ISettings, Locales, OptionData, GlobalUtils) and are started from the <span class="tt">tst_quasarapp.cpp</span> runner.</p>
+<ul>
+<li>The suite is registered with the QuasarApp CMake layer (<span class="tt">initTests()</span> + <span class="tt">addTests()</span>) and is controlled by the <span class="tt">QA_TESTS</span> CMake option (default <span class="tt">ON</span>, <span class="tt">OFF</span> on Android/iOS).</li>
+<li>The tests are run through the <span class="tt">test</span> aggregate target: <span class="tt">cmake --build build --target test</span>. The CMake layer deploys the test executable with the CQtDeployer tool into the (git-ignored) <span class="tt">Testing/</span> directory and runs it there, so CQtDeployer must be installed on the build machine.</li>
+<li>The PR workflow (<span class="tt">.github/workflows/pr.yml</span>) installs CQtDeployer and runs the <span class="tt">test</span> target on Windows, Ubuntu and macOS.</li>
+</ul>
+<p>Verification of a change in this repository = a green configure + build of the library (steps 3–4 of the Build section above) plus a green <span class="tt">test</span> target (the unit test suite). </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

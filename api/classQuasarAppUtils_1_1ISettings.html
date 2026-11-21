@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.541.9c3262b</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.549.3178566</span>
    </div>
   </td>
  </tr>
@@ -128,13 +128,13 @@ Inheritance diagram for QuasarAppUtils::ISettings:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQuasarAppUtils_1_1ISettings__inherit__graph.png" border="0" usemap="#aQuasarAppUtils_1_1ISettings_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
 <map name="aQuasarAppUtils_1_1ISettings_inherit__map" id="aQuasarAppUtils_1_1ISettings_inherit__map">
-<area shape="rect" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="7,232,205,729"/>
-<area shape="rect" href="classQuasarAppUtils_1_1Settings.html" title="The Settings class This is wrapper of the QSettings object." alt="" coords="7,777,205,1095"/>
-<area shape="poly" title=" " alt="" coords="106,741,109,777,103,776,106,746"/>
+<area shape="rect" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="7,232,205,751"/>
+<area shape="rect" href="classQuasarAppUtils_1_1Settings.html" title="The Settings class This is wrapper of the QSettings object." alt="" coords="7,799,205,1117"/>
+<area shape="poly" title=" " alt="" coords="106,763,109,800,103,799,106,768"/>
 <area shape="rect" title=" " alt="" coords="5,58,68,131"/>
-<area shape="poly" title=" " alt="" coords="46,143,64,232,59,233,46,148"/>
+<area shape="poly" title=" " alt="" coords="45,143,63,232,58,233,45,148"/>
 <area shape="rect" href="classQuasarAppUtils_1_1Service.html" title=" " alt="" coords="92,5,259,184"/>
-<area shape="poly" title=" " alt="" coords="156,201,153,233,148,232,157,196"/>
+<area shape="poly" title=" " alt="" coords="157,202,154,232,149,232,158,196"/>
 </map>
 </div>
 <div class="dynheader">
@@ -142,11 +142,11 @@ Collaboration diagram for QuasarAppUtils::ISettings:</div>
 <div class="dyncontent">
 <div class="center"><img src="classQuasarAppUtils_1_1ISettings__coll__graph.png" border="0" usemap="#aQuasarAppUtils_1_1ISettings_coll__map" loading="lazy" alt="Collaboration graph"/></div>
 <map name="aQuasarAppUtils_1_1ISettings_coll__map" id="aQuasarAppUtils_1_1ISettings_coll__map">
-<area shape="rect" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="7,232,205,729"/>
+<area shape="rect" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="7,232,205,751"/>
 <area shape="rect" title=" " alt="" coords="5,58,68,131"/>
-<area shape="poly" title=" " alt="" coords="46,143,64,232,59,232,46,148"/>
+<area shape="poly" title=" " alt="" coords="45,143,63,232,58,233,45,148"/>
 <area shape="rect" href="classQuasarAppUtils_1_1Service.html" title=" " alt="" coords="92,5,259,184"/>
-<area shape="poly" title=" " alt="" coords="157,196,153,233,148,232,156,201"/>
+<area shape="poly" title=" " alt="" coords="158,196,154,233,149,231,157,202"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -194,6 +194,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2ad2d0eb1a8abb5cb04006085a84f750"><td class="mdescLeft">&#160;</td><td class="mdescRight">instance This method returns pointer to current settings object.  <br /></td></tr>
 <tr class="memitem:a14e3ac0dc3a34561827df5fbfd44fb15" id="r_a14e3ac0dc3a34561827df5fbfd44fb15"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a14e3ac0dc3a34561827df5fbfd44fb15">initService</a> (std::unique_ptr&lt; <a class="el" href="#a9cf2d82b723ba351cd90ac3b5f126fd5">ISettings</a> &gt; obj)</td></tr>
 <tr class="memdesc:a14e3ac0dc3a34561827df5fbfd44fb15"><td class="mdescLeft">&#160;</td><td class="mdescRight">initService This method initialize the global settings object.  <br /></td></tr>
+<tr class="memitem:a8df6204dcb007867ccda620a955a1626" id="r_a8df6204dcb007867ccda620a955a1626"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#a8df6204dcb007867ccda620a955a1626">deinitService</a> ()</td></tr>
+<tr class="memdesc:a8df6204dcb007867ccda620a955a1626"><td class="mdescLeft">&#160;</td><td class="mdescRight">deinitService This method destroys the global settings object and removes it from the global service storage.  <br /></td></tr>
 <tr class="inherit_header pub_static_methods_classQuasarAppUtils_1_1Service"><td colspan="2">Static Public Member Functions inherited from <a class="el" href="classQuasarAppUtils_1_1Service.html">QuasarAppUtils::Service&lt; ISettings &gt;</a></td></tr>
 <tr class="memitem:a276145c34ae9156e6a168ece16e10dc6 pub_static_methods_classQuasarAppUtils_1_1Service" id="r_a276145c34ae9156e6a168ece16e10dc6"><td class="memItemLeft">static std::unique_ptr&lt; <a class="el" href="classQuasarAppUtils_1_1ISettings.html">ISettings</a> &gt; &amp;&#160;</td><td class="memItemRight"><a class="el" href="classQuasarAppUtils_1_1Service.html#a276145c34ae9156e6a168ece16e10dc6">initService</a> ()</td></tr>
 <tr class="memdesc:a276145c34ae9156e6a168ece16e10dc6 pub_static_methods_classQuasarAppUtils_1_1Service"><td class="mdescLeft">&#160;</td><td class="mdescRight">initService This method initialize the <em class="arg">Base</em> object as a service using the default constructor. If the service is already initialized then the current service object will be returned.  <br /></td></tr>
@@ -437,6 +439,48 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a8df6204dcb007867ccda620a955a1626" name="a8df6204dcb007867ccda620a955a1626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df6204dcb007867ccda620a955a1626">&#9670;&#160;</a></span>deinitService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuasarAppUtils::ISettings::deinitService </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>deinitService This method destroys the global settings object and removes it from the global service storage. </p>
+<p>The method is redeclared here (and defined in the library source) instead of using the inherited Service&lt;&gt; template definition, so that every caller — including applications and tests that link the shared library — resolves the call to the library implementation. On Windows, the inlined template definition would be instantiated in both the library and the executable, where each copy keeps its own static service storage, so an executable side call could not remove the instance stored by the library.</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classQuasarAppUtils_1_1Service.html#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is distructor method for the service.">Service::deinitService</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00051">51</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classQuasarAppUtils_1_1ISettings_a8df6204dcb007867ccda620a955a1626_cgraph.png" border="0" usemap="#aclassQuasarAppUtils_1_1ISettings_a8df6204dcb007867ccda620a955a1626_cgraph" loading="lazy" alt=""/></div>
+<map name="aclassQuasarAppUtils_1_1ISettings_a8df6204dcb007867ccda620a955a1626_cgraph" id="aclassQuasarAppUtils_1_1ISettings_a8df6204dcb007867ccda620a955a1626_cgraph">
+<area shape="rect" title="deinitService This method destroys the global settings object and removes it from the global service ..." alt="" coords="5,5,193,50"/>
+<area shape="rect" href="classQuasarAppUtils_1_1Service.html#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is distructor method for the service." alt="" coords="241,5,419,50"/>
+<area shape="poly" title=" " alt="" coords="193,25,228,27,223,28,193,30"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ac1b2a5a034ebf18f052101f1373bf57d" name="ac1b2a5a034ebf18f052101f1373bf57d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac1b2a5a034ebf18f052101f1373bf57d">&#9670;&#160;</a></span>forceReloadCache()</h2>
 
@@ -455,7 +499,7 @@ Here is the caller graph for this function:</div>
 <p>forceReloadCache This method force reload settings data from disk. </p>
 <dl class="section note"><dt>Note</dt><dd>Cache will be refreshed </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00097">97</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00101">101</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -539,7 +583,7 @@ Here is the call graph for this function:</div>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values....">ISettings::defaultSettings</a> </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>If you set a def arguments to empty string then this method will return default value from the defaultSettings map. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00067">67</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00071">71</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -589,7 +633,7 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>value of a <em class="arg">key</em> </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values....">ISettings::defaultSettings</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00051">51</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00055">55</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -706,7 +750,7 @@ Here is the caller graph for this function:</div>
 
 <p>Reimplemented in <a class="el" href="classQuasarAppUtils_1_1Settings.html#a108fa7fa81fceb4e389d9fd5184b4d33">QuasarAppUtils::Settings</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00085">85</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00089">89</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -841,7 +885,7 @@ Here is the caller graph for this function:</div>
 
 <p>resetToDefault This method reset all settings to default values. </p>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00076">76</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00080">80</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -935,7 +979,7 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00124">124</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00128">128</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1066,7 +1110,7 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00105">105</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00109">109</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1195,7 +1239,7 @@ Here is the caller graph for this function:</div>
 
 <p>sync This method save all settings data on a hard disk; </p>
 
-<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00089">89</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8cpp_source.html#l00093">93</a> of file <a class="el" href="isettings_8cpp_source.html">isettings.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1397,7 +1441,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="isettings_8h_source.html#l00225">225</a> of file <a class="el" href="isettings_8h_source.html">isettings.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="isettings_8h_source.html#l00243">243</a> of file <a class="el" href="isettings_8h_source.html">isettings.h</a>.</p>
 
 </div>
 </div>
