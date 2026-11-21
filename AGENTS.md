@@ -180,15 +180,24 @@ gh pr create \
 
 ## Testing process
 
-This repository has **no test infrastructure of its own** — no unit-test
-suite, no smoke tests, no test targets and no test options of its own
-(`HEART_TESTS`, for example, is an option of the `Heart` repository, not
-of this one). The library is consumed by other QuasarApp projects, which
-is where it gets exercised — consumers such as `Heart` maintain their own
-test suites, and the consumer-side test run is documented in that
-repository's `AGENTS.md`. The `initAll()` call registers the standard
-`test` aggregate (empty in this repository) and `addDoc()` the Doxygen
-target.
+The repository contains a Qt Test unit-test suite in `QuasarAppTests/`
+(structure and naming follow the `HeartTests` suite of the `QuasarApp/Heart`
+repository). A single `QuasarAppTest` executable links the `QuasarApp`
+library and the `Qt::Test` module; the per-module test classes live in
+`QuasarAppTests/units/` (Params, Settings/ISettings, Locales, OptionData,
+GlobalUtils) and are started from the `tst_quasarapp.cpp` runner.
+
+- The suite is registered with the QuasarApp CMake layer
+  (`initTests()` + `addTests()`) and is controlled by the `QA_TESTS` CMake
+  option (default `ON`, `OFF` on Android/iOS).
+- The tests are run through the `test` aggregate target:
+  `cmake --build build --target test`. The CMake layer deploys the test
+  executable with the CQtDeployer tool into the (git-ignored) `Testing/`
+  directory and runs it there, so CQtDeployer must be installed on the build
+  machine.
+- The PR workflow (`.github/workflows/pr.yml`) installs CQtDeployer and runs
+  the `test` target on Windows, Ubuntu and macOS.
 
 Verification of a change in this repository = a green configure + build of
-the library (steps 3–4 of the Build section above).
+the library (steps 3–4 of the Build section above) plus a green `test`
+target (the unit test suite).

@@ -24,8 +24,33 @@ This lib include include next modules:
 ```cmake
 option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
 option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
-
+option(QA_TESTS "Enable or disable tests of the QuasarApp library" ON)
 ```
+
+## Testing
+
+The repository contains a unit test suite based on the Qt Test framework in
+the `QuasarAppTests/` directory (structure and naming follow the
+`HeartTests` suite of the `QuasarApp/Heart` repository): a single
+`QuasarAppTest` executable with per-module test classes in
+`QuasarAppTests/units/` (Params, Settings/ISettings, Locales, OptionData,
+GlobalUtils).
+
+The tests are registered with the QuasarApp CMake layer
+(`initTests()` + `addTests()`) and are enabled by the `QA_TESTS` CMake
+option (default `ON`, disabled by default on Android and iOS). To build and
+run the tests:
+
+```sh
+cmake -B build -G Ninja -DCMAKE_PREFIX_PATH=Your/Qt/Dir/Path
+cmake --build build --parallel 8
+cmake --build build --target test
+```
+
+The `test` target deploys the test executable with the CQtDeployer tool into
+the (git-ignored) `Testing/` directory and runs it there, so the
+[CQtDeployer](https://github.com/QuasarApp/CQtDeployer) tool must be
+installed on the build machine.
 
 ## Include
 
