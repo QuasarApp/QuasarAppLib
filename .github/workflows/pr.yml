@@ -9,6 +9,14 @@ jobs:
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
+    env:
+      # On Windows the QtTest plain logger routes all of its messages to
+      # OutputDebugStringA() when stderr has no console attached (CI pipes),
+      # which makes the test output (including FAIL lines) invisible in the
+      # CI log. This variable forces the logger to write to the real
+      # streams.
+      QT_FORCE_STDERR_LOGGING: 1
+
     strategy:
       fail-fast: false
       matrix:
@@ -55,6 +63,10 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Install CQtDeployer
+      uses: QuasarApp/cqtdeployer-install-action@main
+
+
     # A single configure step for all platforms: install-qt-action exports
     # the QT_ROOT_DIR environment variable on Windows, Linux and macOS.
     - name: Configure CMake
@@ -70,11 +82,23 @@ jobs:
       run: cmake --build ${{ github.workspace }}/build --parallel 16
 
     - name: Run unit tests
-      # The QuasarApp CMake layer (initAll()) registers the `test` aggregate
-      # target. This repository has no test suite yet, so the target is an
-      # empty no-op that stays green; it runs all addTests() targets as soon
-      # as they are added.
-      run: cmake --build ${{ github.workspace }}/build --parallel 16 --target test
+      # The QuasarApp CMake layer registers the `test` aggregate target, which
+      # deploys the QuasarAppTest executable with CQtDeployer and runs the Qt
+      # Test suite (QuasarAppTests/).
+      run: cmake --build ${{ github.workspace }}/build --parallel 1 --target test
+
+    - name: Dump the test output (Windows diagnostics)
+      # On Windows the console output of the deployed test executable is not
+      # reliably captured by the CI log, so on failure the executable is run
+      # a second time with the output redirected to a file that is printed
+      # here.
+      if: failure() && runner.os == 'Windows'
+      shell: cmd
+      run: |
+        echo "=== Re-running the deployed test executable with captured output ==="
+        "%GITHUB_WORKSPACE%\Testing\QuasarAppTest\QuasarAppTest.exe" > "%GITHUB_WORKSPACE%\Testing\QuasarAppTest\test_output.log" 2>&1
+        echo "Exit code: %ERRORLEVEL%"
+        type "%GITHUB_WORKSPACE%\Testing\QuasarAppTest\test_output.log"
 
     - name: Upload unit test reports
       if: always()

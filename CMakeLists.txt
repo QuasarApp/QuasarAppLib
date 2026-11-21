@@ -40,6 +40,12 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
 option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
 
+if (ANDROID OR IOS)
+    option(QA_TESTS "Enable or disable tests of the QuasarApp library" OFF)
+else()
+    option(QA_TESTS "Enable or disable tests of the QuasarApp library" ON)
+endif()
+
 if (QA_DISABLE_LOG)
     add_definitions(-DQA_DISABLE_LOG)
 endif()
@@ -57,6 +63,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 setVersion(1 6 0)
+
+if (QA_TESTS)
+    add_subdirectory(QuasarAppTests)
+endif()
 
 initAll()
 make_directory("${CMAKE_CURRENT_SOURCE_DIR}/Distro")

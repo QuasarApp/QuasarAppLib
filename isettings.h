@@ -126,6 +126,24 @@ public:
      */
     static bool initService(std::unique_ptr<ISettings> obj);
 
+    /**
+     * @brief deinitService This method destroys the global settings object
+     * and removes it from the global service storage.
+     *
+     * The method is redeclared here (and defined in the library source)
+     * instead of using the inherited Service<> template definition, so that
+     * every caller — including applications and tests that link the shared
+     * library — resolves the call to the library implementation. On Windows,
+     * the inlined template definition would be instantiated in both the
+     * library and the executable, where each copy keeps its own static
+     * service storage, so an executable side call could not remove the
+     * instance stored by the library.
+     *
+     * @return void
+     * @see Service::deinitService
+     */
+    static void deinitService();
+
 public slots:
     /**
      * @brief setValue This slot sets new value for a @a key setting

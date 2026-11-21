@@ -48,6 +48,10 @@ bool ISettings::initService(std::unique_ptr<ISettings> obj) {
     return Service<ISettings>::initService(std::move(obj));
 }
 
+void ISettings::deinitService() {
+    Service<ISettings>::deinitService();
+}
+
 QVariant ISettings::getValue(const QString &key, const QVariant &def) {
     debug_assert(key.size(), "You can't use the empty key value!");
 
