@@ -8,10 +8,10 @@
 #ifndef QUASARAAPP_H
 #define QUASARAAPP_H
 
-#include "src/Params/params.h"
-#include "src/Locales/locales.h"
-#include "src/Settings/settings.h"
-#include "src/Utils/qaplatformutils.h"
+#include "Params/params.h"
+#include "Locales/locales.h"
+#include "Settings/settings.h"
+#include "Utils/qaplatformutils.h"
 
 /**
  * @brief The QuasarAppUtils namespace contains the base functions for all applications of the QuasarApp group.

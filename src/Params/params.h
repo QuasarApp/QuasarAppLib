@@ -10,9 +10,9 @@
 
 #include <QMap>
 #include <QVariant>
-#include "src/Core/quasarapp_global.h"
-#include "src/HelpData/helpdata.h"
-#include "src/OptionData/optiondata.h"
+#include "Core/quasarapp_global.h"
+#include "HelpData/helpdata.h"
+#include "OptionData/optiondata.h"
 
 namespace QuasarAppUtils {
 

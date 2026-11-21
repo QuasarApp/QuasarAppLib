@@ -5,7 +5,7 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "src/HelpData/helpdata.h"
+#include "HelpData/helpdata.h"
 #include <iostream>
 
 #ifdef Q_OS_WIN32

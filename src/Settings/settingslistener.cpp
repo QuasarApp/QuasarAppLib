@@ -5,8 +5,8 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "src/Settings/isettings.h"
-#include "src/Settings/settingslistener.h"
+#include "Settings/isettings.h"
+#include "Settings/settingslistener.h"
 
 namespace QuasarAppUtils {
 

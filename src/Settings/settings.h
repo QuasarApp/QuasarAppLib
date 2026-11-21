@@ -9,8 +9,8 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "src/Core/quasarapp_global.h"
-#include "src/Settings/isettings.h"
+#include "Core/quasarapp_global.h"
+#include "Settings/isettings.h"
 #include <QSet>
 #include <QSettings>
 

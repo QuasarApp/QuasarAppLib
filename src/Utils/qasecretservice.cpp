@@ -1,4 +1,4 @@
-#include "src/Utils/qasecretservice.h"
+#include "Utils/qasecretservice.h"
 
 #ifdef Q_OS_LINUX
 #include <QProcess>

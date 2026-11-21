@@ -8,8 +8,8 @@
 #ifndef ISETTINGS_H
 #define ISETTINGS_H
 
-#include "src/Core/qaservice.h"
-#include "src/Core/quasarapp_global.h"
+#include "Core/qaservice.h"
+#include "Core/quasarapp_global.h"
 #include <QObject>
 #include <QVariant>
 

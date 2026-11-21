@@ -10,7 +10,7 @@
 #define PLATFORMUTILS_H
 
 #include <QString>
-#include "src/Core/quasarapp_global.h"
+#include "Core/quasarapp_global.h"
 
 namespace QuasarAppUtils {
 

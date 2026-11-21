@@ -9,8 +9,8 @@
 #ifndef OPTIONDATA_H
 #define OPTIONDATA_H
 
-#include "src/Core/quasarapp_global.h"
-#include "src/HelpData/helpdata.h"
+#include "Core/quasarapp_global.h"
+#include "HelpData/helpdata.h"
 
 namespace QuasarAppUtils{
 

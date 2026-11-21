@@ -15,7 +15,7 @@ endif()
 project(QuasarApp)
 
 if(TARGET ${PROJECT_NAME})
-  message("The ${PROJECT_NAME} arledy included in main Project")
+  message("The ${PROJECT_NAME} already included in main Project")
   return()
 endif()
 
@@ -67,7 +67,7 @@ file(GLOB SOURCE_CPP
 
 qt_add_library(${PROJECT_NAME} ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core)
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/QuasarAppTests
 
 setVersion(1 6 0)
 

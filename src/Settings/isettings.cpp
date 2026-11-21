@@ -5,10 +5,10 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "src/Settings/isettings.h"
+#include "Settings/isettings.h"
 #include <QSettings>
 #include <QCoreApplication>
-#include "src/qaglobalutils.h"
+include "qaglobalutils.h"
 
 namespace QuasarAppUtils {
 

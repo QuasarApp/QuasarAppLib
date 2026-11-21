@@ -6,7 +6,7 @@
 */
 
 
-#include "src/Settings/settings.h"
+#include "Settings/settings.h"
 #include <QSettings>
 #include <QCoreApplication>
 #include <QDebug>

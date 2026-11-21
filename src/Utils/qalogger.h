@@ -8,7 +8,7 @@
 #ifndef QALOGGER_H
 #define QALOGGER_H
 
-#include "src/Core/quasarapp_global.h"
+#include "Core/quasarapp_global.h"
 
 #include <QFile>
 #include <QList>
