@@ -58,8 +58,10 @@ jobs:
     # The `test` target of the QuasarApp CMake layer deploys the test
     # executable with the CQtDeployer tool, so the tool must be installed
     # before the tests are run.
+    # (v1.3.1 is the first release that supports the macOS (Darwin ARM64)
+    # runner image.)
     - name: Install CQtDeployer
-      uses: QuasarApp/cqtdeployer-install-action@v1.0.1
+      uses: QuasarApp/cqtdeployer-install-action@v1.3.1
 
     # The released Windows CQtDeployer binary (CQtDeployer.exe + Qt6Core.dll) is built with
     # the MSVCRT-based MinGW (aqt win64_mingw / tools_mingw1310, GCC 13.1.0), but the
@@ -86,6 +88,19 @@ jobs:
         copy /Y "%MINGW_BIN%\libwinpthread-1.dll" "%GITHUB_WORKSPACE%\cqt\libwinpthread-1.dll"
         echo "Done."
 
+    # The CQtDeployer bundle ships the CQtDeployer.sh wrapper, while the CMake
+    # `test` target invokes the lowercase `cqtdeployer` command. The install
+    # action creates that link for Linux only, so it is created here for
+    # macOS (on Windows the cmd.exe path resolution is case-insensitive and
+    # finds CQtDeployer.exe directly).
+    - name: Create the cqtdeployer command link (macOS)
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        chmod +x "${RUNNER_TEMP}/cqt/CQtDeployer.sh"
+        ln -sf "${RUNNER_TEMP}/cqt/CQtDeployer.sh" "${RUNNER_TEMP}/cqt/cqtdeployer"
+        ls -l "${RUNNER_TEMP}/cqt/cqtdeployer"
+
     # A single configure step for all platforms: install-qt-action exports
     # the QT_ROOT_DIR environment variable on Windows, Linux and macOS.
     - name: Configure CMake
@@ -105,6 +120,19 @@ jobs:
       # deploys the QuasarAppTest executable with CQtDeployer and runs the Qt
       # Test suite (QuasarAppTests/).
       run: cmake --build ${{ github.workspace }}/build --parallel 16 --target test
+
+    - name: Dump the test output (Windows diagnostics)
+      # On Windows the console output of the deployed test executable is not
+      # reliably captured by the CI log, so on failure the executable is run
+      # a second time with the output redirected to a file that is printed
+      # here.
+      if: failure() && runner.os == 'Windows'
+      shell: cmd
+      run: |
+        echo "=== Re-running the deployed test executable with captured output ==="
+        "%GITHUB_WORKSPACE%\Testing\QuasarAppTest\QuasarAppTest.exe" > "%GITHUB_WORKSPACE%\Testing\QuasarAppTest\test_output.log" 2>&1
+        echo "Exit code: %ERRORLEVEL%"
+        type "%GITHUB_WORKSPACE%\Testing\QuasarAppTest\test_output.log"
 
     - name: Upload unit test reports
       if: always()
