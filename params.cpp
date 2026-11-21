@@ -6,17 +6,12 @@
 */
 
 #include "params.h"
-#include <QVariantMap>
 #include <QDebug>
 #include <QFileInfo>
-#include <QDateTime>
 #include <QCoreApplication>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
-#include <QSet>
 #include <QVector>
-#include "qaglobalutils.h"
-#include <QtLogging>
 
 #ifdef Q_OS_DARWIN
 #include <mach-o/dyld.h>
@@ -193,15 +188,14 @@ QString optionValueName(const OptionData &optionData) {
 bool Params::parseWithQCommandLineParser(const QStringList &paramsArray,
                                          const OptionsDataList &availableOptions) {
 
+    QCommandLineParser parser;
+
     // The QCommandLineParser keeps the added options as pointers, so the
-    // QCommandLineOption objects are stored in a local list that stays alive
-    // while the parser is in use.
+    // QCommandLineOption objects are stored in a local list that stays
+    // alive while the parser is in use.
     QVector<QCommandLineOption> optionList;
     QMap<QString, OptionData> optionDataByName; // the option name (without the dash) -> the option data
-
-    QCommandLineParser parser;
-    for (auto it = availableOptions.constBegin(); it != availableOptions.constEnd(); ++it) {
-        const OptionData &optionData = it.value();
+    for (const OptionData &optionData : availableOptions) {
         if (!optionData.isValid())
             continue;
 
@@ -219,38 +213,16 @@ bool Params::parseWithQCommandLineParser(const QStringList &paramsArray,
         }
     }
 
-    // Every option always requires a value. The value must be the next
-    // argument and it must not look like an option (start with a dash).
-    bool positionalMode = false;
-    for (int i = 0; i < paramsArray.size(); ++i) {
-        const QString &token = paramsArray[i];
-        if (positionalMode)
-            continue;
-
-        if (token == QLatin1String("--")) {
-            // the double dash ends the options parsing
-            positionalMode = true;
-            continue;
-        }
-
-        if (!token.startsWith(QLatin1Char('-')) || token.size() == 1
-            || token.contains(QLatin1Char('=')))
-            continue; // a positional argument, the "-" alone or the "option=value" form
-
-        if (i + 1 >= paramsArray.size()
-            || paramsArray[i + 1].startsWith(QLatin1Char('-'))) {
-            qCritical() << "Missing argument for " + token;
-            return false;
-        }
-    }
-
     // The QuasarApp options use the single dash prefix ("-verbose"), the
     // QCommandLineParser expects the double dash form ("--verbose") for the
-    // long options. The arguments after the "--" separator are positional
-    // and must not be transformed.
+    // long options. Only the tokens that are the names of the registered
+    // options are transformed, the other tokens (the values, the positional
+    // arguments and the unknown options) are passed to the parser as they
+    // are. The arguments after the "--" separator are positional and are
+    // not transformed as well.
     QStringList parserArgs;
-    parserArgs.reserve(paramsArray.size() + 1);
-    positionalMode = false;
+    parserArgs.reserve(paramsArray.size());
+    bool positionalMode = false;
     for (const QString &token : paramsArray) {
         if (positionalMode) {
             parserArgs.append(token);
@@ -264,87 +236,33 @@ bool Params::parseWithQCommandLineParser(const QStringList &paramsArray,
         }
 
         if (token.startsWith(QLatin1Char('-')) && token.size() > 1
-            && !token.startsWith(QLatin1String("--"))) {
+                && !token.startsWith(QLatin1String("--"))
+                && optionDataByName.contains(token.mid(1).section(QLatin1Char('='), 0, 0))) {
             parserArgs.append(QLatin1Char('-') + token);
-        } else {
-            parserArgs.append(token);
+            continue;
         }
+
+        parserArgs.append(token);
     }
 
-
-#ifdef QA_ALLOW_NOT_SUPPORTED_OPTIONS
-    // Allow any command line option: register the unsupported options on the
-    // fly, so that the QCommandLineParser can read their values.
-    positionalMode = false;
-    for (const QString &token : parserArgs) {
-        if (positionalMode)
-            break;
-
-        if (token == QLatin1String("--")) {
-            positionalMode = true;
-            continue;
-        }
-
-        if (!token.startsWith(QLatin1String("--")) || token.size() <= 2)
-            continue;
-
-        const QString name = token.mid(2).section(QLatin1Char('='), 0, 0);
-        if (name.isEmpty() || optionDataByName.contains(name))
-            continue;
-
-        QCommandLineOption unsupportedOption(name, QStringLiteral("Unsupported option"),
-                                             QStringLiteral("value"));
-        if (parser.addOption(unsupportedOption)) {
-            optionList.append(unsupportedOption);
-            optionDataByName.insert(name, OptionData(QStringList()));
-        }
-    }
-#endif
-
-    // The QCommandLineParser::parse method expects the executable name as
-    // the first argument, it is skipped during the parsing.
+    // The QCommandLineParser::parse method removes the first argument of
+    // the list (the executable name) before the parsing. The paramsArray
+    // does not contain the executable name, so a placeholder is prepended.
     parserArgs.prepend(QStringLiteral("quasarapp"));
 
     if (!parser.parse(parserArgs)) {
-#ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
-        const QStringList unknownOptions = parser.unknownOptionNames();
-        if (!unknownOptions.isEmpty()) {
-            qCritical() << QString("The '%0' option not exists!"
-                                   " You use wrong option name,"
-                                   " please check the help before run your command.")
-                        .arg(QLatin1Char('-') + unknownOptions.first());
-            return false;
-        }
-#endif
         qCritical() << parser.errorText();
         return false;
     }
 
-#ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
-    // In the strict mode every argument that is not a known option
-    // is rejected as well.
-    if (!parser.positionalArguments().isEmpty()) {
-        qCritical() << QString("The '%0' option not exists!"
-                               " You use wrong option name,"
-                               " please check the help before run your command.")
-                    .arg(parser.positionalArguments().first());
-        return false;
-    }
-#endif
+    // The parsed options are stored in the params map, for the repeated
+    // options the last value wins.
+    for (auto it = optionDataByName.constBegin(); it != optionDataByName.constEnd(); ++it) {
+        const QString &name = it.key();
+        if (!parser.isSet(name))
+            continue;
 
-    // An option value that was passed in the "option=value" form must not
-    // look like an option (start with a dash) as well.
-    for (const QString &name : parser.optionNames()) {
-        const QString value = parser.value(name);
-        if (value.startsWith(QLatin1Char('-'))) {
-            qCritical() << "Missing argument for -" + name;
-            return false;
-        }
-    }
-
-    // Store the parsed options in the order in which they appear in the input.
-    for (const QString &name : parser.optionNames()) {
-        const OptionData &optionData = optionDataByName.value(name, OptionData(QStringList()));
+        const OptionData &optionData = it.value();
         if (!checkOption(optionData))
             return false;
 
@@ -352,11 +270,9 @@ bool Params::parseWithQCommandLineParser(const QStringList &paramsArray,
         params[name] = parser.value(name);
     }
 
-    // The positional arguments are stored with the empty value,
-    // the same way as in the previous implementation.
-    for (const QString &positionalArgument : parser.positionalArguments()) {
+    // The positional arguments are stored with the empty value.
+    for (const QString &positionalArgument : parser.positionalArguments())
         params[positionalArgument] = QString();
-    }
 
     return true;
 }

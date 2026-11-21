@@ -37,7 +37,6 @@ endif()
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
-option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
 option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
 
 if (ANDROID OR IOS)
@@ -48,10 +47,6 @@ endif()
 
 if (QA_DISABLE_LOG)
     add_definitions(-DQA_DISABLE_LOG)
-endif()
-
-if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
-    add_definitions(-DQA_ALLOW_NOT_SUPPORTED_OPTIONS)
 endif()
 
 file(GLOB SOURCE_CPP

@@ -229,14 +229,19 @@ private:
 
     /**
      * @brief parseWithQCommandLineParser This is a private method for parsing the input options.
-     * The available options and the input parameters are parsed with the
-     * QCommandLineParser class. The QuasarApp single dash option names ("-verbose")
-     * are converted to the QCommandLineParser long option form ("--verbose").
-     * Unsupported options are reported according to the QA_ALLOW_NOT_SUPPORTED_OPTIONS
-     * build option and the parsing result is stored in the static params map.
+     * The available options are converted to the QCommandLineOption objects and the
+     * input parameters are parsed with the QCommandLineParser class using the
+     * standard Qt command line semantics: the tokens with the registered QuasarApp
+     * single dash option names ("-verbose") are mapped to the long option form
+     * ("--verbose"), the other tokens are passed to the parser as they are, the
+     * "--option value" and "--option=value" forms are supported, the "--" argument
+     * ends the options parsing and the unknown options or the missing option
+     * values fail the parsing with the QCommandLineParser error message. The
+     * parsed options and the positional arguments (stored with the empty value)
+     * are stored in the static params map.
      * @param paramsArray This is the input array of the raw parameters.
      * @param availableOptions This is the list of the available options for check.
-     * @return true if all input options are supported and parsed correctly else false.
+     * @return true if all input options are parsed correctly else false.
      */
     static bool parseWithQCommandLineParser(const QStringList& paramsArray,
                                             const OptionsDataList &availableOptions);
