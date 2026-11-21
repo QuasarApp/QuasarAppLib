@@ -9,13 +9,12 @@ set(CURRENT_PROJECT ${PROJECT_NAME}Test)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Test REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Test REQUIRED)
+find_package(Qt6 COMPONENTS Core Test REQUIRED)
 
 # The test translation file (en.qm) is generated from the en.ts source of
 # this directory by the lrelease tool of the current Qt installation.
@@ -47,7 +46,7 @@ file(GLOB SOURCE_CPP
 set(PUBLIC_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 set(PUBLIC_INCLUDE_DIR ${PUBLIC_INCLUDE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/units")
 
-add_executable(${CURRENT_PROJECT} ${SOURCE_CPP} ${TEST_TRANSLATION_QM})
+qt_add_executable(${CURRENT_PROJECT} ${SOURCE_CPP} ${TEST_TRANSLATION_QM})
 
 target_link_libraries(${CURRENT_PROJECT} PRIVATE Qt${QT_VERSION_MAJOR}::Test QuasarApp)
 
