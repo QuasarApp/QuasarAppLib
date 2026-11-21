@@ -25,6 +25,18 @@ void ParamsTest::test() {
     testExecutablePath();
     testHelp();
     testClearParsedData();
+
+    // The unit tests of the parseParams method (QCommandLineParser based).
+    testParseParamsEmptyInput();
+    testParseParamsPositionalArguments();
+    testParseParamsDoubleDashSyntax();
+    testParseParamsArgcArgvOverloads();
+    testParseParamsUnknownOption();
+    testParseParamsMissingValue();
+    testParseParamsValueLookingLikeOption();
+    testParseParamsDuplicateOption();
+    testParseParamsAliasNames();
+    testParseParamsEndOfOptions();
 }
 
 void ParamsTest::testVerboseParsing() {
@@ -142,4 +154,125 @@ void ParamsTest::testClearParsedData() {
     Params::clearParsedData();
     QCOMPARE(Params::size(), 0);
     QCOMPARE(Params::getArg("tempKey"), QString(""));
+}
+
+void ParamsTest::testParseParamsEmptyInput() {
+    // an empty parameter list is parsed successful and stores nothing.
+    QVERIFY(Params::parseParams(QStringList{}));
+    QCOMPARE(Params::size(), 0);
+    QVERIFY(Params::getUserParamsMap().isEmpty());
+}
+
+void ParamsTest::testParseParamsPositionalArguments() {
+#ifdef QA_ALLOW_NOT_SUPPORTED_OPTIONS
+    // an argument without the leading dash is stored as a positional
+    // argument with the empty value.
+    QVERIFY(Params::parseParams(QStringList{"hello"}));
+    QVERIFY(Params::isEndable("hello"));
+    QCOMPARE(Params::getArg("hello"), QString(""));
+    QCOMPARE(Params::size(), 1);
+
+    // the positional arguments can be mixed with the options.
+    QVERIFY(Params::parseParams(QStringList{"file.txt", "-verbose", "1"}));
+    QCOMPARE(Params::getArg("verbose"), QString("1"));
+    QVERIFY(Params::isEndable("file.txt"));
+    QCOMPARE(Params::size(), 2);
+#else
+    // in the strict build mode the positional arguments are rejected.
+    QVERIFY(!Params::parseParams(QStringList{"hello"}));
+#endif
+}
+
+void ParamsTest::testParseParamsDoubleDashSyntax() {
+    // the standard double dash (long option) syntax of the
+    // QCommandLineParser is supported as well.
+    QVERIFY(Params::parseParams(QStringList{"--verbose", "3"}));
+    QCOMPARE(Params::getArg("verbose"), QString("3"));
+
+    QVERIFY(Params::parseParams(QStringList{"--verbose=2"}));
+    QCOMPARE(Params::getArg("verbose"), QString("2"));
+}
+
+void ParamsTest::testParseParamsArgcArgvOverloads() {
+    // the const C-style overload reads everything after the executable name.
+    const char *constArgv[] = {"test", "-verbose", "3"};
+    QVERIFY(Params::parseParams(3, constArgv));
+    QCOMPARE(Params::getArg("verbose"), QString("3"));
+
+    // the mutable C-style overload must behave the same way.
+    char *argv[] = {const_cast<char *>("test"),
+                    const_cast<char *>("-verbose"),
+                    const_cast<char *>("2")};
+    QVERIFY(Params::parseParams(3, argv));
+    QCOMPARE(Params::getArg("verbose"), QString("2"));
+}
+
+void ParamsTest::testParseParamsUnknownOption() {
+#ifdef QA_ALLOW_NOT_SUPPORTED_OPTIONS
+    // by default the unsupported options are allowed and stored
+    // in the params map with their values.
+    QVERIFY(Params::parseParams(QStringList{"-unknownOption", "value"}));
+    QCOMPARE(Params::getArg("unknownOption"), QString("value"));
+
+    // the unsupported option in the equals form is allowed as well.
+    QVERIFY(Params::parseParams(QStringList{"-unknownOption=value2"}));
+    QCOMPARE(Params::getArg("unknownOption"), QString("value2"));
+#else
+    // in the strict build mode every unknown option is rejected.
+    QVERIFY(!Params::parseParams(QStringList{"-unknownOption", "value"}));
+#endif
+}
+
+void ParamsTest::testParseParamsMissingValue() {
+    // the base option without a value at the end of the list must fail.
+    QVERIFY(!Params::parseParams(QStringList{"-fileLog"}));
+
+    // the user option without a value must fail as well.
+    OptionsDataList options{{"Test Options",
+                             OptionData{{"-myOption"}, "(value)", "Test option"}}};
+    QVERIFY(!Params::parseParams(QStringList{"-myOption"}, options));
+}
+
+void ParamsTest::testParseParamsValueLookingLikeOption() {
+    // an option value must not look like an option (start with a dash).
+    QVERIFY(!Params::parseParams(QStringList{"-fileLog", "-verbose"}));
+
+    // the same restriction works for the equals form of the option.
+    QVERIFY(!Params::parseParams(QStringList{"-fileLog=-verbose"}));
+}
+
+void ParamsTest::testParseParamsDuplicateOption() {
+    // an option can be repeated, the last value wins.
+    QVERIFY(Params::parseParams(QStringList{"-verbose", "1", "-verbose", "3"}));
+    QCOMPARE(Params::getArg("verbose"), QString("3"));
+    QCOMPARE(Params::size(), 1);
+}
+
+void ParamsTest::testParseParamsAliasNames() {
+    // one option can have several names, each name is parsed to
+    // its own key in the params map.
+    OptionsDataList options{{"Test Options",
+                             OptionData{{"-alias1", "-alias2"}, "(value)",
+                                        "Option with two names"}}};
+
+    QVERIFY(Params::parseParams(QStringList{"-alias2", "value"}, options));
+    QCOMPARE(Params::getArg("alias2"), QString("value"));
+
+    QVERIFY(Params::parseParams(QStringList{"-alias1", "value2"}, options));
+    QCOMPARE(Params::getArg("alias1"), QString("value2"));
+}
+
+void ParamsTest::testParseParamsEndOfOptions() {
+#ifdef QA_ALLOW_NOT_SUPPORTED_OPTIONS
+    // the double dash ends the options parsing, everything after it
+    // is treated as a positional argument.
+    QVERIFY(Params::parseParams(QStringList{"first", "--", "-second", "third"}));
+    QVERIFY(Params::isEndable("first"));
+    QVERIFY(Params::isEndable("-second"));
+    QVERIFY(Params::isEndable("third"));
+    QCOMPARE(Params::size(), 3);
+#else
+    // in the strict build mode the positional arguments are rejected.
+    QVERIFY(!Params::parseParams(QStringList{"first", "--", "-second", "third"}));
+#endif
 }

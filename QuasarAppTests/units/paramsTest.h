@@ -38,6 +38,18 @@ protected:
     void testHelp();
     void testClearParsedData();
 
+    // The unit tests of the parseParams method (QCommandLineParser based).
+    void testParseParamsEmptyInput();
+    void testParseParamsPositionalArguments();
+    void testParseParamsDoubleDashSyntax();
+    void testParseParamsArgcArgvOverloads();
+    void testParseParamsUnknownOption();
+    void testParseParamsMissingValue();
+    void testParseParamsValueLookingLikeOption();
+    void testParseParamsDuplicateOption();
+    void testParseParamsAliasNames();
+    void testParseParamsEndOfOptions();
+
 };
 
 #endif // PARAMSTEST_H

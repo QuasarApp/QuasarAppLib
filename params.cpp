@@ -11,6 +11,10 @@
 #include <QFileInfo>
 #include <QDateTime>
 #include <QCoreApplication>
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+#include <QSet>
+#include <QVector>
 #include "qaglobalutils.h"
 #include <QtLogging>
 
@@ -155,36 +159,203 @@ int Params::size() {
     return params.size();
 }
 
-bool Params::optionsForEach(const QStringList &paramsArray,
-                            const OptionsDataList& availableOptions) {
+namespace {
 
-    for (int i = 0 ; i < paramsArray.size(); ++i) {
+/**
+ * @brief strippedOptionName This method return the option name without the
+ * leading dash ("-verbose" -> "verbose").
+ * @param name This is raw option name.
+ * @return option name without the leading dash.
+ */
+QString strippedOptionName(const QString &name) {
+    return name.startsWith(QLatin1Char('-')) ? name.mid(1) : name;
+}
 
-        QStringList virtualOptionsList = paramsArray[i].split('=');
+/**
+ * @brief optionValueName This method return the value name (placeholder) of
+ * the QCommandLineOption that is generated from the @a optionData. The value
+ * name must not be empty, otherwise the QCommandLineParser treats the option
+ * as a boolean flag that takes no value.
+ * @param optionData This is the option data that generates the QCommandLineOption.
+ * @return non empty value name of the option.
+ */
+QString optionValueName(const OptionData &optionData) {
+    QString valueName = optionData.arguments();
+    if (valueName.startsWith(QLatin1Char('(')) && valueName.endsWith(QLatin1Char(')')))
+        valueName = valueName.mid(1, valueName.size() - 2);
 
-        if (virtualOptionsList.size() > 1) {
-            return optionsForEach(virtualOptionsList, availableOptions);
+    valueName = valueName.trimmed();
+    return valueName.isEmpty() ? QStringLiteral("value") : valueName;
+}
+
+} // namespace
+
+bool Params::parseWithQCommandLineParser(const QStringList &paramsArray,
+                                         const OptionsDataList &availableOptions) {
+
+    // The QCommandLineParser keeps the added options as pointers, so the
+    // QCommandLineOption objects are stored in a local list that stays alive
+    // while the parser is in use.
+    QVector<QCommandLineOption> optionList;
+    QMap<QString, OptionData> optionDataByName; // the option name (without the dash) -> the option data
+
+    QCommandLineParser parser;
+    for (auto it = availableOptions.constBegin(); it != availableOptions.constEnd(); ++it) {
+        const OptionData &optionData = it.value();
+        if (!optionData.isValid())
+            continue;
+
+        for (const QString &rawName : optionData.names()) {
+            const QString name = strippedOptionName(rawName);
+            if (name.isEmpty() || optionDataByName.contains(name))
+                continue; // the first definition of the name wins
+
+            QCommandLineOption option(name, optionData.description(), optionValueName(optionData));
+            if (!parser.addOption(option))
+                continue;
+
+            optionList.append(option);
+            optionDataByName.insert(name, optionData);
+        }
+    }
+
+    // Every option always requires a value. The value must be the next
+    // argument and it must not look like an option (start with a dash).
+    bool positionalMode = false;
+    for (int i = 0; i < paramsArray.size(); ++i) {
+        const QString &token = paramsArray[i];
+        if (positionalMode)
+            continue;
+
+        if (token == QLatin1String("--")) {
+            // the double dash ends the options parsing
+            positionalMode = true;
+            continue;
         }
 
-        auto optionData = availableOptions.value(paramsArray[i], {{}});
-        if (!checkOption(optionData, paramsArray[i])) {
+        if (!token.startsWith(QLatin1Char('-')) || token.size() == 1
+            || token.contains(QLatin1Char('=')))
+            continue; // a positional argument, the "-" alone or the "option=value" form
+
+        if (i + 1 >= paramsArray.size()
+            || paramsArray[i + 1].startsWith(QLatin1Char('-'))) {
+            qCritical() << "Missing argument for " + token;
             return false;
         }
+    }
 
-        inputOptions.insert(paramsArray[i], optionData);
-
-        if (paramsArray[i][0] == '-') {
-
-            if (i < (paramsArray.size() - 1) && paramsArray[i + 1][0] != '-') {
-                params[paramsArray[i].mid(1)] = paramsArray[i + 1];
-                i++;
-            } else {
-                qCritical() << "Missing argument for " + paramsArray[i];
-                return false;
-            }
-        } else {
-            params[paramsArray[i]] = "";
+    // The QuasarApp options use the single dash prefix ("-verbose"), the
+    // QCommandLineParser expects the double dash form ("--verbose") for the
+    // long options. The arguments after the "--" separator are positional
+    // and must not be transformed.
+    QStringList parserArgs;
+    parserArgs.reserve(paramsArray.size() + 1);
+    positionalMode = false;
+    for (const QString &token : paramsArray) {
+        if (positionalMode) {
+            parserArgs.append(token);
+            continue;
         }
+
+        if (token == QLatin1String("--")) {
+            positionalMode = true;
+            parserArgs.append(token);
+            continue;
+        }
+
+        if (token.startsWith(QLatin1Char('-')) && token.size() > 1
+            && !token.startsWith(QLatin1String("--"))) {
+            parserArgs.append(QLatin1Char('-') + token);
+        } else {
+            parserArgs.append(token);
+        }
+    }
+
+
+#ifdef QA_ALLOW_NOT_SUPPORTED_OPTIONS
+    // Allow any command line option: register the unsupported options on the
+    // fly, so that the QCommandLineParser can read their values.
+    positionalMode = false;
+    for (const QString &token : parserArgs) {
+        if (positionalMode)
+            break;
+
+        if (token == QLatin1String("--")) {
+            positionalMode = true;
+            continue;
+        }
+
+        if (!token.startsWith(QLatin1String("--")) || token.size() <= 2)
+            continue;
+
+        const QString name = token.mid(2).section(QLatin1Char('='), 0, 0);
+        if (name.isEmpty() || optionDataByName.contains(name))
+            continue;
+
+        QCommandLineOption unsupportedOption(name, QStringLiteral("Unsupported option"),
+                                             QStringLiteral("value"));
+        if (parser.addOption(unsupportedOption)) {
+            optionList.append(unsupportedOption);
+            optionDataByName.insert(name, OptionData(QStringList()));
+        }
+    }
+#endif
+
+    // The QCommandLineParser::parse method expects the executable name as
+    // the first argument, it is skipped during the parsing.
+    parserArgs.prepend(QStringLiteral("quasarapp"));
+
+    if (!parser.parse(parserArgs)) {
+#ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
+        const QStringList unknownOptions = parser.unknownOptionNames();
+        if (!unknownOptions.isEmpty()) {
+            qCritical() << QString("The '%0' option not exists!"
+                                   " You use wrong option name,"
+                                   " please check the help before run your command.")
+                        .arg(QLatin1Char('-') + unknownOptions.first());
+            return false;
+        }
+#endif
+        qCritical() << parser.errorText();
+        return false;
+    }
+
+#ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
+    // In the strict mode every argument that is not a known option
+    // is rejected as well.
+    if (!parser.positionalArguments().isEmpty()) {
+        qCritical() << QString("The '%0' option not exists!"
+                               " You use wrong option name,"
+                               " please check the help before run your command.")
+                    .arg(parser.positionalArguments().first());
+        return false;
+    }
+#endif
+
+    // An option value that was passed in the "option=value" form must not
+    // look like an option (start with a dash) as well.
+    for (const QString &name : parser.optionNames()) {
+        const QString value = parser.value(name);
+        if (value.startsWith(QLatin1Char('-'))) {
+            qCritical() << "Missing argument for -" + name;
+            return false;
+        }
+    }
+
+    // Store the parsed options in the order in which they appear in the input.
+    for (const QString &name : parser.optionNames()) {
+        const OptionData &optionData = optionDataByName.value(name, OptionData(QStringList()));
+        if (!checkOption(optionData))
+            return false;
+
+        inputOptions.insert(QLatin1Char('-') + name, optionData);
+        params[name] = parser.value(name);
+    }
+
+    // The positional arguments are stored with the empty value,
+    // the same way as in the previous implementation.
+    for (const QString &positionalArgument : parser.positionalArguments()) {
+        params[positionalArgument] = QString();
     }
 
     return true;
@@ -250,7 +421,7 @@ bool Params::parseParams(const QStringList &paramsArray, const OptionsDataList &
         return false;
     }
 
-    if (!optionsForEach(paramsArray, availableOptions)) {
+    if (!parseWithQCommandLineParser(paramsArray, availableOptions)) {
         return false;
     }
 
@@ -280,25 +451,9 @@ void Params::printWorkingOptions() {
     qDebug() << "--- Working options table end ---";
 }
 
-bool Params::checkOption(const OptionData& optionData, const QString& rawOptionName) {
-
-#ifndef QA_ALLOW_NOT_SUPPORTED_OPTIONS
-    if (!optionData.isValid()) {
-
-        qCritical() << QString("The '%0' option not exists!"
-                               " You use wrong option name,"
-                               " please check the help before run your command.").
-                       arg(rawOptionName);
-
-        return false;
-    }
-#else
-    Q_UNUSED(rawOptionName);
-#endif
+bool Params::checkOption(const OptionData &optionData) {
 
     if (optionData.isDeprecated()) {
-
-
 
         if (optionData.isRemoved()) {
             qCritical() << optionData.deprecatedMsg();
@@ -308,7 +463,7 @@ bool Params::checkOption(const OptionData& optionData, const QString& rawOptionN
 
         qWarning() << QString("The %0 option(s) marked as deprecated! "
                                "And most likely will be removed in next release.").
-                       arg(optionData.names().join("/"));
+                    arg(optionData.names().join("/"));
 
         qWarning() << QString("Option message: %0").arg(optionData.deprecatedMsg());
 
