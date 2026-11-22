@@ -47,6 +47,11 @@ enum VerboseLvl {
  *  * **-verbose** (level 1 - 3) Shows debug log
  *  * **-fileLog** (path to file) Sets path of log file. Default it is path to executable file with suffix '.log'
  *
+ * @note The command line arguments are parsed with the QCommandLineParser class.
+ *  The standard double dash option form ("--verbose 3") is supported as well,
+ *  and the "--" argument ends the options parsing (everything after it is
+ *  treated as a positional argument).
+ *
  * ### Usage
  *
  * ```cpp
@@ -223,17 +228,23 @@ public:
 private:
 
     /**
-     * @brief optionsForEach This is a private method for parsing the input options.
-     * Iterates over the @a paramsArray and checks every parameter against the
-     * @a availableOptions list. Unsupported options are reported according to
-     * the QA_ALLOW_NOT_SUPPORTED_OPTIONS build option and the parsing result
-     * is stored in the static params map.
+     * @brief parseWithQCommandLineParser This is a private method for parsing the input options.
+     * The available options are converted to the QCommandLineOption objects and the
+     * input parameters are parsed with the QCommandLineParser class using the
+     * standard Qt command line semantics: the tokens with the registered QuasarApp
+     * single dash option names ("-verbose") are mapped to the long option form
+     * ("--verbose"), the other tokens are passed to the parser as they are, the
+     * "--option value" and "--option=value" forms are supported, the "--" argument
+     * ends the options parsing and the unknown options or the missing option
+     * values fail the parsing with the QCommandLineParser error message. The
+     * parsed options and the positional arguments (stored with the empty value)
+     * are stored in the static params map.
      * @param paramsArray This is the input array of the raw parameters.
      * @param availableOptions This is the list of the available options for check.
-     * @return true if all input options are supported and parsed correctly else false.
+     * @return true if all input options are parsed correctly else false.
      */
-    static bool optionsForEach(const QStringList& paramsArray,
-                               const OptionsDataList &availableOptions);
+    static bool parseWithQCommandLineParser(const QStringList& paramsArray,
+                                            const OptionsDataList &availableOptions);
 
     /**
      * @brief Traverse @a params and output its content (all the working
@@ -243,11 +254,13 @@ private:
     static void printWorkingOptions();
 
     /**
-     * @brief checkOption return true if the option is supported
-     * @param option checked option
-     * @return true if option is supported
+     * @brief checkOption This method checks the state of the parsed option.
+     * It prints the error message and returns false if the option was removed,
+     * and prints the warning message if the option is marked as deprecated.
+     * @param option checked option data
+     * @return true if the option can be used else false.
      */
-    static bool checkOption(const OptionData &option, const QString &rawOptionName);
+    static bool checkOption(const OptionData &option);
 
     /**
      * @brief parseAvailableOptions This is private method for parsing available options.

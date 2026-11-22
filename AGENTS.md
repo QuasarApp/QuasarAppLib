@@ -89,7 +89,6 @@ cmake --build build --parallel 16
 
 CMake options (top level):
 
-- `QA_ALLOW_NOT_SUPPORTED_OPTIONS` — allow any command line options (default `ON`)
 - `QA_DISABLE_LOG` — disable all logs (default `OFF`)
 
 ### Branching, labels and pull requests (workflow for AI agents)

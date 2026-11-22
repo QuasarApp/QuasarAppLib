@@ -22,7 +22,6 @@ This lib include include next modules:
 ### Available build options:
 
 ```cmake
-option(QA_ALLOW_NOT_SUPPORTED_OPTIONS "Enable for allow any command line options" ON)
 option(QA_DISABLE_LOG "Disabled all logs (force sets verbose to 0)" OFF)
 option(QA_TESTS "Enable or disable tests of the QuasarApp library" ON)
 ```
