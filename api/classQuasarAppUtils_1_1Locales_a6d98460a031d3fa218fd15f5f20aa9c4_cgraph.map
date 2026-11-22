@@ -1,6 +1,0 @@
-<map id="QuasarAppUtils::Locales::init" name="QuasarAppUtils::Locales::init">
-<area shape="rect" id="Node000001" title="init This method initialize translations of application." alt="" coords="5,29,185,74"/>
-<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Locales.html#a6fa719a43171ed7f9324ea79d1e46797" title="instance This method return pointer to the Locales service." alt="" coords="233,29,412,74"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,49,220,51,214,52,185,54"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="279,27,278,19,285,10,300,5,322,3,347,5,363,14,358,14,346,10,322,8,301,10,288,15,283,21,284,30"/>
-</map>

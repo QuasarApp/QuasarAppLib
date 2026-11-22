@@ -1,5 +1,0 @@
-<map id="QuasarAppUtils::Service::deinitService" name="QuasarAppUtils::Service::deinitService">
-<area shape="rect" id="Node000001" title="deinitService This is distructor method for the service." alt="" coords="241,5,419,50"/>
-<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a8df6204dcb007867ccda620a955a1626" title="deinitService This method destroys the global settings object and removes it from the global service ..." alt="" coords="5,5,193,50"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,28,193,30,193,25,228,27"/>
-</map>

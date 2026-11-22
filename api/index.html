@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.549.3178566</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.557.c01b69f</span>
    </div>
   </td>
  </tr>
@@ -169,18 +169,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <div class="line">add_subdirectory(QuasarAppLib)</div>
 <div class="line">target_link_libraries(MyBinary PUBLIC QuasarApp)</div>
 </div><!-- fragment --><h1>Usage</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="quasarapp_8h.html">quasarapp.h</a>&gt;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;quasarapp.h&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (!<a class="code hl_function" href="classQuasarAppUtils_1_1Params.html#af5dc940ab08adf3bd760255cb88d8f8f">QuasarAppUtils::Params::parseParams</a>(argc, argv)) {</div>
-<div class="line">    <a class="code hl_function" href="classQuasarAppUtils_1_1Params.html#ab20a066955d690172a4aaa82889475f3">QuasarAppUtils::Params::log</a>(<span class="stringliteral">&quot;Warning message&quot;</span>, <a class="code hl_enumvalue" href="namespaceQuasarAppUtils.html#aa0cd2ba38a2a65dbb4f555517b020092a226ae5caa8067f55130c6321c34bca19">QuasarAppUtils::Warning</a>);</div>
-<div class="line">    <a class="code hl_function" href="classQuasarAppUtils_1_1Params.html#a08ce3880c6967930d4781d84504903dc">QuasarAppUtils::Params::showHelp</a>();</div>
+<div class="line"><span class="keywordflow">if</span> (!QuasarAppUtils::Params::parseParams(argc, argv)) {</div>
+<div class="line">    QuasarAppUtils::Params::log(<span class="stringliteral">&quot;Warning message&quot;</span>, QuasarAppUtils::Warning);</div>
+<div class="line">    QuasarAppUtils::Params::showHelp();</div>
 <div class="line">    exit(0);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassQuasarAppUtils_1_1Params_html_a08ce3880c6967930d4781d84504903dc"><div class="ttname"><a href="classQuasarAppUtils_1_1Params.html#a08ce3880c6967930d4781d84504903dc">QuasarAppUtils::Params::showHelp</a></div><div class="ttdeci">static void showHelp()</div><div class="ttdoc">showHelp This method shows all help message.</div><div class="ttdef"><b>Definition</b> <a href="params_8cpp_source.html#l00087">params.cpp:87</a></div></div>
-<div class="ttc" id="aclassQuasarAppUtils_1_1Params_html_ab20a066955d690172a4aaa82889475f3"><div class="ttname"><a href="classQuasarAppUtils_1_1Params.html#ab20a066955d690172a4aaa82889475f3">QuasarAppUtils::Params::log</a></div><div class="ttdeci">static void log(const QString &amp;log, VerboseLvl vLvl=VerboseLvl::Debug)</div><div class="ttdoc">log This method print log text on console.</div><div class="ttdef"><b>Definition</b> <a href="params_8cpp_source.html#l00039">params.cpp:39</a></div></div>
-<div class="ttc" id="aclassQuasarAppUtils_1_1Params_html_af5dc940ab08adf3bd760255cb88d8f8f"><div class="ttname"><a href="classQuasarAppUtils_1_1Params.html#af5dc940ab08adf3bd760255cb88d8f8f">QuasarAppUtils::Params::parseParams</a></div><div class="ttdeci">static bool parseParams(const int argc, const char *argv[], const OptionsDataList &amp;options={})</div><div class="ttdoc">parseParams Parse input data of started application.</div><div class="ttdef"><b>Definition</b> <a href="params_8cpp_source.html#l00193">params.cpp:193</a></div></div>
-<div class="ttc" id="anamespaceQuasarAppUtils_html_aa0cd2ba38a2a65dbb4f555517b020092a226ae5caa8067f55130c6321c34bca19"><div class="ttname"><a href="namespaceQuasarAppUtils.html#aa0cd2ba38a2a65dbb4f555517b020092a226ae5caa8067f55130c6321c34bca19">QuasarAppUtils::Warning</a></div><div class="ttdeci">@ Warning</div><div class="ttdoc">Warning message. This logs will marked as a Warning and printing if the verbose lvl &gt;= 1.</div><div class="ttdef"><b>Definition</b> <a href="params_8h_source.html#l00027">params.h:27</a></div></div>
-<div class="ttc" id="aquasarapp_8h_html"><div class="ttname"><a href="quasarapp_8h.html">quasarapp.h</a></div></div>
 </div><!-- fragment --><p>For more information, see the QuasarAppLib <a href="https://quasarapp.github.io/QuasarAppLib/">documentation</a> and the <a href="https://quasarapp.github.io/QuasarAppLib/api/">API reference</a>. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
