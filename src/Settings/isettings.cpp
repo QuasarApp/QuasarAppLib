@@ -8,7 +8,7 @@
 #include "Settings/isettings.h"
 #include <QSettings>
 #include <QCoreApplication>
-include "qaglobalutils.h"
+#include "qaglobalutils.h"
 
 namespace QuasarAppUtils {
 
