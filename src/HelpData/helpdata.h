@@ -9,7 +9,7 @@
 #define HELPDATA_H
 
 #include <QMap>
-#include "quasarapp_global.h"
+#include "Core/quasarapp_global.h"
 
 namespace QuasarAppUtils{
 

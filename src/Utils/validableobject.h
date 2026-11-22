@@ -9,7 +9,7 @@
 #ifndef VALIDABLEOBJECT_H
 #define VALIDABLEOBJECT_H
 
-#include "quasarapp_global.h"
+#include "Core/quasarapp_global.h"
 
 namespace QuasarAppUtils{
 

@@ -5,7 +5,7 @@
  * of this license document, but changing it is not allowed.
 */
 
-#include "params.h"
+#include "Params/params.h"
 #include <QDebug>
 #include <QFileInfo>
 #include <QCoreApplication>
