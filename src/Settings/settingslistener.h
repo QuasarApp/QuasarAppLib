@@ -10,7 +10,7 @@
 
 #include <QString>
 #include <QVariant>
-#include "quasarapp_global.h"
+#include "Core/quasarapp_global.h"
 
 
 namespace QuasarAppUtils {

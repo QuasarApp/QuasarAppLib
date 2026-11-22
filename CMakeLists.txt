@@ -15,7 +15,7 @@ endif()
 project(QuasarApp)
 
 if(TARGET ${PROJECT_NAME})
-  message("The ${PROJECT_NAME} arledy included in main Project")
+  message("The ${PROJECT_NAME} already included in main Project")
   return()
 endif()
 
@@ -55,12 +55,19 @@ if (QA_ALLOW_NOT_SUPPORTED_OPTIONS)
 endif()
 
 file(GLOB SOURCE_CPP
-    "*.cpp" "*.h"
+    "src/*.cpp" "src/*.h"
+    "src/Core/*.cpp" "src/Core/*.h"
+    "src/Params/*.cpp" "src/Params/*.h"
+    "src/Settings/*.cpp" "src/Settings/*.h"
+    "src/Locales/*.cpp" "src/Locales/*.h"
+    "src/HelpData/*.cpp" "src/HelpData/*.h"
+    "src/OptionData/*.cpp" "src/OptionData/*.h"
+    "src/Utils/*.cpp" "src/Utils/*.h"
 )
 
 qt_add_library(${PROJECT_NAME} ${SOURCE_CPP})
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::Core)
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/QuasarAppTests)
 
 setVersion(1 6 0)
 
