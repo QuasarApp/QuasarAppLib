@@ -33,7 +33,6 @@ namespace QuasarAppUtils {
  */
 class QUASARAPPSHARED_EXPORT Config: public ISettings
 {
-    Q_OBJECT
 public:
     /**
      * @brief Constructor with full control over app name and organization
