@@ -58,6 +58,7 @@ file(GLOB SOURCE_CPP
     "src/HelpData/*.cpp" "src/HelpData/*.h"
     "src/OptionData/*.cpp" "src/OptionData/*.h"
     "src/Utils/*.cpp" "src/Utils/*.h"
+    "src/Config/*.cpp" "src/Config/*.h"
 )
 
 qt_add_library(${PROJECT_NAME} ${SOURCE_CPP})
