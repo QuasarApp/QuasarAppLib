@@ -65,14 +65,20 @@ public:
     bool isValid() const { return _isInitialized; }
 
     // ISettings interface implementation
-    QVariant getValue(const QString &key, const QVariant& defaultValue = {}) override;
-    QString getStrValue(const QString &key, const QString& defaultValue = {}) override;
-    void resetToDefault() override;
+    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& defaultValue = {}) override;
+    Q_INVOKABLE QString getStrValue(const QString &key, const QString& defaultValue = {}) override;
+    Q_INVOKABLE void resetToDefault() override;
     bool ignoreToRest(const QString& key) const override;
     void sync() override;
     void forceReloadCache() override;
     SettingsSaveMode getMode() const override;
     QHash<QString, QVariant> defaultSettings() override;
+
+    // Implementation of pure virtual methods from ISettings
+    void syncImplementation() override;
+    QVariant getValueImplementation(const QString &key, const QVariant& defaultValue) override;
+    void setValueImplementation(const QString key, const QVariant& value) override;
+    bool isBool(const QString& key) const override;
 
     // Convenience methods
     int valueInt(const QString& key, int defaultValue = 0) const;
@@ -90,11 +96,11 @@ public:
     bool isDefaultValue(const QString& key) const;
 
     // Value setting
-    void setValue(const QString& key, const QVariant& value) override;
-    void setValue(const QString& key, const QString& value) override;
-    void setValue(const QString& key, int value) override;
-    void setValue(const QString& key, bool value) override;
-    void setValue(const QString& key, double value) override;
+    Q_INVOKABLE void setValue(const QString& key, const QVariant& value) override;
+    Q_INVOKABLE void setValue(const QString& key, const QString& value) override;
+    Q_INVOKABLE void setValue(const QString& key, int value) override;
+    Q_INVOKABLE void setValue(const QString& key, bool value) override;
+    Q_INVOKABLE void setValue(const QString& key, double value) override;
 
     // Command-line access
     QString getCommandlineValue(const QString& key) const;

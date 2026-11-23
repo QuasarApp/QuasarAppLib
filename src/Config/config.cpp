@@ -15,7 +15,6 @@
 
 namespace QuasarAppUtils {
 
-using namespace QuasarAppUtils;
 
 // Constructor with full control over app name and organization
 Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& params,
@@ -83,6 +82,39 @@ SettingsSaveMode Config::getMode() const
 QHash<QString, QVariant> Config::defaultSettings()
 {
     return _defaultValues;
+}
+
+// Implementation of pure virtual methods from ISettings
+void Config::syncImplementation()
+{
+    _settings.sync();
+}
+
+QVariant Config::getValueImplementation(const QString &key, const QVariant& defaultValue)
+{
+    return _getPriorityValue(key, defaultValue);
+}
+
+void Config::setValueImplementation(const QString key, const QVariant& value)
+{
+    // Command-line values have highest priority, so we set them first
+    _paramsMap[key] = value.toString();
+}
+
+bool Config::isBool(const QString& key) const
+{
+    // For Config, we check if the value can be converted to bool
+    // This is used to distinguish between string "true"/"false" and boolean values
+    if (_paramsMap.contains(key)) {
+        return _paramsMap[key].toBool();
+    }
+    if (_settings.contains(key)) {
+        return _settings.value(key).toBool();
+    }
+    if (_defaultValues.contains(key)) {
+        return _defaultValues.value(key).toBool();
+    }
+    return false;
 }
 
 // Value access methods
