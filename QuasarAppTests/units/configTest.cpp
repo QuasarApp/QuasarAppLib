@@ -16,6 +16,10 @@
 
 using namespace QuasarAppUtils;
 
+void ConfigTest::ConfigTest()
+{
+}
+
 void ConfigTest::test()
 {
     testConstructor();

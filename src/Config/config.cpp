@@ -25,6 +25,7 @@ Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& pa
     , _appName(appName)
     , _orgName(org)
     , _mode(SettingsSaveMode::Auto)
+    , _settings(QSettings::IniFormat, QSettings::Scope::UserScope, org, appName)
 {
     _parseArguments(argc, argv, params);
     _setConfigFile();
