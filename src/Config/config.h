@@ -15,6 +15,7 @@
 #include <QSettings>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
+#include <memory>
 
 namespace QuasarAppUtils {
 
@@ -25,11 +26,12 @@ namespace QuasarAppUtils {
  * The Config object works as a settings class while having access to the
  * parameters module.
  * 
+ * @note This class implements ISettings and uses singleton pattern.
  * @note Command-line values provided to the app have the highest priority.
  * @note Values saved in the config file have secondary priority.
  * @note Default values saved in the settings have the lowest priority.
  */
-class QUASARAPPSHARED_EXPORT Config : public QObject
+class QUASARAPPSHARED_EXPORT Config: public ISettings
 {
     Q_OBJECT
 public:
@@ -57,287 +59,88 @@ public:
      */
     ~Config() override = default;
 
-    /**
-    /**
-     * @brief Get value with priority resolution (command-line > config > default)
-     * @param key Setting key
-     * @param defaultValue Default value if key not found
-     * @return The value from highest priority source
-     */
+    // ISettings interface implementation
+    QVariant getValue(const QString &key, const QVariant& defaultValue = {}) override;
+    QString getStrValue(const QString &key, const QString& defaultValue = {}) override;
+    void resetToDefault() override;
+    bool ignoreToRest(const QString& key) const override;
+    void sync() override;
+    void forceReloadCache() override;
+    SettingsSaveMode getMode() const override;
+    QHash<QString, QVariant> defaultSettings() override;
+
+    // Convenience methods
+    int valueInt(const QString& key, int defaultValue = 0) const;
+    bool valueBool(const QString& key, bool defaultValue = false) const;
+    double valueDouble(const QString& key, double defaultValue = 0.0) const;
+    QString valueStr(const QString& key, const QString& defaultValue = {}) const;
     QVariant value(const QString& key, const QVariant& defaultValue = {}) const;
 
-    /**
-     * @brief Get string value with priority resolution
-     * @param key Setting key
-     * @param defaultValue Default value if key not found
-     * @return The string value from highest priority source
-     */
-    QString valueStr(const QString& key, const QString& defaultValue = {}) const;
-
-    /**
-     * @brief Get integer value with priority resolution
-     * @param key Setting key
-     * @param defaultValue Default value if key not found
-     * @return The integer value from highest priority source
-     */
-    int valueInt(const QString& key, int defaultValue = 0) const;
-
-    /**
-     * @brief Get boolean value with priority resolution
-     * @param key Setting key
-    // Value source checking methods
-    /**
-     * @brief Check if value exists in command-line parameters
-     * @param key Setting key
-     * @return true if key exists in command-line parameters
-     */
+    // Value source checking
     bool hasCommandlineValue(const QString& key) const;
-
-    /**
-     * @brief Check if value exists in config file
-     * @param key Setting key
-     * @return true if key exists in config file
-     */
     bool hasConfigFileValue(const QString& key) const;
-
-    /**
-     * @brief Check if default value exists for key
-     * @param key Setting key
-     * @return true if default value exists for key
-     */
     bool hasDefaultValue(const QString& key) const;
-     * @param defaultValue Default value if key not found
-    // Priority check methods - determine which source has the winning value
-    /**
-     * @brief Check if the current value has command-line priority
-     * @param key Setting key
-     * @return true if command-line value takes precedence
-     */
     bool isCommandlineValue(const QString& key) const;
-
-    /**
-     * @brief Check if the current value has config file priority
-     * @param key Setting key
-     * @return true if config file value takes precedence
-     */
     bool isConfigFileValue(const QString& key) const;
-
-    /**
-     * @brief Check if the current value has default priority
-     * @param key Setting key
-     * @return true if default value takes precedence
-     */
     bool isDefaultValue(const QString& key) const;
-    // Value setting methods
-    /**
-     * @brief Set value for a key
-     * @param key Setting key
-     * @param value Value to set
-     */
-    void setValue(const QString& key, const QVariant& value);
 
-    /**
-     * @brief Set string value
-     * @param key Setting key
-     * @param value String value to set
-     */
-    void setValue(const QString& key, const QString& value);
+    // Value setting
+    void setValue(const QString& key, const QVariant& value) override;
+    void setValue(const QString& key, const QString& value) override;
+    void setValue(const QString& key, int value) override;
+    void setValue(const QString& key, bool value) override;
+    void setValue(const QString& key, double value) override;
 
-    /**
-     * @brief Set integer value
-     * @param key Setting key
-     * @param value Integer value to set
-     */
-    void setValue(const QString& key, int value);
-    // Command-line access methods
-    /**
-     * @brief Get command-line value as string
-     * @param key Setting key
-     * @return Command-line value as string, or empty string if not found
-     */
+    // Command-line access
     QString getCommandlineValue(const QString& key) const;
-
-    /**
-     * @brief Get all parsed command-line parameters
-     * @return Map of all parsed parameters
-     */
     QMap<QString, QString> getParamsMap() const;
 
-    /**
-     * @brief Set boolean value
-     * @param key Setting key
-     * @param value Boolean value to set
-     */
-    void setValue(const QString& key, bool value);
-
-    // Config file access methods
-    /**
-     * @brief Get config file value as string
-     * @param key Setting key
-     * @return Config file value as string, or empty string if not found
-     */
+    // Config file access
     QString getConfigFileValue(const QString& key) const;
-
-    /**
-     * @brief Get config file path
-     * @return Path to the config file
-     */
     QString getConfigFile() const;
-
-    /**
-     * @brief Set config file path
-     * @param filePath Path to the config file
-     */
     void setConfigFile(const QString& filePath);
-    /**
-     * @brief Set double value
-    // Default values methods
-    /**
-     * @brief Get map of default values
-     * @return Map of default values
-     */
+
+    // Help methods
+    void printHelp();
+    QString getHelp() const;
+    QList<QCommandLineOption> getSupportedParams() const;
+    void setSupportedParams(const QList<QCommandLineOption>& params);
+
+    // Internal access
+    QSettings* getSettings() const;
+    QMap<QString, QString> getInternalParamsMap() const;
+    QMap<QString, QVariant> getInternalDefaultValues() const;
+    void setDefaultValues(const QMap<QString, QVariant>& values);
+    void setDefaultValue(const QString& key, const QVariant& value);
+    QVariant getDefault(const QString& key) const;
+    void setDefaultStr(const QString& key, const QString& value);
+    QString getDefaultStr(const QString& key) const;
+    void setDefaultInt(const QString& key, int value);
+    int getDefaultInt(const QString& key) const;
+    void setDefaultBool(const QString& key, bool value);
+    bool getDefaultBool(const QString& key) const;
+    void setDefaultDouble(const QString& key, double value);
+    double getDefaultDouble(const QString& key) const;
     QMap<QString, QVariant> getDefaultValues() const;
 
-    /**
-     * @brief Set default values
-     * @param values Map of default values
-     */
-    void setDefaultValues(const QMap<QString, QVariant>& values);
-     * @param key Setting key
-     * @param value Double value to set
-     */
-    void setValue(const QString& key, double value);
-     * @return The boolean value from highest priority source
-     */
-    bool valueBool(const QString& key, bool defaultValue = false) const;
-
-    /**
-     * @brief Get double value with priority resolution
-    // Help methods
-    /**
-     * @brief Print help to stdout
-     */
-    void printHelp();
-
-    /**
-     * @brief Get help text as string
-     * @return Help text
-     */
-    QString getHelp() const;
-
-    /**
-     * @brief Get list of supported QCommandLineOption objects
-     * @return List of supported parameters
-     */
-    QList<QCommandLineOption> getSupportedParams() const;
-
-    /**
-     * @brief Set supported parameters
-     * @param params List of supported parameters
-     */
-    void setSupportedParams(const QList<QCommandLineOption>& params);
-     * @param key Setting key
-     * @param defaultValue Default value if key not found
-     * @return The double value from highest priority source
-    // Internal access methods
-    /**
-     * @brief Get internal QSettings pointer
-     * @return Pointer to internal QSettings object
-     */
-    QSettings* getSettings() const;
-
 signals:
-    /**
-     * @brief Emitted when a value changes
-     * @param key The setting key that changed
-     * @param value The new value
-     */
     void valueChanged(const QString& key, const QVariant& value);
+    void valueStrChanged(const QString& key, const QString& value);
 
 protected:
-    /**
-     * @brief Get priority value (command-line > config > default)
-     * @param key Setting key
-     * @param defaultValue Default value
-     * @return The value from highest priority source
-     */
     QVariant _getPriorityValue(const QString& key, const QVariant& defaultValue) const;
-
-    /**
-     * @brief Get priority value as string
-     * @param key Setting key
-     * @param defaultValue Default value
-     * @return The string value from highest priority source
-     */
     QString _getPriorityValueStr(const QString& key, const QString& defaultValue) const;
-
-    /**
-     * @brief Get priority value as int
-     * @param key Setting key
-     * @param defaultValue Default value
-     * @return The int value from highest priority source
-     */
     int _getPriorityValueInt(const QString& key, int defaultValue) const;
-
-    /**
-     * @brief Get priority value as bool
-     * @param key Setting key
-     * @param defaultValue Default value
-     * @return The bool value from highest priority source
-     */
     bool _getPriorityValueBool(const QString& key, bool defaultValue) const;
-
-    /**
-     * @brief Get priority value as double
-     * @param key Setting key
-     * @param defaultValue Default value
-     * @return The double value from highest priority source
-     */
     double _getPriorityValueDouble(const QString& key, double defaultValue) const;
-
-    /**
-     * @brief Set value in the highest priority map
-     * @param key Setting key
-     * @param value Value to set
-     * @param priority Priority level (0=command-line, 1=config, 2=default)
-     */
     void _setValueWithPriority(const QString& key, const QVariant& value, int priority);
-
-    /**
-     * @brief Generate help text from supported parameters
-     * @return Generated help text
-     */
     QString _generateHelpText() const;
-
-private:
-    /**
-     * @brief Parse command-line arguments
-     * @param argc Argument count
-     * @param argv Argument array
-     * @param params List of supported options
-     */
     void _parseArguments(int argc, const char* argv[], const QList<QCommandLineOption>& params);
-
-    /**
-     * @brief Set config file path based on app info
-     */
     void _setConfigFile();
-
-    /**
-     * @brief Get command-line value as string
-     * @param key Setting key
-     * @return Command-line value or empty string
-     */
     QString _getCommandlineValue(const QString& key) const;
-
-    /**
-     * @brief Get config file value as string
-     * @param key Setting key
-     * @return Config file value or empty string
-     */
     QString _getConfigFileValue(const QString& key) const;
 
-    // Internal data members
+private:
     int _argc;
     char** _argv;
     QList<QCommandLineOption> _supportedParams;
@@ -347,15 +150,9 @@ private:
     QString _configFile;
     QString _appName;
     QString _orgName;
-    bool _isInitialized = false;
+    SettingsSaveMode _mode = SettingsSaveMode::Auto;
 };
 
 } // namespace QuasarAppUtils
 
 #endif // CONFIG_H
-     */
-    double valueDouble(const QString& key, double defaultValue = 0.0) const;
-     * @brief Check if the Config object is valid
-     * @return true if the Config object is initialized
-     */
-    bool isValid() const { return _isInitialized; }

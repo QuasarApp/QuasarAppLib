@@ -11,22 +11,22 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QStandardPaths>
+#include <QSettings>
 
 using namespace QuasarAppUtils;
 
 // Constructor with full control over app name and organization
 Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& params,
                const QString& appName, const QString& org)
-    : QObject(nullptr)
-    , _argc(argc)
+    : _argc(argc)
     , _argv(static_cast<char**>(argv))
     , _supportedParams(params)
     , _appName(appName)
     , _orgName(org)
+    , _mode(SettingsSaveMode::Auto)
 {
     _parseArguments(argc, argv, params);
     _setConfigFile();
-    _isInitialized = true;
 }
 
 // Convenience constructor with default app name and organization
@@ -38,23 +38,51 @@ Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& pa
 // Destructor
 Config::~Config() = default;
 
-// Check if the Config object is valid
-bool Config::isValid() const
-{
-    return _isInitialized;
-}
-
-// Value access methods - these use priority-based resolution
-QVariant Config::value(const QString& key, const QVariant& defaultValue) const
+// ISettings interface implementation
+QVariant Config::getValue(const QString &key, const QVariant& defaultValue)
 {
     return _getPriorityValue(key, defaultValue);
 }
 
-QString Config::valueStr(const QString& key, const QString& defaultValue) const
+QString Config::getStrValue(const QString &key, const QString& defaultValue)
 {
     return _getPriorityValueStr(key, defaultValue);
 }
 
+void Config::resetToDefault()
+{
+    _settings.clear();
+    _paramsMap.clear();
+    _defaultValues.clear();
+}
+
+bool Config::ignoreToRest(const QString& key) const
+{
+    return false;
+}
+
+void Config::sync()
+{
+    _settings.sync();
+}
+
+void Config::forceReloadCache()
+{
+    _settings.beginReadArray("");
+    _settings.endReadArray();
+}
+
+SettingsSaveMode Config::getMode() const
+{
+    return _mode;
+}
+
+QHash<QString, QVariant> Config::defaultSettings()
+{
+    return _defaultValues;
+}
+
+// Value access methods
 int Config::valueInt(const QString& key, int defaultValue) const
 {
     return _getPriorityValueInt(key, defaultValue);
@@ -70,6 +98,16 @@ double Config::valueDouble(const QString& key, double defaultValue) const
     return _getPriorityValueDouble(key, defaultValue);
 }
 
+QString Config::valueStr(const QString& key, const QString& defaultValue) const
+{
+    return _getPriorityValueStr(key, defaultValue);
+}
+
+QVariant Config::value(const QString& key, const QVariant& defaultValue) const
+{
+    return _getPriorityValue(key, defaultValue);
+}
+
 // Value source checking methods
 bool Config::hasCommandlineValue(const QString& key) const
 {
@@ -80,7 +118,13 @@ bool Config::hasConfigFileValue(const QString& key) const
 {
     return _settings.contains(key);
 }
-// Priority check methods - determine which source has the winning value
+
+bool Config::hasDefaultValue(const QString& key) const
+{
+    return _defaultValues.contains(key);
+}
+
+// Priority check methods
 bool Config::isCommandlineValue(const QString& key) const
 {
     if (!_paramsMap.contains(key)) {
@@ -113,6 +157,17 @@ bool Config::isDefaultValue(const QString& key) const
         return false;
     }
     
+    if (_settings.contains(key)) {
+        return _settings.value(key).toString() == _defaultValues.value(key).toString();
+    }
+    
+    if (_paramsMap.contains(key)) {
+        return _paramsMap[key] == _defaultValues.value(key).toString();
+    }
+    
+    return true;
+}
+
 // Value setting methods
 void Config::setValue(const QString& key, const QVariant& value)
 {
@@ -139,6 +194,8 @@ void Config::setValue(const QString& key, bool value)
 void Config::setValue(const QString& key, double value)
 {
     setValue(key, QVariant::fromValue(value));
+}
+
 // Config file access methods
 QString Config::getConfigFileValue(const QString& key) const
 {
@@ -167,55 +224,80 @@ QMap<QString, QVariant> Config::getDefaultValues() const
 }
 
 void Config::setDefaultValues(const QMap<QString, QVariant>& values)
-// Private helper methods
-
-// Parse command-line arguments
-void Config::_parseArguments(int argc, const char* argv[], const QList<QCommandLineOption>& params)
 {
-    _argc = argc;
-    _argv = static_cast<char**>(argv);
-    _supportedParams = params;
-    
-    QCommandLineParser parser;
-    parser.setApplication(_appName);
-    parser.setApplicationDescription("Config Application");
-    
-    for (const auto& param : _supportedParams) {
-        parser.addOption(param);
+    _defaultValues = values;
+}
+
+void Config::setDefaultValue(const QString& key, const QVariant& value)
+{
+    _defaultValues[key] = value;
+}
+
+void Config::setDefaultStr(const QString& key, const QString& value)
+{
+    setDefaultValue(key, QVariant::fromValue(value));
+}
+
+QString Config::getDefaultStr(const QString& key) const
+{
+    if (_defaultValues.contains(key)) {
+        return _defaultValues.value(key).toString();
     }
-    
-    parser.parse(_argv);
-    _paramsMap = parser.result();
+    return QString();
 }
 
-// Set config file path based on app info
-void Config::_setConfigFile()
+void Config::setDefaultInt(const QString& key, int value)
 {
-    QString configDir = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-    if (configDir.isEmpty()) {
-        configDir = QDir::homePath() + QDir::separator() + ".config";
+    setDefaultValue(key, QVariant::fromValue(value));
+}
+
+int Config::getDefaultInt(const QString& key) const
+{
+    if (_defaultValues.contains(key)) {
+        return _defaultValues.value(key).toInt();
     }
-    
-    _configFile = _orgName + QDir::separator() + _appName + ".conf";
+    return 0;
 }
 
-// Get command-line value as string
-QString Config::_getCommandlineValue(const QString& key) const
+void Config::setDefaultBool(const QString& key, bool value)
 {
-    return _paramsMap.value(key, QString());
+    setDefaultValue(key, QVariant::fromValue(value));
 }
 
-// Get config file value as string
-QString Config::_getConfigFileValue(const QString& key) const
+bool Config::getDefaultBool(const QString& key) const
 {
-    return _settings.value(key, QString()).toString();
+    if (_defaultValues.contains(key)) {
+        return _defaultValues.value(key).toBool();
+    }
+    return false;
 }
 
-// Get priority value (command-line > config > default)
+void Config::setDefaultDouble(const QString& key, double value)
+{
+    setDefaultValue(key, QVariant::fromValue(value));
+}
+
+double Config::getDefaultDouble(const QString& key) const
+{
+    if (_defaultValues.contains(key)) {
+        return _defaultValues.value(key).toDouble();
+    }
+    return 0.0;
+}
+
+QVariant Config::getDefault(const QString& key) const
+{
+    if (_defaultValues.contains(key)) {
+        return _defaultValues.value(key);
+    }
+    return QVariant();
+}
+
+// Helper methods
 QVariant Config::_getPriorityValue(const QString& key, const QVariant& defaultValue) const
 {
     if (_paramsMap.contains(key)) {
-        return QVariant::fromValue(_paramsMap[key]);
+        return _paramsMap[key].toVariant();
     }
     
     if (_settings.contains(key)) {
@@ -223,13 +305,12 @@ QVariant Config::_getPriorityValue(const QString& key, const QVariant& defaultVa
     }
     
     if (_defaultValues.contains(key)) {
-        return _defaultValues.value(key, defaultValue);
+        return _defaultValues.value(key);
     }
     
     return defaultValue;
 }
 
-// Get priority value as string
 QString Config::_getPriorityValueStr(const QString& key, const QString& defaultValue) const
 {
     if (_paramsMap.contains(key)) {
@@ -247,7 +328,6 @@ QString Config::_getPriorityValueStr(const QString& key, const QString& defaultV
     return defaultValue;
 }
 
-// Get priority value as int
 int Config::_getPriorityValueInt(const QString& key, int defaultValue) const
 {
     if (_paramsMap.contains(key)) {
@@ -265,7 +345,6 @@ int Config::_getPriorityValueInt(const QString& key, int defaultValue) const
     return defaultValue;
 }
 
-// Get priority value as bool
 bool Config::_getPriorityValueBool(const QString& key, bool defaultValue) const
 {
     if (_paramsMap.contains(key)) {
@@ -283,7 +362,6 @@ bool Config::_getPriorityValueBool(const QString& key, bool defaultValue) const
     return defaultValue;
 }
 
-// Get priority value as double
 double Config::_getPriorityValueDouble(const QString& key, double defaultValue) const
 {
     if (_paramsMap.contains(key)) {
@@ -325,8 +403,51 @@ QString Config::_generateHelpText() const
     
     return parser.helpText();
 }
+
+// Parse command-line arguments
+void Config::_parseArguments(int argc, const char* argv[], const QList<QCommandLineOption>& params)
 {
-    _defaultValues = values;
+    _argc = argc;
+    _argv = static_cast<char**>(argv);
+    _supportedParams = params;
+    
+    QCommandLineParser parser;
+    parser.setApplication(_appName);
+    parser.setApplicationDescription("Config Application");
+    
+    for (const auto& param : _supportedParams) {
+        parser.addOption(param);
+    }
+    
+    parser.parse(_argv);
+    _paramsMap = parser.result();
+}
+
+// Set config file path based on app info
+void Config::_setConfigFile()
+{
+    QString configDir = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    if (configDir.isEmpty()) {
+        configDir = QDir::homePath() + QDir::separator() + ".config";
+    }
+    
+    _configFile = _orgName + QDir::separator() + _appName + ".conf";
+}
+
+QString Config::_getCommandlineValue(const QString& key) const
+{
+    if (_paramsMap.contains(key)) {
+        return _paramsMap[key];
+    }
+    return QString();
+}
+
+QString Config::_getConfigFileValue(const QString& key) const
+{
+    if (_settings.contains(key)) {
+        return _settings.value(key).toString();
+    }
+    return QString();
 }
 
 // Help methods
@@ -355,26 +476,23 @@ QSettings* Config::getSettings() const
 {
     return &_settings;
 }
-}
 
-// Command-line access methods
-QString Config::getCommandlineValue(const QString& key) const
-{
-    return _getCommandlineValue(key);
-}
-
-QMap<QString, QString> Config::getParamsMap() const
+QMap<QString, QString> Config::getInternalParamsMap() const
 {
     return _paramsMap;
 }
-    if (_paramsMap.contains(key) || _settings.contains(key)) {
-        return _paramsMap.value(key, "").isEmpty() && _settings.value(key, "").toString() == _defaultValues.value(key).toString();
-    }
-    
-    return true;
+
+QMap<QString, QVariant> Config::getInternalDefaultValues() const
+{
+    return _defaultValues;
 }
 
-bool Config::hasDefaultValue(const QString& key) const
+void Config::setDefaultValues(const QMap<QString, QVariant>& values)
 {
-    return _defaultValues.contains(key);
+    _defaultValues = values;
 }
+
+
+} // namespace QuasarAppUtils
+
+#endif // CONFIG_CPP
