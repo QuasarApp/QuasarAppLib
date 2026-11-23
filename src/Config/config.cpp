@@ -25,8 +25,21 @@ Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& pa
     , _appName(appName)
     , _orgName(org)
     , _mode(SettingsSaveMode::Auto)
-    , _settings(QSettings::IniFormat, QSettings::Scope::UserScope, org, appName)
 {
+    // Use QCoreApplication's application name and organization name as fallbacks
+    // to ensure QSettings works correctly even when appName or org are empty
+    QString app = appName.isEmpty() ? QCoreApplication::applicationName() : appName;
+    QString company = org.isEmpty() ? QCoreApplication::organizationName() : org;
+    
+    if (app.isEmpty()) {
+        app = "Config";
+    }
+    if (company.isEmpty()) {
+        company = "Config";
+    }
+    
+    _settings = QSettings(QSettings::IniFormat, QSettings::Scope::UserScope, company, app);
+    
     _parseArguments(argc, argv, params);
     _setConfigFile();
     _isInitialized = true;
@@ -39,7 +52,9 @@ Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& pa
 }
 
 // Destructor
-Config::~Config() = default;
+Config::~Config() {
+    delete _settings;
+}
 
 // ISettings interface implementation
 QVariant Config::getValue(const QString &key, const QVariant& defaultValue)

@@ -56,7 +56,7 @@ public:
     /**
      * @brief Destructor
      */
-    ~Config() override = default;
+    ~Config() override;
 
     /**
      * @brief Check if the Config object is valid (has been initialized)
@@ -155,7 +155,7 @@ private:
     int _argc;
     char** _argv;
     QList<QCommandLineOption> _supportedParams;
-    QSettings _settings;
+    QSettings* _settings = nullptr;
     QMap<QString, QString> _paramsMap;
     QMap<QString, QVariant> _defaultValues;
     QString _configFile;
