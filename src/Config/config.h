@@ -8,7 +8,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include "Settings/isettings.h"
+#include "Settings/settings.h"
 #include "Params/params.h"
 #include <QObject>
 #include <QMap>
@@ -26,12 +26,12 @@ namespace QuasarAppUtils {
  * The Config object works as a settings class while having access to the
  * parameters module.
  * 
- * @note This class implements ISettings and uses singleton pattern.
+ * @note This class inherits from Settings and uses singleton pattern.
  * @note Command-line values provided to the app have the highest priority.
  * @note Values saved in the config file have secondary priority.
  * @note Default values saved in the settings have the lowest priority.
  */
-class QUASARAPPSHARED_EXPORT Config: public ISettings
+class QUASARAPPSHARED_EXPORT Config: public Settings
 {
 public:
     /**
@@ -64,22 +64,6 @@ public:
      */
     bool isValid() const { return _isInitialized; }
 
-    // ISettings interface implementation
-    Q_INVOKABLE QVariant getValue(const QString &key, const QVariant& defaultValue = {}) override;
-    Q_INVOKABLE QString getStrValue(const QString &key, const QString& defaultValue = {}) override;
-    Q_INVOKABLE void resetToDefault() override;
-    bool ignoreToRest(const QString& key) const override;
-    void sync() override;
-    void forceReloadCache() override;
-    SettingsSaveMode getMode() const override;
-    QHash<QString, QVariant> defaultSettings() override;
-
-    // Implementation of pure virtual methods from ISettings
-    void syncImplementation() override;
-    QVariant getValueImplementation(const QString &key, const QVariant& defaultValue) override;
-    void setValueImplementation(const QString key, const QVariant& value) override;
-    bool isBool(const QString& key) const override;
-
     // Convenience methods
     int valueInt(const QString& key, int defaultValue = 0) const;
     bool valueBool(const QString& key, bool defaultValue = false) const;
@@ -95,7 +79,7 @@ public:
     bool isConfigFileValue(const QString& key) const;
     bool isDefaultValue(const QString& key) const;
 
-    // Value setting
+    // Value setting with priority
     Q_INVOKABLE void setValue(const QString& key, const QVariant& value) override;
     Q_INVOKABLE void setValue(const QString& key, const QString& value) override;
     Q_INVOKABLE void setValue(const QString& key, int value) override;
@@ -155,7 +139,6 @@ private:
     int _argc;
     char** _argv;
     QList<QCommandLineOption> _supportedParams;
-    QSettings* _settings = nullptr;
     QMap<QString, QString> _paramsMap;
     QMap<QString, QVariant> _defaultValues;
     QString _configFile;
