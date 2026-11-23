@@ -13,6 +13,8 @@
 #include <QStandardPaths>
 #include <QSettings>
 
+namespace QuasarAppUtils {
+
 using namespace QuasarAppUtils;
 
 // Constructor with full control over app name and organization
