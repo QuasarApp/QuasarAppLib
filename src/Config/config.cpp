@@ -27,6 +27,7 @@ Config::Config(int argc, const char* argv[], const QList<QCommandLineOption>& pa
 {
     _parseArguments(argc, argv, params);
     _setConfigFile();
+    _isInitialized = true;
 }
 
 // Convenience constructor with default app name and organization

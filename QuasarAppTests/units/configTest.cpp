@@ -189,6 +189,16 @@ void ConfigTest::testIsConfigFileValue()
 }
 
 void ConfigTest::testIsDefaultValue()
+{
+    QList<QCommandLineOption> params;
+    params << QCommandLineOption{"-default", "Default test", "z", ""};
+    
+    int argc = 1;
+    char *argv[] = {"test"};
+    
+    Config config(argc, argv, params);
+    
+    config.setDefaultValues({{"default", QVariant::fromValue("defaultValue")}});
     QVERIFY(config.isDefaultValue("default"));
 }
 
@@ -271,29 +281,6 @@ void ConfigTest::testDefaultValueStorage()
     QCOMPARE(config.getDefaultValues()["theme"], QVariant::fromValue("dark"));
     QCOMPARE(config.getDefaultValues()["language"], QVariant::fromValue("en"));
 }
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"-default", "Default test", "z", ""};
-    
-    int argc = 1;
-    char *argv[] = {"test"};
-    
-    Config config(argc, argv, params);
-    
-    config.setDefaultValues({{"default", QVariant::fromValue("defaultValue")}});
-    QVERIFY(config.isDefaultValue("default"));
-}
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"-has-config", "Has Config", "c", ""};
-    
-    int argc = 1;
-    char *argv[] = {"test"};
-    
-    Config config(argc, argv, params);
-    
-    config.setValue("has-config", "test");
-    QVERIFY(config.hasConfigFileValue("has-config"));
-}
 
 void ConfigTest::testHasDefaultValue()
 {
@@ -308,16 +295,7 @@ void ConfigTest::testHasDefaultValue()
     config.setDefaultValues({{"has-default", QVariant::fromValue("default")}});
     QVERIFY(config.hasDefaultValue("has-default"));
 }
-    
-    Config config(argc, argv, params);
-    
-    // Set default values
-    config.setDefaultValues({{"default", QVariant::fromValue("defaultValue")}});
-    
-    // Value should be from default
-    QCOMPARE(config.value("default"), QString("defaultValue"));
-    QVERIFY(config.isDefaultValue("default"));
-}
+
 
 void ConfigTest::testTypeConversion()
 {

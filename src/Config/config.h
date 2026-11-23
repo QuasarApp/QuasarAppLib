@@ -59,6 +59,12 @@ public:
      */
     ~Config() override = default;
 
+    /**
+     * @brief Check if the Config object is valid (has been initialized)
+     * @return true if the Config object is valid
+     */
+    bool isValid() const { return _isInitialized; }
+
     // ISettings interface implementation
     QVariant getValue(const QString &key, const QVariant& defaultValue = {}) override;
     QString getStrValue(const QString &key, const QString& defaultValue = {}) override;
@@ -151,6 +157,7 @@ private:
     QString _appName;
     QString _orgName;
     SettingsSaveMode _mode = SettingsSaveMode::Auto;
+    bool _isInitialized = false;
 };
 
 } // namespace QuasarAppUtils
