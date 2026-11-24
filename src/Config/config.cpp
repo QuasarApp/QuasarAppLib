@@ -529,7 +529,7 @@ void Config::setSupportedParams(const QList<QCommandLineOption>& params)
 }
 
 // Internal access methods
-QSettings* Config::getSettings() const
+const QSettings* Config::getSettings() const
 {
     return Settings::getSettings();
 }

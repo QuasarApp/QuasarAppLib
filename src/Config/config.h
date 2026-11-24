@@ -102,7 +102,7 @@ public:
     void setSupportedParams(const QList<QCommandLineOption>& params);
 
     // Internal access
-    QSettings* getSettings() const;
+    const QSettings* getSettings() const;
     QMap<QString, QString> getInternalParamsMap() const;
     QMap<QString, QVariant> getInternalDefaultValues() const;
     void setDefaultValues(const QMap<QString, QVariant>& values);

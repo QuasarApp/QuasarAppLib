@@ -136,6 +136,10 @@ private:
     /// @brief _settings This is the internal QSettings object that is used as a settings backend.
     QSettings *_settings = nullptr;
 
+    /// @brief getSettings This method returns the internal QSettings object.
+    QSettings* getSettings() { return _settings; }
+    const QSettings* getSettings() const { return _settings; }
+
     /// @brief _boolOptions This is the set of the keys that has a bool type in the settings map.
     QSet<QString> _boolOptions;
 };
