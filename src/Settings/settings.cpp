@@ -66,6 +66,20 @@ QVariant Settings::getValue(const QString &key, const QVariant& def) {
     }
 }
 
+QString Settings::getStrValue(const QString &key, const QString& def) {
+    if (_mode == SettingsSaveMode::Auto) {
+        if (isBool(key)) {
+            return _settings->value(key, def).toString();
+        }
+        return _settings->value(key, def).toString();
+    } else {
+        if (isBool(key)) {
+            return _cache.value(key).toString();
+        }
+        return _cache.value(key).toString();
+    }
+}
+
 void Settings::setStrValue(const QString& key, const QString& value) {
     setValue(key, value);
 }
