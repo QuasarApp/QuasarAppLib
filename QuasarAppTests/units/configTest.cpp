@@ -7,7 +7,7 @@
 
 #include "configTest.h"
 
-#include "Config/config.h"
+#include "Settings/config.h"
 
 #include <QCommandLineOption>
 #include <QHash>

@@ -5,7 +5,7 @@
  * of this license document, but changing it is not allowed.
  */
 
-#include "Config/config.h"
+#include "Settings/config.h"
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QSettings>
