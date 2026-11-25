@@ -24,7 +24,6 @@ class Config;
 class ConfigTest: public Test
 {
 public:
-    ConfigTest();
     ~ConfigTest() override = default;
 
     void test() override;

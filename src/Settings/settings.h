@@ -81,6 +81,14 @@ public:
      */
     static ISettings *autoInstance();
 
+    /**
+     * @brief getSettings This method returns the internal QSettings object
+     * that is used as a settings backend.
+     * @return the internal QSettings object.
+     */
+    QSettings* getSettings() { return _settings; }
+    const QSettings* getSettings() const { return _settings; }
+
 
 protected:
 
@@ -102,39 +110,6 @@ protected:
      * @param value This is a new value of the setting.
      */
     void setValueImplementation(const QString key, const QVariant &value) override;
-
-    /**
-     * @brief getValue This method returns the value of a setting.
-     * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not found.
-     * @see ISettings::getValue
-     */
-    QVariant getValue(const QString &key, const QVariant& def = {});
-
-    /**
-     * @brief getStrValue This method returns the string value of a setting.
-     * @param key This is name of the required settings value.
-     * @param def This is default value if a value is not found.
-     * @see ISettings::getStrValue
-     */
-    QString getStrValue(const QString &key, const QString& def = {});
-
-    /**
-     * @brief setValue This method sets a new value for a setting.
-     * @param key This is name of the changed setting.
-     * @param value This is a new value of the setting
-     * @see ISettings::setValue
-     */
-    void setValue(const QString &key, const QVariant &value) override;
-
-    /**
-     * @brief setStrValue This method sets a string value for a setting.
-     * @param key This is name of the changed setting.
-     * @param value This is a new string value of the setting
-     * @see ISettings::setStrValue
-     */
-    void setStrValue(const QString& key, const QString& value);
-
     /**
      * @brief ignoreToRest This method checks if the key is a boolean option.
      * @return true if the key option can't be reset to default else false.
@@ -165,14 +140,9 @@ protected:
      */
     void setGroup(const QString&);
 
-
+private:
     /// @brief _settings This is the internal QSettings object that is used as a settings backend.
     QSettings *_settings = nullptr;
-
-    /// @brief getSettings This method returns the internal QSettings object.
-public:
-    QSettings* getSettings() { return _settings; }
-    const QSettings* getSettings() const { return _settings; }
 
     /// @brief _boolOptions This is the set of the keys that has a bool type in the settings map.
     QSet<QString> _boolOptions;

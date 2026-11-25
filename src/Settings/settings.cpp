@@ -43,47 +43,6 @@ void Settings::setValueImplementation(const QString key, const QVariant &value) 
     return _settings->setValue(key, value);
 }
 
-void Settings::setValue(const QString &key, const QVariant &value) {
-    if (_mode == SettingsSaveMode::Auto) {
-        _settings->setValue(key, value);
-    } else {
-        _cache[key] = value;
-    }
-    emit valueChanged(key, value);
-}
-
-QVariant Settings::getValue(const QString &key, const QVariant& def) {
-    if (_mode == SettingsSaveMode::Auto) {
-        if (isBool(key)) {
-            return _settings->value(key, def).toBool();
-        }
-        return _settings->value(key, def);
-    } else {
-        if (isBool(key)) {
-            return _cache.value(key).toBool();
-        }
-        return _cache.value(key);
-    }
-}
-
-QString Settings::getStrValue(const QString &key, const QString& def) {
-    if (_mode == SettingsSaveMode::Auto) {
-        if (isBool(key)) {
-            return _settings->value(key, def).toString();
-        }
-        return _settings->value(key, def).toString();
-    } else {
-        if (isBool(key)) {
-            return _cache.value(key).toString();
-        }
-        return _cache.value(key).toString();
-    }
-}
-
-void Settings::setStrValue(const QString& key, const QString& value) {
-    setValue(key, value);
-}
-
 bool Settings::ignoreToRest(const QString &) const {
     return false;
 }
