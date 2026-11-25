@@ -43,6 +43,15 @@ void Settings::setValueImplementation(const QString key, const QVariant &value) 
     return _settings->setValue(key, value);
 }
 
+void Settings::setValue(const QString &key, const QVariant &value) {
+    if (_mode == SettingsSaveMode::Auto) {
+        _settings->setValue(key, value);
+    } else {
+        _cache[key] = value;
+    }
+    emit valueChanged(key, value);
+}
+
 bool Settings::ignoreToRest(const QString &) const {
     return false;
 }
