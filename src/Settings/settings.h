@@ -104,6 +104,14 @@ protected:
     void setValueImplementation(const QString key, const QVariant &value) override;
 
     /**
+     * @brief getValue This method returns the value of a setting.
+     * @param key This is name of the required settings value.
+     * @param def This is default value if a value is not found.
+     * @see ISettings::getValue
+     */
+    QVariant getValue(const QString &key, const QVariant& def = {});
+
+    /**
      * @brief setValue This method sets a new value for a setting.
      * @param key This is name of the changed setting.
      * @param value This is a new value of the setting

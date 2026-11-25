@@ -52,6 +52,20 @@ void Settings::setValue(const QString &key, const QVariant &value) {
     emit valueChanged(key, value);
 }
 
+QVariant Settings::getValue(const QString &key, const QVariant& def) {
+    if (_mode == SettingsSaveMode::Auto) {
+        if (isBool(key)) {
+            return _settings->value(key, def).toBool();
+        }
+        return _settings->value(key, def);
+    } else {
+        if (isBool(key)) {
+            return _cache.value(key).toBool();
+        }
+        return _cache.value(key);
+    }
+}
+
 void Settings::setStrValue(const QString& key, const QString& value) {
     setValue(key, value);
 }
