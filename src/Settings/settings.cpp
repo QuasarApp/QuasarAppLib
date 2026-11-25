@@ -52,6 +52,10 @@ void Settings::setValue(const QString &key, const QVariant &value) {
     emit valueChanged(key, value);
 }
 
+void Settings::setStrValue(const QString& key, const QString& value) {
+    setValue(key, value);
+}
+
 bool Settings::ignoreToRest(const QString &) const {
     return false;
 }

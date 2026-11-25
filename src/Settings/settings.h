@@ -110,6 +110,15 @@ protected:
      * @see ISettings::setValue
      */
     void setValue(const QString &key, const QVariant &value) override;
+
+    /**
+     * @brief setStrValue This method sets a string value for a setting.
+     * @param key This is name of the changed setting.
+     * @param value This is a new string value of the setting
+     * @see ISettings::setStrValue
+     */
+    void setStrValue(const QString& key, const QString& value);
+
     /**
      * @brief ignoreToRest This method checks if the key is a boolean option.
      * @return true if the key option can't be reset to default else false.
