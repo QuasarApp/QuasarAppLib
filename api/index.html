@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.561.6d54180</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.584.3a35420</span>
    </div>
   </td>
  </tr>
@@ -123,10 +123,26 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <ul>
 <li>Locales - This module use for parse local files. This module allows you to work with translations.</li>
 <li>Params - This module use for parese app params and create log.</li>
-<li>Settings - This is a module that allows you to work with application settings.</li>
+<li>Settings - This is a module that allows you to work with application settings. It also includes the Config class - a Settings implementation that takes into account the command-line arguments that had been read.</li>
 <li>Global - This module contains other global functions.</li>
 </ul>
-<h1>Build</h1>
+<h2>The Config class</h2>
+<p>The Config class is a Settings implementation that resolves the value of a setting with the priority: <b>command line &gt; config file &gt; default value</b>. The command line is parsed with the Params class, so all the command-line parsing logic is already implemented in the Params module.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;quasarapp.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line">QCoreApplication app(argc, argv);</div>
+<div class="line">QCoreApplication::setApplicationName(<span class="stringliteral">&quot;MyApp&quot;</span>);</div>
+<div class="line">QCoreApplication::setOrganizationName(<span class="stringliteral">&quot;MyOrg&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">OptionsDataList options;</div>
+<div class="line">options.insert(<span class="stringliteral">&quot;Base Options&quot;</span>,</div>
+<div class="line">               OptionData{{<span class="stringliteral">&quot;-verbose&quot;</span>}, <span class="stringliteral">&quot;(level 1 - 3)&quot;</span>, <span class="stringliteral">&quot;Shows debug log&quot;</span>});</div>
+<div class="line"> </div>
+<div class="line">QuasarAppUtils::Config config(argc, argv, options);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// command line &gt; config file &gt; default value</span></div>
+<div class="line"><span class="keywordtype">int</span> level = config.getValue(<span class="stringliteral">&quot;verbose&quot;</span>).toInt();</div>
+</div><!-- fragment --><h1>Build</h1>
 <ul>
 <li>git clone <a href="https://github.com/QuasarApp/QuasarAppLib.git">https://github.com/QuasarApp/QuasarAppLib.git</a></li>
 <li>git submodule update &ndash;init &ndash;recursive</li>
