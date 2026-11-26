@@ -17,36 +17,28 @@ class Config;
 }
 
 /**
- * @brief The ConfigTest class tests the QuasarAppUtils::Config class
- *  (command-line parameter parsing, settings functionality, value
- *  priority resolution, and help generation).
+ * @brief The ConfigTest class tests the QuasarAppUtils::Config class:
+ *  the command-line parsing through the Params class, the Settings
+ *  base class functionality, and the value priority resolution
+ *  (command line > config file > default value).
  */
 class ConfigTest: public Test
 {
 public:
-    ~ConfigTest() override = default;
+    ConfigTest();
+    ~ConfigTest() override;
 
     void test() override;
 
 protected:
     void testConstructor();
+    void testCommandLineParsing();
     void testPriorityOrder();
-    void testCommandlineValues();
     void testConfigFileValues();
     void testDefaultValues();
     void testTypeConversion();
-    void testValueSource();
-    void testHasCommandlineValue();
-    void testHasConfigFileValue();
-    void testHasDefaultValue();
-    void testIsCommandlineValue();
-    void testIsConfigFileValue();
-    void testIsDefaultValue();
     void testSetValue();
-    void testGetParamsMap();
-    void testSupportedParams();
-    void testHelpText();
-    void testDefaultValueStorage();
+    void testSettingsInheritance();
 };
 
 #endif // CONFIGTEST_H

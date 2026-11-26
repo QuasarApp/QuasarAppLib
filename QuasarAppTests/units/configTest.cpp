@@ -7,347 +7,229 @@
 
 #include "configTest.h"
 
+#include "OptionData/optiondata.h"
+#include "Params/params.h"
 #include "Settings/config.h"
+#include "Settings/settings.h"
 
-#include <QCommandLineOption>
-#include <QHash>
-#include <QList>
-#include <QMap>
-#include <QString>
-#include <QVariant>
+#include <QCoreApplication>
+#include <QFile>
+#include <QSettings>
+#include <QSignalSpy>
 
 using namespace QuasarAppUtils;
 
-void ConfigTest::test()
-{
+namespace {
+/**
+ * @brief configOptions This function returns the list of the test
+ *  options for the Config constructor.
+ */
+OptionsDataList configOptions() {
+    OptionsDataList options;
+    options.insert("Config Test Options",
+                   OptionData{{"-testValue"}, "(value)", "The test value option"});
+    options.insert("Config Test Options",
+                   OptionData{{"-testInt"}, "(value)", "The test int option"});
+    options.insert("Config Test Options",
+                   OptionData{{"-testBool"}, "(value)", "The test bool option"});
+    options.insert("Config Test Options",
+                   OptionData{{"-testDouble"}, "(value)", "The test double option"});
+    return options;
+}
+}
+
+ConfigTest::ConfigTest() {
+    // remove the settings file of a previous test run.
+    QSettings settings(QSettings::IniFormat, QSettings::Scope::UserScope,
+                       QCoreApplication::organizationName(),
+                       QCoreApplication::applicationName());
+    QFile::remove(settings.fileName());
+}
+
+ConfigTest::~ConfigTest() {
+    // remove the settings file that was created by the tests.
+    QSettings settings(QSettings::IniFormat, QSettings::Scope::UserScope,
+                       QCoreApplication::organizationName(),
+                       QCoreApplication::applicationName());
+    QFile::remove(settings.fileName());
+}
+
+void ConfigTest::test() {
     testConstructor();
+    testCommandLineParsing();
     testPriorityOrder();
-    testCommandlineValues();
     testConfigFileValues();
     testDefaultValues();
     testTypeConversion();
-    testValueSource();
-    testHasCommandlineValue();
-    testHasConfigFileValue();
-    testHasDefaultValue();
-    testIsCommandlineValue();
-    testIsConfigFileValue();
-    testIsDefaultValue();
     testSetValue();
-    testGetParamsMap();
-    testSupportedParams();
-    testHelpText();
-    testDefaultValueStorage();
+    testSettingsInheritance();
 }
 
-void ConfigTest::testConstructor()
-{
-    // The Config object with the empty parameters list
-    QList<QCommandLineOption> emptyParams;
-    Config config(0, nullptr, emptyParams);
-    QVERIFY(config.isValid());
+void ConfigTest::testConstructor() {
+    // The Config object with the empty command line.
+    {
+        const char* argv[] = {"test"};
+        Config config(1, argv);
+        QVERIFY(config.commandLineArgs().isEmpty());
+    }
 
-    // The Config object with the parameters list
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"verbose", "Enable verbose logging", "level", "0"};
-    params << QCommandLineOption{"output", "Output file", "path", ""};
+    // The Config object with the command-line arguments. The first
+    // argument (the executable name) is skipped by the Params class.
+    {
+        const char* argv[] = {"test", "-testValue", "cliValue"};
+        Config config(3, argv, configOptions());
+        QVERIFY(config.commandLineArgs().contains("testValue"));
+        QCOMPARE(config.commandLineArgs().value("testValue"), QString("cliValue"));
+    }
+}
 
-    const int argc = 1;
+void ConfigTest::testCommandLineParsing() {
+    const char* argv[] = {"test", "-testValue", "cliValue", "-testInt", "42"};
+    Config config(5, argv, configOptions());
+
+    // the command line is parsed with the Params class, so the parsed
+    // arguments are also available through the Params accessors.
+    QCOMPARE(Params::getArg("testValue"), QString("cliValue"));
+    QCOMPARE(Params::getArg("testInt"), QString("42"));
+
+    QCOMPARE(config.getValue("testValue"), QVariant("cliValue"));
+    QCOMPARE(config.getValue("testInt"), QVariant("42"));
+
+    // the option name and the value can be joined with the equal sign.
+    const char* argv2[] = {"test", "-testValue=eqValue"};
+    Config config2(2, argv2, configOptions());
+    QCOMPARE(config2.getValue("testValue"), QVariant("eqValue"));
+}
+
+void ConfigTest::testPriorityOrder() {
+    // 1. The command-line value has the highest priority.
+    {
+        const char* argv[] = {"test", "-testValue", "cliValue"};
+        Config config(3, argv, configOptions());
+        QCOMPARE(config.getValue("testValue"), QVariant("cliValue"));
+    }
+
+    // 2. A value saved in the config file doesn't override the
+    //    command-line value, but it is used if the command line
+    //    doesn't provide the value.
+    {
+        const char* argv[] = {"test"};
+        Config config(1, argv);
+        config.setValue("testValue", QString("fileValue"));
+        config.sync();
+    }
+    {
+        const char* argv[] = {"test", "-testValue", "cliValue2"};
+        Config config(3, argv, configOptions());
+        QCOMPARE(config.getValue("testValue"), QVariant("cliValue2"));
+    }
+    {
+        const char* argv[] = {"test"};
+        Config config(1, argv);
+        QCOMPARE(config.getValue("testValue"), QVariant("fileValue"));
+
+        // 3. The default value (the def argument) has the lowest
+        //    priority: it is used only if the key is not set on the
+        //    command line and in the config file.
+        QCOMPARE(config.getValue("testValue", QVariant("ignoredDefault")),
+                 QVariant("fileValue"));
+        QCOMPARE(config.getValue("absentKey", QVariant("fallback")),
+                 QVariant("fallback"));
+    }
+}
+
+void ConfigTest::testConfigFileValues() {
+    {
+        const char* argv[] = {"test"};
+        Config config(1, argv);
+        config.setValue("fileOnlyKey", QString("fileValue"));
+        config.sync();
+    }
+
+    // the value saved in the config file is returned by a new
+    // Config object that doesn't have the value on the command line.
+    {
+        const char* argv[] = {"test"};
+        Config config(1, argv);
+        QCOMPARE(config.getValue("fileOnlyKey"), QVariant("fileValue"));
+        QCOMPARE(config.getStrValue("fileOnlyKey"), QString("fileValue"));
+        QVERIFY(config.getSettings()->contains("fileOnlyKey"));
+    }
+}
+
+void ConfigTest::testDefaultValues() {
     const char* argv[] = {"test"};
+    Config config(1, argv);
 
-    Config config2(argc, argv, params);
-    QVERIFY(config2.isValid());
+    // the def argument of the getValue method is the default value
+    // of the setting if the key is not set on the command line
+    // and in the config file.
+    QCOMPARE(config.getValue("defaultOnlyKey", QVariant("fallback")),
+             QVariant("fallback"));
+    QCOMPARE(config.getStrValue("defaultOnlyKey2", "strFallback"),
+             QString("strFallback"));
+
+    // the empty def argument returns the empty value (the default
+    // settings map of the Settings base class is empty).
+    QCOMPARE(config.getValue("defaultOnlyKey3").toString(), QString(""));
 }
 
-void ConfigTest::testPriorityOrder()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"value", "Test value", "val", "default"};
+void ConfigTest::testTypeConversion() {
+    const char* argv[] = {"test", "-testInt", "42", "-testBool", "true",
+                          "-testDouble", "3.14"};
+    Config config(7, argv, configOptions());
 
-    // The value is provided on the command line
-    const int argc = 3;
-    const char* argv[] = {"test", "--value", "commandlineValue"};
-
-    Config config(argc, argv, params);
-
-    // The command-line value has the highest priority
-    QCOMPARE(config.value("value"), QVariant("commandlineValue"));
-    QVERIFY(config.isCommandlineValue("value"));
-    QVERIFY(config.hasCommandlineValue("value"));
-
-    // A value saved in the config file doesn't override the command-line value
-    config.setValue("value", QString("configValue"));
-    QCOMPARE(config.getConfigFileValue("value"), QString("configValue"));
-    QVERIFY(config.hasConfigFileValue("value"));
-    QCOMPARE(config.value("value"), QVariant("commandlineValue"));
-    QVERIFY(config.isCommandlineValue("value"));
-
-    // Without the command-line value the config file value
-    // wins over the default value
-    const int argc2 = 1;
-    const char* argv2[] = {"test"};
-
-    Config config2(argc2, argv2, params);
-    QCOMPARE(config2.value("value"), QVariant("configValue"));
-    QVERIFY(config2.isConfigFileValue("value"));
+    QCOMPARE(config.getValue("testInt").toInt(), 42);
+    QCOMPARE(config.getValue("testBool").toBool(), true);
+    QCOMPARE(config.getValue("testDouble").toDouble(), 3.14);
 }
 
-void ConfigTest::testCommandlineValues()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"option", "Test option", "opt", "default"};
-
-    const int argc = 3;
-    const char* argv[] = {"test", "--option", "cliValue"};
-
-    Config config(argc, argv, params);
-
-    QCOMPARE(config.getCommandlineValue("option"), QString("cliValue"));
-    QVERIFY(config.hasCommandlineValue("option"));
-}
-
-void ConfigTest::testConfigFileValues()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"config", "Config value", "cfg", "default"};
-
-    const int argc = 1;
+void ConfigTest::testSetValue() {
     const char* argv[] = {"test"};
+    Config config(1, argv);
 
-    Config config(argc, argv, params);
+    config.setValue("setKey", QVariant("testValue"));
+    QCOMPARE(config.getValue("setKey"), QVariant("testValue"));
+    QCOMPARE(config.getStrValue("setKey"), QString("testValue"));
 
-    // The value is saved in the config file
-    config.setValue("config", QString("fileValue"));
-
-    QCOMPARE(config.getConfigFileValue("config"), QString("fileValue"));
-    QVERIFY(config.hasConfigFileValue("config"));
+    config.setValue("setKey", 42);
+    QCOMPARE(config.getValue("setKey").toInt(), 42);
 }
 
-void ConfigTest::testDefaultValues()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"default", "Default value", "def", "default"};
-
-    const int argc = 1;
+void ConfigTest::testSettingsInheritance() {
     const char* argv[] = {"test"};
+    Config config(1, argv);
 
-    Config config(argc, argv, params);
+    // the Config object is a Settings object and an ISettings object.
+    Settings* base = &config;
+    QVERIFY(base == static_cast<Settings*>(&config));
+    ISettings* iface = &config;
+    QVERIFY(iface == static_cast<ISettings*>(&config));
 
-    // The option default value is used as the default value of the setting
-    QCOMPARE(config.value("default"), QVariant("default"));
-    QVERIFY(config.isDefaultValue("default"));
-    QVERIFY(config.hasDefaultValue("default"));
+    // the Settings base class backend is available.
+    QVERIFY(config.getSettings() != nullptr);
 
-    // A new default value overrides the option default value
-    QHash<QString, QVariant> newDefaults;
-    newDefaults.insert("default", QVariant("newDefault"));
-    config.setDefaultValues(newDefaults);
-    QCOMPARE(config.value("default"), QVariant("newDefault"));
-}
+    // the ISettings signals work through the Config object. The
+    // signals are resolved on the runtime metaobject (see the
+    // settingsTest for the explanation).
+    const QMetaObject* mo = config.metaObject();
+    const int valueIndex = mo->indexOfSignal("valueChanged(QString,QVariant)");
+    const int strIndex = mo->indexOfSignal("valueStrChanged(QString,QString)");
+    QVERIFY(valueIndex >= 0);
+    QVERIFY(strIndex >= 0);
 
-void ConfigTest::testTypeConversion()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"int", "Int value", "i", "0"};
-    params << QCommandLineOption{"bool", "Bool value", "b", "false"};
-    params << QCommandLineOption{"double", "Double value", "d", "0.0"};
+    QSignalSpy valueSpy(&config, mo->method(valueIndex));
+    QSignalSpy strSpy(&config, mo->method(strIndex));
 
-    const int argc = 7;
-    const char* argv[] = {"test", "--int", "42", "--bool", "true", "--double", "3.14"};
+    config.setValue("signalKey", "signalValue");
+    QCOMPARE(valueSpy.count(), 1);
+    QCOMPARE(valueSpy.at(0).at(0).toString(), QString("signalKey"));
+    QCOMPARE(valueSpy.at(0).at(1).toString(), QString("signalValue"));
+    QCOMPARE(strSpy.count(), 1);
+    QCOMPARE(strSpy.at(0).at(0).toString(), QString("signalKey"));
+    QCOMPARE(strSpy.at(0).at(1).toString(), QString("signalValue"));
 
-    Config config(argc, argv, params);
-
-    QCOMPARE(config.valueInt("int"), 42);
-    QCOMPARE(config.valueBool("bool"), true);
-    QCOMPARE(config.valueDouble("double"), 3.14);
-}
-
-void ConfigTest::testValueSource()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"source", "Source test", "s", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    // The value is not set in any of the sources
-    QVERIFY(!config.hasCommandlineValue("source"));
-    QVERIFY(!config.hasConfigFileValue("source"));
-    QVERIFY(!config.hasDefaultValue("source"));
-    QVERIFY(!config.isCommandlineValue("source"));
-    QVERIFY(!config.isConfigFileValue("source"));
-    QVERIFY(!config.isDefaultValue("source"));
-}
-
-void ConfigTest::testHasCommandlineValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"has-cli", "Has CLI", "h", ""};
-
-    const int argc = 3;
-    const char* argv[] = {"test", "--has-cli", "yes"};
-
-    Config config(argc, argv, params);
-
-    QVERIFY(config.hasCommandlineValue("has-cli"));
-    QVERIFY(!config.hasCommandlineValue("has-cli-missing"));
-}
-
-void ConfigTest::testHasConfigFileValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"has-file", "Has file value", "f", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    QVERIFY(!config.hasConfigFileValue("has-file"));
-
-    config.setValue("has-file", QString("fileValue"));
-    QVERIFY(config.hasConfigFileValue("has-file"));
-}
-
-void ConfigTest::testHasDefaultValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"has-default", "Has Default", "d", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    QVERIFY(!config.hasDefaultValue("has-default"));
-
-    config.setDefaultValue("has-default", QVariant("default"));
-    QVERIFY(config.hasDefaultValue("has-default"));
-}
-
-void ConfigTest::testIsCommandlineValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"cli", "CLI test", "x", ""};
-
-    const int argc = 3;
-    const char* argv[] = {"test", "--cli", "cliValue"};
-
-    Config config(argc, argv, params);
-
-    QVERIFY(config.isCommandlineValue("cli"));
-}
-
-void ConfigTest::testIsConfigFileValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"is-config", "Config test", "y", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    config.setValue("is-config", QString("fileValue"));
-    QVERIFY(config.isConfigFileValue("is-config"));
-    QVERIFY(!config.isCommandlineValue("is-config"));
-}
-
-void ConfigTest::testIsDefaultValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"is-default", "Default test", "z", "defaultValue"};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    // The option default value is the default value of the setting
-    QVERIFY(config.isDefaultValue("is-default"));
-    QCOMPARE(config.value("is-default"), QVariant("defaultValue"));
-}
-
-void ConfigTest::testSetValue()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"set", "Set test", "s", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    config.setValue("set", QVariant("testValue"));
-    QCOMPARE(config.value("set"), QVariant("testValue"));
-
-    config.setValue("set", 42);
-    QCOMPARE(config.value("set").toInt(), 42);
-}
-
-void ConfigTest::testGetParamsMap()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"param", "Param test", "p", ""};
-
-    const int argc = 3;
-    const char* argv[] = {"test", "--param", "paramValue"};
-
-    Config config(argc, argv, params);
-
-    QMap<QString, QString> paramsMap = config.getParamsMap();
-    QVERIFY(paramsMap.contains("param"));
-    QCOMPARE(paramsMap.value("param"), QString("paramValue"));
-}
-
-void ConfigTest::testSupportedParams()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"supported", "Supported test", "s", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    QList<QCommandLineOption> supported = config.getSupportedParams();
-    QCOMPARE(supported.size(), 1);
-    QCOMPARE(supported.first().names().value(0), QString("supported"));
-}
-
-void ConfigTest::testHelpText()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"help-text", "Help option", "h", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    QString help = config.getHelp();
-    QVERIFY(!help.isEmpty());
-    QVERIFY(help.contains("help-text"));
-}
-
-void ConfigTest::testDefaultValueStorage()
-{
-    QList<QCommandLineOption> params;
-    params << QCommandLineOption{"storage", "Storage test", "st", ""};
-
-    const int argc = 1;
-    const char* argv[] = {"test"};
-
-    Config config(argc, argv, params);
-
-    QHash<QString, QVariant> defaults;
-    defaults.insert("theme", QVariant("dark"));
-    defaults.insert("language", QVariant("en"));
-    config.setDefaultValues(defaults);
-
-    QHash<QString, QVariant> stored = config.getDefaultValues();
-    QCOMPARE(stored.value("theme"), QVariant("dark"));
-    QCOMPARE(stored.value("language"), QVariant("en"));
+    // the Settings base class methods work through the Config object.
+    config.setBoolOptions({"boolOpt"});
+    QVERIFY(config.boolOptions().contains("boolOpt"));
 }
