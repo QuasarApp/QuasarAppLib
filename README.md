@@ -4,8 +4,34 @@ This lib include include next modules:
 
 * Locales - This module use for parse local files. This module allows you to work with translations. 
 * Params - This module use for parese app params and create log.
-* Settings - This is a module that allows you to work with application settings. 
+* Settings - This is a module that allows you to work with application settings. It
+  also includes the Config class - a Settings implementation that takes into account
+  the command-line arguments that had been read.
 * Global - This module contains other global functions.
+
+### The Config class
+
+The Config class is a Settings implementation that resolves the value of a
+setting with the priority: **command line > config file > default value**.
+The command line is parsed with the Params class, so all the
+command-line parsing logic is already implemented in the Params module.
+
+```cpp
+#include <quasarapp.h>
+
+QCoreApplication app(argc, argv);
+QCoreApplication::setApplicationName("MyApp");
+QCoreApplication::setOrganizationName("MyOrg");
+
+OptionsDataList options;
+options.insert("Base Options",
+               OptionData{{"-verbose"}, "(level 1 - 3)", "Shows debug log"});
+
+QuasarAppUtils::Config config(argc, argv, options);
+
+// command line > config file > default value
+int level = config.getValue("verbose").toInt();
+```
 
 
 ## Build

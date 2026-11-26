@@ -12,6 +12,7 @@
 #include "optionDataTest.h"
 #include "paramsTest.h"
 #include "settingsTest.h"
+#include "configTest.h"
 
 #define TestCase(name, testClass) \
     void name() { \
@@ -39,6 +40,7 @@ private slots:
     TestCase(paramsTest, ParamsTest);
     TestCase(settingsTest, SettingsTest);
     TestCase(localesTest, LocalesTest);
+    TestCase(configTest, ConfigTest);
 
     // END TEST CASES
 
