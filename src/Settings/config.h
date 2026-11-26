@@ -10,6 +10,7 @@
 
 #include "Settings/settings.h"
 #include "Params/params.h"
+#include "Core/quasarapp_global.h"
 
 #include <QMap>
 #include <QString>
@@ -65,7 +66,7 @@ namespace QuasarAppUtils {
  * @note The value saved in the config file has the second priority.
  * @note The default value has the lowest priority.
  */
-class Config: public Settings
+class QUASARAPPSHARED_EXPORT Config: public Settings
 {
 public:
     /**
