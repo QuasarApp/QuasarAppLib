@@ -81,15 +81,6 @@ public:
      */
     static ISettings *autoInstance();
 
-    /**
-     * @brief getSettings This method returns the internal QSettings object
-     * that is used as a settings backend.
-     * @return the internal QSettings object.
-     */
-    QSettings* getSettings() { return _settings; }
-    const QSettings* getSettings() const { return _settings; }
-
-
 protected:
 
     /**
@@ -139,6 +130,16 @@ protected:
      * Use empty string for remove the current group.
      */
     void setGroup(const QString&);
+
+    /**
+     * @brief getSettings This method returns the internal QSettings object
+     * that is used as a settings backend. The internal object is not a
+     * part of the public API, so the method is available for the derived
+     * classes only (for example, for the test purposes).
+     * @return the internal QSettings object.
+     */
+    QSettings* getSettings() { return _settings; }
+    const QSettings* getSettings() const { return _settings; }
 
 private:
     /// @brief _settings This is the internal QSettings object that is used as a settings backend.

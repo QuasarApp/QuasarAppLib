@@ -36,6 +36,23 @@ OptionsDataList configOptions() {
                    OptionData{{"-testDouble"}, "(value)", "The test double option"});
     return options;
 }
+
+/**
+ * @brief The TestConfig class is a class exclusively for the testing
+ *  purposes. It is a subclass of the Config class that publicly
+ *  exposes the protected QSettings backend of the Settings base class
+ *  (the Settings::getSettings method is not a part of the public API),
+ *  so the tests can check the values that are stored in the settings
+ *  file directly.
+ */
+class TestConfig: public Config
+{
+public:
+    TestConfig(int argc, const char* argv[], const OptionsDataList& options = {})
+        : Config(argc, argv, options) {}
+
+    QSettings* settings() { return getSettings(); }
+};
 }
 
 ConfigTest::ConfigTest() {
@@ -150,10 +167,10 @@ void ConfigTest::testConfigFileValues() {
     // Config object that doesn't have the value on the command line.
     {
         const char* argv[] = {"test"};
-        Config config(1, argv);
+        TestConfig config(1, argv);
         QCOMPARE(config.getValue("fileOnlyKey"), QVariant("fileValue"));
         QCOMPARE(config.getStrValue("fileOnlyKey"), QString("fileValue"));
-        QVERIFY(config.getSettings()->contains("fileOnlyKey"));
+        QVERIFY(config.settings()->contains("fileOnlyKey"));
     }
 }
 
@@ -198,7 +215,7 @@ void ConfigTest::testSetValue() {
 
 void ConfigTest::testSettingsInheritance() {
     const char* argv[] = {"test"};
-    Config config(1, argv);
+    TestConfig config(1, argv);
 
     // the Config object is a Settings object and an ISettings object.
     Settings* base = &config;
@@ -207,7 +224,7 @@ void ConfigTest::testSettingsInheritance() {
     QVERIFY(iface == static_cast<ISettings*>(&config));
 
     // the Settings base class backend is available.
-    QVERIFY(config.getSettings() != nullptr);
+    QVERIFY(config.settings() != nullptr);
 
     // the ISettings signals work through the Config object. The
     // signals are resolved on the runtime metaobject (see the
