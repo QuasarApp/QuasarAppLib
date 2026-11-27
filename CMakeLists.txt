@@ -12,14 +12,15 @@ else()
   add_definitions(-DQUASARAPP_LIBRARY)
 endif()
 
-project(QuasarApp)
-
 cmake_minimum_required(VERSION 3.19)
+
+project(QuasarApp)
 
 if(TARGET ${PROJECT_NAME})
   message("The ${PROJECT_NAME} already included in main Project")
   return()
 endif()
+
 
 include(CMake/QuasarApp.cmake)
 include(CMake/Version.cmake)
