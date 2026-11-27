@@ -1,0 +1,27 @@
+<map id="OptionDataTest::~OptionDataTest" name="OptionDataTest::~OptionDataTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,246,132"/>
+<area shape="rect" id="Node000002" href="$classOptionDataTest.html#a9ebda9323b243ab116be1ebd1eed00bd" title=" " alt="" coords="294,104,448,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,115,281,117,276,119,247,120"/>
+<area shape="rect" id="Node000003" href="$classOptionDataTest.html#ad529baf80f0fe628834790d94f3a2261" title=" " alt="" coords="501,5,720,33"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="170,101,293,67,391,48,488,34,483,36,392,53,294,72,172,106"/>
+<area shape="rect" id="Node000004" href="$classOptionDataTest.html#ac066e53dfde8e43b14210a4e19d28ebc" title=" " alt="" coords="496,58,725,103"/>
+<area shape="poly" id="edge12_Node000001_Node000004" title=" " alt="" coords="209,101,293,90,483,81,478,83,294,95,211,106"/>
+<area shape="rect" id="Node000005" href="$classOptionDataTest.html#abc15320d95c88dd4ca6acd4b66c2faeb" title=" " alt="" coords="512,131,710,158"/>
+<area shape="poly" id="edge13_Node000001_Node000005" title=" " alt="" coords="206,130,294,141,397,145,499,148,493,149,397,151,293,146,207,135"/>
+<area shape="rect" id="Node000011" href="$classOptionDataTest.html#afacfb4eb0bfe8550f0fa9e604ae270c0" title=" " alt="" coords="509,191,712,218"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="190,130,294,151,498,187,493,189,293,156,190,135"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,101,437,72,495,43,522,37,517,39,497,48,440,77,394,106"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="448,103,483,100,478,101,449,108"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="448,124,499,131,494,132,449,129"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="404,130,497,167,546,186,541,186,495,172,404,135"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1OptionData.html#a8c3ff3610bd5c88b67450a995f8111e9" title="toHelp This method convert this option into help line. The help line have next structure :" alt="" coords="773,122,978,167"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="710,142,761,144,755,145,711,147"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1OptionData.html#ad21516b706594675c25491f76f46f12b" title="arguments This is input arguments of this option or help message about arguments." alt="" coords="1026,18,1230,63"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="922,119,1025,73,1040,69,1045,68,1027,78,923,124"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1OptionData.html#aae9fff9beebee8e0d3c31c2f353e811e" title="description This is description message of this option." alt="" coords="1026,88,1230,132"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="978,128,1013,126,1007,126,978,133"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1OptionData.html#a0c842bea23f0307618d87f57766fde68" title="example This is example of use string." alt="" coords="1026,157,1230,202"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="978,156,1013,163,1007,163,978,161"/>
+<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1OptionData.html#aefb58810a4a860db1c321a1bf5e67d9d" title="name This is name of the option. It is a required argument and cannot be empty." alt="" coords="1026,226,1230,271"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="923,165,1027,211,1045,221,1040,220,1025,216,922,170"/>
+</map>

@@ -1,0 +1,41 @@
+<map id="GlobalUtilsTest::~GlobalUtilsTest" name="GlobalUtilsTest::~GlobalUtilsTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,210,186,255"/>
+<area shape="rect" id="Node000002" href="$classGlobalUtilsTest.html#aaa2710c941e349033f3233ebc54840cd" title=" " alt="" coords="234,219,386,246"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,230,221,231,216,234,187,235"/>
+<area shape="rect" id="Node000003" href="$classGlobalUtilsTest.html#ad69cf7ed0a4acc7216b021ff0b27a5f4" title=" " alt="" coords="442,104,632,148"/>
+<area shape="poly" id="edge22_Node000001_Node000003" title=" " alt="" coords="153,207,233,181,332,157,429,141,425,144,333,162,234,186,156,212"/>
+<area shape="rect" id="Node000004" href="$classGlobalUtilsTest.html#a4e220ff4a9a965ca84557fde66aba7c8" title=" " alt="" coords="444,173,630,218"/>
+<area shape="poly" id="edge23_Node000001_Node000004" title=" " alt="" coords="185,212,233,205,334,197,431,194,426,197,334,202,234,210,187,216"/>
+<area shape="rect" id="Node000008" href="$classGlobalUtilsTest.html#a9cd88e5c041f592fd2ff2bfc944214df" title=" " alt="" coords="434,249,640,294"/>
+<area shape="poly" id="edge24_Node000001_Node000008" title=" " alt="" coords="185,248,234,255,328,263,421,269,416,271,328,268,233,260,187,253"/>
+<area shape="rect" id="Node000011" href="$classGlobalUtilsTest.html#af19739f7166e5fb16cbeca65acd22752" title=" " alt="" coords="446,325,628,370"/>
+<area shape="poly" id="edge25_Node000001_Node000011" title=" " alt="" coords="170,253,234,271,433,322,429,325,233,276,171,258"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="331,216,377,187,433,158,451,153,446,156,435,163,380,192,334,220"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="386,217,432,212,427,214,388,222"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="386,243,421,250,416,252,387,248"/>
+<area shape="poly" id="edge15_Node000002_Node000011" title=" " alt="" coords="333,244,380,273,435,303,464,318,459,319,433,308,377,278,333,249"/>
+<area shape="rect" id="Node000005" href="$qaglobalutils_8h.html#a71728f638d0311f8ef7e78c7c2dddaf2" title="Simplified match (intersection) operation for QHash." alt="" coords="734,29,797,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="622,170,639,159,655,137,662,114,669,91,687,68,721,51,717,54,690,72,674,94,667,116,660,139,642,162,624,175"/>
+<area shape="rect" id="Node000006" href="$qaglobalutils_8h.html#ada680af33cc989b8732940ddc8501b1c" title="Simplified subtraction operation for QHash." alt="" coords="728,105,803,133"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="605,170,716,135,711,137,607,175"/>
+<area shape="rect" id="Node000007" href="$qaglobalutils_8h.html#a6c477c218dbe6c3407fe3d7ad0b84c28" title="Simplified union operation for QHash." alt="" coords="738,181,793,209"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="630,193,725,194,720,196,631,198"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="739,28,735,20,738,11,749,5,766,3,783,5,794,14,789,14,781,10,765,8,751,10,743,14,740,20,744,30"/>
+<area shape="poly" id="edge7_Node000006_Node000006" title=" " alt="" coords="739,104,735,96,738,87,749,81,766,79,783,81,794,90,789,90,781,86,765,84,751,86,743,90,740,96,744,106"/>
+<area shape="poly" id="edge9_Node000007_Node000007" title=" " alt="" coords="739,180,735,172,738,163,749,157,766,155,783,157,794,166,789,165,781,162,765,160,751,162,743,166,740,172,744,182"/>
+<area shape="rect" id="Node000009" href="$qaglobalutils_8cpp.html#ad4b946359027ce155f7e1cb63fd5db06" title="randomArray This function return random arrat with size size" alt="" coords="712,257,819,285"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="640,269,700,271,695,272,641,274"/>
+<area shape="poly" id="edge14_Node000009_Node000009" title=" " alt="" coords="739,256,735,248,738,239,749,233,766,231,783,233,794,242,789,241,781,238,765,236,751,238,743,242,740,248,744,258"/>
+<area shape="rect" id="Node000010" href="$qaglobalutils_8cpp.html#a7543d19591b6d968a8d450feb3693674" title=" " alt="" coords="891,257,936,285"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="819,269,878,271,873,272,820,274"/>
+<area shape="poly" id="edge13_Node000010_Node000010" title=" " alt="" coords="888,257,883,249,886,239,896,233,913,231,932,234,942,243,937,242,930,238,913,236,898,238,890,243,888,249,893,259"/>
+<area shape="rect" id="Node000012" href="$qaglobalutils_8h.html#aa4eb207d0501b74607c3ccdb65ce13c4" title="static_type_hash_16 This function return hash code of the class T. For get more information see the s..." alt="" coords="688,333,843,361"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="629,345,675,347,670,348,629,350"/>
+<area shape="rect" id="Node000013" href="$qaglobalutils_8h.html#ae1f8c85b41b9185a0b358ccd02420f0e" title="static_type_hash_32 This function return hash code of the class T. For get more information see the s..." alt="" coords="688,409,843,437"/>
+<area shape="poly" id="edge18_Node000011_Node000013" title=" " alt="" coords="607,367,710,404,704,404,606,373"/>
+<area shape="rect" id="Node000014" href="$qaglobalutils_8h.html#ab37fcb828ccfc85cace5a3fc30681ae8" title="static_type_hash_8 This function return hash code of the class T. For get more information see the st..." alt="" coords="692,485,839,513"/>
+<area shape="poly" id="edge20_Node000011_Node000014" title=" " alt="" coords="573,368,690,446,733,477,728,476,687,451,572,373"/>
+<area shape="poly" id="edge17_Node000012_Node000012" title=" " alt="" coords="739,332,735,324,738,315,749,309,766,307,783,309,794,318,789,317,781,314,765,312,751,314,743,318,740,324,744,334"/>
+<area shape="poly" id="edge19_Node000013_Node000013" title=" " alt="" coords="739,408,735,400,738,391,749,385,766,383,783,385,794,394,789,393,781,390,765,388,751,390,743,394,740,400,744,410"/>
+<area shape="poly" id="edge21_Node000014_Node000014" title=" " alt="" coords="739,483,735,476,738,467,749,461,766,459,783,461,794,470,789,469,781,466,765,464,751,466,743,470,740,476,744,486"/>
+</map>

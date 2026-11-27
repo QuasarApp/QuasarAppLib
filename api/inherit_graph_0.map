@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="58,74,131,102"/>
+<area shape="rect" id="Node000001" href="$classQuasarAppUtils_1_1ISettings.html" title="The Settings class base interface for implementation settings backends. Available implementations: Se..." alt="" coords="232,15,419,43"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="145,72,270,42,266,45,147,77"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1Locales.html" title="The Locales class for parese local files Example :." alt="" coords="236,71,415,99"/>
+<area shape="poly" id="edge4_Node000000_Node000005" title=" " alt="" coords="147,84,238,85,233,87,147,90"/>
+<area shape="rect" id="Node000006" href="$classtestQuasarApp.html" title="The testQuasarApp class is the main test runner of the QuasarAppLib unit test suite...." alt="" coords="267,123,384,151"/>
+<area shape="poly" id="edge5_Node000000_Node000006" title=" " alt="" coords="147,96,269,123,264,126,146,101"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Settings.html" title="The Settings class This is wrapper of the QSettings object." alt="" coords="467,15,650,43"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="434,26,469,29,464,29,435,32"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Config.html" title="The Config class." alt="" coords="698,15,870,43"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="666,26,701,29,695,29,666,32"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Service.html" title=" " alt="" coords="5,5,184,50"/>
+<area shape="poly" id="edge6_Node000004_Node000001" title=" " alt="" coords="198,26,234,28,229,29,200,31"/>
+</map>

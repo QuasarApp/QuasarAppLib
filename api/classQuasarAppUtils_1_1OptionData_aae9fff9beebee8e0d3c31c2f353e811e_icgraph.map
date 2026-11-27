@@ -1,0 +1,14 @@
+<map id="QuasarAppUtils::OptionData::description" name="QuasarAppUtils::OptionData::description">
+<area shape="rect" id="Node000001" title="description This is description message of this option." alt="" coords="995,40,1199,85"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1OptionData.html#a4aca08da272d5f990211ee2287d84aea" title="OptionData This is main constructor." alt="" coords="742,5,947,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="977,46,947,44,947,39,982,46"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1OptionData.html#a8c3ff3610bd5c88b67450a995f8111e9" title="toHelp This method convert this option into help line. The help line have next structure :" alt="" coords="742,75,947,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="982,78,947,86,947,80,977,79"/>
+<area shape="rect" id="Node000004" href="$classOptionDataTest.html#abc15320d95c88dd4ca6acd4b66c2faeb" title=" " alt="" coords="496,83,694,111"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="724,97,695,100,695,94,729,97"/>
+<area shape="rect" id="Node000005" href="$classOptionDataTest.html#a9ebda9323b243ab116be1ebd1eed00bd" title=" " alt="" coords="294,58,448,86"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="478,84,448,83,449,78,484,84"/>
+<area shape="rect" id="Node000006" href="$classOptionDataTest.html#a4d2a2605251b91a1d1d9e1a7506df335" title=" " alt="" coords="5,83,246,111"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="478,99,246,100,246,94,482,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="276,82,247,87,246,82,281,81"/>
+</map>

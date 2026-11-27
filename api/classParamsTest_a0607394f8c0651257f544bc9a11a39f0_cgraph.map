@@ -1,0 +1,8 @@
+<map id="ParamsTest::testParseParamsDoubleDashSyntax" name="ParamsTest::testParseParamsDoubleDashSyntax">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,52,217,97"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#aa8dd57b07fcc628278d337cf89c0b480" title="getArg return string value of a key if key is exits else return a def value. If a def value not defin..." alt="" coords="265,5,443,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,51,252,47,247,49,218,57"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#af5dc940ab08adf3bd760255cb88d8f8f" title="parseParams Parse input data of started application." alt="" coords="265,99,443,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,92,252,101,247,101,217,97"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="308,97,306,89,314,80,330,74,354,72,380,75,397,84,392,83,379,80,354,77,331,79,317,84,311,90,312,100"/>
+</map>

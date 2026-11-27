@@ -1,0 +1,35 @@
+<map id="GlobalUtilsTest::test" name="GlobalUtilsTest::test">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,217,158,245"/>
+<area shape="rect" id="Node000002" href="$classGlobalUtilsTest.html#ad69cf7ed0a4acc7216b021ff0b27a5f4" title=" " alt="" coords="214,104,404,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,215,149,187,205,158,222,152,218,156,207,163,152,191,107,219"/>
+<area shape="rect" id="Node000003" href="$classGlobalUtilsTest.html#a4e220ff4a9a965ca84557fde66aba7c8" title=" " alt="" coords="216,173,402,218"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,217,203,211,199,214,160,221"/>
+<area shape="rect" id="Node000007" href="$classGlobalUtilsTest.html#a9cd88e5c041f592fd2ff2bfc944214df" title=" " alt="" coords="206,246,412,291"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="157,241,193,248,188,250,159,246"/>
+<area shape="rect" id="Node000010" href="$classGlobalUtilsTest.html#af19739f7166e5fb16cbeca65acd22752" title=" " alt="" coords="218,362,400,407"/>
+<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="105,243,264,352,259,355,103,248"/>
+<area shape="rect" id="Node000004" href="$qaglobalutils_8h.html#a71728f638d0311f8ef7e78c7c2dddaf2" title="Simplified match (intersection) operation for QHash." alt="" coords="506,29,568,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="393,170,410,159,427,137,433,114,440,91,458,68,493,51,489,54,462,72,445,94,439,116,432,139,414,162,396,174"/>
+<area shape="rect" id="Node000005" href="$qaglobalutils_8h.html#ada680af33cc989b8732940ddc8501b1c" title="Simplified subtraction operation for QHash." alt="" coords="500,105,574,133"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="377,170,488,135,483,138,379,175"/>
+<area shape="rect" id="Node000006" href="$qaglobalutils_8h.html#a6c477c218dbe6c3407fe3d7ad0b84c28" title="Simplified union operation for QHash." alt="" coords="510,181,564,209"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="401,193,497,194,492,196,403,198"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="511,28,507,20,510,11,521,5,537,3,555,5,566,13,560,14,553,10,537,8,522,10,514,14,512,20,516,29"/>
+<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="511,104,507,96,510,87,521,81,537,79,555,81,566,89,560,90,553,86,537,84,522,86,514,90,512,96,516,105"/>
+<area shape="poly" id="edge8_Node000006_Node000006" title=" " alt="" coords="511,180,507,172,510,163,521,157,537,155,555,157,566,166,560,166,553,162,537,160,522,162,514,166,512,172,516,182"/>
+<area shape="rect" id="Node000008" href="$qaglobalutils_8cpp.html#ad4b946359027ce155f7e1cb63fd5db06" title="randomArray This function return random arrat with size size" alt="" coords="484,257,590,285"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="412,267,471,270,466,271,413,272"/>
+<area shape="poly" id="edge13_Node000008_Node000008" title=" " alt="" coords="511,256,507,248,510,239,521,233,537,231,555,233,566,242,560,241,553,238,537,236,522,238,514,242,512,248,516,258"/>
+<area shape="rect" id="Node000009" href="$qaglobalutils_8cpp.html#a7543d19591b6d968a8d450feb3693674" title=" " alt="" coords="662,257,708,285"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="590,269,650,271,644,272,591,274"/>
+<area shape="poly" id="edge12_Node000009_Node000009" title=" " alt="" coords="659,257,655,249,658,239,668,233,685,231,704,234,714,243,709,242,702,238,685,236,670,238,662,243,660,249,664,259"/>
+<area shape="rect" id="Node000011" href="$qaglobalutils_8h.html#aa4eb207d0501b74607c3ccdb65ce13c4" title="static_type_hash_16 This function return hash code of the class T. For get more information see the s..." alt="" coords="460,333,614,361"/>
+<area shape="poly" id="edge15_Node000010_Node000011" title=" " alt="" coords="400,367,447,362,442,363,401,372"/>
+<area shape="rect" id="Node000012" href="$qaglobalutils_8h.html#ae1f8c85b41b9185a0b358ccd02420f0e" title="static_type_hash_32 This function return hash code of the class T. For get more information see the s..." alt="" coords="460,409,614,437"/>
+<area shape="poly" id="edge17_Node000010_Node000012" title=" " alt="" coords="401,397,447,407,442,408,401,403"/>
+<area shape="rect" id="Node000013" href="$qaglobalutils_8h.html#ab37fcb828ccfc85cace5a3fc30681ae8" title="static_type_hash_8 This function return hash code of the class T. For get more information see the st..." alt="" coords="464,485,610,513"/>
+<area shape="poly" id="edge19_Node000010_Node000013" title=" " alt="" coords="356,405,497,478,492,478,355,410"/>
+<area shape="poly" id="edge16_Node000011_Node000011" title=" " alt="" coords="511,332,507,324,510,315,521,309,537,307,555,309,566,318,560,317,553,314,537,312,522,314,514,318,512,324,516,334"/>
+<area shape="poly" id="edge18_Node000012_Node000012" title=" " alt="" coords="511,408,507,400,510,391,521,385,537,383,555,385,566,394,560,393,553,390,537,388,522,390,514,394,512,400,516,410"/>
+<area shape="poly" id="edge20_Node000013_Node000013" title=" " alt="" coords="511,483,507,476,510,467,521,461,537,459,555,461,565,470,560,469,553,466,537,464,522,466,514,470,512,476,516,486"/>
+</map>

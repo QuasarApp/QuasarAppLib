@@ -1,0 +1,10 @@
+<map id="ParamsTest::testCustomOptions" name="ParamsTest::testCustomOptions">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,83,234,111"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#aa8dd57b07fcc628278d337cf89c0b480" title="getArg return string value of a key if key is exits else return a def value. If a def value not defin..." alt="" coords="282,5,460,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,80,275,53,271,56,173,85"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#a5052673f975054b444b03c374290a28b" title="isEndable This method check if enable a key argument." alt="" coords="282,75,460,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,94,269,96,263,98,235,100"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Params.html#af5dc940ab08adf3bd760255cb88d8f8f" title="parseParams Parse input data of started application." alt="" coords="282,168,460,213"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,109,297,161,292,163,159,114"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="323,166,322,158,330,149,346,143,371,141,398,144,416,153,410,153,397,149,371,147,347,149,333,153,327,159,328,169"/>
+</map>

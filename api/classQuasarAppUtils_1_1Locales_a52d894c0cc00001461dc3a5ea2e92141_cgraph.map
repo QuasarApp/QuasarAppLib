@@ -1,0 +1,6 @@
+<map id="QuasarAppUtils::Locales::tr" name="QuasarAppUtils::Locales::tr">
+<area shape="rect" id="Node000001" title="tr This method will translate single string to chosen language." alt="" coords="5,38,203,66"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Locales.html#a6fa719a43171ed7f9324ea79d1e46797" title="instance This method return pointer to the Locales service." alt="" coords="251,29,430,74"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,49,238,51,232,52,203,54"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="296,27,294,19,302,10,317,5,340,3,366,5,383,14,377,14,365,10,340,8,318,10,305,15,299,21,300,30"/>
+</map>

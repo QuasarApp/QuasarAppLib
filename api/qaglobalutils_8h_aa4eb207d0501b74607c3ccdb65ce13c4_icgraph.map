@@ -1,0 +1,13 @@
+<map id="static_type_hash_16" name="static_type_hash_16">
+<area shape="rect" id="Node000001" title="static_type_hash_16 This function return hash code of the class T. For get more information see the s..." alt="" coords="664,36,819,64"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="777,20,766,17,741,15,719,17,707,21,704,27,709,37,704,34,698,27,703,17,718,11,742,9,767,12,782,21"/>
+<area shape="rect" id="Node000002" href="$qaglobalutils_8h.html#a0e350255d497b1103a64956280424d82" title="static_type_hash_16 This function return hash code of a T type using object." alt="" coords="448,5,602,33"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="646,37,603,33,603,27,652,37"/>
+<area shape="rect" id="Node000003" href="$classGlobalUtilsTest.html#af19739f7166e5fb16cbeca65acd22752" title=" " alt="" coords="434,57,616,102"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="652,62,617,69,617,64,647,63"/>
+<area shape="rect" id="Node000004" href="$classGlobalUtilsTest.html#aaa2710c941e349033f3233ebc54840cd" title=" " alt="" coords="234,40,386,68"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="416,67,386,65,386,60,421,67"/>
+<area shape="rect" id="Node000005" href="$classGlobalUtilsTest.html#a45a0436dd6058ae115e229ecb6841155" title=" " alt="" coords="5,57,186,102"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="418,82,186,82,186,77,419,77"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="215,65,187,71,186,66,221,64"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="ParamsTest::testSetEnable" name="ParamsTest::testSetEnable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,48,199,76"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#a5052673f975054b444b03c374290a28b" title="isEndable This method check if enable a key argument." alt="" coords="247,5,425,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,45,234,42,229,44,200,51"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#a2d8e2d233524fecafa1e2d39a5651eba" title="setEnable This method sets boolean value of key." alt="" coords="247,75,425,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,74,234,81,229,82,199,79"/>
+</map>

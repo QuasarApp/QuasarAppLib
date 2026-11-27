@@ -1,0 +1,25 @@
+<map id="src/Settings/settingslistener.cpp" name="src/Settings/settingslistener.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="238,5,467,33"/>
+<area shape="rect" id="Node000002" href="$isettings_8h.html" title=" " alt="" coords="184,81,330,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="338,32,287,74,284,69,333,35"/>
+<area shape="rect" id="Node000010" href="$settingslistener_8h.html" title=" " alt="" coords="354,81,544,109"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="370,31,422,71,417,71,369,36"/>
+<area shape="rect" id="Node000003" href="$qaservice_8h.html" title=" " alt="" coords="102,157,232,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,108,196,149,193,145,238,111"/>
+<area shape="rect" id="Node000006" href="$quasarapp__global_8h.html" title=" " alt="" coords="358,157,540,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="291,107,403,150,398,151,291,112"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,157,79,184"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="217,112,95,154,93,149,219,107"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="257,157,334,184"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="265,107,284,143,279,142,263,112"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="174,232,251,260"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="177,183,199,219,194,218,174,187"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="91,232,150,260"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="161,184,139,221,135,217,157,186"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="384,232,514,260"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="451,183,451,218,447,215,447,187"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="450,107,451,142,446,139,447,111"/>
+<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="424,108,337,152,335,147,419,110"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="563,157,633,184"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="476,107,561,150,555,150,475,112"/>
+</map>

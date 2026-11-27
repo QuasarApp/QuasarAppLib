@@ -1,0 +1,13 @@
+<map id="QuasarAppUtils::Params::getCurrentExecutableDir" name="QuasarAppUtils::Params::getCurrentExecutableDir">
+<area shape="rect" id="Node000001" title="getCurrentExecutableDir This method return a path to a folder with the current executable." alt="" coords="920,36,1108,81"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#ab5e63115aca5cbcdcea4cd0631f6e952" title="getCurrentExecutable This method return path to the current executable." alt="" coords="693,5,872,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="902,44,872,42,872,37,907,44"/>
+<area shape="rect" id="Node000003" href="$classParamsTest.html#a1a0163a125fd3e1d7b7c9ecc8a1e093e" title=" " alt="" coords="418,44,645,72"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="902,62,872,65,693,65,646,64,646,59,693,60,872,60,907,62"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="681,40,646,47,645,42,675,41"/>
+<area shape="rect" id="Node000004" href="$classParamsTest.html#a71a68e734f87bab0d01be3d9890143cc" title=" " alt="" coords="242,19,370,47"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="400,44,370,43,370,37,405,44"/>
+<area shape="rect" id="Node000005" href="$classParamsTest.html#ae9a679a6788a3a44285be6a07b7e8690" title=" " alt="" coords="5,44,194,72"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="401,61,194,61,194,56,404,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="223,43,194,49,194,44,229,42"/>
+</map>

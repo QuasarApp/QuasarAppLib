@@ -1,0 +1,5 @@
+<map id="QuasarAppUtils::Settings::getValueImplementation" name="QuasarAppUtils::Settings::getValueImplementation">
+<area shape="rect" id="Node000001" title="getValueImplementation This method returns the value of the key setting from the QSettings backend." alt="" coords="244,5,434,50"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Config.html#a5dcba8d00b27964652810d219ae5ec25" title="getValueImplementation This method returns the value of the key setting. The value is resolved with t..." alt="" coords="5,5,196,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,28,196,30,196,25,231,27"/>
+</map>

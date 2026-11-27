@@ -1,0 +1,21 @@
+<map id="SettingsTest::testInitService" name="SettingsTest::testInitService">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,208,132"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Settings.html#aeadc7671cfdd41083f6dd4856ed553ed" title="autoInstance This method returns the default object of the QuasarAppUtils::Settings type and if it wa..." alt="" coords="258,125,441,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,128,245,134,239,135,209,133"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Settings.html#a8e8e8685088cf428490e3fed6af4de8f" title="initService This method initialize default object of the QuasarAppUtils::Settings type." alt="" coords="493,65,676,110"/>
+<area shape="poly" id="edge10_Node000001_Node000003" title=" " alt="" coords="208,109,479,92,476,97,208,115"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#a2ad2d0eb1a8abb5cb04006085a84f750" title="instance This method returns pointer to current settings object." alt="" coords="491,185,678,230"/>
+<area shape="poly" id="edge11_Node000001_Node000005" title=" " alt="" coords="134,130,190,157,256,180,312,191,369,199,478,208,473,208,368,204,311,196,255,185,188,161,133,135"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1ISettings.html#a14e3ac0dc3a34561827df5fbfd44fb15" title="initService This method initialize the global settings object." alt="" coords="256,5,443,50"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="145,102,275,54,272,58,147,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="439,122,482,114,477,115,440,127"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="440,168,482,181,477,181,439,173"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="726,125,914,170"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="441,145,713,147,708,148,442,150"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Service.html#a276145c34ae9156e6a168ece16e10dc6" title=" " alt="" coords="727,31,913,75"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="676,71,715,68,710,69,677,77"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1Service.html#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object." alt="" coords="731,195,909,239"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="679,209,718,213,713,213,679,214"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="674,182,712,175,718,174,675,187"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="443,30,714,46,709,48,443,35"/>
+</map>

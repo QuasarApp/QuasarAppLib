@@ -1,0 +1,15 @@
+<map id="Test" name="Test">
+<area shape="rect" id="Node000001" title="The Test class is the base class of all unit tests of the QuasarAppLib test suite...." alt="" coords="596,5,670,122"/>
+<area shape="rect" id="Node000002" href="$classConfigTest.html" title="The ConfigTest class tests the QuasarAppUtils::Config class: the command&#45;line parsing through the Par..." alt="" coords="5,204,208,500"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="579,68,506,76,411,92,362,106,313,123,265,145,222,172,186,206,182,202,219,168,263,141,311,118,360,101,410,87,505,70,584,65"/>
+<area shape="rect" id="Node000003" href="$classGlobalUtilsTest.html" title="The GlobalUtilsTest class test the global utility functions of the QuasarAppUtils namespace (randomAr..." alt="" coords="232,248,398,455"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="580,80,542,95,497,115,452,141,411,172,381,209,356,250,352,247,376,206,408,168,449,136,495,110,540,90,585,77"/>
+<area shape="rect" id="Node000004" href="$classLocalesTest.html" title="The LocalesTest class test the QuasarAppUtils::Locales class (translations loading,..." alt="" coords="422,260,613,444"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="607,134,556,261,552,258,603,138"/>
+<area shape="rect" id="Node000005" href="$classOptionDataTest.html" title="The OptionDataTest class test the QuasarAppUtils::OptionData class (option data storage,..." alt="" coords="638,248,862,455"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="664,134,711,250,706,248,661,139"/>
+<area shape="rect" id="Node000006" href="$classParamsTest.html" title="The ParamsTest class test the QuasarAppUtils::Params class (command line parameters parsing,..." alt="" coords="885,170,1078,533"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="685,75,730,89,779,109,830,135,875,168,888,182,882,181,872,172,827,140,777,114,728,94,685,80"/>
+<area shape="rect" id="Node000007" href="$classSettingsTest.html" title="The SettingsTest class test the QuasarAppUtils::Settings and QuasarAppUtils::ISettings classes (servi..." alt="" coords="1102,204,1269,500"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="685,69,785,84,904,105,1015,134,1059,150,1091,168,1125,205,1120,203,1088,172,1057,155,1014,139,903,111,784,89,686,74"/>
+</map>

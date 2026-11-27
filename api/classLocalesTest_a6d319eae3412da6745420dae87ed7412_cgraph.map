@@ -1,0 +1,12 @@
+<map id="LocalesTest::testInitWithTranslations" name="LocalesTest::testInitWithTranslations">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,65,186,110"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Locales.html#aaf48e28d7244b9a3d2406e1ff6485872" title="currentLocate This method return current locate of applicatuon." alt="" coords="234,5,413,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,62,224,53,219,56,184,67"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Locales.html#a6fa719a43171ed7f9324ea79d1e46797" title="instance This method return pointer to the Locales service." alt="" coords="461,65,640,110"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="186,85,446,85,444,90,186,90"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Locales.html#a6d98460a031d3fa218fd15f5f20aa9c4" title="init This method initialize translations of application." alt="" coords="234,125,413,170"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="183,108,224,121,219,121,182,113"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="410,48,451,61,446,61,410,53"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="508,63,506,55,513,46,528,41,551,39,575,41,591,50,586,50,574,46,551,44,529,46,516,51,511,57,512,66"/>
+<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="410,122,446,115,451,114,411,127"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="GlobalUtilsTest::testHashOperations" name="GlobalUtilsTest::testHashOperations">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,97,191,142"/>
+<area shape="rect" id="Node000002" href="$qaglobalutils_8h.html#a71728f638d0311f8ef7e78c7c2dddaf2" title="Simplified match (intersection) operation for QHash." alt="" coords="245,29,307,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,94,233,61,228,64,153,99"/>
+<area shape="rect" id="Node000003" href="$qaglobalutils_8h.html#ada680af33cc989b8732940ddc8501b1c" title="Simplified subtraction operation for QHash." alt="" coords="239,105,313,133"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="191,117,226,118,220,120,191,122"/>
+<area shape="rect" id="Node000004" href="$qaglobalutils_8h.html#a6c477c218dbe6c3407fe3d7ad0b84c28" title="Simplified union operation for QHash." alt="" coords="249,181,303,209"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="152,139,237,177,232,179,151,145"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="245,28,240,20,244,11,256,5,276,3,297,5,310,14,304,14,295,10,276,8,258,10,248,15,245,20,250,29"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="245,104,240,96,244,87,256,81,276,79,297,81,310,90,304,90,295,86,276,84,258,86,248,91,245,96,250,106"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="246,181,240,173,243,163,256,157,276,155,299,158,311,168,306,167,297,163,276,160,257,162,247,167,245,173,251,183"/>
+</map>

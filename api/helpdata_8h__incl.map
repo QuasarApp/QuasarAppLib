@@ -1,0 +1,9 @@
+<map id="src/HelpData/helpdata.h" name="src/HelpData/helpdata.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="18,5,196,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,65,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,36,60,72,56,68,95,31"/>
+<area shape="rect" id="Node000003" href="$quasarapp__global_8h.html" title=" " alt="" coords="89,81,272,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,31,159,69,154,70,120,36"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="115,157,246,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,107,183,142,178,140,179,111"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="ConfigTest::testSetValue" name="ConfigTest::testSetValue">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,108,184,136"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a64cae50cc4d499f8379f072d9679e613" title="getStrValue some as getValue but convert result object to QString type." alt="" coords="232,40,419,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,106,224,87,220,91,152,110"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#ae07249afa177f48a0858d9f2eb1a9660" title="getValue This method return the value of the settings." alt="" coords="468,40,655,85"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="183,117,296,109,419,94,464,88,459,90,419,100,297,114,185,122"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1ISettings.html#a38f9173ed54831ea3ba75a2659042fa5" title="setValue This slot sets new value for a key setting" alt="" coords="232,169,419,214"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="143,134,236,163,232,166,143,139"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="419,60,455,62,449,63,420,65"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#a4e1e0bd23554cd62bf57d1f08cce36f5" title="getValueImplementation This method will return the value of the settings." alt="" coords="704,5,895,50"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="655,46,692,43,686,44,657,51"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#a29be7ef3dbbe0a27dab8820eb3040b37" title="settingsMap This method returns initialized settings map. Settings map contains pairs with settings k..." alt="" coords="706,75,893,119"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="656,73,693,81,688,81,656,79"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1ISettings.html#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values...." alt="" coords="943,75,1130,119"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="893,94,930,97,924,97,894,100"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1ISettings.html#a61adda9805be4cc552608d4d15b40690" title="setValueImplementation This slot will set a new value for the key parameter." alt="" coords="467,109,656,154"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="415,166,459,158,454,159,416,171"/>
+<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1ISettings.html#a48a7b24b0e46ade1347332b81d209cf4" title="valueChanged This signal when value of the key settings changed" alt="" coords="468,179,655,223"/>
+<area shape="poly" id="edge11_Node000007_Node000010" title=" " alt="" coords="419,193,455,196,449,197,420,198"/>
+<area shape="rect" id="Node000011" href="$classQuasarAppUtils_1_1ISettings.html#a278a6ddc25f6d07a2bc48248295f6f41" title="valueStrChanged some as valueChanged(QString key, QVariant value) but value has ben converted to the ..." alt="" coords="468,248,655,293"/>
+<area shape="poly" id="edge12_Node000007_Node000011" title=" " alt="" coords="395,212,480,243,475,243,395,217"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="656,115,693,112,688,113,657,120"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1ISettings.html#a706906f56ad3ebf369696962b87b4f3b" title="clearCache This method clear all data from cache." alt="" coords="706,144,893,189"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="657,143,693,150,688,151,657,148"/>
+<area shape="rect" id="Node000012" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="706,248,893,293"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="656,268,693,270,688,270,656,273"/>
+</map>

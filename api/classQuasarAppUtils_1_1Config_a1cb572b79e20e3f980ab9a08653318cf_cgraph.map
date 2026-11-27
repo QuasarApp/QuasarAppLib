@@ -1,0 +1,8 @@
+<map id="QuasarAppUtils::Config::Config" name="QuasarAppUtils::Config::Config">
+<area shape="rect" id="Node000001" title="Config This is the main constructor of the Config object. It parses the argv command&#45;line arguments w..." alt="" coords="5,52,177,97"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#afc4adbadacc0839d1fa645079fedb0dc" title="getUserParamsMap This method return const reference to the parsed arguments map." alt="" coords="225,5,403,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,54,212,49,207,50,178,59"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#af5dc940ab08adf3bd760255cb88d8f8f" title="parseParams Parse input data of started application." alt="" coords="225,99,403,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,90,212,99,207,99,177,95"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="272,97,270,89,277,80,292,74,314,72,338,75,354,84,349,83,337,80,314,77,293,79,280,84,275,90,276,100"/>
+</map>

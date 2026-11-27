@@ -1,0 +1,15 @@
+<map id="src/qaglobalutils.h" name="src/qaglobalutils.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="198,5,338,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,97,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,36,105,78,103,73,231,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="121,81,197,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,32,193,74,190,70,247,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="220,81,316,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="270,31,271,67,266,64,267,36"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="341,81,420,109"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="289,31,351,72,345,73,288,36"/>
+<area shape="rect" id="Node000006" href="$quasarapp__global_8h.html" title=" " alt="" coords="444,81,626,109"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="316,31,476,76,470,77,316,36"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="470,157,600,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="537,107,537,143,533,139,533,111"/>
+</map>

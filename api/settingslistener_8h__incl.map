@@ -1,0 +1,11 @@
+<map id="src/Settings/settingslistener.h" name="src/Settings/settingslistener.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="31,5,244,33"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,75,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,36,71,74,67,70,121,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="99,81,176,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,31,140,66,135,64,136,36"/>
+<area shape="rect" id="Node000004" href="$quasarapp__global_8h.html" title=" " alt="" coords="200,81,382,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,31,252,73,247,75,164,36"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="226,157,356,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="293,107,293,142,288,139,289,111"/>
+</map>

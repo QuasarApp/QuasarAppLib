@@ -1,0 +1,11 @@
+<map id="subtract" name="subtract">
+<area shape="rect" id="Node000001" title="Simplified subtraction operation for QHash." alt="" coords="667,31,742,58"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="733,15,724,12,704,9,686,11,676,16,674,21,678,31,673,29,669,22,672,12,685,6,705,4,726,7,738,16"/>
+<area shape="rect" id="Node000002" href="$classGlobalUtilsTest.html#a4e220ff4a9a965ca84557fde66aba7c8" title=" " alt="" coords="434,22,619,67"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="649,45,620,47,620,42,654,44"/>
+<area shape="rect" id="Node000003" href="$classGlobalUtilsTest.html#aaa2710c941e349033f3233ebc54840cd" title=" " alt="" coords="234,5,386,33"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="416,32,386,31,386,25,422,32"/>
+<area shape="rect" id="Node000004" href="$classGlobalUtilsTest.html#a45a0436dd6058ae115e229ecb6841155" title=" " alt="" coords="5,22,186,67"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="418,47,186,47,186,42,419,42"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="215,30,187,36,186,31,221,30"/>
+</map>

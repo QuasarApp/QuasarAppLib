@@ -1,0 +1,9 @@
+<map id="SettingsTest::testValueStorage" name="SettingsTest::testValueStorage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,48,225,76"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a2ad2d0eb1a8abb5cb04006085a84f750" title="instance This method returns pointer to current settings object." alt="" coords="273,40,460,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,60,259,62,254,63,225,65"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Service.html#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object." alt="" coords="512,5,691,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="460,46,500,43,494,43,461,51"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="508,75,695,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="461,74,495,81,490,81,461,79"/>
+</map>

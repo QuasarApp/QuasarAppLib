@@ -1,0 +1,20 @@
+<map id="QuasarAppTests/units/optionDataTest.cpp" name="QuasarAppTests/units/optionDataTest.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="90,5,251,50"/>
+<area shape="rect" id="Node000002" href="$optionDataTest_8h.html" title=" " alt="" coords="34,98,166,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,53,123,88,119,85,153,48"/>
+<area shape="rect" id="Node000005" href="$optiondata_8h.html" title=" " alt="" coords="190,98,293,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="189,48,223,86,217,86,189,53"/>
+<area shape="rect" id="Node000003" href="$test_8h.html" title=" " alt="" coords="5,174,64,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,129,58,164,54,161,89,124"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="87,174,150,201"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="104,124,114,158,109,158,103,129"/>
+<area shape="rect" id="Node000006" href="$quasarapp__global_8h.html" title=" " alt="" coords="131,249,314,277"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="242,124,228,235,224,233,238,128"/>
+<area shape="rect" id="Node000008" href="$helpdata_8h.html" title=" " alt="" coords="260,174,415,201"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="259,124,311,164,305,164,258,129"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="157,325,288,353"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="224,276,225,311,220,308,221,279"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="319,201,257,243,254,238,314,203"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="338,249,398,277"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="344,200,359,236,354,234,341,204"/>
+</map>

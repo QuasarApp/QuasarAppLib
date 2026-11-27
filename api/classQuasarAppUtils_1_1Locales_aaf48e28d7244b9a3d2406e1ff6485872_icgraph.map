@@ -1,0 +1,14 @@
+<map id="QuasarAppUtils::Locales::currentLocate" name="QuasarAppUtils::Locales::currentLocate">
+<area shape="rect" id="Node000001" title="currentLocate This method return current locate of applicatuon." alt="" coords="703,36,883,81"/>
+<area shape="rect" id="Node000002" href="$classLocalesTest.html#a6d319eae3412da6745420dae87ed7412" title=" " alt="" coords="448,5,628,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="685,46,629,41,629,36,691,46"/>
+<area shape="rect" id="Node000005" href="$classLocalesTest.html#ac7786871bfd40bd59cb3509cdbb4d23a" title=" " alt="" coords="421,74,655,102"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="690,70,656,77,656,71,685,71"/>
+<area shape="rect" id="Node000003" href="$classLocalesTest.html#a54891adf34e0b3c27b51ef6ce0d7b698" title=" " alt="" coords="244,43,373,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,41,374,51,373,46,436,41"/>
+<area shape="rect" id="Node000004" href="$classLocalesTest.html#a78e5d6c69ba4f21ec40994631f265c68" title=" " alt="" coords="5,43,196,71"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="430,25,341,29,244,34,170,45,169,40,243,29,340,23,435,25"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="226,57,196,60,196,54,231,57"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="412,71,373,68,373,63,418,71"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="403,90,325,90,243,85,170,74,170,69,244,80,326,85,409,90"/>
+</map>

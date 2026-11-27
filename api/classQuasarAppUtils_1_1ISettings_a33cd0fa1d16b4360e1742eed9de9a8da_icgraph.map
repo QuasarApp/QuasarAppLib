@@ -1,0 +1,12 @@
+<map id="QuasarAppUtils::ISettings::syncImplementation" name="QuasarAppUtils::ISettings::syncImplementation">
+<area shape="rect" id="Node000001" title="syncImplementation This method should save all configuration data to the hard drive;" alt="" coords="643,40,831,85"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a1aecd68a743b90f9b8082b94b55d70c0" title="sync This method save all settings data on a hard disk;" alt="" coords="408,40,595,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="625,62,596,65,596,60,630,62"/>
+<area shape="rect" id="Node000003" href="$classConfigTest.html#a08938e78e0fb1ae686573892aa38b444" title=" " alt="" coords="175,5,360,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="390,46,360,44,360,39,395,46"/>
+<area shape="rect" id="Node000005" href="$classConfigTest.html#af6d07b4b2e40d50ab2bf69d8c3bcbf24" title=" " alt="" coords="183,75,352,119"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="395,78,352,87,352,82,390,79"/>
+<area shape="rect" id="Node000004" href="$classConfigTest.html#adfeac9b0dcc34351616277519c38c95c" title=" " alt="" coords="5,48,127,76"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="157,47,128,54,126,49,162,45"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="165,80,127,75,127,70,170,79"/>
+</map>

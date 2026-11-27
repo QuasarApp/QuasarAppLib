@@ -1,0 +1,24 @@
+<map id="ConfigTest::testConfigFileValues" name="ConfigTest::testConfigFileValues">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,109,191,154"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a38f9173ed54831ea3ba75a2659042fa5" title="setValue This slot sets new value for a key setting" alt="" coords="239,75,426,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,115,226,112,221,114,192,120"/>
+<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1ISettings.html#a1aecd68a743b90f9b8082b94b55d70c0" title="sync This method save all settings data on a hard disk;" alt="" coords="239,144,426,189"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="191,143,226,150,221,151,191,148"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a61adda9805be4cc552608d4d15b40690" title="setValueImplementation This slot will set a new value for the key parameter." alt="" coords="474,144,663,189"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,117,478,139,473,139,411,123"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1ISettings.html#a48a7b24b0e46ade1347332b81d209cf4" title="valueChanged This signal when value of the key settings changed" alt="" coords="475,5,662,50"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="410,72,478,54,473,56,412,77"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1ISettings.html#a278a6ddc25f6d07a2bc48248295f6f41" title="valueStrChanged some as valueChanged(QString key, QVariant value) but value has ben converted to the ..." alt="" coords="475,75,662,119"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="426,94,462,96,456,98,427,100"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#a706906f56ad3ebf369696962b87b4f3b" title="clearCache This method clear all data from cache." alt="" coords="711,144,899,189"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="664,164,698,166,693,167,664,169"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#a29be7ef3dbbe0a27dab8820eb3040b37" title="settingsMap This method returns initialized settings map. Settings map contains pairs with settings k..." alt="" coords="711,213,899,258"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="647,187,714,209,709,208,647,192"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1ISettings.html#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values...." alt="" coords="947,213,1134,258"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="899,233,934,236,928,236,899,238"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="711,75,899,119"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="662,94,698,97,693,97,663,100"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="426,164,461,166,456,167,427,169"/>
+<area shape="rect" id="Node000011" href="$classQuasarAppUtils_1_1ISettings.html#a33cd0fa1d16b4360e1742eed9de9a8da" title="syncImplementation This method should save all configuration data to the hard drive;" alt="" coords="475,213,662,258"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="411,187,478,208,473,208,411,192"/>
+</map>

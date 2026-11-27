@@ -1,0 +1,8 @@
+<map id="ParamsTest::testDeprecatedOption" name="ParamsTest::testDeprecatedOption">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,52,209,97"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1Params.html#aa8dd57b07fcc628278d337cf89c0b480" title="getArg return string value of a key if key is exits else return a def value. If a def value not defin..." alt="" coords="257,5,435,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,52,244,47,239,49,210,57"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#af5dc940ab08adf3bd760255cb88d8f8f" title="parseParams Parse input data of started application." alt="" coords="257,99,435,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="209,92,244,100,239,101,209,97"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="301,97,299,89,307,80,322,74,346,72,372,75,389,84,383,83,370,80,346,77,324,79,310,84,304,90,305,100"/>
+</map>

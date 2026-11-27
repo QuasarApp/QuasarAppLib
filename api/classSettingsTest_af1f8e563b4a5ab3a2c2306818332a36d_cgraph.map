@@ -1,0 +1,66 @@
+<map id="SettingsTest::test" name="SettingsTest::test">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,326,139,354"/>
+<area shape="rect" id="Node000002" href="$classSettingsTest.html#adc78e6d1057d03391b13a9ac3a4eebfc" title=" " alt="" coords="454,124,666,152"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,324,122,273,152,245,185,221,247,193,312,171,378,156,441,147,437,150,379,161,314,176,249,198,188,226,155,249,126,277,85,327"/>
+<area shape="rect" id="Node000013" href="$classSettingsTest.html#a40b798795b547dc724e7f2883b5e6d90" title=" " alt="" coords="470,397,651,442"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="95,351,138,373,187,392,255,406,325,415,456,422,451,424,325,420,254,411,186,397,136,378,97,356"/>
+<area shape="rect" id="Node000014" href="$classSettingsTest.html#a12e437ccc1e60d6591a9f305f46570c1" title=" " alt="" coords="210,287,382,331"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="138,328,197,321,193,325,141,333"/>
+<area shape="rect" id="Node000017" href="$classSettingsTest.html#a3b74cb71cef359ab320972e682764aed" title=" " alt="" coords="195,576,398,604"/>
+<area shape="poly" id="edge19_Node000001_Node000017" title=" " alt="" coords="82,351,126,418,156,459,189,498,227,535,266,567,261,567,223,539,185,501,152,462,122,421,82,356"/>
+<area shape="rect" id="Node000022" href="$classSettingsTest.html#a4c618c254ade8fc8bfc3b28d0fc04cee" title=" " alt="" coords="192,460,400,488"/>
+<area shape="poly" id="edge29_Node000001_Node000022" title=" " alt="" coords="86,351,130,393,158,416,188,436,226,454,221,456,185,441,155,420,127,397,87,357"/>
+<area shape="rect" id="Node000023" href="$classSettingsTest.html#abea0794867ebc1917b74f1416075d163" title=" " alt="" coords="203,65,390,110"/>
+<area shape="poly" id="edge31_Node000001_Node000023" title=" " alt="" coords="77,325,116,246,147,198,185,152,236,116,233,120,189,156,151,201,120,249,82,327"/>
+<area shape="rect" id="Node000025" href="$classSettingsTest.html#aa6fc10b4bb2064a090c3a23404251d88" title=" " alt="" coords="206,235,386,263"/>
+<area shape="poly" id="edge35_Node000001_Node000025" title=" " alt="" coords="92,323,135,297,186,272,208,266,204,270,188,277,137,302,96,327"/>
+<area shape="rect" id="Node000026" href="$classSettingsTest.html#aa1e45b7bf5689ddc593eed3dfcb529b1" title=" " alt="" coords="187,355,406,383"/>
+<area shape="poly" id="edge37_Node000001_Node000026" title=" " alt="" coords="138,346,173,351,169,354,140,351"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1ISettings.html#a2ad2d0eb1a8abb5cb04006085a84f750" title="instance This method returns pointer to current settings object." alt="" coords="714,337,902,382"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="646,150,668,162,686,179,696,196,704,215,717,237,782,325,777,325,712,240,699,217,692,199,682,182,665,166,647,155"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1ISettings.html#a38f9173ed54831ea3ba75a2659042fa5" title="setValue This slot sets new value for a key setting" alt="" coords="714,112,902,157"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="666,134,701,135,696,137,668,139"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Service.html#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object." alt="" coords="955,315,1134,359"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="901,348,942,346,937,348,903,353"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="1187,375,1374,419"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="902,365,950,369,1174,388,1169,389,949,374,903,370"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1ISettings.html#a61adda9805be4cc552608d4d15b40690" title="setValueImplementation This slot will set a new value for the key parameter." alt="" coords="950,147,1139,191"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="902,145,937,152,932,153,903,151"/>
+<area shape="rect" id="Node000011" href="$classQuasarAppUtils_1_1ISettings.html#a48a7b24b0e46ade1347332b81d209cf4" title="valueChanged This signal when value of the key settings changed" alt="" coords="951,77,1138,122"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="901,118,938,115,933,117,903,123"/>
+<area shape="rect" id="Node000012" href="$classQuasarAppUtils_1_1ISettings.html#a278a6ddc25f6d07a2bc48248295f6f41" title="valueStrChanged some as valueChanged(QString key, QVariant value) but value has ben converted to the ..." alt="" coords="951,223,1138,267"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="877,155,903,167,927,184,951,201,976,216,970,216,948,206,924,188,900,171,877,160"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1ISettings.html#a706906f56ad3ebf369696962b87b4f3b" title="clearCache This method clear all data from cache." alt="" coords="1187,181,1374,226"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1139,180,1174,187,1169,188,1140,186"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1ISettings.html#a29be7ef3dbbe0a27dab8820eb3040b37" title="settingsMap This method returns initialized settings map. Settings map contains pairs with settings k..." alt="" coords="1187,112,1374,157"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="1139,153,1174,150,1169,151,1140,158"/>
+<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1ISettings.html#aece5cb0d6fea742da3e467035c097a78" title="defaultSettings This method must be return default map of the settings and them values...." alt="" coords="1422,112,1610,157"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1374,132,1409,134,1404,135,1375,137"/>
+<area shape="poly" id="edge12_Node000012_Node000005" title=" " alt="" coords="1084,265,1140,300,1236,366,1231,365,1138,305,1083,270"/>
+<area shape="poly" id="edge14_Node000013_Node000003" title=" " alt="" coords="651,395,702,385,697,387,652,400"/>
+<area shape="poly" id="edge18_Node000014_Node000003" title=" " alt="" coords="383,315,667,342,701,348,696,349,666,348,383,320"/>
+<area shape="rect" id="Node000015" href="$classQuasarAppUtils_1_1ISettings.html#a8df6204dcb007867ccda620a955a1626" title="deinitService This method destroys the global settings object and removes it from the global service ..." alt="" coords="466,176,654,221"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="373,284,405,272,506,226,502,230,407,277,376,288"/>
+<area shape="rect" id="Node000016" href="$classQuasarAppUtils_1_1Service.html#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is distructor method for the service." alt="" coords="719,181,897,226"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="653,198,706,201,701,202,655,203"/>
+<area shape="poly" id="edge28_Node000017_Node000003" title=" " alt="" coords="364,573,530,533,609,509,665,487,697,466,727,441,776,395,781,392,731,445,700,470,668,491,611,514,531,538,365,578"/>
+<area shape="rect" id="Node000018" href="$classQuasarAppUtils_1_1Settings.html#aeadc7671cfdd41083f6dd4856ed553ed" title="autoInstance This method returns the default object of the QuasarAppUtils::Settings type and if it wa..." alt="" coords="468,568,652,613"/>
+<area shape="poly" id="edge20_Node000017_Node000018" title=" " alt="" coords="398,588,455,590,450,591,398,593"/>
+<area shape="rect" id="Node000019" href="$classQuasarAppUtils_1_1Settings.html#a8e8e8685088cf428490e3fed6af4de8f" title="initService This method initialize default object of the QuasarAppUtils::Settings type." alt="" coords="716,609,900,654"/>
+<area shape="poly" id="edge27_Node000017_Node000019" title=" " alt="" coords="350,602,454,622,582,631,703,635,698,635,582,637,454,628,350,607"/>
+<area shape="rect" id="Node000021" href="$classQuasarAppUtils_1_1ISettings.html#a14e3ac0dc3a34561827df5fbfd44fb15" title="initService This method initialize the global settings object." alt="" coords="714,679,902,723"/>
+<area shape="poly" id="edge25_Node000017_Node000021" title=" " alt="" coords="337,602,455,638,581,665,701,687,696,687,580,670,453,644,336,607"/>
+<area shape="poly" id="edge23_Node000018_Node000003" title=" " alt="" coords="635,565,665,547,681,531,691,516,712,478,777,395,782,393,717,481,695,518,685,534,668,551,637,570"/>
+<area shape="poly" id="edge24_Node000018_Node000005" title=" " alt="" coords="646,565,1177,424,1182,423,647,570"/>
+<area shape="poly" id="edge21_Node000018_Node000019" title=" " alt="" coords="652,603,704,614,698,614,652,608"/>
+<area shape="rect" id="Node000020" href="$classQuasarAppUtils_1_1Service.html#a276145c34ae9156e6a168ece16e10dc6" title=" " alt="" coords="952,644,1137,689"/>
+<area shape="poly" id="edge22_Node000019_Node000020" title=" " alt="" coords="900,642,939,651,933,650,900,648"/>
+<area shape="poly" id="edge26_Node000021_Node000020" title=" " alt="" coords="902,685,934,682,939,682,902,690"/>
+<area shape="poly" id="edge30_Node000022_Node000003" title=" " alt="" coords="400,481,462,481,529,478,599,469,665,452,694,440,722,424,768,393,773,391,725,429,697,445,667,457,600,474,530,483,462,487,401,486"/>
+<area shape="poly" id="edge32_Node000023_Node000003" title=" " alt="" coords="389,81,467,79,548,83,619,92,647,100,668,111,683,125,692,139,700,169,704,201,717,237,747,283,779,326,774,325,742,287,712,240,699,202,695,170,688,141,679,128,665,115,645,105,618,97,548,88,467,85,391,85"/>
+<area shape="rect" id="Node000024" href="$classQuasarAppUtils_1_1ISettings.html#af361a114e64827a5b5b257ec9db6a7ed" title="setStrValue This is some as setValue but working with the QString type." alt="" coords="466,5,654,50"/>
+<area shape="poly" id="edge33_Node000023_Node000024" title=" " alt="" coords="389,64,454,51,449,54,392,69"/>
+<area shape="poly" id="edge34_Node000024_Node000006" title=" " alt="" coords="621,48,667,67,749,105,743,106,665,71,622,53"/>
+<area shape="poly" id="edge36_Node000025_Node000003" title=" " alt="" coords="386,259,520,282,667,313,728,332,722,333,666,318,519,287,388,265"/>
+<area shape="poly" id="edge38_Node000026_Node000003" title=" " alt="" coords="406,364,701,360,697,363,407,370"/>
+</map>

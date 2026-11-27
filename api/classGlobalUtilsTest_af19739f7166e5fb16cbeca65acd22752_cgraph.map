@@ -1,0 +1,12 @@
+<map id="GlobalUtilsTest::testTypeHashes" name="GlobalUtilsTest::testTypeHashes">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,97,188,142"/>
+<area shape="rect" id="Node000002" href="$qaglobalutils_8h.html#aa4eb207d0501b74607c3ccdb65ce13c4" title="static_type_hash_16 This function return hash code of the class T. For get more information see the s..." alt="" coords="236,29,390,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,94,235,67,259,61,254,64,237,72,163,99"/>
+<area shape="rect" id="Node000003" href="$qaglobalutils_8h.html#ae1f8c85b41b9185a0b358ccd02420f0e" title="static_type_hash_32 This function return hash code of the class T. For get more information see the s..." alt="" coords="236,105,390,133"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="187,117,222,118,217,120,188,122"/>
+<area shape="rect" id="Node000004" href="$qaglobalutils_8h.html#ab37fcb828ccfc85cace5a3fc30681ae8" title="static_type_hash_8 This function return hash code of the class T. For get more information see the st..." alt="" coords="240,181,386,209"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="162,139,259,175,254,177,161,145"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="275,28,270,20,274,11,289,5,313,3,338,5,354,14,348,14,337,10,313,8,290,10,278,15,275,20,281,29"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="275,104,270,96,274,87,289,81,313,79,338,81,354,90,348,90,337,86,313,84,290,86,278,91,275,96,281,106"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="276,180,270,172,274,163,289,157,313,155,338,157,354,166,348,166,337,162,313,160,290,162,278,167,275,172,280,182"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="src/Settings/isettings.h" name="src/Settings/isettings.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="183,5,352,33"/>
+<area shape="rect" id="Node000002" href="$settingsTest_8cpp.html" title=" " alt="" coords="5,157,167,201"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,27,140,35,112,46,87,62,67,82,60,100,61,119,75,156,70,157,55,120,55,99,62,80,84,58,110,42,138,30,170,24"/>
+<area shape="rect" id="Node000003" href="$isettings_8cpp.html" title=" " alt="" coords="76,81,261,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,44,188,83,184,79,240,41"/>
+<area shape="rect" id="Node000004" href="$settings_8h.html" title=" " alt="" coords="285,81,450,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="298,40,352,80,347,81,297,45"/>
+<area shape="rect" id="Node000010" href="$settingslistener_8cpp.html" title=" " alt="" coords="474,81,703,109"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="340,34,533,79,528,82,340,40"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="306,116,162,159,160,154,309,111"/>
+<area shape="rect" id="Node000005" href="$configTest_8cpp.html" title=" " alt="" coords="201,249,363,294"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="302,116,277,134,255,158,248,180,251,204,259,227,270,250,265,248,254,229,245,205,243,180,250,155,273,130,306,114"/>
+<area shape="rect" id="Node000006" href="$quasarapp_8h.html" title=" " alt="" coords="264,165,422,193"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="361,122,349,167,345,163,357,125"/>
+<area shape="rect" id="Node000007" href="$config_8h.html" title=" " alt="" coords="447,165,600,193"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="406,114,501,164,496,165,405,119"/>
+<area shape="rect" id="Node000009" href="$settings_8cpp.html" title=" " alt="" coords="624,165,804,193"/>
+<area shape="poly" id="edge10_Node000004_Node000009" title=" " alt="" coords="438,110,661,164,656,165,437,115"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="477,198,341,251,339,246,472,199"/>
+<area shape="rect" id="Node000008" href="$config_8cpp.html" title=" " alt="" coords="440,258,607,286"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="525,206,525,259,521,256,521,210"/>
+</map>

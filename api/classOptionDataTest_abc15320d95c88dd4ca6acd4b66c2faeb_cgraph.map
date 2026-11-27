@@ -1,0 +1,13 @@
+<map id="OptionDataTest::testToHelp" name="OptionDataTest::testToHelp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,118,204,146"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1OptionData.html#a8c3ff3610bd5c88b67450a995f8111e9" title="toHelp This method convert this option into help line. The help line have next structure :" alt="" coords="252,109,456,154"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,129,239,131,233,133,205,134"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1OptionData.html#ad21516b706594675c25491f76f46f12b" title="arguments This is input arguments of this option or help message about arguments." alt="" coords="504,5,708,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="400,106,503,60,523,55,518,57,505,65,402,111"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1OptionData.html#aae9fff9beebee8e0d3c31c2f353e811e" title="description This is description message of this option." alt="" coords="504,75,708,119"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="456,115,491,113,486,114,457,120"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1OptionData.html#a0c842bea23f0307618d87f57766fde68" title="example This is example of use string." alt="" coords="504,144,708,189"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="456,143,491,150,486,150,456,148"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1OptionData.html#aefb58810a4a860db1c321a1bf5e67d9d" title="name This is name of the option. It is a required argument and cannot be empty." alt="" coords="504,213,708,258"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="401,152,505,199,523,208,518,207,503,203,400,157"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="SettingsTest::testDeinitService" name="SettingsTest::testDeinitService">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,40,178,85"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1ISettings.html#a8df6204dcb007867ccda620a955a1626" title="deinitService This method destroys the global settings object and removes it from the global service ..." alt="" coords="226,5,413,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,47,212,43,208,45,179,52"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1ISettings.html#a2ad2d0eb1a8abb5cb04006085a84f750" title="instance This method returns pointer to current settings object." alt="" coords="226,75,413,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="178,73,213,80,208,81,178,78"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Service.html#ab8893a6e2e7e0ae86115e22698b92f2f" title="deinitService This is distructor method for the service." alt="" coords="466,5,644,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="413,25,453,27,447,28,414,30"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1Service.html#a0dc2c0ad2738ce01b34c2dc0f1f44555" title="instance This method return pointerer to current service object." alt="" coords="466,75,644,119"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="413,94,453,97,447,97,414,100"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1ISettings.html#a9cf2d82b723ba351cd90ac3b5f126fd5" title=" " alt="" coords="461,144,648,189"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="398,117,464,139,459,139,397,123"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classTest.html" title="The Test class is the base class of all unit tests of the QuasarAppLib test suite...." alt="" coords="5,136,53,164"/>
+<area shape="rect" id="Node000001" href="$classConfigTest.html" title="The ConfigTest class tests the QuasarAppUtils::Config class: the command&#45;line parsing through the Par..." alt="" coords="117,5,206,33"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="41,121,65,82,99,44,122,31,118,36,102,48,69,85,46,123"/>
+<area shape="rect" id="Node000002" href="$classGlobalUtilsTest.html" title="The GlobalUtilsTest class test the global utility functions of the QuasarAppUtils namespace (randomAr..." alt="" coords="102,57,221,85"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="57,124,99,96,127,83,123,87,102,100,61,128"/>
+<area shape="rect" id="Node000003" href="$classLocalesTest.html" title="The LocalesTest class test the QuasarAppUtils::Locales class (translations loading,..." alt="" coords="113,109,210,137"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="66,140,115,131,111,135,69,144"/>
+<area shape="rect" id="Node000004" href="$classOptionDataTest.html" title="The OptionDataTest class test the QuasarAppUtils::OptionData class (option data storage,..." alt="" coords="101,161,222,189"/>
+<area shape="poly" id="edge10_Node000000_Node000004" title=" " alt="" coords="67,155,103,162,98,165,69,160"/>
+<area shape="rect" id="Node000005" href="$classParamsTest.html" title="The ParamsTest class test the QuasarAppUtils::Params class (command line parameters parsing,..." alt="" coords="114,213,209,241"/>
+<area shape="poly" id="edge11_Node000000_Node000005" title=" " alt="" coords="61,171,102,198,127,212,122,213,99,203,60,176"/>
+<area shape="rect" id="Node000006" href="$classSettingsTest.html" title="The SettingsTest class test the QuasarAppUtils::Settings and QuasarAppUtils::ISettings classes (servi..." alt="" coords="111,265,212,293"/>
+<area shape="poly" id="edge12_Node000000_Node000006" title=" " alt="" coords="45,175,70,214,102,250,123,265,117,265,99,255,65,217,43,180"/>
+</map>

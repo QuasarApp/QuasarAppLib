@@ -1,0 +1,18 @@
+<map id="QuasarAppUtils::Params::getVerboseLvl" name="QuasarAppUtils::Params::getVerboseLvl">
+<area shape="rect" id="Node000001" title="getVerboseLvl This method return the verbose log level." alt="" coords="948,105,1126,150"/>
+<area shape="rect" id="Node000002" href="$classQuasarAppUtils_1_1QALogger.html#ace1b2ac35ad7d36933b081c1805fc2db" title="init This method initialize logging of all qt message into file." alt="" coords="700,5,893,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="975,98,899,65,869,53,869,48,901,60,981,98"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Params.html#a7dd12d65f7232ba7aff9526f21ab218c" title="isDebug This method return true if the application verbose level &gt;= VerboseLvl::Debug." alt="" coords="707,75,886,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="929,114,886,111,886,106,935,114"/>
+<area shape="rect" id="Node000004" href="$classParamsTest.html#aaf825acc0dfb4a2826cef4ac5d507c28" title=" " alt="" coords="418,114,645,142"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="929,131,900,134,693,134,646,133,646,128,693,129,900,129,934,131"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1Params.html#ab20a066955d690172a4aaa82889475f3" title="log This method print log text on console." alt="" coords="693,218,900,246"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="972,156,832,220,830,215,967,157"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="689,110,646,117,645,112,694,109"/>
+<area shape="rect" id="Node000005" href="$classParamsTest.html#a71a68e734f87bab0d01be3d9890143cc" title=" " alt="" coords="242,88,370,116"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="400,114,371,112,370,107,405,113"/>
+<area shape="rect" id="Node000006" href="$classParamsTest.html#ae9a679a6788a3a44285be6a07b7e8690" title=" " alt="" coords="5,114,194,142"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="401,130,194,130,194,125,404,126"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="224,113,195,119,193,114,229,111"/>
+<area shape="poly" id="edge8_Node000007_Node000007" title=" " alt="" coords="836,202,823,199,796,196,771,198,758,203,754,209,760,218,755,216,749,209,754,199,770,193,797,191,825,194,841,203"/>
+</map>

@@ -50,7 +50,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.584.3a35420</span>
+   <div id="projectname">QuasarAppLib<span id="projectnumber">&#160;1.0.591.efabd14</span>
    </div>
   </td>
  </tr>
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('md_AGENTS.html
 <li>The site rebuilds and redeploys automatically on every push to <span class="tt">main</span> — never hand-edit <span class="tt">docs/</span>, <span class="tt">site/</span> or <span class="tt">doxygen.conf</span> (all generated, git-ignored).</li>
 </ul>
 <h1>Testing process</h1>
-<p>The repository contains a Qt Test unit-test suite in <span class="tt">QuasarAppTests/</span> (structure and naming follow the <span class="tt">HeartTests</span> suite of the <span class="tt">QuasarApp/Heart</span> repository). A single <span class="tt">QuasarAppTest</span> executable links the <span class="tt">QuasarApp</span> library and the <span class="tt">Qt::Test</span> module; the per-module test classes live in <span class="tt">QuasarAppTests/units/</span> (Params, Settings/ISettings, Locales, OptionData, GlobalUtils) and are started from the <span class="tt">tst_quasarapp.cpp</span> runner.</p>
+<p>The repository contains a Qt <a class="el" href="classTest.html" title="The Test class is the base class of all unit tests of the QuasarAppLib test suite....">Test</a> unit-test suite in <span class="tt">QuasarAppTests/</span> (structure and naming follow the <span class="tt">HeartTests</span> suite of the <span class="tt">QuasarApp/Heart</span> repository). A single <span class="tt">QuasarAppTest</span> executable links the <span class="tt">QuasarApp</span> library and the <span class="tt">Qt::Test</span> module; the per-module test classes live in <span class="tt">QuasarAppTests/units/</span> (Params, Settings/ISettings, Locales, OptionData, GlobalUtils) and are started from the <span class="tt"><a class="el" href="tst__quasarapp_8cpp.html">tst_quasarapp.cpp</a></span> runner.</p>
 <ul>
 <li>The suite is registered with the QuasarApp CMake layer (<span class="tt">initTests()</span> + <span class="tt">addTests()</span>) and is controlled by the <span class="tt">QA_TESTS</span> CMake option (default <span class="tt">ON</span>, <span class="tt">OFF</span> on Android/iOS).</li>
 <li>The tests are run through the <span class="tt">test</span> aggregate target: <span class="tt">cmake --build build --target test</span>. The CMake layer deploys the test executable with the CQtDeployer tool into the (git-ignored) <span class="tt">Testing/</span> directory and runs it there, so CQtDeployer must be installed on the build machine.</li>

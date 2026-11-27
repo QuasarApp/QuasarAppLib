@@ -1,0 +1,25 @@
+<map id="LocalesTest::test" name="LocalesTest::test">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,179,135,206"/>
+<area shape="rect" id="Node000002" href="$classLocalesTest.html#a6d319eae3412da6745420dae87ed7412" title=" " alt="" coords="210,70,390,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,176,233,119,232,124,105,180"/>
+<area shape="rect" id="Node000006" href="$classLocalesTest.html#ac7786871bfd40bd59cb3509cdbb4d23a" title=" " alt="" coords="183,179,417,206"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="135,190,170,192,165,193,136,195"/>
+<area shape="rect" id="Node000008" href="$classLocalesTest.html#a74e03d0b912974b8898c6032e0b6dce0" title=" " alt="" coords="230,235,370,262"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="130,204,227,229,223,232,130,209"/>
+<area shape="rect" id="Node000003" href="$classQuasarAppUtils_1_1Locales.html#aaf48e28d7244b9a3d2406e1ff6485872" title="currentLocate This method return current locate of applicatuon." alt="" coords="474,105,653,149"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="390,102,461,113,456,114,391,107"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Locales.html#a6fa719a43171ed7f9324ea79d1e46797" title="instance This method return pointer to the Locales service." alt="" coords="710,105,890,149"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="341,67,398,41,464,20,520,9,565,3,609,6,663,21,694,34,722,52,770,94,765,93,719,56,691,39,661,26,608,11,565,9,521,14,466,26,400,46,343,72"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1Locales.html#a6d98460a031d3fa218fd15f5f20aa9c4" title="init This method initialize translations of application." alt="" coords="474,35,653,80"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="390,78,461,71,456,72,391,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="653,124,698,127,692,127,654,130"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="755,103,754,95,761,86,777,80,800,78,826,81,842,90,837,89,824,86,800,83,778,85,764,90,759,96,760,106"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="642,78,709,100,704,100,642,83"/>
+<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="358,175,461,152,456,154,360,180"/>
+<area shape="rect" id="Node000007" href="$classQuasarAppUtils_1_1Locales.html#a0a284d824ac459ed8dc99c82a4085521" title="setLocale This method sets locale for application and loaded all translations for this locale." alt="" coords="474,174,653,219"/>
+<area shape="poly" id="edge10_Node000006_Node000007" title=" " alt="" coords="417,192,461,195,456,195,418,197"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="642,171,704,155,709,154,643,176"/>
+<area shape="rect" id="Node000009" href="$classQuasarAppUtils_1_1Locales.html#a52d894c0cc00001461dc3a5ea2e92141" title="tr This method will translate single string to chosen language." alt="" coords="465,243,662,270"/>
+<area shape="poly" id="edge13_Node000008_Node000009" title=" " alt="" coords="370,248,452,253,447,253,370,253"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="634,239,661,229,716,195,761,161,766,159,719,199,664,233,635,245"/>
+</map>

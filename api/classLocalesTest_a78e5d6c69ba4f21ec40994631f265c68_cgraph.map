@@ -1,0 +1,30 @@
+<map id="LocalesTest::~LocalesTest" name="LocalesTest::~LocalesTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,196,211"/>
+<area shape="rect" id="Node000002" href="$classLocalesTest.html#a54891adf34e0b3c27b51ef6ce0d7b698" title=" " alt="" coords="244,158,373,186"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,183,231,180,226,182,197,188"/>
+<area shape="rect" id="Node000003" href="$classLocalesTest.html#a6d319eae3412da6745420dae87ed7412" title=" " alt="" coords="448,99,628,143"/>
+<area shape="poly" id="edge16_Node000001_Node000003" title=" " alt="" coords="133,180,184,161,243,144,340,128,435,123,430,124,340,134,244,149,186,166,136,185"/>
+<area shape="rect" id="Node000007" href="$classLocalesTest.html#ac7786871bfd40bd59cb3509cdbb4d23a" title=" " alt="" coords="421,186,655,214"/>
+<area shape="poly" id="edge17_Node000001_Node000007" title=" " alt="" coords="196,195,407,197,404,201,196,200"/>
+<area shape="rect" id="Node000009" href="$classLocalesTest.html#a74e03d0b912974b8898c6032e0b6dce0" title=" " alt="" coords="468,259,608,287"/>
+<area shape="poly" id="edge18_Node000001_Node000009" title=" " alt="" coords="185,209,454,256,451,261,184,214"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="373,155,435,143,430,145,374,160"/>
+<area shape="poly" id="edge9_Node000002_Node000007" title=" " alt="" coords="373,177,408,183,403,184,374,182"/>
+<area shape="poly" id="edge13_Node000002_Node000009" title=" " alt="" coords="339,184,422,223,489,253,484,253,420,227,338,189"/>
+<area shape="rect" id="Node000004" href="$classQuasarAppUtils_1_1Locales.html#aaf48e28d7244b9a3d2406e1ff6485872" title="currentLocate This method return current locate of applicatuon." alt="" coords="712,125,892,170"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="629,127,700,137,695,137,629,133"/>
+<area shape="rect" id="Node000005" href="$classQuasarAppUtils_1_1Locales.html#a6fa719a43171ed7f9324ea79d1e46797" title="instance This method return pointer to the Locales service." alt="" coords="949,125,1128,170"/>
+<area shape="poly" id="edge8_Node000003_Node000005" title=" " alt="" coords="629,109,758,103,830,104,901,110,949,121,943,121,900,116,830,110,758,109,629,114"/>
+<area shape="rect" id="Node000006" href="$classQuasarAppUtils_1_1Locales.html#a6d98460a031d3fa218fd15f5f20aa9c4" title="init This method initialize translations of application." alt="" coords="712,5,892,50"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="603,96,720,56,725,55,605,101"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="891,145,936,147,931,148,892,150"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="994,123,992,115,1000,106,1015,101,1038,99,1064,101,1081,110,1075,110,1063,106,1038,104,1016,106,1003,111,997,117,998,126"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="861,48,902,67,990,117,984,117,899,71,860,53"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="612,183,695,169,700,168,613,188"/>
+<area shape="rect" id="Node000008" href="$classQuasarAppUtils_1_1Locales.html#a0a284d824ac459ed8dc99c82a4085521" title="setLocale This method sets locale for application and loaded all translations for this locale." alt="" coords="712,195,892,239"/>
+<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="656,205,700,210,694,210,656,210"/>
+<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="880,191,942,175,948,174,881,197"/>
+<area shape="rect" id="Node000010" href="$classQuasarAppUtils_1_1Locales.html#a52d894c0cc00001461dc3a5ea2e92141" title="tr This method will translate single string to chosen language." alt="" coords="703,263,901,291"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="609,271,690,275,685,275,609,277"/>
+<area shape="poly" id="edge15_Node000010_Node000005" title=" " alt="" coords="872,260,899,249,954,216,1000,181,1005,180,957,220,902,254,873,265"/>
+</map>
